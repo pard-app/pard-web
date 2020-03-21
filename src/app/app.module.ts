@@ -12,9 +12,10 @@ import { MatInputModule } from "@angular/material/input";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FooterComponent } from "./footer/footer.component";
 import { MainListComponent } from "./main-list/main-list.component";
+import { TopBannerComponent } from './top-banner/top-banner.component';
 
 @NgModule({
-    declarations: [AppComponent, HelloPageComponent, FooterComponent, MainListComponent],
+    declarations: [AppComponent, HelloPageComponent, FooterComponent, MainListComponent, TopBannerComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,

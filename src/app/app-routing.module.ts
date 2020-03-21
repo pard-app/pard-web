@@ -1,10 +1,10 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { HelloPageComponent } from "./hello-page/hello-page.component";
-import { PageVendorsListComponent } from "./page-vendors-list/page-vendors-list.component";
+import { MainListComponent } from "./main-list/main-list.component";
 
 const routes: Routes = [
-    { path: "marketplace", component: PageVendorsListComponent },
+    { path: "marketplace", component: MainListComponent },
     { path: "", component: HelloPageComponent }
 ];
 
