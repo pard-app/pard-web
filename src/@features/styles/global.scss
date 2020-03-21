@@ -10,3 +10,33 @@ h6 {
 p {
     margin: 0;
 }
+
+$palette: (
+    brown: (
+        base: hsl(0, 4%, 35%)
+    ),
+    blue: (
+        xdark: hsl(198, 60%, 20%),
+        dark: hsl(198, 57%, 39%),
+        base: hsl(196, 59%, 42%),
+        light: hsl(194, 54%, 70%)
+    ),
+    green: (
+        dark: hsl(0, 0%, 70%),
+        base: hsl(0, 0%, 80%),
+        light: hsl(0, 0%, 95%)
+    ),
+    danger: (
+        base: hsl(0, 100%, 58%)
+    ),
+    warning: (
+        base: hsl(34, 100%, 63%)
+    ),
+    white: (
+        base: hsl(0, 0%, 100%)
+    )
+);
+
+@function color($color, $tone: base) {
+    @return map-get(map-get($palette, $color), $tone);
+}
