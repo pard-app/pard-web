@@ -1,17 +1,10 @@
 <header class="app-header" role="banner">
     <div class="overlay-message-box">
-        <h3 class="title mat-display-2">Pard App</h3>
+        <h3 class="title mat-display-2">Select a location!</h3>
         <p class="mat-body-1">Browse & Buy from your local stores</p>
-
         <form class="example-form">
-            <mat-form-field class="full-width" appearance="outline">
-                <input type="text" placeholder="City name" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" />
-                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectCountry($event)">
-                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                        {{ option }}
-                    </mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
+            <app-search-smart-items></app-search-smart-items>
+            <app-search-location></app-search-location>
         </form>
     </div>
 </header>

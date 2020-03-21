@@ -3,8 +3,9 @@
 .app-header {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 38vh;
+    align-items: flex-start;
+    min-height: 40vh;
+    overflow: hidden;
     background-color: color(brown);
     color: white;
     font-weight: 600;
@@ -14,8 +15,9 @@
 
 .overlay-message-box {
     background-color: rgba(black, 30%);
-    padding: 1em;
+    padding: 1em 3em;
     width: 100%;
+    margin: 30px 0;
     max-width: 500px;
     .title {
         font-weight: 100;
@@ -25,9 +27,7 @@
     max-width: 500px;
     width: 100%;
 }
-.full-width {
-    width: 100%;
-}
+
 .cutout {
     height: 70px;
     width: 100%;
