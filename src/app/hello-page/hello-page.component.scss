@@ -17,22 +17,3 @@
 .full-width {
     width: 100%;
 }
-
-.app-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 25vh;
-    display: flex;
-    align-items: center;
-    background-color: color(brown);
-    color: white;
-    font-weight: 600;
-    border-bottom-left-radius: 100%;
-    border-bottom-right-radius: 100%;
-}
-
-.example-form {
-    max-width: 500px;
-    width: 100%;
-}

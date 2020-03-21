@@ -5,7 +5,7 @@ import { MainListComponent } from "./main-list/main-list.component";
 
 const routes: Routes = [
     { path: "marketplace", component: MainListComponent },
-    { path: "", component: HelloPageComponent }
+    { path: "", component: MainListComponent }
 ];
 
 @NgModule({

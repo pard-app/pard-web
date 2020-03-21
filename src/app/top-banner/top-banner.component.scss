@@ -1,0 +1,36 @@
+@import "~src/@features/styles/colors.scss";
+
+.app-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 38vh;
+    background-color: color(brown);
+    color: white;
+    font-weight: 600;
+    border-bottom-left-radius: 100% 50%;
+    border-bottom-right-radius: 100% 50%;
+}
+
+.overlay-message-box {
+    background-color: rgba(black, 30%);
+    padding: 1em;
+    width: 100%;
+    max-width: 500px;
+    .title {
+        font-weight: 100;
+    }
+}
+.example-form {
+    max-width: 500px;
+    width: 100%;
+}
+.full-width {
+    width: 100%;
+}
+.cutout {
+    height: 70px;
+    width: 100%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
