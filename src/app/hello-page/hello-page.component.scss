@@ -2,7 +2,7 @@
     flex: 1;
 }
 
-.toolbar {
+.header {
     position: absolute;
     top: 0;
     left: 0;
@@ -15,17 +15,8 @@
     font-weight: 600;
 }
 
-.toolbar img {
+.header img {
     margin: 0 16px;
-}
-
-.toolbar #twitter-logo {
-    height: 40px;
-    margin: 0 16px;
-}
-
-.toolbar #twitter-logo:hover {
-    opacity: 0.8;
 }
 
 .content {
