@@ -1,7 +1,7 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "baseUrl": "./",
+        "baseUrl": ".",
         "outDir": "./dist/out-tsc",
         "sourceMap": true,
         "declaration": false,
@@ -11,7 +11,10 @@
         "moduleResolution": "node",
         "importHelpers": true,
         "target": "es2015",
-        "lib": ["es2018", "dom"]
+        "lib": ["es2018", "dom"],
+        "paths": {
+            "@models/*": ["src/@features/models/*"]
+        }
     },
     "angularCompilerOptions": {
         "fullTemplateTypeCheck": true,

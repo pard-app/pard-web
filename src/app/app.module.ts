@@ -20,6 +20,9 @@ import { MatGridListModule } from "@angular/material/grid-list";
 import { MatTabsModule } from "@angular/material/tabs";
 import { CardVendorComponent } from "./card-vendor/card-vendor.component";
 import { MatCardModule } from "@angular/material/card";
+import { DbServiceService } from "src/@features/services/db-service.service";
+
+//Injectables
 
 @NgModule({
     declarations: [
@@ -46,6 +49,6 @@ import { MatCardModule } from "@angular/material/card";
         MatCardModule
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent, DbServiceService]
 })
 export class AppModule {}
