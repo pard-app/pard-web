@@ -16,15 +16,14 @@ $palette: (
         base: hsl(0, 4%, 35%)
     ),
     blue: (
-        xdark: hsl(198, 60%, 20%),
-        dark: hsl(198, 57%, 39%),
-        base: hsl(196, 59%, 42%),
-        light: hsl(194, 54%, 70%)
+        dark: hsl(225, 24%, 32%),
+        base: hsl(224, 22%, 45%),
+        light: hsl(224, 35%, 63%)
     ),
     green: (
-        dark: hsl(0, 0%, 70%),
-        base: hsl(0, 0%, 80%),
-        light: hsl(0, 0%, 95%)
+        dark: hsl(188, 25%, 42%),
+        base: hsl(188, 35%, 60%),
+        light: hsl(185, 59%, 84%)
     ),
     danger: (
         base: hsl(0, 100%, 58%)
@@ -39,4 +38,13 @@ $palette: (
 
 @function color($color, $tone: base) {
     @return map-get(map-get($palette, $color), $tone);
+}
+
+.title {
+    &--large {
+        font-size: 2em;
+    }
+    &--bold {
+        font-weight: bold;
+    }
 }
