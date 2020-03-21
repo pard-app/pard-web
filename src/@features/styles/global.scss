@@ -1,46 +1,12 @@
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin: 8px 0;
-}
-
 p {
     margin: 0;
 }
-
-$palette: (
-    brown: (
-        base: hsl(0, 4%, 35%)
-    ),
-    blue: (
-        dark: hsl(225, 24%, 32%),
-        base: hsl(224, 22%, 45%),
-        light: hsl(224, 35%, 63%)
-    ),
-    green: (
-        dark: hsl(188, 25%, 42%),
-        base: hsl(188, 35%, 60%),
-        light: hsl(185, 59%, 84%)
-    ),
-    danger: (
-        base: hsl(0, 100%, 58%)
-    ),
-    warning: (
-        base: hsl(34, 100%, 63%)
-    ),
-    white: (
-        base: hsl(0, 0%, 100%)
-    )
-);
-
-@function color($color, $tone: base) {
-    @return map-get(map-get($palette, $color), $tone);
+body {
+    margin: 0;
 }
 
 .title {
+    margin: 20px 0 !important;
     &--large {
         font-size: 2em;
     }

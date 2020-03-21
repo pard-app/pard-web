@@ -1,22 +1,7 @@
-.spacer {
-    flex: 1;
-}
+@import "~src/@features/styles/colors.scss";
 
-.header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    background-color: #1976d2;
-    color: white;
-    font-weight: 600;
-}
-
-.header img {
-    margin: 0 16px;
+.title {
+    margin: 20px 0;
 }
 
 .content {
@@ -26,4 +11,27 @@
     max-width: 960px;
     flex-direction: column;
     align-items: center;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.app-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25vh;
+    display: flex;
+    align-items: center;
+    background-color: color(brown);
+    color: white;
+    font-weight: 600;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+}
+
+.example-form {
+    max-width: 500px;
+    width: 100%;
 }
