@@ -18,6 +18,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatTabsModule } from "@angular/material/tabs";
+import { CardVendorComponent } from "./card-vendor/card-vendor.component";
+import { MatCardModule } from "@angular/material/card";
 
 @NgModule({
     declarations: [
@@ -27,7 +29,8 @@ import { MatTabsModule } from "@angular/material/tabs";
         MainListComponent,
         TopBannerComponent,
         SearchLocationComponent,
-        SearchSmartItemsComponent
+        SearchSmartItemsComponent,
+        CardVendorComponent
     ],
     imports: [
         BrowserModule,
@@ -39,7 +42,8 @@ import { MatTabsModule } from "@angular/material/tabs";
         ReactiveFormsModule,
         FormsModule,
         MatGridListModule,
-        MatTabsModule
+        MatTabsModule,
+        MatCardModule
     ],
     providers: [],
     bootstrap: [AppComponent]
