@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "pard-app"
+  },
+  "targets": {
+    "pard-app": {
+      "hosting": {
+        "pard": [
+          "pard-web"
+        ]
+      }
+    }
+  }
+}
