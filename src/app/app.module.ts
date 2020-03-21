@@ -10,10 +10,11 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { PageVendorsListComponent } from './page-vendors-list/page-vendors-list.component';
+import { FooterComponent } from "./footer/footer.component";
+import { MainListComponent } from "./main-list/main-list.component";
 
 @NgModule({
-    declarations: [AppComponent, HelloPageComponent, PageVendorsListComponent],
+    declarations: [AppComponent, HelloPageComponent, FooterComponent, MainListComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
