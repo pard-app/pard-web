@@ -6,11 +6,20 @@ import { IVendor } from "@models/vendor.interface";
 import { map } from "rxjs/operators";
 
 @Injectable({
-    providedIn: "root"
+  providedIn: "root"
 })
 export class DbServiceService {
-    constructor(public store: AngularFirestore) {}
-    getMyListings() {
-        return this.store.collection<IVendor>("vendors").valueChanges({ idField: "id" });
-    }
+  constructor(public store: AngularFirestore) {}
+  getMyListings() {
+    return this.store
+      .collection<IVendor>("vendors")
+      .valueChanges({ idField: "id" });
+  }
+  getVendorListings(vendor: string) {
+    return this.store
+      .collection<IVendor>("listings", ref =>
+        ref.where("vendor", "==", `${vendor}`)
+      )
+      .valueChanges();
+  }
 }

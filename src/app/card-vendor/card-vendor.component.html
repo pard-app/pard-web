@@ -1,7 +1,9 @@
 <mat-card class="example-card box-wrapper">
+  <a [href]="'/vendor/' + id">
     <img class="example-card-image" mat-card-image [src]="image" alt="name" />
     <div class="box-content">
-        <div class="title">{{ name }}</div>
-        <div class="desc">Lorem ipsum dolor sit amet.</div>
+      <div class="title">{{ name }}</div>
+      <div class="desc">Lorem ipsum dolor sit amet.</div>
     </div>
+  </a>
 </mat-card>

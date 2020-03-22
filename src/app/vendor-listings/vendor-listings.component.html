@@ -1,0 +1,14 @@
+<app-top-banner></app-top-banner>
+
+<section class="content-section">
+  <h2 class="mat-display-1 title title--thin title--space">
+    <!-- {{ vendor.name }} -->
+  </h2>
+  <mat-grid-list cols="3" rowHeight="2:2">
+    <mat-grid-tile *ngFor="let listing of listings" class="listing">
+      <img [src]="listing.image" [alt]="listing.title" />
+      <h2>{{ listing.title }}</h2>
+      <p>{{ listing.description }}</p>
+    </mat-grid-tile>
+  </mat-grid-list>
+</section>

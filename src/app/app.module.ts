@@ -23,6 +23,7 @@ import { MatCardModule } from "@angular/material/card";
 import { DbServiceService } from "src/@features/services/db-service.service";
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
+import { VendorListingsComponent } from './vendor-listings/vendor-listings.component';
 
 //Injectables
 
@@ -35,7 +36,8 @@ import { environment } from "../environments/environment";
         TopBannerComponent,
         SearchLocationComponent,
         SearchSmartItemsComponent,
-        CardVendorComponent
+        CardVendorComponent,
+        VendorListingsComponent
     ],
     imports: [
         BrowserModule,
