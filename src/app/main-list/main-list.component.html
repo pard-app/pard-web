@@ -1,4 +1,4 @@
-<app-top-banner (currentCityOnChange)="currentCity = $event"></app-top-banner>
+<app-top-banner (currentCityOnChange)="onCityChange($event)"></app-top-banner>
 
 <section class="content-section">
     <h2 *ngIf="currentCity; else elseBlockCurrentCity" class="mat-display-1 title title--thin title--space">

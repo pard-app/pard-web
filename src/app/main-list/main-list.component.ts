@@ -11,6 +11,7 @@ import { Subscriber, Observable, Subscription } from "rxjs";
 export class MainListComponent implements OnInit, OnDestroy {
     private vendorsSubscriber: Subscription;
     public vendorsList: Array<IVendor>;
+    public currentCity: string = null;
     constructor(public dataService: DbServiceService) {}
 
     ngOnInit(): void {
@@ -22,6 +23,7 @@ export class MainListComponent implements OnInit, OnDestroy {
     }
 
     onCityChange(ev) {
-        console.log(ev);
+        this.currentCity = ev;
+        this.vendorsSubscriber = this.dataService.getMyListings(this.currentCity).subscribe((items: Array<IVendor>) => (this.vendorsList = items));
     }
 }

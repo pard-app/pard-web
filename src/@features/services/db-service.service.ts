@@ -10,7 +10,13 @@ import { map } from "rxjs/operators";
 })
 export class DbServiceService {
     constructor(public store: AngularFirestore) {}
-    getMyListings() {
-        return this.store.collection<IVendor>("vendors").valueChanges({ idField: "id" });
+    getMyListings(address = null) {
+        if (address) {
+            return this.store
+                .collection<IVendor>("vendors", ref => ref.where("address", "==", address))
+                .valueChanges({ idField: "id" });
+        } else {
+            return this.store.collection<IVendor>("vendors").valueChanges({ idField: "id" });
+        }
     }
 }
