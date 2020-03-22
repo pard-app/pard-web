@@ -5,7 +5,7 @@
         Local stores in <b>{{ currentCity }}</b>
     </h2>
     <ng-template #elseBlockCurrentCity>
-        <h2 class="mat-display-1 title title--thin title--space">Browse & Buy from your local stores</h2>
+        <h2 class="mat-display-1 title title--thin title--space">Browse & Buy from stores</h2>
     </ng-template>
 
     <mat-tab-group>
@@ -15,6 +15,7 @@
                     <app-card-vendor [description]="item.description" [image]="item.image" [name]="item.name" [address]="item.address"></app-card-vendor>
                 </section>
             </div>
+            <h2 *ngIf="!vendorsList.length" class="mat-display-1 title title--thin title--space">No stores in {{ currentCity }} 😥</h2>
         </mat-tab>
         <mat-tab label="Products">
             <mat-grid-list cols="3" rowHeight="2:2">

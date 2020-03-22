@@ -12,6 +12,7 @@ export class MainListComponent implements OnInit, OnDestroy {
     private vendorsSubscriber: Subscription;
     public vendorsList: Array<IVendor>;
     public currentCity: string = null;
+
     constructor(public dataService: DbServiceService) {}
 
     ngOnInit(): void {

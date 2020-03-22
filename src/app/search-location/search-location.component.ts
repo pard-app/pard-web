@@ -11,7 +11,8 @@ import { Router } from "@angular/router";
 })
 export class SearchLocationComponent implements OnInit {
     @Output() cityChanged: EventEmitter<any> = new EventEmitter();
-    myControl = new FormControl();
+    public myControl = new FormControl();
+    @Output() currentText: string;
 
     options: string[] = [
         "Vilnius",
