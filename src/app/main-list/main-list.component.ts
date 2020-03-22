@@ -4,27 +4,37 @@ import { IVendor } from "@models/vendor.interface";
 import { Subscriber, Observable, Subscription } from "rxjs";
 
 @Component({
-    selector: "app-main-list",
-    templateUrl: "./main-list.component.html",
-    styleUrls: ["./main-list.component.scss"]
+  selector: "app-main-list",
+  templateUrl: "./main-list.component.html",
+  styleUrls: ["./main-list.component.scss"]
 })
 export class MainListComponent implements OnInit, OnDestroy {
-    private vendorsSubscriber: Subscription;
-    public vendorsList: Array<IVendor>;
-    public currentCity: string = null;
+  private vendorsSubscriber: Subscription;
+  private listingSubscription: Subscription;
+  public vendorsList: Array<IVendor>;
+  public listingsList: Array<any>;
+  public currentCity: string = null;
 
-    constructor(public dataService: DbServiceService) {}
+  constructor(public dataService: DbServiceService) {}
 
-    ngOnInit(): void {
-        this.vendorsSubscriber = this.dataService.getMyListings().subscribe((items: Array<IVendor>) => (this.vendorsList = items));
-    }
+  ngOnInit(): void {
+    this.vendorsSubscriber = this.dataService
+      .getMyListings()
+      .subscribe((items: Array<IVendor>) => (this.vendorsList = items));
+    this.listingSubscription = this.dataService
+      .getListings()
+      .subscribe(items => (this.listingsList = items));
+  }
 
-    ngOnDestroy(): void {
-        this.vendorsSubscriber.unsubscribe();
-    }
+  ngOnDestroy(): void {
+    this.vendorsSubscriber.unsubscribe();
+    this.listingSubscription.unsubscribe();
+  }
 
-    onCityChange(ev) {
-        this.currentCity = ev;
-        this.vendorsSubscriber = this.dataService.getMyListings(this.currentCity).subscribe((items: Array<IVendor>) => (this.vendorsList = items));
-    }
+  onCityChange(ev) {
+    this.currentCity = ev;
+    this.vendorsSubscriber = this.dataService
+      .getMyListings(this.currentCity)
+      .subscribe((items: Array<IVendor>) => (this.vendorsList = items));
+  }
 }

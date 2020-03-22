@@ -1,33 +1,44 @@
 <app-top-banner (currentCityOnChange)="onCityChange($event)"></app-top-banner>
 
 <section class="content-section">
-    <h2 *ngIf="currentCity; else elseBlockCurrentCity" class="mat-display-1 title title--thin title--space">
-        Local stores in <b>{{ currentCity }}</b>
+  <h2
+    *ngIf="currentCity; else elseBlockCurrentCity"
+    class="mat-display-1 title title--thin title--space"
+  >
+    Local stores in <b>{{ currentCity }}</b>
+  </h2>
+  <ng-template #elseBlockCurrentCity>
+    <h2 class="mat-display-1 title title--thin title--space">
+      Browse & Buy from stores
     </h2>
-    <ng-template #elseBlockCurrentCity>
-        <h2 class="mat-display-1 title title--thin title--space">Browse & Buy from stores</h2>
-    </ng-template>
+  </ng-template>
 
-    <mat-tab-group>
-        <mat-tab label="Stores">
-            <div class="grid-parent">
-                <section class="grid-child" *ngFor="let item of vendorsList">
-                    <app-card-vendor [description]="item.description" [image]="item.image" [name]="item.name" [address]="item.address"></app-card-vendor>
-                </section>
-            </div>
-            <h2 *ngIf="vendorsList && !vendorsList.length" class="mat-display-1 title title--thin title--space">No stores in {{ currentCity }} 😥</h2>
-        </mat-tab>
-        <mat-tab label="Products">
-            <mat-grid-list cols="3" rowHeight="2:2">
-                <mat-grid-tile>1</mat-grid-tile>
-                <mat-grid-tile>2</mat-grid-tile>
-                <mat-grid-tile>3</mat-grid-tile>
-                <mat-grid-tile>4</mat-grid-tile>
-                <mat-grid-tile>1</mat-grid-tile>
-                <mat-grid-tile>2</mat-grid-tile>
-                <mat-grid-tile>3</mat-grid-tile>
-                <mat-grid-tile>4</mat-grid-tile>
-            </mat-grid-list>
-        </mat-tab>
-    </mat-tab-group>
+  <mat-tab-group>
+    <mat-tab label="Stores">
+      <div class="grid-parent">
+        <section class="grid-child" *ngFor="let item of vendorsList">
+          <app-card-vendor
+            [description]="item.description"
+            [image]="item.image"
+            [name]="item.name"
+            [address]="item.address"
+            [id]="item.id"
+          ></app-card-vendor>
+        </section>
+      </div>
+      <h2
+        *ngIf="vendorsList && !vendorsList.length"
+        class="mat-display-1 title title--thin title--space"
+      >
+        No stores in {{ currentCity }} 😥
+      </h2>
+    </mat-tab>
+    <mat-tab label="Products">
+      <div class="grid-parent">
+        <section class="grid-child" *ngFor="let item of listingsList">
+          <app-card-listing [item]="item"></app-card-listing>
+        </section>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </section>
