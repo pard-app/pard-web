@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
     selector: "app-top-banner",
@@ -6,11 +7,23 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ["./top-banner.component.scss"]
 })
 export class TopBannerComponent implements OnInit {
-    constructor() {}
+    @Output() currentCityOnChange: EventEmitter<string> = new EventEmitter();
+    public currentCity;
+
+    constructor(private httpClient: HttpClient) {}
 
     ngOnInit(): void {}
 
     changeCity(ev) {
-        console.log(ev);
+        this.currentCity = ev;
+        this.currentCityOnChange.emit(ev);
+    }
+
+    get getBackgroundImage() {
+        if (this.currentCity) {
+            return `url(assets/images/${this.currentCity}.jpg)`;
+        } else {
+            return "black";
+        }
     }
 }

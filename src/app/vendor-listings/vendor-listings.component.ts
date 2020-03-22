@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { IVendor } from "@models/vendor.interface";
 import { Subscription } from "rxjs";
 import { DbServiceService } from "src/@features/services/db-service.service";
 import { ActivatedRoute } from "@angular/router";

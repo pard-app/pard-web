@@ -13,6 +13,8 @@ export class MainListComponent implements OnInit, OnDestroy {
   private listingSubscription: Subscription;
   public vendorsList: Array<IVendor>;
   public listingsList: Array<any>;
+  public currentCity: string = null;
+
   constructor(public dataService: DbServiceService) {}
 
   ngOnInit(): void {
@@ -27,5 +29,12 @@ export class MainListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.vendorsSubscriber.unsubscribe();
     this.listingSubscription.unsubscribe();
+  }
+
+  onCityChange(ev) {
+    this.currentCity = ev;
+    this.vendorsSubscriber = this.dataService
+      .getMyListings(this.currentCity)
+      .subscribe((items: Array<IVendor>) => (this.vendorsList = items));
   }
 }
