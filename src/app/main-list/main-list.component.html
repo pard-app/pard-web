@@ -1,7 +1,13 @@
-<app-top-banner></app-top-banner>
+<app-top-banner (currentCityOnChange)="currentCity = $event"></app-top-banner>
 
 <section class="content-section">
-    <h2 class="mat-display-1 title title--thin title--space">Browsing all Stores & Products</h2>
+    <h2 *ngIf="currentCity; else elseBlockCurrentCity" class="mat-display-1 title title--thin title--space">
+        Local stores in <b>{{ currentCity }}</b>
+    </h2>
+    <ng-template #elseBlockCurrentCity>
+        <h2 class="mat-display-1 title title--thin title--space">Browse & Buy from your local stores</h2>
+    </ng-template>
+
     <mat-tab-group>
         <mat-tab label="Stores">
             <div class="grid-parent">

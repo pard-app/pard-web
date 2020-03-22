@@ -20,4 +20,8 @@ export class MainListComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.vendorsSubscriber.unsubscribe();
     }
+
+    onCityChange(ev) {
+        console.log(ev);
+    }
 }

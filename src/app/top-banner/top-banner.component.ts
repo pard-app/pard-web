@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 @Component({
@@ -7,7 +7,8 @@ import { HttpClient } from "@angular/common/http";
     styleUrls: ["./top-banner.component.scss"]
 })
 export class TopBannerComponent implements OnInit {
-    @Output() public currentCity: string;
+    @Output() currentCityOnChange: EventEmitter<string> = new EventEmitter();
+    public currentCity;
 
     constructor(private httpClient: HttpClient) {}
 
@@ -15,7 +16,7 @@ export class TopBannerComponent implements OnInit {
 
     changeCity(ev) {
         this.currentCity = ev;
-        // console.log(ev);
+        this.currentCityOnChange.emit(ev);
     }
 
     get getBackgroundImage() {
