@@ -4,11 +4,24 @@
   <h2 class="mat-display-1 title title--thin title--space">
     <!-- {{ vendor.name }} -->
   </h2>
-  <mat-grid-list cols="3" rowHeight="2:2">
-    <mat-grid-tile *ngFor="let listing of listings" class="listing">
-      <img [src]="listing.image" [alt]="listing.title" />
-      <h2>{{ listing.title }}</h2>
-      <p>{{ listing.description }}</p>
-    </mat-grid-tile>
-  </mat-grid-list>
+
+  <div class="grid-parent">
+    <section class="grid-child" *ngFor="let listing of listings">
+      <div class="listing example-card box-wrapper">
+        <img
+          class="example-card-image"
+          [src]="
+            listing.image
+              ? listing.image
+              : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png'
+          "
+          alt="listing.title"
+        />
+        <div class="box-content">
+          <div class="title">{{ listing.title }}</div>
+          <div class="desc">{{ listing.description }}</div>
+        </div>
+      </div>
+    </section>
+  </div>
 </section>
