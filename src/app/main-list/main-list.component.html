@@ -15,7 +15,7 @@
                     <app-card-vendor [description]="item.description" [image]="item.image" [name]="item.name" [address]="item.address"></app-card-vendor>
                 </section>
             </div>
-            <h2 *ngIf="!vendorsList.length" class="mat-display-1 title title--thin title--space">No stores in {{ currentCity }} 😥</h2>
+            <h2 *ngIf="vendorsList && !vendorsList.length" class="mat-display-1 title title--thin title--space">No stores in {{ currentCity }} 😥</h2>
         </mat-tab>
         <mat-tab label="Products">
             <mat-grid-list cols="3" rowHeight="2:2">
