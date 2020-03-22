@@ -9,6 +9,7 @@ export class CardVendorComponent implements OnInit {
   @Input() name: string;
   @Input() description: string;
   @Input() image: string;
+  @Input() address: string;
   @Input() id: string;
 
   constructor() {}
