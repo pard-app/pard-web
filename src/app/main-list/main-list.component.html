@@ -3,19 +3,12 @@
 <section class="content-section">
     <h2 class="mat-display-1 title title--thin title--space">Browsing all Stores & Products</h2>
 
-    <mat-tab-group>
+    <mat-tab-group class="hello">
         <mat-tab label="Stores">
             <mat-grid-list cols="3">
-                <mat-grid-tile>
-                    <app-card-vendor></app-card-vendor>
+                <mat-grid-tile *ngFor="let item of vendorsList">
+                    <app-card-vendor [description]="item.description" [image]="item.image" [name]="item.name"></app-card-vendor>
                 </mat-grid-tile>
-                <mat-grid-tile>2</mat-grid-tile>
-                <mat-grid-tile>3</mat-grid-tile>
-                <mat-grid-tile>4</mat-grid-tile>
-                <mat-grid-tile>1</mat-grid-tile>
-                <mat-grid-tile>2</mat-grid-tile>
-                <mat-grid-tile>3</mat-grid-tile>
-                <mat-grid-tile>4</mat-grid-tile>
             </mat-grid-list>
         </mat-tab>
         <mat-tab label="Products">

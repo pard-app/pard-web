@@ -1,8 +1,10 @@
 <mat-card class="example-card">
-    <img class="example-card-image" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" />
+    <div class="img-wrapper">
+        <img class="example-card-image" mat-card-image [src]="image" alt="name" />
+    </div>
     <mat-card-content>
-        <p>
-            I sell smth
-        </p>
+        <h3>
+            {{ name }}
+        </h3>
     </mat-card-content>
 </mat-card>

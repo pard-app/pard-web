@@ -1,6 +1,6 @@
+import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -21,6 +21,8 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { CardVendorComponent } from "./card-vendor/card-vendor.component";
 import { MatCardModule } from "@angular/material/card";
 import { DbServiceService } from "src/@features/services/db-service.service";
+import { AngularFireModule } from "@angular/fire";
+import { environment } from "../environments/environment";
 
 //Injectables
 
@@ -46,9 +48,11 @@ import { DbServiceService } from "src/@features/services/db-service.service";
         FormsModule,
         MatGridListModule,
         MatTabsModule,
-        MatCardModule
+        MatCardModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFirestoreModule
     ],
-    providers: [],
-    bootstrap: [AppComponent, DbServiceService]
+    providers: [DbServiceService],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}
