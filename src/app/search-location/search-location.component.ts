@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
     styleUrls: ["./search-location.component.scss"]
 })
 export class SearchLocationComponent implements OnInit {
+    @Output() cityChanged: EventEmitter<any> = new EventEmitter();
     myControl = new FormControl();
 
     options: string[] = [
@@ -61,7 +62,6 @@ export class SearchLocationComponent implements OnInit {
     }
 
     selectCountry({ option }) {
-        this.router.navigate(["/marketplace"]);
-        console.log(option.value);
+        this.cityChanged.emit(option.value);
     }
 }

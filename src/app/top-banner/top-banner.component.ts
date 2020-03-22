@@ -9,4 +9,8 @@ export class TopBannerComponent implements OnInit {
     constructor() {}
 
     ngOnInit(): void {}
+
+    changeCity(ev) {
+        console.log(ev);
+    }
 }

@@ -1,5 +1,5 @@
 <mat-form-field class="full-width" appearance="fill">
-    <input type="text" placeholder="City name aaa" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" />
+    <input type="text" placeholder="City name" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" />
     <mat-autocomplete #auto="matAutocomplete" panelClass="example-panel" (optionSelected)="selectCountry($event)">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
             {{ option }}

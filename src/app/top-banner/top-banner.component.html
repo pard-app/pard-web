@@ -1,10 +1,10 @@
-<header class="app-header" role="banner">
+<header style="background: black" class="app-header" role="banner">
     <div class="overlay-message-box">
         <h3 class="title mat-display-2">Select a location!</h3>
         <p class="mat-body-1">Browse & Buy from your local stores</p>
         <form class="example-form">
             <app-search-smart-items></app-search-smart-items>
-            <app-search-location></app-search-location>
+            <app-search-location (cityChanged)="changeCity($event)"></app-search-location>
         </form>
     </div>
 </header>
