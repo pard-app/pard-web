@@ -23,38 +23,40 @@ import { MatCardModule } from "@angular/material/card";
 import { DbServiceService } from "src/@features/services/db-service.service";
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
-import { VendorListingsComponent } from './vendor-listings/vendor-listings.component';
+import { VendorListingsComponent } from "./vendor-listings/vendor-listings.component";
+import { CardListingComponent } from "./card-listing/card-listing.component";
 
 //Injectables
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HelloPageComponent,
-        FooterComponent,
-        MainListComponent,
-        TopBannerComponent,
-        SearchLocationComponent,
-        SearchSmartItemsComponent,
-        CardVendorComponent,
-        VendorListingsComponent
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatAutocompleteModule,
-        MatFormFieldModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        FormsModule,
-        MatGridListModule,
-        MatTabsModule,
-        MatCardModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFirestoreModule
-    ],
-    providers: [DbServiceService],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    HelloPageComponent,
+    FooterComponent,
+    MainListComponent,
+    TopBannerComponent,
+    SearchLocationComponent,
+    SearchSmartItemsComponent,
+    CardVendorComponent,
+    CardListingComponent,
+    VendorListingsComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatGridListModule,
+    MatTabsModule,
+    MatCardModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule
+  ],
+  providers: [DbServiceService],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

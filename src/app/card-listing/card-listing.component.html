@@ -1,0 +1,16 @@
+<div class="example-card box-wrapper">
+  <img
+    class="example-card-image"
+    [src]="
+      item.image
+        ? item.image
+        : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png'
+    "
+    alt="item.name"
+  />
+  <div class="box-content">
+    <h1 class="price">{{ item.price }} &euro;</h1>
+    <div class="title">{{ item.title }}</div>
+    <div class="desc">{{ item.description }}</div>
+  </div>
+</div>

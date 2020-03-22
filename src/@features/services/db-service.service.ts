@@ -17,9 +17,11 @@ export class DbServiceService {
   }
   getVendorListings(vendor: string) {
     return this.store
-      .collection<IVendor>("listings", ref =>
-        ref.where("vendor", "==", `${vendor}`)
-      )
+      .collection("listings", ref => ref.where("vendor", "==", `${vendor}`))
       .valueChanges();
+  }
+
+  getListings() {
+    return this.store.collection("listings").valueChanges();
   }
 }

@@ -19,16 +19,11 @@
       </div>
     </mat-tab>
     <mat-tab label="Products">
-      <mat-grid-list cols="3" rowHeight="2:2">
-        <mat-grid-tile>1</mat-grid-tile>
-        <mat-grid-tile>2</mat-grid-tile>
-        <mat-grid-tile>3</mat-grid-tile>
-        <mat-grid-tile>4</mat-grid-tile>
-        <mat-grid-tile>1</mat-grid-tile>
-        <mat-grid-tile>2</mat-grid-tile>
-        <mat-grid-tile>3</mat-grid-tile>
-        <mat-grid-tile>4</mat-grid-tile>
-      </mat-grid-list>
+      <div class="grid-parent">
+        <section class="grid-child" *ngFor="let item of listingsList">
+          <app-card-listing [item]="item"></app-card-listing>
+        </section>
+      </div>
     </mat-tab>
   </mat-tab-group>
 </section>

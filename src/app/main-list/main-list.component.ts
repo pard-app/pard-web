@@ -4,20 +4,28 @@ import { IVendor } from "@models/vendor.interface";
 import { Subscriber, Observable, Subscription } from "rxjs";
 
 @Component({
-    selector: "app-main-list",
-    templateUrl: "./main-list.component.html",
-    styleUrls: ["./main-list.component.scss"]
+  selector: "app-main-list",
+  templateUrl: "./main-list.component.html",
+  styleUrls: ["./main-list.component.scss"]
 })
 export class MainListComponent implements OnInit, OnDestroy {
-    private vendorsSubscriber: Subscription;
-    public vendorsList: Array<IVendor>;
-    constructor(public dataService: DbServiceService) {}
+  private vendorsSubscriber: Subscription;
+  private listingSubscription: Subscription;
+  public vendorsList: Array<IVendor>;
+  public listingsList: Array<any>;
+  constructor(public dataService: DbServiceService) {}
 
-    ngOnInit(): void {
-        this.vendorsSubscriber = this.dataService.getMyListings().subscribe((items: Array<IVendor>) => (this.vendorsList = items));
-    }
+  ngOnInit(): void {
+    this.vendorsSubscriber = this.dataService
+      .getMyListings()
+      .subscribe((items: Array<IVendor>) => (this.vendorsList = items));
+    this.listingSubscription = this.dataService
+      .getListings()
+      .subscribe(items => (this.listingsList = items));
+  }
 
-    ngOnDestroy(): void {
-        this.vendorsSubscriber.unsubscribe();
-    }
+  ngOnDestroy(): void {
+    this.vendorsSubscriber.unsubscribe();
+    this.listingSubscription.unsubscribe();
+  }
 }
