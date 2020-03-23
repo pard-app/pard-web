@@ -26,6 +26,8 @@ import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
 import { VendorListingsComponent } from "./vendor-listings/vendor-listings.component";
 import { CardListingComponent } from "./card-listing/card-listing.component";
+import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 //Injectables
 
@@ -56,7 +58,10 @@ import { CardListingComponent } from "./card-listing/card-listing.component";
         MatTabsModule,
         MatCardModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFirestoreModule
+        AngularFirestoreModule,
+        NbThemeModule.forRoot({ name: 'corporate' }),
+        NbLayoutModule,
+        NbEvaIconsModule
     ],
     providers: [DbServiceService],
     bootstrap: [AppComponent]
