@@ -13,7 +13,7 @@
         "target": "es2015",
         "lib": ["es2018", "dom"],
         "paths": {
-            "@models/*": ["src/@features/models/*"]
+            "@models/*": ["src/app/@features/models/*"]
         }
     },
     "angularCompilerOptions": {
