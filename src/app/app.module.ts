@@ -5,7 +5,6 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HelloPageComponent } from "./hello-page/hello-page.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FooterComponent } from "./footer/footer.component";
 import { MainListComponent } from "./main-list/main-list.component";
@@ -26,15 +25,28 @@ import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
 import { VendorListingsComponent } from "./vendor-listings/vendor-listings.component";
 import { CardListingComponent } from "./card-listing/card-listing.component";
-import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
+import {
+    NbThemeModule,
+    NbLayoutModule,
+    NbAutocompleteModule,
+    NbCardModule,
+    NbOverlayModule,
+    NbDialogModule,
+    NbAutocompleteDirective,
+    NbInputModule,
+    NbFormFieldModule,
+    NbOptionModule,
+    NbCdkAdapterModule
+} from "@nebular/theme";
+import { NbEvaIconsModule } from "@nebular/eva-icons";
+
+// NEBULAR MODULES
 
 //Injectables
 
 @NgModule({
     declarations: [
         AppComponent,
-        HelloPageComponent,
         FooterComponent,
         MainListComponent,
         TopBannerComponent,
@@ -59,11 +71,18 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
         MatCardModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFirestoreModule,
-        NbThemeModule.forRoot({ name: 'corporate' }),
+        NbThemeModule.forRoot({ name: "corporate" }),
         NbLayoutModule,
-        NbEvaIconsModule
+        NbEvaIconsModule,
+        NbAutocompleteModule,
+        NbCardModule,
+        NbOverlayModule,
+        NbDialogModule,
+        NbInputModule,
+        NbFormFieldModule,
+        NbOptionModule
     ],
-    providers: [DbServiceService],
+    providers: [DbServiceService, NbAutocompleteDirective],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,32 +1,8 @@
 <nb-layout>
-
-  <nb-layout-header fixed>
-  <!-- Insert header here -->
-  </nb-layout-header>
-
-  <nb-layout-column>
-
-    <style>
-        :host {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-                "Segoe UI Symbol";
-            font-size: 14px;
-            color: #333;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-    </style>
-    
-    <div class="content">
-        <router-outlet></router-outlet>
-        <app-footer></app-footer>
-    </div>
-    
-  </nb-layout-column>
-
-  <nb-layout-footer fixed>
-  <!-- Insert footer here -->
-  </nb-layout-footer>
-
+    <nb-layout-column>
+        <div class="content">
+            <router-outlet></router-outlet>
+            <app-footer></app-footer>
+        </div>
+    </nb-layout-column>
 </nb-layout>

@@ -1,8 +1,8 @@
 <header [style]="'background-image:' + getBackgroundImage + '; background-color: black'" class="app-header" role="banner">
     <div class="overlay-message-box">
-        <h3 class="title mat-display-2">{{ currentCity ? "Welcome to " + currentCity : "Select a location"! }}</h3>
+        <h3 class="title text-alternate">{{ currentCity ? "Welcome to " + currentCity : "Select a location"! }}</h3>
         <form class="example-form">
-            <app-search-smart-items></app-search-smart-items>
+            <!-- <app-search-smart-items></app-search-smart-items> -->
             <app-search-location (cityChanged)="changeCity($event)"></app-search-location>
         </form>
     </div>
