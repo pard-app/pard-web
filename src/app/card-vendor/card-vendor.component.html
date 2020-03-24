@@ -1,15 +1,17 @@
-<div class="example-card box-wrapper" [routerLink]="'/vendor/' + id">
-  <img
-    class="example-card-image"
-    [src]="
-      image
-        ? image
-        : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png'
-    "
-    alt="name"
-  />
-  <div class="box-content">
-    <div class="title">{{ name }}</div>
-    <div class="desc">{{ address }}</div>
-  </div>
-</div>
+<!-- <div class="example-card box-wrapper" >
+    <div class="box-content">
+        <div class="title">{{ name }}</div>
+        <div class="desc">{{ address }}</div>
+    </div>
+</div> -->
+
+<nb-card size="small" class="vendor-card" [routerLink]="'/vendor/' + id">
+    <nb-card-header>{{ name ? name : "No Name" }}</nb-card-header>
+    <nb-card-body class="card-body">
+        <img
+            class="example-card-image"
+            [src]="image ? image : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png'"
+            alt="name"
+        />
+    </nb-card-body>
+</nb-card>

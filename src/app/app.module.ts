@@ -36,7 +36,10 @@ import {
     NbInputModule,
     NbFormFieldModule,
     NbOptionModule,
-    NbCdkAdapterModule
+    NbCdkAdapterModule,
+    NbTabsetModule,
+    NbRouteTabsetModule,
+    NbSpinnerModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 
@@ -71,6 +74,7 @@ import { NbEvaIconsModule } from "@nebular/eva-icons";
         MatCardModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFirestoreModule,
+        //Nebular
         NbThemeModule.forRoot({ name: "corporate" }),
         NbLayoutModule,
         NbEvaIconsModule,
@@ -80,7 +84,10 @@ import { NbEvaIconsModule } from "@nebular/eva-icons";
         NbDialogModule,
         NbInputModule,
         NbFormFieldModule,
-        NbOptionModule
+        NbOptionModule,
+        NbTabsetModule,
+        NbRouteTabsetModule,
+        NbSpinnerModule
     ],
     providers: [DbServiceService, NbAutocompleteDirective],
     bootstrap: [AppComponent]
