@@ -1,28 +1,28 @@
 <app-top-banner></app-top-banner>
 
 <section class="content-section">
-  <h2 class="mat-display-1 title title--thin title--space">
-    <!-- {{ vendor.name }} -->
-  </h2>
+    <h2 class="mat-display-1 title title--thin title--space">
+        <!-- {{ vendor.name }} -->
+    </h2>
 
-  <div class="grid-parent">
-    <section class="grid-child" *ngFor="let listing of listings">
-      <div class="listing example-card box-wrapper">
-        <img
-          class="example-card-image"
-          [src]="
-            listing.image
-              ? listing.image
-              : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png'
-          "
-          alt="listing.title"
-        />
-        <div class="box-content">
-          <h1>{{ listing.price }} &euro;</h1>
-          <div class="title">{{ listing.title }}</div>
-          <div class="desc">{{ listing.description }}</div>
-        </div>
-      </div>
-    </section>
-  </div>
+    <div class="grid-parent">
+        <section class="grid-child" *ngFor="let listing of listings">
+            <div class="listing example-card box-wrapper">
+                <img
+                    class="example-card-image"
+                    [src]="
+                        listing.image
+                            ? listing.image
+                            : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png'
+                    "
+                    alt="listing.title"
+                />
+                <div class="box-content">
+                    <h1>{{ listing.price }} &euro;</h1>
+                    <div class="title">{{ listing.title }}</div>
+                    <div class="desc">{{ listing.description }}</div>
+                </div>
+            </div>
+        </section>
+    </div>
 </section>

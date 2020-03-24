@@ -1,0 +1,43 @@
+@import "~src/app/@features/styles/themes";
+
+.top-header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 999;
+    // border-bottom: 1px solid nb-theme(color-primary-500);
+    box-shadow: nb-theme(color-primary-500) 0px -5px 20px;
+
+    &::ng-deep nav {
+        justify-content: flex-end;
+        padding: 0px 10px;
+        height: 55px;
+    }
+    &__button {
+        padding: 0px 20px;
+        width: 50px;
+        margin: 0px 10px;
+    }
+
+    &__cart {
+        position: relative;
+
+        .cart-nofitication {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            background-color: nb-theme(color-primary-600);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            color: nb-theme(color-primary-100);
+            font-size: nb-theme(text-button-small-font-size);
+            box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px;
+            text-align: center;
+        }
+    }
+
+    &--fake {
+        height: 55px;
+    }
+}

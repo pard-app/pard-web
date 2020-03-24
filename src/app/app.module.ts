@@ -13,18 +13,14 @@ import { SearchLocationComponent } from "./globalComponents/search-location/sear
 import { SearchSmartItemsComponent } from "./globalComponents/search-smart-items/search-smart-items.component";
 
 // ANGULAR MATERIAL MODULES
-import { MatAutocompleteModule } from "@angular/material/autocomplete";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
-import { MatGridListModule } from "@angular/material/grid-list";
-import { MatTabsModule } from "@angular/material/tabs";
 import { CardVendorComponent } from "./globalComponents/card-vendor/card-vendor.component";
-import { MatCardModule } from "@angular/material/card";
 import { DbServiceService } from "src/app/@features/services/db-service.service";
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
 import { VendorListingsComponent } from "./globalComponents/vendor-listings/vendor-listings.component";
 import { CardListingComponent } from "./modules/card-listing/card-listing.component";
+
+// NEBULAR MODULES
 import {
     NbThemeModule,
     NbLayoutModule,
@@ -39,11 +35,15 @@ import {
     NbCdkAdapterModule,
     NbTabsetModule,
     NbRouteTabsetModule,
-    NbSpinnerModule
+    NbSpinnerModule,
+    NbContextMenuModule,
+    NbButtonModule,
+    NbMenuService,
+    NbMenuModule,
+    NbIconModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
-
-// NEBULAR MODULES
+import { TopheaderComponent } from "./globalComponents/topheader/topheader.component";
 
 //Injectables
 
@@ -57,21 +57,16 @@ import { NbEvaIconsModule } from "@nebular/eva-icons";
         SearchSmartItemsComponent,
         CardVendorComponent,
         CardListingComponent,
-        VendorListingsComponent
+        VendorListingsComponent,
+        TopheaderComponent
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        MatAutocompleteModule,
-        MatFormFieldModule,
-        MatInputModule,
         ReactiveFormsModule,
         FormsModule,
-        MatGridListModule,
-        MatTabsModule,
-        MatCardModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFirestoreModule,
         //Nebular
@@ -87,9 +82,13 @@ import { NbEvaIconsModule } from "@nebular/eva-icons";
         NbOptionModule,
         NbTabsetModule,
         NbRouteTabsetModule,
-        NbSpinnerModule
+        NbSpinnerModule,
+        NbContextMenuModule,
+        NbButtonModule,
+        NbMenuModule.forRoot(),
+        NbIconModule
     ],
-    providers: [DbServiceService, NbAutocompleteDirective],
+    providers: [DbServiceService, NbAutocompleteDirective, NbMenuService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
