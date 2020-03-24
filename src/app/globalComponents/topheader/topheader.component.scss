@@ -5,6 +5,8 @@
     width: 100%;
     top: 0;
     z-index: 999;
+    // border-bottom: 1px solid nb-theme(color-primary-500);
+    box-shadow: nb-theme(color-primary-500) 0px -5px 20px;
 
     &::ng-deep nav {
         justify-content: flex-end;
