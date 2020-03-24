@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { MainListComponent } from "./main-list/main-list.component";
-import { VendorListingsComponent } from "./vendor-listings/vendor-listings.component";
+import { MainListComponent } from "./modules/main-list/main-list.component";
+import { VendorListingsComponent } from "./globalComponents/vendor-listings/vendor-listings.component";
 
 const routes: Routes = [
     { path: "marketplace", component: MainListComponent },
