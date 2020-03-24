@@ -1,5 +1,7 @@
 <nb-card size="small" class="vendor-card" [routerLink]="'/vendor/' + id">
-    <nb-card-header>{{ name ? name : "No Name" }}</nb-card-header>
+    <nb-card-header
+        ><h5 class="text-heading-1">{{ name ? name : "No Name" }}</h5></nb-card-header
+    >
     <nb-card-body class="card-body">
         <img
             class="example-card-image"
