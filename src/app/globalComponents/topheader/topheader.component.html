@@ -1,0 +1,13 @@
+<nb-layout-header class="top-header">
+    <div class="top-header__cart">
+        <button outline nbButton outline status="primary" [nbContextMenu]="items" class="top-header__button">
+            <nb-icon icon="shopping-cart-outline"></nb-icon>
+        </button>
+        <div class="cart-nofitication">{{ number }}</div>
+    </div>
+    <button outline nbButton [nbContextMenu]="items" class="top-header__button">
+        <nb-icon icon="menu-outline"></nb-icon>
+    </button>
+</nb-layout-header>
+
+<nb-layout-header class="top-header--fake"> </nb-layout-header>
