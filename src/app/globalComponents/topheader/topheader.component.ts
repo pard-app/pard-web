@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { CartStoreService } from "src/app/@features/stores/cart/cart.store.service";
 
 @Component({
     selector: "app-topheader",
@@ -7,8 +8,12 @@ import { Component, OnInit } from "@angular/core";
 })
 export class TopheaderComponent implements OnInit {
     public items = [{ title: "About", url: "https://pard.lt/" }, { title: "Log out" }];
-    public number = 3;
-    constructor() {}
+
+    constructor(private cartStoreService: CartStoreService) {}
 
     ngOnInit(): void {}
+
+    get count() {
+        return this.cartStoreService.get("cartItems").length;
+    }
 }

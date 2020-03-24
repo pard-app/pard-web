@@ -3,7 +3,7 @@
         <button outline nbButton outline status="primary" [nbContextMenu]="items" class="top-header__button">
             <nb-icon icon="shopping-cart-outline"></nb-icon>
         </button>
-        <div class="cart-nofitication">{{ number }}</div>
+        <div *ngIf="count" class="cart-nofitication">{{ count }}</div>
     </div>
     <button outline nbButton [nbContextMenu]="items" class="top-header__button">
         <nb-icon icon="menu-outline"></nb-icon>
