@@ -10,7 +10,7 @@ import { CartItem } from "@models/cart/cartitem.interface";
     styleUrls: ["./topheader.component.scss"]
 })
 export class TopheaderComponent implements OnInit {
-    public items = [{ title: "About", url: "https://pard.lt/" }, { title: "Log out" }];
+    public items = [{ title: "Home", link: "/" }, { title: "About", url: "https://pard.lt/" }, { title: "Log out" }];
     public lastItemAddedToCartSubscribtion: Subscription;
     public lastItemAddedToCart: CartItem = null;
     private timer: ReturnType<typeof setTimeout>;
