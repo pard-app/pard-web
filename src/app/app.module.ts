@@ -44,6 +44,7 @@ import {
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { TopheaderComponent } from "./globalComponents/topheader/topheader.component";
+import { CartComponent } from './modules/cart/cart.component';
 
 //Injectables
 
@@ -58,7 +59,8 @@ import { TopheaderComponent } from "./globalComponents/topheader/topheader.compo
         CardVendorComponent,
         CardListingComponent,
         VendorListingsComponent,
-        TopheaderComponent
+        TopheaderComponent,
+        CartComponent
     ],
     imports: [
         BrowserModule,
