@@ -12,7 +12,10 @@ p {
 body {
     margin: 0;
 }
-
+.content-section {
+    margin: 50px auto;
+    max-width: 1200px;
+}
 .title {
     margin: 20px 0 !important;
     text-align: center;
