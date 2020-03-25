@@ -14,6 +14,6 @@ export class TopheaderComponent implements OnInit {
     ngOnInit(): void {}
 
     get count() {
-        return this.cartStoreService.get("cartItems").length;
+        return this.cartStoreService.cartItems.length;
     }
 }

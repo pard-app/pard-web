@@ -23,10 +23,10 @@ export class DbServiceService {
     }
 
     getVendorListings(vendor: string): Observable<Array<any>> {
-        return this.store.collection("listings", ref => ref.where("vendor", "==", `${vendor}`)).valueChanges();
+        return this.store.collection("listings", ref => ref.where("vendor", "==", `${vendor}`).where("published", "==", "true")).valueChanges();
     }
 
-    getListings(): Observable<Array<any>> {
-        return this.store.collection("listings").valueChanges({ idField: "id" });
+    getListings(published = true): Observable<Array<any>> {
+        return this.store.collection("listings", ref => ref.where("published", "==", published)).valueChanges({ idField: "id" });
     }
 }
