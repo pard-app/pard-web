@@ -85,5 +85,8 @@
   "COMPLETE": "Complete",
   "CONFIRM": "Confirm",
   "REJECT": "Reject",
-  "CREATE": "Create"
+  "CREATE": "Create",
+
+  "SELECT_LOCATION": "Select a location",
+  "MARKETPLACE": "Marketplace"
 }
