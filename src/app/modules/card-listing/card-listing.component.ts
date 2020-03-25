@@ -14,8 +14,6 @@ export class CardListingComponent implements OnInit {
     ngOnInit(): void {}
 
     addToCart() {
-        console.log(this.item);
-
         this.cartStoreService.addItemToCart(this.item);
     }
 }

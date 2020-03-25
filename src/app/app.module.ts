@@ -40,7 +40,8 @@ import {
     NbButtonModule,
     NbMenuService,
     NbMenuModule,
-    NbIconModule
+    NbIconModule,
+    NbPopoverModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { TopheaderComponent } from "./globalComponents/topheader/topheader.component";
@@ -88,7 +89,8 @@ import { CartComponent } from "./modules/cart/cart-page/cart.component";
         NbContextMenuModule,
         NbButtonModule,
         NbMenuModule.forRoot(),
-        NbIconModule
+        NbIconModule,
+        NbPopoverModule
     ],
     providers: [DbServiceService, NbAutocompleteDirective, NbMenuService],
     bootstrap: [AppComponent]

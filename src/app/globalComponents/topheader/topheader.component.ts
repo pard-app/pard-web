@@ -1,5 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { CartStoreService } from "src/app/@features/stores/cart/cart.store.service";
+import { Subscription } from "rxjs";
+import { NbPopoverDirective } from "@nebular/theme";
+import { CartItem } from "@models/cart/cartitem.interface";
 
 @Component({
     selector: "app-topheader",
@@ -8,12 +11,35 @@ import { CartStoreService } from "src/app/@features/stores/cart/cart.store.servi
 })
 export class TopheaderComponent implements OnInit {
     public items = [{ title: "About", url: "https://pard.lt/" }, { title: "Log out" }];
+    public lastItemAddedToCartSubscribtion: Subscription;
+    public lastItemAddedToCart: CartItem = null;
+    private timer: ReturnType<typeof setTimeout>;
+
+    @ViewChild(NbPopoverDirective) addedNotificationPopover: NbPopoverDirective;
 
     constructor(private cartStoreService: CartStoreService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.lastItemAddedToCartSubscribtion = this.cartStoreService._lastAddedItem$.subscribe(item => {
+            this.lastItemAddedToCart = item;
+            this.addedNotificationPopover && this.handleNewItemNotification(item);
+        });
+    }
+
+    handleNewItemNotification(item) {
+        const TIME_TO_CLOSE = 4000;
+        clearTimeout(this.timer);
+        this.addedNotificationPopover.show();
+        this.timer = setTimeout(() => {
+            this.addedNotificationPopover.hide();
+        }, TIME_TO_CLOSE);
+    }
 
     get count() {
-        return this.cartStoreService.cartItems.length;
+        return this.cartStoreService.get("cartItems").length;
+    }
+
+    ngOnDestroy(): void {
+        this.lastItemAddedToCartSubscribtion.unsubscribe();
     }
 }

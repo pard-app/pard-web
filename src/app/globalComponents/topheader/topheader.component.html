@@ -1,13 +1,44 @@
 <nb-layout-header class="top-header">
     <div class="top-header__cart">
-        <button outline nbButton outline status="primary" [nbContextMenu]="items" class="top-header__button">
+        <button
+            outline
+            nbButton
+            outline
+            status="primary"
+            [nbPopover]="templateRef"
+            nbPopoverPlacement="bottom"
+            nbPopoverTrigger="noop"
+            class="top-header__button"
+        >
             <nb-icon icon="shopping-cart-outline"></nb-icon>
         </button>
-        <div *ngIf="count" class="cart-nofitication">{{ count }}</div>
+        <div *ngIf="count" class="cart-display-count">{{ count }}</div>
     </div>
     <button outline nbButton [nbContextMenu]="items" class="top-header__button">
         <nb-icon icon="menu-outline"></nb-icon>
     </button>
 </nb-layout-header>
+
+<!-- Notificatiopn template -->
+<ng-template #templateRef>
+    <nb-card size="tiny" class="notification">
+        <nb-card-header class="notification__header">
+            <img
+                class="notification__image"
+                [src]="
+                    lastItemAddedToCart.image
+                        ? lastItemAddedToCart.image
+                        : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png'
+                "
+                alt="item.name"
+            />
+        </nb-card-header>
+        <nb-card-body class="notification__body">
+            <button nbButton fullWidth outline size="small">View Cart</button>
+            <h6 class="notification__title">"{{ lastItemAddedToCart.title }}" <span class="text-success">added!</span></h6>
+        </nb-card-body>
+        <!-- <nb-card-footer></nb-card-footer> -->
+    </nb-card>
+</ng-template>
 
 <nb-layout-header class="top-header--fake"> </nb-layout-header>
