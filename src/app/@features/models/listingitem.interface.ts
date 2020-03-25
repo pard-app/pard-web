@@ -1,4 +1,4 @@
-export interface CartItem extends AdditionalCartViewLogic {
+export interface ListingItem extends AdditionalCartViewLogic {
     categories: [];
     description: string;
     image: string;

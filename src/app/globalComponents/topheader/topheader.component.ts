@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { CartStoreService } from "src/app/@features/stores/cart/cart.store.service";
 import { Subscription } from "rxjs";
 import { NbPopoverDirective } from "@nebular/theme";
-import { CartItem } from "@models/cart/cartitem.interface";
+import { ListingItem } from "@models/listingitem.interface";
 
 @Component({
     selector: "app-topheader",
@@ -12,7 +12,7 @@ import { CartItem } from "@models/cart/cartitem.interface";
 export class TopheaderComponent implements OnInit {
     public items = [{ title: "Home", link: "/" }, { title: "About", url: "https://pard.lt/" }, { title: "Log out" }];
     public lastItemAddedToCartSubscribtion: Subscription;
-    public lastItemAddedToCart: CartItem = null;
+    public lastItemAddedToCart: ListingItem = null;
     private timer: ReturnType<typeof setTimeout>;
 
     @ViewChild(NbPopoverDirective) addedNotificationPopover: NbPopoverDirective;

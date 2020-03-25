@@ -32,7 +32,6 @@ import {
     NbInputModule,
     NbFormFieldModule,
     NbOptionModule,
-    NbCdkAdapterModule,
     NbTabsetModule,
     NbRouteTabsetModule,
     NbSpinnerModule,
@@ -41,7 +40,10 @@ import {
     NbMenuService,
     NbMenuModule,
     NbIconModule,
-    NbPopoverModule
+    NbPopoverModule,
+    NbSelectModule,
+    NbSidebarModule,
+    NbSidebarService
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { TopheaderComponent } from "./globalComponents/topheader/topheader.component";
@@ -90,9 +92,11 @@ import { CartComponent } from "./modules/cart/cart-page/cart.component";
         NbButtonModule,
         NbMenuModule.forRoot(),
         NbIconModule,
-        NbPopoverModule
+        NbPopoverModule,
+        NbSelectModule,
+        NbSidebarModule
     ],
-    providers: [DbServiceService, NbAutocompleteDirective, NbMenuService],
+    providers: [DbServiceService, NbAutocompleteDirective, NbMenuService, NbSidebarService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

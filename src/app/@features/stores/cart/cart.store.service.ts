@@ -1,17 +1,17 @@
 import { Injectable } from "@angular/core";
-import { CartItem } from "@models/cart/cartitem.interface";
+import { ListingItem } from "@models/listingitem.interface";
 import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable({
     providedIn: "root"
 })
 export class CartStoreService {
-    // private cartItems: Array<CartItem | any> = [];
-    private _cartItems$ = new BehaviorSubject<Array<CartItem | any>>([]);
+    // private cartItems: Array<ListingItem | any> = [];
+    private _cartItems$ = new BehaviorSubject<Array<ListingItem | any>>([]);
     // Expose the observable$ part of the `_cartItems$` subject (read only stream)
-    readonly cartItems$: Observable<Array<CartItem>> = this._cartItems$.asObservable();
+    readonly cartItems$: Observable<Array<ListingItem>> = this._cartItems$.asObservable();
 
-    public _lastAddedItem$ = new BehaviorSubject<CartItem>(null);
+    public _lastAddedItem$ = new BehaviorSubject<ListingItem>(null);
 
     constructor() {}
 
@@ -30,7 +30,7 @@ export class CartStoreService {
 
     // Methods
 
-    public addItemToCart(item: CartItem) {
+    public addItemToCart(item: ListingItem) {
         this._lastAddedItem$.next(item);
         this._cartItems$.next([...this._cartItems$.getValue(), item]);
     }

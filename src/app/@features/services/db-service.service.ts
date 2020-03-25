@@ -5,6 +5,7 @@ import { AngularFireStorage } from "@angular/fire/storage";
 import { IVendor } from "@models/vendor.interface";
 import { map } from "rxjs/operators";
 import { Observable } from "rxjs";
+import { ListingItem } from "@models/listingitem.interface";
 
 @Injectable({
     providedIn: "root"
@@ -28,5 +29,9 @@ export class DbServiceService {
 
     getListings(published = true): Observable<Array<any>> {
         return this.store.collection("listings", ref => ref.where("published", "==", published)).valueChanges({ idField: "id" });
+    }
+
+    getListingById(id: string): Observable<ListingItem | any> {
+        return this.store.doc("listings/" + id).valueChanges();
     }
 }
