@@ -19,9 +19,7 @@ export class MainListComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.vendorsSubscriber = this.dataService.getMyListings().subscribe((items: Array<IVendor>) => (this.vendorsList = items));
-        this.listingSubscription = this.dataService.getListings().subscribe(items => {
-            this.listingsList = items;
-        });
+        this.listingSubscription = this.dataService.getListings().subscribe(items => (this.listingsList = items.filter(x => x.published)));
     }
 
     ngOnDestroy(): void {

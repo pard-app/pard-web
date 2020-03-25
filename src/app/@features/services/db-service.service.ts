@@ -4,6 +4,7 @@ import { AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireStorage } from "@angular/fire/storage";
 import { IVendor } from "@models/vendor.interface";
 import { map } from "rxjs/operators";
+import { Observable } from "rxjs";
 
 @Injectable({
     providedIn: "root"
@@ -21,11 +22,11 @@ export class DbServiceService {
         }
     }
 
-    getVendorListings(vendor: string) {
+    getVendorListings(vendor: string): Observable<Array<any>> {
         return this.store.collection("listings", ref => ref.where("vendor", "==", `${vendor}`)).valueChanges();
     }
 
-    getListings() {
+    getListings(): Observable<Array<any>> {
         return this.store.collection("listings").valueChanges({ idField: "id" });
     }
 }
