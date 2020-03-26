@@ -24,26 +24,26 @@ import { CardListingComponent } from "./modules/card-listing/card-listing.compon
 
 // NEBULAR MODULES
 import {
-  NbThemeModule,
-  NbLayoutModule,
-  NbAutocompleteModule,
-  NbCardModule,
-  NbOverlayModule,
-  NbDialogModule,
-  NbAutocompleteDirective,
-  NbInputModule,
-  NbFormFieldModule,
-  NbOptionModule,
-  NbCdkAdapterModule,
-  NbTabsetModule,
-  NbRouteTabsetModule,
-  NbSpinnerModule,
-  NbContextMenuModule,
-  NbButtonModule,
-  NbMenuService,
-  NbMenuModule,
-  NbIconModule,
-  NbPopoverModule
+    NbThemeModule,
+    NbLayoutModule,
+    NbAutocompleteModule,
+    NbCardModule,
+    NbOverlayModule,
+    NbDialogModule,
+    NbAutocompleteDirective,
+    NbInputModule,
+    NbFormFieldModule,
+    NbOptionModule,
+    NbCdkAdapterModule,
+    NbTabsetModule,
+    NbRouteTabsetModule,
+    NbSpinnerModule,
+    NbContextMenuModule,
+    NbButtonModule,
+    NbMenuService,
+    NbMenuModule,
+    NbIconModule,
+    NbPopoverModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { TopheaderComponent } from "./globalComponents/topheader/topheader.component";
@@ -52,59 +52,59 @@ import { CartComponent } from "./modules/cart/cart-page/cart.component";
 //Injectables
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
+    return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
 @NgModule({
-  declarations: [
-    AppComponent,
-    FooterComponent,
-    MainListComponent,
-    TopBannerComponent,
-    SearchLocationComponent,
-    SearchSmartItemsComponent,
-    CardVendorComponent,
-    CardListingComponent,
-    VendorListingsComponent,
-    TopheaderComponent,
-    CartComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    FormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient]
-      }
-    }),
-    //Nebular
-    NbThemeModule.forRoot({ name: "corporate" }),
-    NbLayoutModule,
-    NbEvaIconsModule,
-    NbAutocompleteModule,
-    NbCardModule,
-    NbOverlayModule,
-    NbDialogModule,
-    NbInputModule,
-    NbFormFieldModule,
-    NbOptionModule,
-    NbTabsetModule,
-    NbRouteTabsetModule,
-    NbSpinnerModule,
-    NbContextMenuModule,
-    NbButtonModule,
-    NbMenuModule.forRoot(),
-    NbIconModule,
-    NbPopoverModule
-  ],
-  providers: [DbServiceService, NbAutocompleteDirective, NbMenuService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        FooterComponent,
+        MainListComponent,
+        TopBannerComponent,
+        SearchLocationComponent,
+        SearchSmartItemsComponent,
+        CardVendorComponent,
+        CardListingComponent,
+        VendorListingsComponent,
+        TopheaderComponent,
+        CartComponent
+    ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        FormsModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFirestoreModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: createTranslateLoader,
+                deps: [HttpClient]
+            }
+        }),
+        //Nebular
+        NbThemeModule.forRoot({ name: "corporate" }),
+        NbLayoutModule,
+        NbEvaIconsModule,
+        NbAutocompleteModule,
+        NbCardModule,
+        NbOverlayModule,
+        NbDialogModule,
+        NbInputModule,
+        NbFormFieldModule,
+        NbOptionModule,
+        NbTabsetModule,
+        NbRouteTabsetModule,
+        NbSpinnerModule,
+        NbContextMenuModule,
+        NbButtonModule,
+        NbMenuModule.forRoot(),
+        NbIconModule,
+        NbPopoverModule
+    ],
+    providers: [DbServiceService, NbAutocompleteDirective, NbMenuService],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,8 +1,39 @@
-<section class="content-section">
+<div class="content-section cart-grid">
+    <nb-card fullWidth>
+        <nb-card-header>
+            <h5>Summary</h5>
+        </nb-card-header>
+        <nb-card-body>
+            <p *ngFor="let item of cartItems | keyvalue">
+                {{ item.value.title }}: <b>{{ item.value.price }} &euro;</b>
+            </p>
+            Total: <b>{{ totalAmount }} &euro;</b>
+            <h6>
+                <button nbButton outline status="info" fullWidth>Checkout</button>
+            </h6>
+        </nb-card-body>
+    </nb-card>
+
     <nb-card fullWidth>
         <nb-card-header>
             <h1>Your cart</h1>
         </nb-card-header>
-        <nb-card-body> </nb-card-body>
+        <nb-card-body>
+            <nb-card accent="info" *ngFor="let item of cartItems | keyvalue">
+                <nb-card-header>{{ item.value?.title }}</nb-card-header>
+                <nb-card-body>
+                    A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases. Originally, nebula was a name for any diffuse
+                    astronomical object, including galaxies beyond the Milky Way.
+                </nb-card-body>
+                <nb-card-footer>
+                    <nb-select multiple placeholder="Quantity">
+                        <nb-option value="1">1</nb-option>
+                        <nb-option value="2">2</nb-option>
+                        <nb-option value="3">3</nb-option>
+                        <nb-option value="4">4</nb-option>
+                    </nb-select>
+                </nb-card-footer>
+            </nb-card>
+        </nb-card-body>
     </nb-card>
-</section>
+</div>
