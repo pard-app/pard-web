@@ -41,7 +41,7 @@ export class TopheaderComponent implements OnInit {
     }
 
     get count() {
-        return this.cartStoreService.get("cartItems").length;
+        return Object.values(this.cartStoreService.get("cartItems")).length;
     }
 
     ngOnDestroy(): void {

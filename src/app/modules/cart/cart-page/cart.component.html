@@ -1,5 +1,5 @@
 <div class="content-section cart-grid">
-    <nb-card fullWidth>
+    <nb-card fullWidth class="summary">
         <nb-card-header>
             <h5>Summary</h5>
         </nb-card-header>
@@ -14,7 +14,7 @@
         </nb-card-body>
     </nb-card>
 
-    <nb-card fullWidth>
+    <nb-card fullWidth class="items">
         <nb-card-header>
             <h1>Your cart</h1>
         </nb-card-header>
@@ -32,7 +32,7 @@
                         <nb-option value="3">3</nb-option>
                         <nb-option value="4">4</nb-option>
                     </nb-select>
-                    <button nbButton basic status="danger" (click)="removeItem(item.value.id)">Remove</button>
+                    <button nbButton basic status="danger" (click)="removeItem(item.key)">Remove</button>
                 </nb-card-footer>
             </nb-card>
         </nb-card-body>
