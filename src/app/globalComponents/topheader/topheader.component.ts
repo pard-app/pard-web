@@ -3,6 +3,7 @@ import { CartStoreService } from "src/app/@features/stores/cart/cart.store.servi
 import { Subscription } from "rxjs";
 import { NbPopoverDirective } from "@nebular/theme";
 import { ListingItem } from "@models/listingitem.interface";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     selector: "app-topheader",
@@ -17,7 +18,7 @@ export class TopheaderComponent implements OnInit {
 
     @ViewChild(NbPopoverDirective) addedNotificationPopover: NbPopoverDirective;
 
-    constructor(private cartStoreService: CartStoreService) {}
+    constructor(private cartStoreService: CartStoreService, private translate: TranslateService) {}
 
     ngOnInit(): void {
         this.lastItemAddedToCartSubscribtion = this.cartStoreService._lastAddedItem$.subscribe(item => {
@@ -33,6 +34,10 @@ export class TopheaderComponent implements OnInit {
         this.timer = setTimeout(() => {
             this.addedNotificationPopover.hide();
         }, TIME_TO_CLOSE);
+    }
+
+    setLanguage(lang: string) {
+        this.translate.use(lang);
     }
 
     get count() {

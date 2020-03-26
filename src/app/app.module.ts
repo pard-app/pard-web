@@ -43,7 +43,8 @@ import {
     NbMenuService,
     NbMenuModule,
     NbIconModule,
-    NbPopoverModule
+    NbPopoverModule,
+    NbSelectModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { TopheaderComponent } from "./globalComponents/topheader/topheader.component";
@@ -102,7 +103,8 @@ export function createTranslateLoader(http: HttpClient) {
         NbButtonModule,
         NbMenuModule.forRoot(),
         NbIconModule,
-        NbPopoverModule
+        NbPopoverModule,
+        NbSelectModule
     ],
     providers: [DbServiceService, NbAutocompleteDirective, NbMenuService],
     bootstrap: [AppComponent]
