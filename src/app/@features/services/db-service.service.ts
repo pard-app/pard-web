@@ -32,6 +32,6 @@ export class DbServiceService {
     }
 
     getListingById(id: string): Observable<ListingItem | any> {
-        return this.store.doc("listings/" + id).valueChanges();
+        return this.store.doc("listings/" + id).get();
     }
 }

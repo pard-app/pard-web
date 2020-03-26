@@ -3,37 +3,38 @@ import { CartStoreService } from "src/app/@features/stores/cart/cart.store.servi
 import { DbServiceService } from "src/app/@features/services/db-service.service";
 import { Subscription } from "rxjs";
 import { ListingItem } from "@models/listingitem.interface";
+import { CookieService } from "ngx-cookie-service";
+import { CART_CONSTANTS } from "@constants/cart.constants";
 
 interface CartItemsIterator {
     [state: string]: ListingItem;
 }
+
 @Component({
     selector: "app-cart",
     templateUrl: "./cart.component.html",
     styleUrls: ["./cart.component.scss"]
 })
 export class CartComponent implements OnInit {
-    private cartItemsSubscribtion: Subscription = new Subscription();
-    public cartItems: CartItemsIterator = {};
+    public get cartItems(): [] {
+        return this.cartStoreService.get("cartItems");
+    }
 
     constructor(private cartStoreService: CartStoreService, private dbService: DbServiceService) {}
+
     get totalAmount() {
-        return Object.values(this.cartItems).reduce((acc, item) => acc + item.price, 0);
+        console.log(this.cartItems);
+
+        return this.cartItems.reduce((acc, item: any) => acc + item.price, 0);
     }
+
+    removeItem(id): void {
+        this.cartStoreService.removeCartItem(id);
+    }
+
     ngOnInit(): void {
-        const cartItems = this.cartStoreService.get("cartItems");
-        if (!cartItems.length) return;
-
-        cartItems.map(({ id }) => {
-            this.cartItemsSubscribtion.add(
-                this.dbService.getListingById(id).subscribe(x => {
-                    this.cartItems[id] = x;
-                })
-            );
-        });
+        this.cartStoreService.syncListingsFromFireStore();
     }
 
-    ngOnDestroy(): void {
-        this.cartItemsSubscribtion.unsubscribe();
-    }
+    ngOnDestroy(): void {}
 }

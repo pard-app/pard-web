@@ -26,12 +26,13 @@
                     astronomical object, including galaxies beyond the Milky Way.
                 </nb-card-body>
                 <nb-card-footer>
-                    <nb-select multiple placeholder="Quantity">
+                    <nb-select placeholder="Quantity">
                         <nb-option value="1">1</nb-option>
                         <nb-option value="2">2</nb-option>
                         <nb-option value="3">3</nb-option>
                         <nb-option value="4">4</nb-option>
                     </nb-select>
+                    <button nbButton basic status="danger" (click)="removeItem(item.value.id)">Remove</button>
                 </nb-card-footer>
             </nb-card>
         </nb-card-body>
