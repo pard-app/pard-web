@@ -1,9 +1,10 @@
 @import "~src/app/@features/styles/themes";
 
 .example-card-image {
-    background-size: auto;
-    max-height: 200px;
-    max-width: 200px;
+    width: 100%;
+    height: 140px;
+    object-fit: contain;
+    border-radius: 5px;
 }
 
 .listing-title {

@@ -1,57 +1,46 @@
 <app-top-banner (currentCityOnChange)="onCityChange($event)"></app-top-banner>
 
 <section class="content-section">
-  <h2
-    *ngIf="currentCity; else elseBlockCurrentCity"
-    class="title--thin title--space"
-  >
-    Local stores in <b>{{ currentCity }}</b>
-  </h2>
-  <ng-template #elseBlockCurrentCity>
-    <h2 class="title title--thin title--space">
-      {{ "MARKETPLACE" | translate }}
+    <h2 *ngIf="currentCity; else elseBlockCurrentCity" class="title--thin title--space">
+        Local stores in <b>{{ currentCity }}</b>
     </h2>
-  </ng-template>
-  <nb-card>
-    <nb-card-body>
-      <nb-tabset fullWidth>
-        <nb-tab
-          tabTitle="Stores"
-          [tabIcon]="'home-outline'"
-          [nbSpinner]="!vendorsList || !vendorsList.length"
-          nbSpinnerSize="giant"
-          nbSpinnerStatus="primary"
-        >
-          <div class="grid-parent">
-            <section class="grid-child" *ngFor="let item of vendorsList">
-              <app-card-vendor
-                [description]="item.description"
-                [image]="item.image"
-                [name]="item.name"
-                [address]="item.address"
-                [id]="item.id"
-              ></app-card-vendor>
-            </section>
-          </div>
-          <h2
-            *ngIf="vendorsList && !vendorsList.length"
-            class="title--thin title--space"
-          >
-            No stores in {{ currentCity }} 😥
-          </h2>
-        </nb-tab>
+    <ng-template #elseBlockCurrentCity>
+        <h2 class="title title--thin title--space">
+            {{ "MARKETPLACE" | translate }}
+        </h2>
+    </ng-template>
+    <nb-card>
+        <nb-card-body>
+            <nb-tabset fullWidth>
+                <nb-tab
+                    tabTitle="Stores"
+                    [tabIcon]="'home-outline'"
+                    [nbSpinner]="!vendorsList || !vendorsList.length"
+                    nbSpinnerSize="giant"
+                    nbSpinnerStatus="primary"
+                >
+                    <div class="grid-parent grid-parent__vendors">
+                        <section class="grid-child" *ngFor="let item of vendorsList">
+                            <app-card-vendor
+                                [title]="item.company"
+                                [description]="item.description"
+                                [image]="item.image"
+                                [address]="item.address"
+                                [id]="item.id"
+                            ></app-card-vendor>
+                        </section>
+                    </div>
+                    <h2 *ngIf="vendorsList && !vendorsList.length" class="title--thin title--space">No stores in {{ currentCity }} 😥</h2>
+                </nb-tab>
 
-        <nb-tab
-          [tabTitle]="'LISTINGS' | translate"
-          [tabIcon]="'archive-outline'"
-        >
-          <div class="grid-parent">
-            <section class="grid-child" *ngFor="let item of listingsList">
-              <app-card-listing [item]="item"></app-card-listing>
-            </section>
-          </div>
-        </nb-tab>
-      </nb-tabset>
-    </nb-card-body>
-  </nb-card>
+                <nb-tab [tabTitle]="'LISTINGS' | translate" [tabIcon]="'archive-outline'">
+                    <div class="grid-parent grid-parent__listings">
+                        <section class="grid-child" *ngFor="let item of listingsList">
+                            <app-card-listing [item]="item"></app-card-listing>
+                        </section>
+                    </div>
+                </nb-tab>
+            </nb-tabset>
+        </nb-card-body>
+    </nb-card>
 </section>
