@@ -23,9 +23,7 @@ export class CartComponent implements OnInit {
     constructor(private cartStoreService: CartStoreService, private dbService: DbServiceService) {}
 
     get totalAmount() {
-        console.log(this.cartItems);
-
-        return this.cartItems.reduce((acc, item: any) => acc + item.price, 0);
+        return Object.values(this.cartItems).reduce((acc, item: any) => acc + item.price, 0);
     }
 
     removeItem(id): void {

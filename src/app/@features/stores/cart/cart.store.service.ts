@@ -10,16 +10,18 @@ import { DbServiceService } from "@services/db-service.service";
 })
 export class CartStoreService {
     // private cartItems: Array<ListingItem | any> = [];
-    private _cartItems$ = new BehaviorSubject<Array<ListingItem | any>>([]);
+    private _cartItems$ = new BehaviorSubject<{} | any>({});
     // Expose the observable$ part of the `_cartItems$` subject (read only stream)
-    readonly cartItems$: Observable<Array<ListingItem>> = this._cartItems$.asObservable();
+    readonly cartItems$: Observable<{}> = this._cartItems$.asObservable();
 
     public _lastAddedItem$ = new BehaviorSubject<ListingItem>(null);
 
     constructor(private cookieService: CookieService, private dbService: DbServiceService) {}
 
     public populateListingsFromCookieToState() {
-        this.cartItems = JSON.parse(this.cookieService.get(CART_CONSTANTS.CART_ITEMS_IN_COOKIE));
+        const value = this.cookieService.get(CART_CONSTANTS.CART_ITEMS_IN_COOKIE);
+        if (!value) return;
+        this.cartItems = JSON.parse(value);
     }
 
     private syncListingsToCookies() {
@@ -28,14 +30,18 @@ export class CartStoreService {
 
     // renew data
     public syncListingsFromFireStore() {
-        this.cartItems.map(({ id }) => {
-            this.dbService.getListingById(id).subscribe(x => {
-                const upd_to_date_listing = x.data();
-                if (upd_to_date_listing) {
-                    console.log(x.data());
-                }
-                // this.cartItems = console.log(x.data());
-            });
+        Object.keys(this.cartItems).map(id => {
+            this.dbService
+                .getListingById(id)
+                .toPromise()
+                .then(x => {
+                    const item = x.data();
+                    if (item) {
+                        this.cartItems[x.id] = item;
+                    } else {
+                        this.removeCartItem(id);
+                    }
+                });
         });
     }
 
@@ -55,16 +61,19 @@ export class CartStoreService {
     // Methods
     public addItemToCart(item: ListingItem) {
         this._lastAddedItem$.next(item);
-        this._cartItems$.next([...this._cartItems$.getValue(), item]);
+        this._cartItems$.next({ ...this._cartItems$.getValue(), [item.id]: item });
         this.syncListingsToCookies();
     }
 
     public resetCart(): void {
-        this._cartItems$.next([]);
+        this._cartItems$.next({});
     }
 
-    public removeCartItem(id: number): void {
-        this.cartItems = this.cartItems.filter(item => item.id !== id);
+    public removeCartItem(id: string): void {
+        console.log(id);
+        var mockObject = this.cartItems;
+        delete mockObject[id];
+        this.cartItems = mockObject;
         this.syncListingsToCookies();
     }
 }
