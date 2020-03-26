@@ -38,8 +38,13 @@
             />
         </nb-card-header>
         <nb-card-body class="notification__body">
-            <button [routerLink]="'cart'" nbButton fullWidth outline size="small">View Cart</button>
-            <h6 class="notification__title">"{{ lastItemAddedToCart.title }}" <span class="text-success">added!</span></h6>
+            <button [routerLink]="'cart'" nbButton fullWidth outline size="small">
+                View Cart
+            </button>
+            <h6 class="notification__title">
+                "{{ lastItemAddedToCart.title }}"
+                <span class="text-success">added!</span>
+            </h6>
         </nb-card-body>
         <!-- <nb-card-footer></nb-card-footer> -->
     </nb-card>
