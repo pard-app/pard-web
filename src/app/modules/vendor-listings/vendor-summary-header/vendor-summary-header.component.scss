@@ -1,0 +1,23 @@
+//
+.vendor {
+    &__showcase {
+        margin: -190px auto 100px auto;
+        max-width: 500px;
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+    }
+    &__summary {
+        margin: auto;
+    }
+    &__image {
+        object-fit: contain;
+        width: 100px;
+        height: 100px;
+        &-wrapper {
+            height: 100%;
+            padding: 5px;
+            margin: 5px;
+        }
+    }
+}
