@@ -23,15 +23,19 @@ export class DbServiceService {
         }
     }
 
-    getVendorListings(vendor: string): Observable<Array<any>> {
-        return this.store.collection("listings", ref => ref.where("vendor", "==", `${vendor}`).where("published", "==", "true")).valueChanges();
+    public getVendorById(id: string) {
+        return this.store.doc("vendors/" + id).get();
     }
 
-    getListings(published = true): Observable<Array<any>> {
+    public getVendorListings(vendor: string): Observable<Array<any>> {
+        return this.store.collection("listings", ref => ref.where("vendor", "==", `${vendor}`).where("published", "==", true)).valueChanges();
+    }
+
+    public getListings(published = true): Observable<Array<any>> {
         return this.store.collection("listings", ref => ref.where("published", "==", published)).valueChanges({ idField: "id" });
     }
 
-    getListingById(id: string): Observable<ListingItem | any> {
+    public getListingById(id: string): Observable<ListingItem | any> {
         return this.store.doc("listings/" + id).get();
     }
 }

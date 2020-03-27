@@ -20,7 +20,7 @@ import { CardVendorComponent } from "./globalComponents/card-vendor/card-vendor.
 import { DbServiceService } from "src/app/@features/services/db-service.service";
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
-import { VendorListingsComponent } from "./globalComponents/vendor-listings/vendor-listings.component";
+import { VendorListingsComponent } from "./modules/vendor-listings/vendor-listings.component";
 import { CardListingComponent } from "./modules/card-listing/card-listing.component";
 
 // NEBULAR MODULES
@@ -51,6 +51,8 @@ import {
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { TopheaderComponent } from "./globalComponents/topheader/topheader.component";
 import { CartComponent } from "./modules/cart/cart-page/cart.component";
+import { VendorSummaryHeaderComponent } from './modules/vendor-listings/vendor-summary-header/vendor-summary-header.component';
+import { ListListingsComponent } from './globalComponents/list-listings/list-listings.component';
 
 //Injectables
 
@@ -69,7 +71,9 @@ export function createTranslateLoader(http: HttpClient) {
         CardListingComponent,
         VendorListingsComponent,
         TopheaderComponent,
-        CartComponent
+        CartComponent,
+        VendorSummaryHeaderComponent,
+        ListListingsComponent
     ],
     imports: [
         BrowserModule,
