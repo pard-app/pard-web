@@ -1,20 +1,26 @@
 @import "~src/app/@features/styles/themes";
 
-.example-card-image {
+.card-image {
     width: 100%;
-    height: 140px;
-    object-fit: contain;
-    border-radius: 5px;
+    height: 100%;
+    max-height: 150px;
+    object-fit: cover;
 }
 
-.listing-title {
+.listing-title,
+.listing-price {
     margin: 5px 0;
 }
 
 .vendor-card {
+    position: relative;
+
     &__header {
         position: relative;
+        padding: 0;
+        line-height: 0;
     }
+
     &__add-cart-btn {
         position: absolute;
         top: -7px;
@@ -27,13 +33,13 @@
         color: nb-theme(color-primary-100);
         width: 44px;
         height: 44px;
-        transition: 0.1s ease-in-out;
+        transition: 0.1s cubic-bezier(.17, .67, .83, .67);
         cursor: pointer;
         font-size: 2em;
         font-weight: 100;
+
         &:hover {
             transform: scale(1.15);
-            color: nb-theme(color-success-300);
         }
     }
 }
