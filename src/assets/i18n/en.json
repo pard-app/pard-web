@@ -102,5 +102,6 @@
     "QUANTITY": "Quantity",
     "REMOVE": "Remove",
     "NOTHING_FOUND": "Nothing found.",
-    "HOME": "HOME"
+    "HOME": "HOME",
+    "SEARCH_VENDOR_LISTINGS": "Search in listings"
 }

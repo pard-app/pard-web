@@ -1,0 +1,11 @@
+<nb-card class="listing-search" accent="primary">
+    <nb-card-body>
+        <input fullWidth #autoInput nbInput type="text" (input)="onChange()" [placeholder]="'SEARCH_VENDOR_LISTINGS' | translate" [nbAutocomplete]="auto" />
+
+        <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+            <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+                {{ option }}
+            </nb-option>
+        </nb-autocomplete>
+    </nb-card-body>
+</nb-card>
