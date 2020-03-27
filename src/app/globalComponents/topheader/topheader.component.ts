@@ -12,6 +12,7 @@ import { TranslateService } from "@ngx-translate/core";
 })
 export class TopheaderComponent implements OnInit, OnDestroy {
     public items = [
+        { title: this.translate.instant("HOME"), link: "/" },
         { title: this.translate.instant("APP"), url: "https://pard.app" },
         { title: this.translate.instant("ABOUT"), url: "https://pard.lt/" }
     ];
