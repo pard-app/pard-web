@@ -1,0 +1,35 @@
+.grid-parent {
+    transition: 0.2s ease;
+    display: grid;
+    width: 100%;
+    margin: 30px auto;
+
+    &__vendors {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        grid-gap: 25px;
+        @media (max-width: 900px) {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            grid-gap: 15px;
+        }
+    }
+
+    &__listings {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        grid-gap: 25px;
+        @media (max-width: 900px) {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            grid-gap: 15px;
+        }
+    }
+}
+
+.grid-tab,
+.card-body {
+    @media only screen and (max-width: 768px) {
+        padding: 3px;
+    }
+}
