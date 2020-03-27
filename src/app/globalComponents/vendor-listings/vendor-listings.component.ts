@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Subscription } from "rxjs";
 import { DbServiceService } from "src/app/@features/services/db-service.service";
 import { ActivatedRoute } from "@angular/router";
@@ -8,7 +8,7 @@ import { ActivatedRoute } from "@angular/router";
     templateUrl: "./vendor-listings.component.html",
     styleUrls: ["./vendor-listings.component.scss"]
 })
-export class VendorListingsComponent implements OnInit {
+export class VendorListingsComponent implements OnInit, OnDestroy {
     public listings: any;
     subscription: Subscription;
 

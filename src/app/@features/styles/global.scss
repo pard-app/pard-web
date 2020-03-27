@@ -9,22 +9,28 @@
 p {
     margin: 0;
 }
+
 body {
     margin: 0;
 }
+
 .content-section {
-    margin: 50px auto;
+    margin: 50px auto 25px auto;
     max-width: 1200px;
 }
+
 .title {
     margin: 20px 0 !important;
     text-align: center;
+
     &--large {
         font-size: 2em;
     }
+
     &--bold {
         font-weight: bold;
     }
+
     &--thin {
         font-weight: 100;
     }

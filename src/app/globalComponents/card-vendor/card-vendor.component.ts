@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { IVendor } from "@models/vendor.interface";
 
 @Component({
     selector: "app-card-vendor",
@@ -6,12 +7,7 @@ import { Component, OnInit, Input } from "@angular/core";
     styleUrls: ["./card-vendor.component.scss"]
 })
 export class CardVendorComponent implements OnInit {
-    @Input() title: string;
-    @Input() description: string;
-    @Input() image: string;
-    @Input() address: string;
-    @Input() id: string;
-
+    @Input() item: IVendor;
     constructor() {}
 
     ngOnInit(): void {}

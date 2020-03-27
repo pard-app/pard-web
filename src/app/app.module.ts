@@ -1,7 +1,7 @@
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
-import { NgModule } from "@angular/core";
+import { NgModule, DEFAULT_CURRENCY_CODE } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -45,7 +45,8 @@ import {
     NbMenuModule,
     NbIconModule,
     NbPopoverModule,
-    NbSelectModule
+    NbSelectModule,
+    NbBadgeModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { TopheaderComponent } from "./globalComponents/topheader/topheader.component";
@@ -105,9 +106,10 @@ export function createTranslateLoader(http: HttpClient) {
         NbMenuModule.forRoot(),
         NbIconModule,
         NbPopoverModule,
-        NbSelectModule
+        NbSelectModule,
+        NbBadgeModule
     ],
-    providers: [DbServiceService, NbAutocompleteDirective, NbMenuService, CookieService],
+    providers: [DbServiceService, NbAutocompleteDirective, NbMenuService, CookieService, { provide: DEFAULT_CURRENCY_CODE, useValue: "EUR" }],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

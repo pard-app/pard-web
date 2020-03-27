@@ -1,8 +1,10 @@
 <nb-card size="small" class="vendor-card">
+    <nb-badge [text]="item.stock" position="top left" status="primary"></nb-badge>
+
     <nb-card-header class="vendor-card__header">
-        <div class="vendor-card__add-cart-btn" (click)="addToCart()"><span>+</span></div>
+        <div class="vendor-card__add-cart-btn" (click)="addToCart()"><nb-icon icon="shopping-cart"></nb-icon></div>
         <img
-            class="example-card-image"
+            class="card-image"
             [src]="
                 item.image ? item.image : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png'
             "
@@ -10,8 +12,9 @@
         />
     </nb-card-header>
     <nb-card-body class="card-body">
-        <h6 class="listing-title">{{ item.title }} | {{ item.price }} &euro;</h6>
-        {{ item.description }}
+        <h6 class="listing-title">{{ item.title }},</h6>
+        <h5 class="listing-price">{{ item.price | currency }}</h5>
+        <p>{{ item.description }}</p>
     </nb-card-body>
     <!-- <nb-card-footer></nb-card-footer> -->
 </nb-card>

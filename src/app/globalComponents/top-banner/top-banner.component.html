@@ -1,23 +1,11 @@
-<header
-  [style]="
-    'background-image:' + getBackgroundImage + '; background-color: black'
-  "
-  class="app-header"
-  role="banner"
->
-  <div class="overlay-message-box">
-    <h3 class="title text-alternate">
-      {{
-        currentCity
-          ? "Welcome to " + currentCity
-          : ("SELECT_LOCATION" | translate)
-      }}
-    </h3>
-    <form class="example-form">
-      <!-- <app-search-smart-items></app-search-smart-items> -->
-      <app-search-location
-        (cityChanged)="changeCity($event)"
-      ></app-search-location>
-    </form>
-  </div>
+<header [style]="'background-image:' + getBackgroundImage + '; background-color: #2e4998;'" class="app-header" role="banner">
+    <div class="overlay-message-box">
+        <h3 class="title text-alternate">
+            {{ currentCity ? ("WELCOME_TO" | translate) + " " + currentCity : ("SELECT_LOCATION" | translate) }}
+        </h3>
+        <form class="example-form">
+            <!-- <app-search-smart-items></app-search-smart-items> -->
+            <app-search-location (cityChanged)="changeCity($event)"></app-search-location>
+        </form>
+    </div>
 </header>
