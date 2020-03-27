@@ -1,0 +1,14 @@
+<app-top-banner [displayFormsContainer]="false"></app-top-banner>
+
+<section class="content-section">
+    <app-vendor-summary-header [vendor]="vendor"></app-vendor-summary-header>
+
+    <h2 class="title title--thin title--space">
+        <!-- {{ vendor.name }} -->
+    </h2>
+    <nb-card>
+        <nb-card-body>
+            <app-list-listings [listingsList]="listingsList"></app-list-listings>
+        </nb-card-body>
+    </nb-card>
+</section>
