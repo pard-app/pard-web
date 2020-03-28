@@ -4,7 +4,7 @@ import { ListingItem } from "@models/listingitem.interface";
 @Component({
     selector: "app-list-listings",
     templateUrl: "./list-listings.component.html",
-    styleUrls: ["./list-listings.component.scss"]
+    styleUrls: ["./list-listings.component.scss"],
 })
 export class ListListingsComponent implements OnInit {
     @Input() listingsList: Array<ListingItem> = [];

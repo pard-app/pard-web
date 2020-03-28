@@ -46,14 +46,14 @@ import {
     NbIconModule,
     NbPopoverModule,
     NbSelectModule,
-    NbBadgeModule
+    NbBadgeModule,
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { TopheaderComponent } from "./globalComponents/topheader/topheader.component";
 import { CartComponent } from "./modules/cart/cart-page/cart.component";
-import { VendorSummaryHeaderComponent } from './modules/vendor-listings/vendor-summary-header/vendor-summary-header.component';
-import { ListListingsComponent } from './globalComponents/list-listings/list-listings.component';
-import { VendorListingsSearchComponent } from './modules/vendor-listings/vendor-listings-search/vendor-listings-search.component';
+import { VendorSummaryHeaderComponent } from "./modules/vendor-listings/vendor-summary-header/vendor-summary-header.component";
+import { ListListingsComponent } from "./globalComponents/list-listings/list-listings.component";
+import { VendorListingsSearchComponent } from "./modules/vendor-listings/vendor-listings-search/vendor-listings-search.component";
 
 //Injectables
 
@@ -75,7 +75,7 @@ export function createTranslateLoader(http: HttpClient) {
         CartComponent,
         VendorSummaryHeaderComponent,
         ListListingsComponent,
-        VendorListingsSearchComponent
+        VendorListingsSearchComponent,
     ],
     imports: [
         BrowserModule,
@@ -90,8 +90,8 @@ export function createTranslateLoader(http: HttpClient) {
             loader: {
                 provide: TranslateLoader,
                 useFactory: createTranslateLoader,
-                deps: [HttpClient]
-            }
+                deps: [HttpClient],
+            },
         }),
         //Nebular
         NbThemeModule.forRoot({ name: "corporate" }),
@@ -113,9 +113,9 @@ export function createTranslateLoader(http: HttpClient) {
         NbIconModule,
         NbPopoverModule,
         NbSelectModule,
-        NbBadgeModule
+        NbBadgeModule,
     ],
     providers: [DbServiceService, NbAutocompleteDirective, NbMenuService, CookieService, { provide: DEFAULT_CURRENCY_CODE, useValue: "EUR" }],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

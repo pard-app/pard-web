@@ -9,12 +9,12 @@ const routes: Routes = [
     { path: "", component: MainListComponent },
     { path: "vendor/:vendorId", component: VendorListingsComponent },
     // https://github.com/akveo/nebular/issues/1136
-    { path: "cart", loadChildren: () => import("./modules/cart/cart-routing.module").then(m => m.CartRoutingModule) }
+    { path: "cart", loadChildren: () => import("./modules/cart/cart-routing.module").then((m) => m.CartRoutingModule) },
     // { path: "cart", children: CART_ROUTES }
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class AppRoutingModule {}

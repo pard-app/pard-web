@@ -6,7 +6,7 @@ import { CART_CONSTANTS } from "@constants/cart.constants";
 import { DbServiceService } from "@services/db-service.service";
 
 @Injectable({
-    providedIn: "root"
+    providedIn: "root",
 })
 export class CartStoreService {
     // private cartItems: Array<ListingItem | any> = [];
@@ -30,11 +30,11 @@ export class CartStoreService {
 
     // renew data
     public syncListingsFromFireStore() {
-        Object.keys(this.cartItems).map(id => {
+        Object.keys(this.cartItems).map((id) => {
             this.dbService
                 .getListingById(id)
                 .toPromise()
-                .then(x => {
+                .then((x) => {
                     const item = x.data();
                     if (item) {
                         this.cartItems[x.id] = item;
@@ -55,7 +55,7 @@ export class CartStoreService {
     }
 
     public get get() {
-        return itemName => this[itemName];
+        return (itemName) => this[itemName];
     }
 
     // Methods

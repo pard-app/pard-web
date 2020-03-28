@@ -8,7 +8,7 @@ import { ListingItem } from "@models/listingitem.interface";
 @Component({
     selector: "app-vendor-listings",
     templateUrl: "./vendor-listings.component.html",
-    styleUrls: ["./vendor-listings.component.scss"]
+    styleUrls: ["./vendor-listings.component.scss"],
 })
 export class VendorListingsComponent implements OnInit, OnDestroy {
     public listingsList: Array<ListingItem> = [];
@@ -19,7 +19,7 @@ export class VendorListingsComponent implements OnInit, OnDestroy {
     constructor(private dbService: DbServiceService, private route: ActivatedRoute) {}
 
     ngOnInit(): void {
-        this.route.params.subscribe(params => {
+        this.route.params.subscribe((params) => {
             this.vendorId = params.vendorId;
             this.getVendorListings();
             this.getVendor();
@@ -32,7 +32,7 @@ export class VendorListingsComponent implements OnInit, OnDestroy {
 
     private getVendorListings(): void {
         this.addToSubscription(
-            this.dbService.getVendorListings(this.vendorId).subscribe(listings => {
+            this.dbService.getVendorListings(this.vendorId).subscribe((listings) => {
                 console.log(listings);
                 this.listingsList = listings;
             })
@@ -41,7 +41,7 @@ export class VendorListingsComponent implements OnInit, OnDestroy {
 
     private getVendor(): void {
         this.addToSubscription(
-            this.dbService.getVendorById(this.vendorId).subscribe(vendor => {
+            this.dbService.getVendorById(this.vendorId).subscribe((vendor) => {
                 console.log(vendor.data());
                 this.vendor = vendor.data() as IVendor;
             })
