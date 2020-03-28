@@ -12,8 +12,8 @@ export const environment = {
         storageBucket: "pard-app.appspot.com",
         messagingSenderId: "146692342733",
         appId: "1:146692342733:web:d7a63aaa55b1878a80fa84",
-        measurementId: "G-BC24S4YV91"
-    }
+        measurementId: "G-BC24S4YV91",
+    },
 };
 
 /*

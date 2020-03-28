@@ -1,22 +1,16 @@
-<nb-card
-  size="medium"
-  class="vendor-card"
-  [routerLink]="'/vendor/' + item.objectID"
->
-  <nb-card-header
-    ><h5 class="text-heading-1">{{ item.company }}</h5></nb-card-header
-  >
-  <nb-card-body class="card-body">
-    <img
-      class="card-image"
-      [src]="
-        item.image
-          ? item.image
-          : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png'
-      "
-      alt="name"
-    />
-    <h6 class="desc">{{ item.description }}</h6>
-    <p>{{ item.address }}, {{ item.city }}, {{ item.country }}</p>
-  </nb-card-body>
+<nb-card size="medium" class="vendor-card" [routerLink]="'/vendor/' + item.objectID">
+    <nb-card-header
+        ><h5 class="text-heading-1">{{ item.company }}</h5></nb-card-header
+    >
+    <nb-card-body class="card-body">
+        <img
+            class="card-image"
+            [src]="
+                item.image ? item.image : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png'
+            "
+            alt="name"
+        />
+        <h6 class="desc">{{ item.description }}</h6>
+        <p>{{ item.address }}, {{ item.city }}, {{ item.country }}</p>
+    </nb-card-body>
 </nb-card>

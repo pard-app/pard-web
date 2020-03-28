@@ -7,7 +7,7 @@ import { Router } from "@angular/router";
 @Component({
     selector: "app-search-smart-items",
     templateUrl: "./search-smart-items.component.html",
-    styleUrls: ["./search-smart-items.component.scss"]
+    styleUrls: ["./search-smart-items.component.scss"],
 })
 export class SearchSmartItemsComponent implements OnInit {
     myControl = new FormControl();
@@ -41,7 +41,7 @@ export class SearchSmartItemsComponent implements OnInit {
         "Grigiškės",
         "Biržai",
         "Garliava",
-        "Lentvaris"
+        "Lentvaris",
     ];
     filteredOptions: Observable<string[]>;
 
@@ -50,14 +50,14 @@ export class SearchSmartItemsComponent implements OnInit {
     ngOnInit(): void {
         this.filteredOptions = this.myControl.valueChanges.pipe(
             startWith(""),
-            map(value => this._filter(value))
+            map((value) => this._filter(value))
         );
     }
 
     private _filter(value: string): string[] {
         const filterValue = value.toLowerCase();
 
-        return this.options.filter(option => option.toLowerCase().includes(filterValue));
+        return this.options.filter((option) => option.toLowerCase().includes(filterValue));
     }
 
     selectCountry({ option }) {

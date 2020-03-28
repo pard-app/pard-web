@@ -4,7 +4,7 @@ import { CartStoreService } from "src/app/@features/stores/cart/cart.store.servi
 @Component({
     selector: "app-card-listing",
     templateUrl: "./card-listing.component.html",
-    styleUrls: ["./card-listing.component.scss"]
+    styleUrls: ["./card-listing.component.scss"],
 })
 export class CardListingComponent implements OnInit {
     @Input() item: any;

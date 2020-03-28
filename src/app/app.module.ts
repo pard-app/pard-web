@@ -46,7 +46,7 @@ import {
     NbIconModule,
     NbPopoverModule,
     NbSelectModule,
-    NbBadgeModule
+    NbBadgeModule,
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { TopheaderComponent } from "./globalComponents/topheader/topheader.component";
@@ -75,7 +75,7 @@ export function createTranslateLoader(http: HttpClient) {
         CartComponent,
         VendorSummaryHeaderComponent,
         ListListingsComponent,
-        VendorListingsSearchComponent
+        VendorListingsSearchComponent,
     ],
     imports: [
         BrowserModule,
@@ -90,8 +90,8 @@ export function createTranslateLoader(http: HttpClient) {
             loader: {
                 provide: TranslateLoader,
                 useFactory: createTranslateLoader,
-                deps: [HttpClient]
-            }
+                deps: [HttpClient],
+            },
         }),
         //Nebular
         NbThemeModule.forRoot({ name: "corporate" }),
@@ -113,9 +113,9 @@ export function createTranslateLoader(http: HttpClient) {
         NbIconModule,
         NbPopoverModule,
         NbSelectModule,
-        NbBadgeModule
+        NbBadgeModule,
     ],
     providers: [DbServiceService, NbAutocompleteDirective, NbMenuService, CookieService, { provide: DEFAULT_CURRENCY_CODE, useValue: "EUR" }],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

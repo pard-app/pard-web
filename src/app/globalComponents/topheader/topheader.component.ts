@@ -8,13 +8,13 @@ import { TranslateService } from "@ngx-translate/core";
 @Component({
     selector: "app-topheader",
     templateUrl: "./topheader.component.html",
-    styleUrls: ["./topheader.component.scss"]
+    styleUrls: ["./topheader.component.scss"],
 })
 export class TopheaderComponent implements OnInit, OnDestroy {
     public items = [
         { title: this.translate.instant("HOME"), link: "/" },
         { title: this.translate.instant("APP"), url: "https://pard.app" },
-        { title: this.translate.instant("ABOUT"), url: "https://pard.lt/" }
+        { title: this.translate.instant("ABOUT"), url: "https://pard.lt/" },
     ];
     public lastItemAddedToCartSubscribtion: Subscription;
     public lastItemAddedToCart: ListingItem = null;
@@ -25,7 +25,7 @@ export class TopheaderComponent implements OnInit, OnDestroy {
     constructor(private cartStoreService: CartStoreService, private translate: TranslateService) {}
 
     ngOnInit(): void {
-        this.lastItemAddedToCartSubscribtion = this.cartStoreService._lastAddedItem$.subscribe(item => {
+        this.lastItemAddedToCartSubscribtion = this.cartStoreService._lastAddedItem$.subscribe((item) => {
             this.lastItemAddedToCart = item;
             this.addedNotificationPopover && this.handleNewItemNotification(item);
         });
