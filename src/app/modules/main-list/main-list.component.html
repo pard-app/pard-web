@@ -7,11 +7,13 @@
 
     <nb-card>
         <nb-card-body class="card-body">
-            <nb-tabset fullWidth>
+            <nb-tabset fullWidth (changeTab)="changeTab($event)">
                 <nb-tab
                     [tabTitle]="'VENDORS' | translate"
                     [tabIcon]="'home-outline'"
+                    [active]="(currentActiveTab$ | async).view.toLowerCase() == 'vendors'"
                     [nbSpinner]="!_vendorsList$"
+                    [tabId]="'vendors'"
                     nbSpinnerSize="giant"
                     nbSpinnerStatus="primary"
                     class="grid-tab"
@@ -24,7 +26,13 @@
                     <h2 *ngIf="_vendorsList$ | async" class="title--thin title--space">{{ "NOTHING_FOUND" | translate }} 😥</h2>
                 </nb-tab>
 
-                <nb-tab [tabTitle]="'LISTINGS' | translate" class="grid-tab" [tabIcon]="'archive-outline'">
+                <nb-tab
+                    [active]="(currentActiveTab$ | async).view.toLowerCase() == 'listings'"
+                    [tabTitle]="'LISTINGS' | translate"
+                    [tabId]="'listings'"
+                    class="grid-tab"
+                    [tabIcon]="'archive-outline'"
+                >
                     <app-list-listings [listingsList$]="_listingsList$"></app-list-listings>
                 </nb-tab>
             </nb-tabset>

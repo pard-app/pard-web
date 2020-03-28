@@ -4,6 +4,8 @@ import { IVendor } from "@models/vendor.interface";
 import { Subscriber, Observable, Subscription, BehaviorSubject } from "rxjs";
 import * as algoliasearch from "algoliasearch";
 import { environment } from "src/environments/environment";
+import { ActivatedRoute, Params, Router } from "@angular/router";
+import { filter, map } from "rxjs/operators";
 @Component({
     selector: "app-main-list",
     templateUrl: "./main-list.component.html",
@@ -13,13 +15,15 @@ export class MainListComponent implements OnInit {
     public _vendorsList$ = new BehaviorSubject<Array<IVendor>>([]);
     public _listingsList$ = new BehaviorSubject<Array<any>>([]);
     public currentCity: string = null;
+    public currentActiveTab$: Observable<Params>;
     private searchClient: any = algoliasearch(environment.algoliaConfig.appId, environment.algoliaConfig.apiKey);
     private listingsIndex: algoliasearch.Index = this.searchClient.initIndex("listings");
     private vendorsIndex: algoliasearch.Index = this.searchClient.initIndex("vendors");
 
-    constructor(public dataService: DbServiceService) {}
+    constructor(public dataService: DbServiceService, private route: ActivatedRoute, private router: Router) {}
 
     ngOnInit(): void {
+        this.currentActiveTab$ = this.route.queryParams.pipe(map(params => params));
         this.searchVendorData();
         this.searchListingsData();
     }
@@ -44,6 +48,10 @@ export class MainListComponent implements OnInit {
             console.log(listingsSearchData.hits);
             this._listingsList$.next(listingsSearchData.hits);
         }
+    }
+
+    changeTab({ tabId }) {
+        this.router.navigate([], { queryParams: { view: tabId } });
     }
 
     onCityChange(ev) {
