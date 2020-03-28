@@ -8,6 +8,10 @@ export const environment = {
         storageBucket: "pard-app.appspot.com",
         messagingSenderId: "146692342733",
         appId: "1:146692342733:web:d7a63aaa55b1878a80fa84",
-        measurementId: "G-BC24S4YV91",
+        measurementId: "G-BC24S4YV91"
     },
+    algoliaConfig: {
+        appId: "8A6TCGT3CX",
+        apiKey: "4ee9375d899179a0701130c2df2c1f76"
+    }
 };

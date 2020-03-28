@@ -6,7 +6,7 @@ export interface ListingItem extends AdditionalCartViewLogic {
     sold: boolean;
     stock: number;
     title: string;
-    id: string;
+    objectID: string;
     vendor: string;
     published: boolean;
     date: number;

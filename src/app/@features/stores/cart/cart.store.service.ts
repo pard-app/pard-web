@@ -60,7 +60,7 @@ export class CartStoreService {
     // Methods
     public addItemToCart(item: ListingItem) {
         this._lastAddedItem$.next(item);
-        this._cartItems$.next({ ...this._cartItems$.getValue(), [item.id]: item });
+        this._cartItems$.next({ ...this._cartItems$.getValue(), [item.objectID]: item });
         this.syncListingsToCookies();
     }
 
