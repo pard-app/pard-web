@@ -39,6 +39,9 @@ export class DbServiceService {
     }
 
     public getListingById(id: string): Observable<ListingItem | any> {
-        return this.store.doc("listings/" + id).get();
+        return this.store
+            .doc("listings/" + id)
+            .get()
+            .pipe(map(x => ({ data: x.data(), id: x.id })));
     }
 }

@@ -15,6 +15,7 @@
         "paths": {
             "@models/*": ["src/app/@features/models/*"],
             "@constants/*": ["src/app/@features/constants/*"],
+            "@utils/*": ["src/app/@features/utils/*"],
             "@services/*": ["src/app/@features/services/*"]
         }
     },

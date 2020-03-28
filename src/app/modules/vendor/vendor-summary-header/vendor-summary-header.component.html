@@ -1,4 +1,8 @@
-<div class="vendor__showcase" [nbSpinner]="!(vendor$ | async)" nbSpinnerStatus="success">
+<div
+    [ngClass]="{ vendor__showcase: true, 'vendor__showcase--margin': !noMargin, 'vendor__showcase--noMargin': noMargin }"
+    [nbSpinner]="!(vendor$ | async)"
+    nbSpinnerStatus="success"
+>
     <nb-card class="vendor__image-wrapper">
         <nb-card-body class="vendor__image-wrapper">
             <img *ngIf="vendor$ | async as vendorAfterAsync" [src]="vendorAfterAsync.image" class="vendor__image" />

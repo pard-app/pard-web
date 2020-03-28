@@ -9,5 +9,7 @@ import { Observable } from "rxjs";
 })
 export class VendorSummaryHeaderComponent {
     @Input() vendor$: Observable<IVendor>;
+    @Input() noMargin: boolean;
+
     constructor() {}
 }
