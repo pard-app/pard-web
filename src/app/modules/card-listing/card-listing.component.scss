@@ -6,12 +6,9 @@
     max-height: 150px;
     object-fit: cover;
 }
-
-.listing-title,
-.listing-price {
-    margin: 5px 0;
+.price {
+    color: nb-theme(color-secondary-600);
 }
-
 .vendor-card {
     position: relative;
 
@@ -33,7 +30,7 @@
         color: nb-theme(color-primary-100);
         width: 44px;
         height: 44px;
-        transition: 0.1s cubic-bezier(.17, .67, .83, .67);
+        transition: 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
         cursor: pointer;
         font-size: 2em;
         font-weight: 100;

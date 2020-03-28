@@ -24,11 +24,7 @@
                 </nb-tab>
 
                 <nb-tab [tabTitle]="'LISTINGS' | translate" class="grid-tab" [tabIcon]="'archive-outline'">
-                    <div class="grid-parent grid-parent__listings">
-                        <section class="grid-child" *ngFor="let item of listingsList">
-                            <app-card-listing [item]="item"></app-card-listing>
-                        </section>
-                    </div>
+                    <app-list-listings [listingsList]="listingsList"></app-list-listings>
                 </nb-tab>
             </nb-tabset>
         </nb-card-body>

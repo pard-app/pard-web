@@ -1,5 +1,5 @@
 <header [style]="'background-image:' + getBackgroundImage + '; background-color: #2e4998;'" class="app-header" role="banner">
-    <div class="overlay-message-box">
+    <div *ngIf="displayFormsContainer" class="overlay-message-box">
         <h3 class="title text-alternate">
             {{ currentCity ? ("WELCOME_TO" | translate) + " " + currentCity : ("SELECT_LOCATION" | translate) }}
         </h3>
