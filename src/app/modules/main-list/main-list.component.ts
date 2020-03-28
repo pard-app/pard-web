@@ -3,6 +3,7 @@ import { DbServiceService } from "src/app/@features/services/db-service.service"
 import { IVendor } from "@models/vendor.interface";
 import { Subscriber, Observable, Subscription } from "rxjs";
 import * as algoliasearch from "algoliasearch";
+import { NbSearchService } from "@nebular/theme";
 @Component({
   selector: "app-main-list",
   templateUrl: "./main-list.component.html",
@@ -18,19 +19,36 @@ export class MainListComponent implements OnInit, OnDestroy {
   private listingsIndex: any;
   private vendorsIndex: any;
 
-  constructor(public dataService: DbServiceService) {
+  constructor(
+    public dataService: DbServiceService,
+    private searchService: NbSearchService
+  ) {
     this.searchClient = algoliasearch(
       "8A6TCGT3CX",
       "4ee9375d899179a0701130c2df2c1f76"
     );
     this.listingsIndex = this.searchClient.initIndex("listings");
     this.vendorsIndex = this.searchClient.initIndex("vendors");
+
+    this.searchService.onSearchInput().subscribe((data: any) => {
+      this.search(data.term);
+    });
   }
 
   ngOnInit(): void {
+    // this.vendorsSubscriber = this.dataService.getMyListings().subscribe((items: Array<IVendor>) => {
+    //     this.vendorsList = items;
+    // });
+    // this.listingSubscription = this.dataService.getListings().subscribe(items => {
+    //     this.listingsList = items;
+    // });
+    this.search();
+  }
+
+  search(query: string = "") {
     this.vendorsIndex
       .search({
-        query: ""
+        query: query
       })
       .then(data => {
         if (data.hits.length) {
@@ -41,7 +59,7 @@ export class MainListComponent implements OnInit, OnDestroy {
 
     this.listingsIndex
       .search({
-        query: ""
+        query: query
       })
       .then(data => {
         if (data.hits.length) {
@@ -49,18 +67,11 @@ export class MainListComponent implements OnInit, OnDestroy {
           this.listingsList = data.hits;
         }
       });
-
-    // this.vendorsSubscriber = this.dataService.getMyListings().subscribe((items: Array<IVendor>) => {
-    //     this.vendorsList = items;
-    // });
-    // this.listingSubscription = this.dataService.getListings().subscribe(items => {
-    //     this.listingsList = items;
-    // });
   }
 
   ngOnDestroy(): void {
-    this.vendorsSubscriber.unsubscribe();
-    this.listingSubscription.unsubscribe();
+    // this.vendorsSubscriber.unsubscribe();
+    // this.listingSubscription.unsubscribe();
   }
 
   onCityChange(ev) {

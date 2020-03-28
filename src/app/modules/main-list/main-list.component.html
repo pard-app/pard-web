@@ -1,32 +1,45 @@
 <app-top-banner (currentCityOnChange)="onCityChange($event)"></app-top-banner>
 
 <section class="content-section">
-    <h2 class="title title--thin title--space">
-        {{ "MARKETPLACE" | translate }}
-    </h2>
-    <nb-card>
-        <nb-card-body class="card-body">
-            <nb-tabset fullWidth>
-                <nb-tab
-                    [tabTitle]="'VENDORS' | translate"
-                    [tabIcon]="'home-outline'"
-                    [nbSpinner]="!vendorsList || !vendorsList.length"
-                    nbSpinnerSize="giant"
-                    nbSpinnerStatus="primary"
-                    class="grid-tab"
-                >
-                    <div class="grid-parent grid-parent__vendors">
-                        <section class="grid-child" *ngFor="let item of vendorsList">
-                            <app-card-vendor [item]="item"></app-card-vendor>
-                        </section>
-                    </div>
-                    <h2 *ngIf="vendorsList && !vendorsList.length" class="title--thin title--space">{{ "NOTHING_FOUND" | translate }} 😥</h2>
-                </nb-tab>
+  <h2 class="title title--thin title--space">
+    {{ "MARKETPLACE" | translate }}
+  </h2>
 
-                <nb-tab [tabTitle]="'LISTINGS' | translate" class="grid-tab" [tabIcon]="'archive-outline'">
-                    <app-list-listings [listingsList]="listingsList"></app-list-listings>
-                </nb-tab>
-            </nb-tabset>
-        </nb-card-body>
-    </nb-card>
+  <nb-card>
+    <nb-card-header>
+      <nb-search type="column-curtain"></nb-search>
+    </nb-card-header>
+    <nb-card-body class="card-body">
+      <nb-tabset fullWidth>
+        <nb-tab
+          [tabTitle]="'VENDORS' | translate"
+          [tabIcon]="'home-outline'"
+          [nbSpinner]="!vendorsList || !vendorsList.length"
+          nbSpinnerSize="giant"
+          nbSpinnerStatus="primary"
+          class="grid-tab"
+        >
+          <div class="grid-parent grid-parent__vendors">
+            <section class="grid-child" *ngFor="let item of vendorsList">
+              <app-card-vendor [item]="item"></app-card-vendor>
+            </section>
+          </div>
+          <h2
+            *ngIf="vendorsList && !vendorsList.length"
+            class="title--thin title--space"
+          >
+            {{ "NOTHING_FOUND" | translate }} 😥
+          </h2>
+        </nb-tab>
+
+        <nb-tab
+          [tabTitle]="'LISTINGS' | translate"
+          class="grid-tab"
+          [tabIcon]="'archive-outline'"
+        >
+          <app-list-listings [listingsList]="listingsList"></app-list-listings>
+        </nb-tab>
+      </nb-tabset>
+    </nb-card-body>
+  </nb-card>
 </section>
