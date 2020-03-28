@@ -48,7 +48,8 @@ export class MainListComponent implements OnInit, OnDestroy {
   search(query: string = "") {
     this.vendorsIndex
       .search({
-        query: query
+        query: query,
+        hitsPerPage: 50
       })
       .then(data => {
         if (data.hits.length) {
@@ -59,7 +60,8 @@ export class MainListComponent implements OnInit, OnDestroy {
 
     this.listingsIndex
       .search({
-        query: query
+        query: query,
+        hitsPerPage: 50
       })
       .then(data => {
         if (data.hits.length) {
