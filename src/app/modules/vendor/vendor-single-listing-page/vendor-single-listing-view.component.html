@@ -1,10 +1,21 @@
 <div class="content-section">
     <nb-card>
-        <nb-card-header>Nebula</nb-card-header>
-        <nb-card-body>
-            A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases. Originally, nebula was a name for any diffuse astronomical
-            object, including galaxies beyond the Milky Way.
+        <nb-card-header *ngIf="listing$ | async as listing" class="listing__header">
+            <h1>{{ listing.data.title }}</h1>
+            <img class="listing-details__image" [src]="listing.data.image" />
+            <h3>{{ listing.data.price | currency }}</h3>
+            <button nbButton status="primary">{{ "ADD_TO_CART" | translate }}</button>
+        </nb-card-header>
+        <nb-card-body class="listing-details__wrapper" *ngIf="listing$ | async as listing">
+            <nb-card class="listing-details__card">
+                <nb-card-header>
+                    <h5>{{ "DESCRIPTION" | translate }}</h5>
+                </nb-card-header>
+                <nb-card-body>
+                    {{ listing.data.description }}
+                </nb-card-body>
+            </nb-card>
         </nb-card-body>
-        <nb-card-footer>By Wikipedia</nb-card-footer>
     </nb-card>
+    <app-vendor-summary-header [vendor$]="vendor$" [noMargin]="true"></app-vendor-summary-header>
 </div>
