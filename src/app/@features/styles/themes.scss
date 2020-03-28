@@ -3,11 +3,9 @@
 
 $nb-enable-css-custom-properties: true; // <-- enable css custom properties
 
-$nb-themes: nb-register-theme(
-    (
-        font-family-primary: unquote("Comfortaa, sans-serif"),
+$nb-themes: nb-register-theme((font-family-primary: unquote("Comfortaa, sans-serif"),
         // add your variables here like:
-            color-primary-100: #f2f6ff,
+        color-primary-100: #f2f6ff,
         color-primary-200: #d9e4ff,
         color-primary-300: #a6c1ff,
         color-primary-400: #598bff,
@@ -82,7 +80,8 @@ $nb-themes: nb-register-theme(
         color-danger-transparent-400: rgba(255, 61, 113, 0.32),
         color-danger-transparent-500: rgba(255, 61, 113, 0.4),
         color-danger-transparent-600: rgba(255, 61, 113, 0.48),
-        /* Basic colors - for backgrounds and borders and texts */ color-basic-100: #ffffff,
+        /* Basic colors - for backgrounds and borders and texts */
+        color-basic-100: #ffffff,
         color-basic-200: #f7f9fc,
         color-basic-300: #edf1f7,
         color-basic-400: #e4e9f2,
@@ -115,10 +114,10 @@ $nb-themes: nb-register-theme(
         text-heading-3-font-size: 1.375rem,
         text-heading-4-font-size: 1.125rem,
         text-heading-5-font-size: 1.125rem,
-        text-heading-6-font-size: 1.125rem
+        text-heading-6-font-size: 1.125rem,
+        search-background-color: 'rgba(255, 255, 255, 0.9)'
     ),
     corporate,
-    corporate
-);
+    corporate);
 // corporate,
 // corporate

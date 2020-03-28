@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { SearchSmartItemsComponent } from './search-smart-items.component';
+import { SearchSmartItemsComponent } from "./search-smart-items.component";
 
-describe('SearchSmartItemsComponent', () => {
-  let component: SearchSmartItemsComponent;
-  let fixture: ComponentFixture<SearchSmartItemsComponent>;
+describe("SearchSmartItemsComponent", () => {
+    let component: SearchSmartItemsComponent;
+    let fixture: ComponentFixture<SearchSmartItemsComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SearchSmartItemsComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [SearchSmartItemsComponent],
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SearchSmartItemsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(SearchSmartItemsComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it("should create", () => {
+        expect(component).toBeTruthy();
+    });
 });

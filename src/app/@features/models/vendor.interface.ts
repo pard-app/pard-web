@@ -7,8 +7,8 @@ export interface IVendor {
     name: string;
     phone: string;
     web: string;
-    id: string;
     country: string;
     city: string;
     company: string;
+    objectID: string;
 }

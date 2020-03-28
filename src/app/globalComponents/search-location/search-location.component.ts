@@ -32,12 +32,12 @@ const options = [
     "Grigiškės",
     "Biržai",
     "Garliava",
-    "Lentvaris"
+    "Lentvaris",
 ];
 @Component({
     selector: "app-search-location",
     templateUrl: "./search-location.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchLocationComponent implements OnInit {
     @Output() cityChanged: EventEmitter<any> = new EventEmitter();
@@ -55,11 +55,11 @@ export class SearchLocationComponent implements OnInit {
 
     private filter(value: string): string[] {
         const filterValue = value.toLowerCase();
-        return this.options.filter(optionValue => optionValue.toLowerCase().includes(filterValue));
+        return this.options.filter((optionValue) => optionValue.toLowerCase().includes(filterValue));
     }
 
     getFilteredOptions(value: string): Observable<string[]> {
-        return of(value).pipe(map(filterString => this.filter(filterString)));
+        return of(value).pipe(map((filterString) => this.filter(filterString)));
     }
 
     onSelectionChange($event) {

@@ -5,7 +5,7 @@ import { map } from "rxjs/operators";
 @Component({
     selector: "app-vendor-listings-search",
     templateUrl: "./vendor-listings-search.component.html",
-    styleUrls: ["./vendor-listings-search.component.scss"]
+    styleUrls: ["./vendor-listings-search.component.scss"],
 })
 export class VendorListingsSearchComponent implements OnInit {
     options: string[];
@@ -20,11 +20,11 @@ export class VendorListingsSearchComponent implements OnInit {
 
     private filter(value: string): string[] {
         const filterValue = value.toLowerCase();
-        return this.options.filter(optionValue => optionValue.toLowerCase().includes(filterValue));
+        return this.options.filter((optionValue) => optionValue.toLowerCase().includes(filterValue));
     }
 
     getFilteredOptions(value: string): Observable<string[]> {
-        return of(value).pipe(map(filterString => this.filter(filterString)));
+        return of(value).pipe(map((filterString) => this.filter(filterString)));
     }
 
     onChange() {
