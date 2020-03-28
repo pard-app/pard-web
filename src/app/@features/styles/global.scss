@@ -47,3 +47,18 @@ h6 {
 .full-width {
     width: 100%;
 }
+
+.clickable-card {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 10px;
+    transition: 0.1s ease-out;
+
+    &:hover {
+        cursor: pointer;
+        box-shadow: nb-theme(color-basic-500) 0px 2px 15px;
+        transform: scale(1.01);
+    }
+
+    @media only screen and (max-width: 600px) {
+        height: 270px;
+    }
+}

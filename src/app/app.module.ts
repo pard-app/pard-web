@@ -54,6 +54,7 @@ import { CartComponent } from "./modules/cart/cart-page/cart.component";
 import { VendorSummaryHeaderComponent } from './modules/vendor-listings/vendor-summary-header/vendor-summary-header.component';
 import { ListListingsComponent } from './globalComponents/list-listings/list-listings.component';
 import { VendorListingsSearchComponent } from './modules/vendor-listings/vendor-listings-search/vendor-listings-search.component';
+import { VendorSingleListingViewComponent } from './modules/vendor-listings/vendor-single-listing-view/vendor-single-listing-view.component';
 
 //Injectables
 
@@ -75,7 +76,8 @@ export function createTranslateLoader(http: HttpClient) {
         CartComponent,
         VendorSummaryHeaderComponent,
         ListListingsComponent,
-        VendorListingsSearchComponent
+        VendorListingsSearchComponent,
+        VendorSingleListingViewComponent
     ],
     imports: [
         BrowserModule,
