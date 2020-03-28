@@ -14,13 +14,11 @@ import { SearchLocationComponent } from "./globalComponents/search-location/sear
 import { SearchSmartItemsComponent } from "./globalComponents/search-smart-items/search-smart-items.component";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-
-// ANGULAR MATERIAL MODULES
 import { CardVendorComponent } from "./globalComponents/card-vendor/card-vendor.component";
 import { DbServiceService } from "src/app/@features/services/db-service.service";
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
-import { VendorListingsComponent } from "./modules/vendor/vendor-listings.component";
+import { VendorListingsComponent } from "./modules/vendor/vendor-listings-page/vendor-listings.component";
 import { CardListingComponent } from "./modules/card-listing/card-listing.component";
 
 // NEBULAR MODULES
@@ -51,10 +49,11 @@ import {
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { TopheaderComponent } from "./globalComponents/topheader/topheader.component";
 import { CartComponent } from "./modules/cart/cart-page/cart.component";
-import { VendorSummaryHeaderComponent } from "./modules/vendor/vendor-summary-header/vendor-summary-header.component";
 import { ListListingsComponent } from "./globalComponents/list-listings/list-listings.component";
-import { VendorListingsSearchComponent } from "./modules/vendor/vendor-listings-search/vendor-listings-search.component";
+import { VendorModule } from "./modules/vendor/vendor.module";
 import { VendorSingleListingViewComponent } from "./modules/vendor/vendor-single-listing-page/vendor-single-listing-view.component";
+import { VendorListingsSearchComponent } from "./modules/vendor/vendor-listings-page/vendor-listings-search/vendor-listings-search.component";
+import { VendorSummaryHeaderComponent } from "./modules/vendor/vendor-summary-header/vendor-summary-header.component";
 
 //Injectables
 
@@ -71,11 +70,11 @@ export function createTranslateLoader(http: HttpClient) {
         SearchSmartItemsComponent,
         CardVendorComponent,
         CardListingComponent,
-        VendorListingsComponent,
         TopheaderComponent,
         CartComponent,
-        VendorSummaryHeaderComponent,
         ListListingsComponent,
+        VendorListingsComponent,
+        VendorSummaryHeaderComponent,
         VendorListingsSearchComponent,
         VendorSingleListingViewComponent
     ],
@@ -83,6 +82,7 @@ export function createTranslateLoader(http: HttpClient) {
         BrowserModule,
         HttpClientModule,
         AppRoutingModule,
+        VendorModule,
         BrowserAnimationsModule,
         ReactiveFormsModule,
         FormsModule,

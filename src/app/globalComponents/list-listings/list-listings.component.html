@@ -1,5 +1,5 @@
 <div class="grid-parent grid-parent__listings">
-    <section class="grid-child" *ngFor="let item of listingsList">
+    <section class="grid-child" *ngFor="let item of listingsList$ | async">
         <app-card-listing [item]="item"></app-card-listing>
     </section>
 </div>

@@ -8,31 +8,23 @@ import { Subscriber, Observable, Subscription } from "rxjs";
     templateUrl: "./main-list.component.html",
     styleUrls: ["./main-list.component.scss"]
 })
-export class MainListComponent implements OnInit, OnDestroy {
-    private vendorsSubscriber: Subscription;
+export class MainListComponent implements OnInit {
     private listingSubscription: Subscription;
-    public vendorsList: Array<IVendor>;
-    public listingsList: Array<any>;
+    public vendorsList$: Observable<Array<IVendor>>;
+    public listingsList$: Observable<Array<any>>;
     public currentCity: string = null;
 
     constructor(public dataService: DbServiceService) {}
 
     ngOnInit(): void {
-        this.vendorsSubscriber = this.dataService.getMyListings().subscribe((items: Array<IVendor>) => {
-            this.vendorsList = items;
-        });
-        this.listingSubscription = this.dataService.getListings().subscribe(items => {
-            this.listingsList = items;
-        });
-    }
+        this.vendorsList$ = this.dataService.getMyListings();
+        console.log(this.vendorsList$);
 
-    ngOnDestroy(): void {
-        this.vendorsSubscriber.unsubscribe();
-        this.listingSubscription.unsubscribe();
+        this.listingsList$ = this.dataService.getListings();
     }
 
     onCityChange(ev) {
         this.currentCity = ev;
-        this.vendorsSubscriber = this.dataService.getMyListings(this.currentCity).subscribe((items: Array<IVendor>) => (this.vendorsList = items));
+        this.vendorsList$ = this.dataService.getMyListings(this.currentCity);
     }
 }

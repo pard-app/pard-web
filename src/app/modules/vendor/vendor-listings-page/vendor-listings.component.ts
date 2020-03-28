@@ -1,20 +1,20 @@
 import { Component, OnInit, OnDestroy, ViewChildrenDecorator } from "@angular/core";
-import { Subscription } from "rxjs";
+import { Subscription, Observable, of } from "rxjs";
 import { DbServiceService } from "src/app/@features/services/db-service.service";
 import { ActivatedRoute } from "@angular/router";
 import { IVendor } from "@models/vendor.interface";
 import { ListingItem } from "@models/listingitem.interface";
+import { map, flatMap } from "rxjs/operators";
 
 @Component({
     selector: "app-vendor-listings",
     templateUrl: "./vendor-listings.component.html",
     styleUrls: ["./vendor-listings.component.scss"]
 })
-export class VendorListingsComponent implements OnInit, OnDestroy {
-    public listingsList: Array<ListingItem> = [];
-    public vendor: IVendor = null;
+export class VendorListingsComponent implements OnInit {
+    public listingsList$: Observable<Array<ListingItem>>;
+    public vendor$: Observable<IVendor>;
     private vendorId: string;
-    private subscription: Subscription = new Subscription();
 
     constructor(private dbService: DbServiceService, private route: ActivatedRoute) {}
 
@@ -26,29 +26,11 @@ export class VendorListingsComponent implements OnInit, OnDestroy {
         });
     }
 
-    private addToSubscription(item): void {
-        this.subscription.add(item);
-    }
-
     private getVendorListings(): void {
-        this.addToSubscription(
-            this.dbService.getVendorListings(this.vendorId).subscribe(listings => {
-                console.log(listings);
-                this.listingsList = listings;
-            })
-        );
+        this.listingsList$ = this.dbService.getVendorListings(this.vendorId);
     }
 
     private getVendor(): void {
-        this.addToSubscription(
-            this.dbService.getVendorById(this.vendorId).subscribe(vendor => {
-                console.log(vendor.data());
-                this.vendor = vendor.data() as IVendor;
-            })
-        );
-    }
-
-    ngOnDestroy(): void {
-        this.subscription.unsubscribe();
+        this.vendor$ = this.dbService.getVendorById(this.vendorId).pipe(map(x => x.data())) as Observable<IVendor>;
     }
 }

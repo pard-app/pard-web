@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { IVendor } from "@models/vendor.interface";
+import { Observable } from "rxjs";
 
 @Component({
     selector: "app-vendor-summary-header",
@@ -7,7 +8,7 @@ import { IVendor } from "@models/vendor.interface";
     styleUrls: ["./vendor-summary-header.component.scss"]
 })
 export class VendorSummaryHeaderComponent implements OnInit {
-    @Input() vendor: IVendor;
+    @Input() vendor$: Observable<IVendor>;
 
     constructor() {}
 

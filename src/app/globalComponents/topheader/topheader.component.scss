@@ -18,6 +18,9 @@
         width: 70px;
         margin: 0px 10px;
         cursor: pointer;
+        &:focus {
+            outline: none;
+        }
     }
 
     &__cart {
