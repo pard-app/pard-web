@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { AngularFirestore } from "@angular/fire/firestore";
+import { AngularFirestore, DocumentSnapshot, DocumentData } from "@angular/fire/firestore";
 // import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFireStorage } from "@angular/fire/storage";
 import { IVendor } from "@models/vendor.interface";
@@ -23,12 +23,15 @@ export class DbServiceService {
         }
     }
 
-    public getVendorById(id: string) {
-        return this.store.doc("vendors/" + id).get();
+    public getVendorById(id: string): Observable<IVendor> {
+        return this.store
+            .doc("vendors/" + id)
+            .get()
+            .pipe(map(x => x.data() as IVendor));
     }
 
     public getVendorListings(vendor: string): Observable<Array<any>> {
-        return this.store.collection("listings", ref => ref.where("vendor", "==", `${vendor}`).where("published", "==", true)).valueChanges();
+        return this.store.collection("listings", ref => ref.where("vendor", "==", `${vendor}`).where("published", "==", true)).valueChanges({ idField: "id" });
     }
 
     public getListings(published = true): Observable<Array<any>> {

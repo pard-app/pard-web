@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { CartStoreService } from "src/app/@features/stores/cart/cart.store.service";
+import { ListingItem } from "@models/listingitem.interface";
 
 @Component({
     selector: "app-card-listing",
@@ -7,7 +8,7 @@ import { CartStoreService } from "src/app/@features/stores/cart/cart.store.servi
     styleUrls: ["./card-listing.component.scss"]
 })
 export class CardListingComponent implements OnInit {
-    @Input() item: any;
+    @Input() item: ListingItem;
 
     constructor(private cartStoreService: CartStoreService) {}
 

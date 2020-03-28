@@ -1,4 +1,4 @@
-<nb-card size="small" class="vendor-card clickable-card">
+<nb-card size="small" class="vendor-card clickable-card" [routerLink]="'/vendor/' + item.vendor + '/' + item.id">
     <nb-badge [text]="item.stock" position="top left" status="primary"></nb-badge>
 
     <nb-card-header class="vendor-card__header">

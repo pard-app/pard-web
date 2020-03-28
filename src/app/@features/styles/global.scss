@@ -55,7 +55,7 @@ h6 {
     &:hover {
         cursor: pointer;
         box-shadow: nb-theme(color-basic-500) 0px 2px 15px;
-        transform: scale(1.01);
+        border-bottom: 5px solid nb-theme(color-info-500);
     }
 
     @media only screen and (max-width: 600px) {

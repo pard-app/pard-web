@@ -7,10 +7,7 @@ import { Observable } from "rxjs";
     templateUrl: "./vendor-summary-header.component.html",
     styleUrls: ["./vendor-summary-header.component.scss"]
 })
-export class VendorSummaryHeaderComponent implements OnInit {
+export class VendorSummaryHeaderComponent {
     @Input() vendor$: Observable<IVendor>;
-
     constructor() {}
-
-    ngOnInit(): void {}
 }

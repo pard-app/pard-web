@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-vendor-single-listing-view',
-  templateUrl: './vendor-single-listing-view.component.html',
-  styleUrls: ['./vendor-single-listing-view.component.scss']
+    selector: "app-vendor-single-listing-view",
+    templateUrl: "./vendor-single-listing-view.component.html",
+    styleUrls: ["./vendor-single-listing-view.component.scss"]
 })
 export class VendorSingleListingViewComponent implements OnInit {
+    constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+    ngOnInit(): void {}
 }

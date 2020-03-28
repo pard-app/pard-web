@@ -24,6 +24,7 @@ export class VendorListingsComponent implements OnInit {
             this.getVendorListings();
             this.getVendor();
         });
+        this.listingsList$.subscribe(x => console.log(x));
     }
 
     private getVendorListings(): void {
@@ -31,6 +32,6 @@ export class VendorListingsComponent implements OnInit {
     }
 
     private getVendor(): void {
-        this.vendor$ = this.dbService.getVendorById(this.vendorId).pipe(map(x => x.data())) as Observable<IVendor>;
+        this.vendor$ = this.dbService.getVendorById(this.vendorId) as Observable<IVendor>;
     }
 }
