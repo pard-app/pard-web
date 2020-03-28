@@ -19,20 +19,13 @@ export class MainListComponent implements OnInit, OnDestroy {
   private listingsIndex: any;
   private vendorsIndex: any;
 
-  constructor(
-    public dataService: DbServiceService,
-    private searchService: NbSearchService
-  ) {
+  constructor(public dataService: DbServiceService) {
     this.searchClient = algoliasearch(
       "8A6TCGT3CX",
       "4ee9375d899179a0701130c2df2c1f76"
     );
     this.listingsIndex = this.searchClient.initIndex("listings");
     this.vendorsIndex = this.searchClient.initIndex("vendors");
-
-    this.searchService.onSearchInput().subscribe((data: any) => {
-      this.search(data.term);
-    });
   }
 
   ngOnInit(): void {

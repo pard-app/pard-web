@@ -25,29 +25,28 @@ import { CardListingComponent } from "./modules/card-listing/card-listing.compon
 
 // NEBULAR MODULES
 import {
-  NbThemeModule,
-  NbLayoutModule,
-  NbAutocompleteModule,
-  NbCardModule,
-  NbOverlayModule,
-  NbDialogModule,
-  NbAutocompleteDirective,
-  NbInputModule,
-  NbFormFieldModule,
-  NbOptionModule,
-  NbCdkAdapterModule,
-  NbTabsetModule,
-  NbRouteTabsetModule,
-  NbSpinnerModule,
-  NbContextMenuModule,
-  NbButtonModule,
-  NbMenuService,
-  NbMenuModule,
-  NbIconModule,
-  NbPopoverModule,
-  NbSelectModule,
-  NbBadgeModule,
-  NbSearchModule
+    NbThemeModule,
+    NbLayoutModule,
+    NbAutocompleteModule,
+    NbCardModule,
+    NbOverlayModule,
+    NbDialogModule,
+    NbAutocompleteDirective,
+    NbInputModule,
+    NbFormFieldModule,
+    NbOptionModule,
+    NbCdkAdapterModule,
+    NbTabsetModule,
+    NbRouteTabsetModule,
+    NbSpinnerModule,
+    NbContextMenuModule,
+    NbButtonModule,
+    NbMenuService,
+    NbMenuModule,
+    NbIconModule,
+    NbPopoverModule,
+    NbSelectModule,
+    NbBadgeModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { TopheaderComponent } from "./globalComponents/topheader/topheader.component";
@@ -59,71 +58,64 @@ import { VendorListingsSearchComponent } from "./modules/vendor-listings/vendor-
 //Injectables
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
+    return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
 @NgModule({
-  declarations: [
-    AppComponent,
-    FooterComponent,
-    MainListComponent,
-    TopBannerComponent,
-    SearchLocationComponent,
-    SearchSmartItemsComponent,
-    CardVendorComponent,
-    CardListingComponent,
-    VendorListingsComponent,
-    TopheaderComponent,
-    CartComponent,
-    VendorSummaryHeaderComponent,
-    ListListingsComponent,
-    VendorListingsSearchComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    FormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient]
-      }
-    }),
-    //Nebular
-    NbThemeModule.forRoot({ name: "corporate" }),
-    NbLayoutModule,
-    NbEvaIconsModule,
-    NbAutocompleteModule,
-    NbCardModule,
-    NbOverlayModule,
-    NbDialogModule,
-    NbInputModule,
-    NbFormFieldModule,
-    NbOptionModule,
-    NbTabsetModule,
-    NbRouteTabsetModule,
-    NbSpinnerModule,
-    NbContextMenuModule,
-    NbButtonModule,
-    NbMenuModule.forRoot(),
-    NbIconModule,
-    NbPopoverModule,
-    NbSelectModule,
-    NbBadgeModule,
-    NbSearchModule
-  ],
-  providers: [
-    DbServiceService,
-    NbAutocompleteDirective,
-    NbMenuService,
-    CookieService,
-    { provide: DEFAULT_CURRENCY_CODE, useValue: "EUR" }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        FooterComponent,
+        MainListComponent,
+        TopBannerComponent,
+        SearchLocationComponent,
+        SearchSmartItemsComponent,
+        CardVendorComponent,
+        CardListingComponent,
+        VendorListingsComponent,
+        TopheaderComponent,
+        CartComponent,
+        VendorSummaryHeaderComponent,
+        ListListingsComponent,
+        VendorListingsSearchComponent
+    ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        FormsModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFirestoreModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: createTranslateLoader,
+                deps: [HttpClient]
+            }
+        }),
+        //Nebular
+        NbThemeModule.forRoot({ name: "corporate" }),
+        NbLayoutModule,
+        NbEvaIconsModule,
+        NbAutocompleteModule,
+        NbCardModule,
+        NbOverlayModule,
+        NbDialogModule,
+        NbInputModule,
+        NbFormFieldModule,
+        NbOptionModule,
+        NbTabsetModule,
+        NbRouteTabsetModule,
+        NbSpinnerModule,
+        NbContextMenuModule,
+        NbButtonModule,
+        NbMenuModule.forRoot(),
+        NbIconModule,
+        NbPopoverModule,
+        NbSelectModule,
+        NbBadgeModule
+    ],
+    providers: [DbServiceService, NbAutocompleteDirective, NbMenuService, CookieService, { provide: DEFAULT_CURRENCY_CODE, useValue: "EUR" }],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}
