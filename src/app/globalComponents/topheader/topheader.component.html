@@ -34,24 +34,13 @@
 <ng-template #templateRef>
     <nb-card size="tiny" class="notification">
         <nb-card-header class="notification__header">
-            <img
-                class="notification__image"
-                [src]="
-                    lastItemAddedToCart.image
-                        ? lastItemAddedToCart.image
-                        : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png'
-                "
-                alt="item.name"
-            />
+            <img class="notification__image" [src]="lastItemAddedToCart.image ? lastItemAddedToCart.image : ''" alt="item.name" />
         </nb-card-header>
         <nb-card-body class="notification__body">
             <button [routerLink]="'cart'" nbButton fullWidth outline size="small">
                 {{ "VIEW_CART" | translate }}
             </button>
-            <h6 class="notification__title">
-                {{ "ADDED_TO_CART" | translate }}
-            </h6>
-            <small>{{ lastItemAddedToCart.title }}</small>
+            <h6 class="notification__title">{{ lastItemAddedToCart.title }} {{ "ADDED_TO_CART" | translate }}</h6>
         </nb-card-body>
         <!-- <nb-card-footer></nb-card-footer> -->
     </nb-card>

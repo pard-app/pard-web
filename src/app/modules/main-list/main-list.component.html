@@ -11,7 +11,7 @@
                 <nb-tab
                     [tabTitle]="'VENDORS' | translate"
                     [tabIcon]="'home-outline'"
-                    [active]="(currentActiveTab$ | async).view.toLowerCase() == 'vendors'"
+                    [active]="(currentActiveTab$ | async).view == 'vendors'"
                     [nbSpinner]="!_vendorsList$"
                     [tabId]="'vendors'"
                     nbSpinnerSize="giant"
@@ -27,7 +27,7 @@
                 </nb-tab>
 
                 <nb-tab
-                    [active]="(currentActiveTab$ | async).view.toLowerCase() == 'listings'"
+                    [active]="(currentActiveTab$ | async).view == 'listings'"
                     [tabTitle]="'LISTINGS' | translate"
                     [tabId]="'listings'"
                     class="grid-tab"

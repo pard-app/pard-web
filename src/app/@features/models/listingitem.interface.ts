@@ -14,7 +14,11 @@ export interface ListingItem extends AdditionalCartViewLogic {
 
 interface AdditionalCartViewLogic {}
 
-export interface CartItem {
+export class CartItem {
     item: ListingItem;
     quantity: number;
+}
+
+export interface CartItemObject {
+    [id: string]: CartItem;
 }
