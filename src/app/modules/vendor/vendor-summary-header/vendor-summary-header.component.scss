@@ -1,13 +1,18 @@
 //
 .vendor {
     &__showcase {
-        margin: -200px auto 35px auto;
         max-width: 500px;
         min-height: 300px;
         display: flex;
         align-items: center;
         @media only screen and (max-width: 600px) {
             flex-direction: column;
+        }
+        &--margin {
+            margin: -200px auto 35px auto;
+        }
+        &--noMargin {
+            margin: 0px auto 35px auto;
         }
     }
     &__summary {

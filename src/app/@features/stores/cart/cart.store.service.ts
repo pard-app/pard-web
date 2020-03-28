@@ -6,7 +6,7 @@ import { CART_CONSTANTS } from "@constants/cart.constants";
 import { DbServiceService } from "@services/db-service.service";
 
 @Injectable({
-    providedIn: "root",
+    providedIn: "root"
 })
 export class CartStoreService {
     // private cartItems: Array<ListingItem | any> = [];
@@ -30,14 +30,13 @@ export class CartStoreService {
 
     // renew data
     public syncListingsFromFireStore() {
-        Object.keys(this.cartItems).map((id) => {
+        Object.keys(this.cartItems).map(id => {
             this.dbService
                 .getListingById(id)
                 .toPromise()
-                .then((x) => {
-                    const item = x.data();
-                    if (item) {
-                        this.cartItems[x.id] = item;
+                .then(x => {
+                    if (x.data) {
+                        this.cartItems[x.id] = x.data;
                     } else {
                         this.removeCartItem(id);
                     }
@@ -55,13 +54,13 @@ export class CartStoreService {
     }
 
     public get get() {
-        return (itemName) => this[itemName];
+        return itemName => this[itemName];
     }
 
     // Methods
     public addItemToCart(item: ListingItem) {
         this._lastAddedItem$.next(item);
-        this._cartItems$.next({ ...this._cartItems$.getValue(), [item.id]: item });
+        this._cartItems$.next({ ...this._cartItems$.getValue(), [item.objectID]: item });
         this.syncListingsToCookies();
     }
 

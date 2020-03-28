@@ -1,24 +1,11 @@
-.vendor-card {
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px;
-    transition: 0.2s ease-out;
-
-    &:hover {
-        cursor: pointer;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 15px 25px;
-    }
-
-    @media only screen and (max-width: 600px) {
-        height: 270px;
-    }
-}
-
 .card-image {
     object-fit: contain;
     max-height: 200px;
     width: 100%;
 }
 
-.card-body {}
+.card-body {
+}
 
 .title {
     font-size: 2em;

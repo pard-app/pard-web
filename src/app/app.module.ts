@@ -14,13 +14,11 @@ import { SearchLocationComponent } from "./globalComponents/search-location/sear
 import { SearchSmartItemsComponent } from "./globalComponents/search-smart-items/search-smart-items.component";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-
-// ANGULAR MATERIAL MODULES
 import { CardVendorComponent } from "./globalComponents/card-vendor/card-vendor.component";
 import { DbServiceService } from "src/app/@features/services/db-service.service";
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
-import { VendorListingsComponent } from "./modules/vendor-listings/vendor-listings.component";
+import { VendorListingsComponent } from "./modules/vendor/vendor-listings-page/vendor-listings.component";
 import { CardListingComponent } from "./modules/card-listing/card-listing.component";
 
 // NEBULAR MODULES
@@ -46,14 +44,16 @@ import {
     NbIconModule,
     NbPopoverModule,
     NbSelectModule,
-    NbBadgeModule,
+    NbBadgeModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { TopheaderComponent } from "./globalComponents/topheader/topheader.component";
 import { CartComponent } from "./modules/cart/cart-page/cart.component";
-import { VendorSummaryHeaderComponent } from "./modules/vendor-listings/vendor-summary-header/vendor-summary-header.component";
 import { ListListingsComponent } from "./globalComponents/list-listings/list-listings.component";
-import { VendorListingsSearchComponent } from "./modules/vendor-listings/vendor-listings-search/vendor-listings-search.component";
+import { VendorModule } from "./modules/vendor/vendor.module";
+import { VendorSingleListingViewComponent } from "./modules/vendor/vendor-single-listing-page/vendor-single-listing-view.component";
+import { VendorListingsSearchComponent } from "./modules/vendor/vendor-listings-page/vendor-listings-search/vendor-listings-search.component";
+import { VendorSummaryHeaderComponent } from "./modules/vendor/vendor-summary-header/vendor-summary-header.component";
 
 //Injectables
 
@@ -70,17 +70,19 @@ export function createTranslateLoader(http: HttpClient) {
         SearchSmartItemsComponent,
         CardVendorComponent,
         CardListingComponent,
-        VendorListingsComponent,
         TopheaderComponent,
         CartComponent,
-        VendorSummaryHeaderComponent,
         ListListingsComponent,
+        VendorListingsComponent,
+        VendorSummaryHeaderComponent,
         VendorListingsSearchComponent,
+        VendorSingleListingViewComponent
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
         AppRoutingModule,
+        VendorModule,
         BrowserAnimationsModule,
         ReactiveFormsModule,
         FormsModule,
@@ -90,8 +92,8 @@ export function createTranslateLoader(http: HttpClient) {
             loader: {
                 provide: TranslateLoader,
                 useFactory: createTranslateLoader,
-                deps: [HttpClient],
-            },
+                deps: [HttpClient]
+            }
         }),
         //Nebular
         NbThemeModule.forRoot({ name: "corporate" }),
@@ -113,9 +115,9 @@ export function createTranslateLoader(http: HttpClient) {
         NbIconModule,
         NbPopoverModule,
         NbSelectModule,
-        NbBadgeModule,
+        NbBadgeModule
     ],
     providers: [DbServiceService, NbAutocompleteDirective, NbMenuService, CookieService, { provide: DEFAULT_CURRENCY_CODE, useValue: "EUR" }],
-    bootstrap: [AppComponent],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}

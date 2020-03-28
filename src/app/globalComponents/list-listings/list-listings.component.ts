@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { ListingItem } from "@models/listingitem.interface";
+import { Observable } from "rxjs";
 
 @Component({
     selector: "app-list-listings",
@@ -7,7 +8,7 @@ import { ListingItem } from "@models/listingitem.interface";
     styleUrls: ["./list-listings.component.scss"],
 })
 export class ListListingsComponent implements OnInit {
-    @Input() listingsList: Array<ListingItem> = [];
+    @Input() listingsList$: Observable<Array<ListingItem>>;
 
     constructor() {}
 
