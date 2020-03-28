@@ -24,7 +24,6 @@ export class VendorListingsComponent implements OnInit {
             this.getVendorListings();
             this.getVendor();
         });
-        this.listingsList$.subscribe(x => console.log(x));
     }
 
     private getVendorListings(): void {
