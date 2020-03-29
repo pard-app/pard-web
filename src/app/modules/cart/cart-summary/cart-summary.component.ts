@@ -10,6 +10,7 @@ import ROUTES from "@constants/routing.constants";
 export class CartSummaryComponent {
     @Input() cartItems: Array<CartItem>;
     @Input() view: string;
+    @Input() totalAmount: string | number;
     public globalRoutes = ROUTES;
     constructor() {}
 }

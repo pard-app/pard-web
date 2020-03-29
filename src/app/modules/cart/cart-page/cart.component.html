@@ -5,7 +5,7 @@
             <h5>{{ "SUMMARY" | translate }}</h5>
         </nb-card-header>
         <nb-card-body class="summary__body">
-            <app-cart-summary [view]="view" [cartItems]="cartItems"></app-cart-summary>
+            <app-cart-summary [view]="view" [cartItems]="cartItems" [totalAmount]="totalAmount"></app-cart-summary>
         </nb-card-body>
     </nb-card>
 
@@ -15,7 +15,12 @@
         </nb-card-header>
 
         <nb-card-body *ngIf="view === globalRoutes.CART_LISTINGS_PAGE_ROOT">
-            <app-cart-listing-card *ngFor="let item of cartItems | keyvalue" [cartItem]="item"></app-cart-listing-card>
+            <app-cart-listing-card
+                (removeItem)="removeItem($event)"
+                (changeQuantity)="changeQuantity($event)"
+                *ngFor="let item of cartItems | keyvalue"
+                [cartItem]="item"
+            ></app-cart-listing-card>
         </nb-card-body>
         <nb-card-body *ngIf="view === globalRoutes.CART_CHECKOUT_PAGE_ROOT">
             <app-cart-checkout></app-cart-checkout>

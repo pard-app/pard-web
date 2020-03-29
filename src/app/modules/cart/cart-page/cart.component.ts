@@ -28,7 +28,7 @@ export class CartComponent implements OnInit {
         this.cartStoreService.removeCartItem(id);
     }
 
-    changeQuantity(key: string, value: number) {
+    changeQuantity({ key, value }: { key: string; value: number }) {
         this.cartStoreService.changeQuantity(key, value);
     }
 

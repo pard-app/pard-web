@@ -71,6 +71,7 @@ export class CartStoreService {
 
     public changeQuantity(key, val) {
         this.cartItems[key].quantity = val;
+        this.syncListingsToCookies();
     }
 
     public resetCart(): void {
