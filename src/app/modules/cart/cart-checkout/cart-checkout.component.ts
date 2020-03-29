@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
     selector: "app-cart-checkout",
@@ -6,7 +7,16 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ["./cart-checkout.component.scss"]
 })
 export class CartCheckoutComponent implements OnInit {
-    constructor() {}
+    inputItemNgModel: string;
+    myForm: FormGroup;
 
-    ngOnInit(): void {}
+    constructor(private fb: FormBuilder) {}
+
+    ngOnInit(): void {
+        this.myForm = this.fb.group({
+            name: "",
+            email: "",
+            phone: ""
+        });
+    }
 }

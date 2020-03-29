@@ -1,26 +1,35 @@
 <nb-stepper orientation="horizontal">
-    <nb-step [label]="'First step'">
-        <h4>Step content #1</h4>
-        <p class="lorem">
-            Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down. Nullizzle sapien velizzle, my shizz pimpin', shizzle my nizzle
-            crocodizzle shut the shizzle up, gravida vizzle, dang.
-        </p>
+    <nb-step [label]="'Basic'">
+        <nb-card>
+            <nb-card-body>
+                <h4>Basic Information</h4>
+                <form [formGroup]="myForm">
+                    Value: {{ myForm.value | json }}
+                    <input formControlName="name" type="text" nbInput fullWidth fieldSize="medium" [placeholder]="'Fullname'" />
+                    <input formControlName="email" type="text" nbInput fullWidth fieldSize="medium" [placeholder]="'Email'" />
+                    <input formControlName="phone" type="text" nbInput fullWidth fieldSize="medium" [placeholder]="'Phone number'" />
+                </form>
+            </nb-card-body>
+        </nb-card>
         <button nbButton disabled nbStepperNext>prev</button>
         <button nbButton nbStepperNext>next</button>
     </nb-step>
 
-    <nb-step [label]="'Second step'">
-        <h4>Step content #2</h4>
-        <p class="lorem">
-            Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down. Nullizzle sapien velizzle, my shizz pimpin', shizzle my nizzle
-            crocodizzle shut the shizzle up, gravida vizzle, dang.
-        </p>
+    <nb-step [label]="'Delivery'">
+        <nb-card>
+            <nb-card-body>
+                <h4>Delivery</h4>
+                <input type="text" nbInput fullWidth fieldSize="medium" [placeholder]="'Delivery'" [(ngModel)]="inputItemNgModel" />
+                <input type="text" nbInput fullWidth fieldSize="medium" [placeholder]="'Address'" [(ngModel)]="inputItemNgModel" />
+                <input type="text" nbInput fullWidth fieldSize="medium" [placeholder]="'Delivery Comments'" [(ngModel)]="inputItemNgModel" />
+            </nb-card-body>
+        </nb-card>
         <button nbButton nbStepperPrevious>prev</button>
         <button nbButton nbStepperNext>next</button>
     </nb-step>
 
-    <nb-step label="Third step">
-        <h4>Step content #3</h4>
+    <nb-step label="Payment">
+        <h4>Payment</h4>
         <p class="lorem">
             Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down. Nullizzle sapien velizzle, my shizz pimpin', shizzle my nizzle
             crocodizzle shut the shizzle up, gravida vizzle, dang.
