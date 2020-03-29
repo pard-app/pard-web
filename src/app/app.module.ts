@@ -6,7 +6,6 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { CookieService } from "ngx-cookie-service";
 import { FooterComponent } from "./globalComponents/footer/footer.component";
 import { MainListComponent } from "./modules/main-list/main-list.component";
 import { TopBannerComponent } from "./globalComponents/top-banner/top-banner.component";
@@ -127,7 +126,7 @@ export function createTranslateLoader(http: HttpClient) {
         NbStepperModule,
         NbTooltipModule
     ],
-    providers: [DbServiceService, NbAutocompleteDirective, NbMenuService, CookieService, { provide: DEFAULT_CURRENCY_CODE, useValue: "EUR" }],
+    providers: [DbServiceService, NbAutocompleteDirective, NbMenuService, { provide: DEFAULT_CURRENCY_CODE, useValue: "EUR" }],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

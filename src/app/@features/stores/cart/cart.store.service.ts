@@ -1,7 +1,6 @@
 import { Injectable, OnInit } from "@angular/core";
 import { ListingItem, CartItem, CartItemObject } from "@models/listingitem.interface";
 import { BehaviorSubject, Observable } from "rxjs";
-import { CookieService } from "ngx-cookie-service";
 import { CART_CONSTANTS } from "@constants/cart.constants";
 import { DbServiceService } from "@services/db-service.service";
 
@@ -16,7 +15,7 @@ export class CartStoreService {
     private readonly cartItemLimit: number = 99;
     public _lastAddedItem$ = new BehaviorSubject<ListingItem>(null);
 
-    constructor(private cookieService: CookieService, private dbService: DbServiceService) {}
+    constructor(private dbService: DbServiceService) {}
 
     public get cartItemsLength(): number {
         return Object.keys(this.cartItems).length;
