@@ -13,7 +13,9 @@
             </h5>
 
             <h6>
-                <button nbButton outline status="info" fullWidth>{{ "CHECKOUT" | translate }}</button>
+                <button [routerLink]="globalRoutes.CHECKOUT_PAGE_ROOT" nbButton outline status="info" fullWidth>
+                    {{ "CHECKOUT" | translate }}
+                </button>
             </h6>
         </nb-card-body>
     </nb-card>

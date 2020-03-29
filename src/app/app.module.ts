@@ -44,7 +44,8 @@ import {
     NbIconModule,
     NbPopoverModule,
     NbSelectModule,
-    NbBadgeModule
+    NbBadgeModule,
+    NbStepperModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { TopheaderComponent } from "./globalComponents/topheader/topheader.component";
@@ -55,6 +56,7 @@ import { VendorSingleListingViewComponent } from "./modules/vendor/vendor-single
 import { VendorListingsSearchComponent } from "./modules/vendor/vendor-listings-page/vendor-listings-search/vendor-listings-search.component";
 import { VendorSummaryHeaderComponent } from "./modules/vendor/vendor-summary-header/vendor-summary-header.component";
 import { CartCheckoutComponent } from "./modules/cart/cart-checkout/cart-checkout.component";
+import { CartListingCardComponent } from "./modules/cart/cart-page/cart-listing-card/cart-listing-card.component";
 
 //Injectables
 
@@ -78,7 +80,8 @@ export function createTranslateLoader(http: HttpClient) {
         VendorSummaryHeaderComponent,
         VendorListingsSearchComponent,
         VendorSingleListingViewComponent,
-        CartCheckoutComponent
+        CartCheckoutComponent,
+        CartListingCardComponent
     ],
     imports: [
         BrowserModule,
@@ -117,7 +120,8 @@ export function createTranslateLoader(http: HttpClient) {
         NbIconModule,
         NbPopoverModule,
         NbSelectModule,
-        NbBadgeModule
+        NbBadgeModule,
+        NbStepperModule
     ],
     providers: [DbServiceService, NbAutocompleteDirective, NbMenuService, CookieService, { provide: DEFAULT_CURRENCY_CODE, useValue: "EUR" }],
     bootstrap: [AppComponent]

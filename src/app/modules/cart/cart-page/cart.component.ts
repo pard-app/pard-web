@@ -1,10 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { CartStoreService } from "src/app/@features/stores/cart/cart.store.service";
 import { DbServiceService } from "src/app/@features/services/db-service.service";
-import { Subscription } from "rxjs";
-import { ListingItem, CartItem } from "@models/listingitem.interface";
-import { CookieService } from "ngx-cookie-service";
-import { CART_CONSTANTS } from "@constants/cart.constants";
+import { CartItem } from "@models/listingitem.interface";
+import ROUTES from "@constants/routing.constants";
 
 @Component({
     selector: "app-cart",
@@ -12,6 +10,8 @@ import { CART_CONSTANTS } from "@constants/cart.constants";
     styleUrls: ["./cart.component.scss"]
 })
 export class CartComponent implements OnInit {
+    public globalRoutes = ROUTES;
+
     public get cartItems(): [] {
         return this.cartStoreService.get("cartItems");
     }
