@@ -40,7 +40,9 @@
             <button [routerLink]="globalRoutes.CART_PAGE_ROOT" nbButton fullWidth outline size="small">
                 {{ "VIEW_CART" | translate }}
             </button>
-            <h6 class="notification__title">{{ lastItemAddedToCart.title }} {{ "ADDED_TO_CART" | translate }}</h6>
+            <h6 class="notification__title">
+                {{ lastItemAddedToCart.title }} (x{{ getQuantity(lastItemAddedToCart.objectID) }}) {{ "ADDED_TO_CART" | translate }}
+            </h6>
         </nb-card-body>
         <!-- <nb-card-footer></nb-card-footer> -->
     </nb-card>

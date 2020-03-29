@@ -17,6 +17,7 @@ export class TopheaderComponent implements OnInit, OnDestroy {
         { title: this.translate.instant("APP"), url: "https://pard.app" },
         { title: this.translate.instant("ABOUT"), url: "https://pard.lt/" }
     ];
+
     public globalRoutes = ROUTES;
     public lastItemAddedToCartSubscribtion: Subscription;
     public lastItemAddedToCart: ListingItem = null;
@@ -44,6 +45,10 @@ export class TopheaderComponent implements OnInit, OnDestroy {
 
     setLanguage(lang: string) {
         this.translate.use(lang);
+    }
+
+    getQuantity(id: string): number {
+        if (this.cartStoreService.get("cartItems")[id]) return this.cartStoreService.get("cartItems")[id].quantity;
     }
 
     get count() {
