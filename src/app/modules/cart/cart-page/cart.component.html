@@ -1,4 +1,5 @@
 <div class="content-section cart-grid">
+    <!-- ALWAYS HAS A SUMMARY -->
     <nb-card fullWidth class="summary">
         <nb-card-header>
             <h5>{{ "SUMMARY" | translate }}</h5>
@@ -12,21 +13,39 @@
                 {{ "TOTAL" | translate }}: <strong>{{ totalAmount | currency }}</strong>
             </h5>
 
-            <h6>
-                <button [routerLink]="globalRoutes.CHECKOUT_PAGE_ROOT" nbButton outline status="info" fullWidth>
-                    {{ "CHECKOUT" | translate }}
-                </button>
-            </h6>
+            <button
+                *ngIf="view === globalRoutes.CART_LISTINGS_PAGE_ROOT"
+                [routerLink]="'/' + globalRoutes.CART_PAGE_ROOT + '/' + globalRoutes.CART_CHECKOUT_PAGE_ROOT"
+                nbButton
+                outline
+                status="info"
+                fullWidth
+            >
+                {{ "CHECKOUT" | translate }}
+            </button>
+            <button
+                *ngIf="view === globalRoutes.CART_CHECKOUT_PAGE_ROOT"
+                [routerLink]="'/' + globalRoutes.CART_PAGE_ROOT"
+                nbButton
+                outline
+                status="warning"
+                fullWidth
+            >
+                {{ "BACK_TO_CART" | translate }}
+            </button>
         </nb-card-body>
     </nb-card>
 
     <nb-card fullWidth class="items">
         <nb-card-header>
-            <h1>{{ "YOUR_CART" | translate }}</h1>
+            <h1>{{ "YOUR_CART" | translate }} {{ view }}</h1>
         </nb-card-header>
 
-        <nb-card-body>
+        <nb-card-body *ngIf="view === globalRoutes.CART_LISTINGS_PAGE_ROOT">
             <app-cart-listing-card *ngFor="let item of cartItems | keyvalue" [cartItem]="item"></app-cart-listing-card>
+        </nb-card-body>
+        <nb-card-body *ngIf="view === globalRoutes.CART_CHECKOUT_PAGE_ROOT">
+            <app-cart-checkout></app-cart-checkout>
         </nb-card-body>
     </nb-card>
 </div>

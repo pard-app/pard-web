@@ -3,6 +3,7 @@ const ROUTING_CONSTANTS: { [name: string]: string } = {
     MARKET_PAGE: "marketplace",
     VENDOR_PAGE_ROOT: "vendor",
     CART_PAGE_ROOT: "cart",
-    CHECKOUT_PAGE_ROOT: "checkout"
+    CART_CHECKOUT_PAGE_ROOT: "checkout",
+    CART_LISTINGS_PAGE_ROOT: "listings"
 };
 export default ROUTING_CONSTANTS;

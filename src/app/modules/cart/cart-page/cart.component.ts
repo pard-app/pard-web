@@ -3,6 +3,7 @@ import { CartStoreService } from "src/app/@features/stores/cart/cart.store.servi
 import { DbServiceService } from "src/app/@features/services/db-service.service";
 import { CartItem } from "@models/listingitem.interface";
 import ROUTES from "@constants/routing.constants";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: "app-cart",
@@ -11,12 +12,13 @@ import ROUTES from "@constants/routing.constants";
 })
 export class CartComponent implements OnInit {
     public globalRoutes = ROUTES;
+    public view: string = ROUTES.CART_LISTINGS_PAGE_ROOT;
 
     public get cartItems(): [] {
         return this.cartStoreService.get("cartItems");
     }
 
-    constructor(private cartStoreService: CartStoreService, private dbService: DbServiceService) {}
+    constructor(private cartStoreService: CartStoreService, private dbService: DbServiceService, private route: ActivatedRoute) {}
 
     get totalAmount() {
         return Object.values(this.cartItems).reduce((acc, currItem: CartItem) => acc + currItem.item.price * currItem.quantity, 0);
@@ -31,6 +33,11 @@ export class CartComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.route.url.subscribe(x => {
+            if (!x.length) return;
+            const isCheckout = x[0].path === this.globalRoutes.CART_CHECKOUT_PAGE_ROOT;
+            if (isCheckout) this.view = this.globalRoutes.CART_CHECKOUT_PAGE_ROOT;
+        });
         this.cartStoreService.syncListingsFromFireStore();
     }
 
