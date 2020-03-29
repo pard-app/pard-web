@@ -12,22 +12,42 @@ export class CartStoreService {
     // private cartItems: Array<ListingItem | any> = [];
     private _cartItems$ = new BehaviorSubject<CartItemObject>({});
     // Expose the observable$ part of the `_cartItems$` subject (read only stream)
-    readonly cartItems$: Observable<CartItemObject> = this._cartItems$.asObservable();
-
+    private readonly cartItems$: Observable<CartItemObject> = this._cartItems$.asObservable();
+    private readonly cartItemLimit: number = 5;
     public _lastAddedItem$ = new BehaviorSubject<ListingItem>(null);
 
     constructor(private cookieService: CookieService, private dbService: DbServiceService) {}
 
-    public populateListingsFromCookieToState() {
-        const value = this.cookieService.get(CART_CONSTANTS.CART_ITEMS_IN_COOKIE);
-        if (!value) return;
-        this.cartItems = JSON.parse(value);
+    public get cartItemsLength(): number {
+        return Object.keys(this.cartItems).length;
+    }
+
+    private get isCartFull(): boolean {
+        return this.cartItemsLength >= this.cartItemLimit;
+    }
+
+    // lastest emitted value
+    private get cartItems() {
+        return this._cartItems$.getValue();
+    }
+
+    private set cartItems(val: { [id: string]: CartItem }) {
+        this._cartItems$.next(val);
+    }
+
+    public get get() {
+        return itemName => this[itemName];
     }
 
     private syncListingsToCookies() {
         this.cookieService.set(CART_CONSTANTS.CART_ITEMS_IN_COOKIE, JSON.stringify(this.cartItems), 3);
     }
 
+    public populateListingsFromCookieToState() {
+        const value = this.cookieService.get(CART_CONSTANTS.CART_ITEMS_IN_COOKIE);
+        if (!value) return;
+        this.cartItems = JSON.parse(value);
+    }
     // renew data
     public syncListingsFromFireStore() {
         Object.keys(this.cartItems).map(id => {
@@ -44,21 +64,11 @@ export class CartStoreService {
         });
     }
 
-    // lastest emitted value
-    private get cartItems() {
-        return this._cartItems$.getValue();
-    }
-
-    private set cartItems(val: { [id: string]: CartItem }) {
-        this._cartItems$.next(val);
-    }
-
-    public get get() {
-        return itemName => this[itemName];
-    }
-
     // Methods
     public addItemToCart(item: ListingItem) {
+        // don't add to cart if exceeds limit
+        if (this.isCartFull) return;
+
         this._lastAddedItem$.next(item);
         const currentCartItems = this._cartItems$.getValue();
         const findCartItemInCart: CartItem = currentCartItems[item.objectID];
