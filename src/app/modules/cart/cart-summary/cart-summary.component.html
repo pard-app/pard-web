@@ -1,20 +1,21 @@
-<nb-card fullWidth class="summary">
-    <nb-card-header>
-        <h5>{{ "SUMMARY" | translate }}</h5>
-    </nb-card-header>
-    <nb-card-body class="summary__body">
-        <p *ngFor="let item of cartItems | keyvalue">
-            {{ item.value.item?.title }}: <strong>{{ item.value.item?.price | currency }}</strong> (x{{ item.value.quantity }})
-        </p>
+<p *ngFor="let item of cartItems | keyvalue">
+    {{ item.value.item?.title }}: <strong>{{ item.value.item?.price | currency }}</strong> (x{{ item.value.quantity }})
+</p>
 
-        <h5>
-            {{ "TOTAL" | translate }}: <strong>{{ totalAmount | currency }}</strong>
-        </h5>
+<h5>
+    {{ "TOTAL" | translate }}: <strong>{{ totalAmount | currency }}</strong>
+</h5>
 
-        <h6>
-            <button [routerLink]="globalRoutes.CHECKOUT_PAGE_ROOT" nbButton outline status="info" fullWidth>
-                {{ "CHECKOUT" | translate }}
-            </button>
-        </h6>
-    </nb-card-body>
-</nb-card>
+<button
+    *ngIf="view === globalRoutes.CART_LISTINGS_PAGE_ROOT"
+    [routerLink]="'/' + globalRoutes.CART_PAGE_ROOT + '/' + globalRoutes.CART_CHECKOUT_PAGE_ROOT"
+    nbButton
+    outline
+    status="info"
+    fullWidth
+>
+    {{ "CHECKOUT" | translate }}
+</button>
+<button *ngIf="view === globalRoutes.CART_CHECKOUT_PAGE_ROOT" [routerLink]="'/' + globalRoutes.CART_PAGE_ROOT" nbButton outline status="warning" fullWidth>
+    {{ "BACK_TO_CART" | translate }}
+</button>
