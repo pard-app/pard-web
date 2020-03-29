@@ -36,7 +36,7 @@ export class CartStoreService {
                 .toPromise()
                 .then(x => {
                     if (x.data) {
-                        this.cartItems[x.id] = x.data;
+                        this.cartItems[x.id]["item"] = x.data;
                     } else {
                         this.removeCartItem(id);
                     }
@@ -46,7 +46,6 @@ export class CartStoreService {
 
     // lastest emitted value
     private get cartItems() {
-        console.log(this._cartItems$.getValue());
         return this._cartItems$.getValue();
     }
 
@@ -68,6 +67,10 @@ export class CartStoreService {
             [item.objectID]: { item, quantity: findCartItemInCart ? findCartItemInCart.quantity + 1 : 1 }
         });
         this.syncListingsToCookies();
+    }
+
+    public changeQuantity(key, val) {
+        this.cartItems[key].quantity = val;
     }
 
     public resetCart(): void {

@@ -3,9 +3,9 @@
         <nb-card-header>
             <h5>{{ "SUMMARY" | translate }}</h5>
         </nb-card-header>
-        <nb-card-body>
+        <nb-card-body class="summary__body">
             <p *ngFor="let item of cartItems | keyvalue">
-                {{ item.value.title }}: <strong>{{ item.value.price | currency }}</strong>
+                {{ item.value.item?.title }}: <strong>{{ item.value.item?.price | currency }}</strong> (x{{ item.value.quantity }})
             </p>
 
             <h5>
@@ -22,19 +22,18 @@
         <nb-card-header>
             <h1>{{ "YOUR_CART" | translate }}</h1>
         </nb-card-header>
+
         <nb-card-body>
-            <nb-card accent="info" *ngFor="let item of cartItems | keyvalue">
-                <nb-card-header>{{ item.value?.title }}</nb-card-header>
+            <nb-card class="cart-item__card" accent="info" *ngFor="let item of cartItems | keyvalue">
+                <nb-card-header class="cart-item__header"
+                    >{{ item.value.item?.title }} <img class="cart-item__image" [src]="item.value.item?.image"
+                /></nb-card-header>
                 <nb-card-body>
-                    A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases. Originally, nebula was a name for any diffuse
-                    astronomical object, including galaxies beyond the Milky Way.
+                    {{ item.value.item?.description }}
                 </nb-card-body>
                 <nb-card-footer>
-                    <nb-select [placeholder]="'QUANTITY' | translate">
-                        <nb-option value="1">1</nb-option>
-                        <nb-option value="2">2</nb-option>
-                        <nb-option value="3">3</nb-option>
-                        <nb-option value="4">4</nb-option>
+                    <nb-select (selectedChange)="changeQuantity(item.key, $event)" [selected]="item.value.quantity" [placeholder]="'QUANTITY' | translate">
+                        <nb-option *ngFor="let number of quantityArr" [value]="number">{{ number }}</nb-option>
                     </nb-select>
                     <button nbButton basic status="danger" (click)="removeItem(item.key)">{{ "REMOVE" | translate }}</button>
                 </nb-card-footer>
