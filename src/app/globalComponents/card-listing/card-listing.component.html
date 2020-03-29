@@ -1,11 +1,5 @@
 <div class="vendor-card">
-    <div
-        [nbTooltip]="isCartFull ? 'Cart is full' : null"
-        [nbTooltipIcon]="isCartFull ? 'alert-triangle-outline' : null"
-        nbTooltipStatus="danger"
-        class="vendor-card__add-cart-btn"
-        (click)="addToCart()"
-    >
+    <div class="vendor-card__add-cart-btn" (click)="addToCart()">
         <nb-icon icon="shopping-cart"></nb-icon>
     </div>
 

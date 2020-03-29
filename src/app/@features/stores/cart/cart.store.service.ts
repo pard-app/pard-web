@@ -13,7 +13,7 @@ export class CartStoreService {
     private _cartItems$ = new BehaviorSubject<CartItemObject>({});
     // Expose the observable$ part of the `_cartItems$` subject (read only stream)
     private readonly cartItems$: Observable<CartItemObject> = this._cartItems$.asObservable();
-    private readonly cartItemLimit: number = 100;
+    private readonly cartItemLimit: number = 5;
     public _lastAddedItem$ = new BehaviorSubject<ListingItem>(null);
 
     constructor(private cookieService: CookieService, private dbService: DbServiceService) {}
