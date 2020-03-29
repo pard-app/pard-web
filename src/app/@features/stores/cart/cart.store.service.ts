@@ -13,7 +13,7 @@ export class CartStoreService {
     private _cartItems$ = new BehaviorSubject<CartItemObject>({});
     // Expose the observable$ part of the `_cartItems$` subject (read only stream)
     private readonly cartItems$: Observable<CartItemObject> = this._cartItems$.asObservable();
-    private readonly cartItemLimit: number = 5;
+    private readonly cartItemLimit: number = 99;
     public _lastAddedItem$ = new BehaviorSubject<ListingItem>(null);
 
     constructor(private cookieService: CookieService, private dbService: DbServiceService) {}
@@ -38,13 +38,13 @@ export class CartStoreService {
     public get get() {
         return itemName => this[itemName];
     }
-
-    private syncListingsToCookies() {
-        this.cookieService.set(CART_CONSTANTS.CART_ITEMS_IN_COOKIE, JSON.stringify(this.cartItems), 3);
+    // TO LOCAL STORAGE
+    private syncListingsToLocalStorage() {
+        localStorage.setItem(CART_CONSTANTS.CART_ITEMS_IN_COOKIE, JSON.stringify(this.cartItems));
     }
-
-    public populateListingsFromCookieToState() {
-        const value = this.cookieService.get(CART_CONSTANTS.CART_ITEMS_IN_COOKIE);
+    // FROM LOCAL STORAGE
+    public syncLocalStorageToListings() {
+        const value = localStorage.getItem(CART_CONSTANTS.CART_ITEMS_IN_COOKIE);
         if (!value) return;
         this.cartItems = JSON.parse(value);
     }
@@ -76,12 +76,12 @@ export class CartStoreService {
             ...currentCartItems,
             [item.objectID]: { item, quantity: findCartItemInCart ? findCartItemInCart.quantity + 1 : 1 }
         });
-        this.syncListingsToCookies();
+        this.syncListingsToLocalStorage();
     }
 
     public changeQuantity(key, val) {
         this.cartItems[key].quantity = val;
-        this.syncListingsToCookies();
+        this.syncListingsToLocalStorage();
     }
 
     public resetCart(): void {
@@ -92,6 +92,6 @@ export class CartStoreService {
         var mockObject = this.cartItems;
         delete mockObject[id];
         this.cartItems = mockObject;
-        this.syncListingsToCookies();
+        this.syncListingsToLocalStorage();
     }
 }
