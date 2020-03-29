@@ -56,7 +56,7 @@ import { VendorSingleListingViewComponent } from "./modules/vendor/vendor-single
 import { VendorListingsSearchComponent } from "./modules/vendor/vendor-listings-page/vendor-listings-search/vendor-listings-search.component";
 import { VendorSummaryHeaderComponent } from "./modules/vendor/vendor-summary-header/vendor-summary-header.component";
 import { CartCheckoutComponent } from "./modules/cart/cart-checkout/cart-checkout.component";
-import { CartListingCardComponent } from "./modules/cart/cart-page/cart-listing-card/cart-listing-card.component";
+import { CartListingCardComponent } from "./modules/cart/cart-listings/cart-listing-card/cart-listing-card.component";
 
 //Injectables
 
