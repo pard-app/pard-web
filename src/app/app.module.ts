@@ -19,7 +19,7 @@ import { DbServiceService } from "src/app/@features/services/db-service.service"
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
 import { VendorListingsComponent } from "./modules/vendor/vendor-listings-page/vendor-listings.component";
-import { CardListingComponent } from "./modules/card-listing/card-listing.component";
+import { CardListingComponent } from "./globalComponents/card-listing/card-listing.component";
 
 // NEBULAR MODULES
 import {
@@ -54,6 +54,7 @@ import { VendorModule } from "./modules/vendor/vendor.module";
 import { VendorSingleListingViewComponent } from "./modules/vendor/vendor-single-listing-page/vendor-single-listing-view.component";
 import { VendorListingsSearchComponent } from "./modules/vendor/vendor-listings-page/vendor-listings-search/vendor-listings-search.component";
 import { VendorSummaryHeaderComponent } from "./modules/vendor/vendor-summary-header/vendor-summary-header.component";
+import { CartCheckoutComponent } from "./modules/cart/cart-checkout/cart-checkout.component";
 
 //Injectables
 
@@ -76,7 +77,8 @@ export function createTranslateLoader(http: HttpClient) {
         VendorListingsComponent,
         VendorSummaryHeaderComponent,
         VendorListingsSearchComponent,
-        VendorSingleListingViewComponent
+        VendorSingleListingViewComponent,
+        CartCheckoutComponent
     ],
     imports: [
         BrowserModule,
