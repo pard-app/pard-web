@@ -12,8 +12,6 @@ import { CART_CONSTANTS } from "@constants/cart.constants";
     styleUrls: ["./cart.component.scss"]
 })
 export class CartComponent implements OnInit {
-    public quantityArr: Array<Number> = Array.from(Array(10).keys());
-
     public get cartItems(): [] {
         return this.cartStoreService.get("cartItems");
     }

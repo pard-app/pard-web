@@ -24,20 +24,7 @@
         </nb-card-header>
 
         <nb-card-body>
-            <nb-card class="cart-item__card" accent="info" *ngFor="let item of cartItems | keyvalue">
-                <nb-card-header class="cart-item__header"
-                    >{{ item.value.item?.title }} <img class="cart-item__image" [src]="item.value.item?.image"
-                /></nb-card-header>
-                <nb-card-body>
-                    {{ item.value.item?.description }}
-                </nb-card-body>
-                <nb-card-footer>
-                    <nb-select (selectedChange)="changeQuantity(item.key, $event)" [selected]="item.value.quantity" [placeholder]="'QUANTITY' | translate">
-                        <nb-option *ngFor="let number of quantityArr" [value]="number">{{ number }}</nb-option>
-                    </nb-select>
-                    <button nbButton basic status="danger" (click)="removeItem(item.key)">{{ "REMOVE" | translate }}</button>
-                </nb-card-footer>
-            </nb-card>
+            <app-cart-listing-card *ngFor="let item of cartItems | keyvalue" [cartItem]="item"></app-cart-listing-card>
         </nb-card-body>
     </nb-card>
 </div>
