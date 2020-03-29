@@ -1,7 +1,22 @@
-import { Component, OnInit, Output, EventEmitter, ChangeDetectionStrategy, ViewChild } from "@angular/core";
+import {
+    Component,
+    OnInit,
+    Output,
+    EventEmitter,
+    ChangeDetectionStrategy,
+    ViewChild,
+    AfterViewInit,
+    OnDestroy,
+    Input,
+    Type,
+    SimpleChanges,
+    OnChanges
+} from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { Observable, of } from "rxjs";
+import { Observable, of, VirtualTimeScheduler } from "rxjs";
 import { map, startWith } from "rxjs/operators";
+import places from "places.js";
+
 // import options from "./options";
 const options = [
     "Vilnius",
@@ -32,39 +47,64 @@ const options = [
     "Grigiškės",
     "Biržai",
     "Garliava",
-    "Lentvaris",
+    "Lentvaris"
 ];
 @Component({
     selector: "app-search-location",
     templateUrl: "./search-location.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchLocationComponent implements OnInit {
-    @Output() cityChanged: EventEmitter<any> = new EventEmitter();
-    public myControl = new FormControl();
-    @Output() currentText: string;
+export class SearchLocationComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
+    // @Output() cityChanged: EventEmitter<any> = new EventEmitter();
+    // public myControl = new FormControl();
+    // @Output() currentText: string;
+    @Output() onChange? = new EventEmitter();
+    @Output() onClear? = new EventEmitter();
+    // options: string[] = options;
+    // filteredOptions$: Observable<string[]>;
 
-    options: string[] = options;
-    filteredOptions$: Observable<string[]>;
-
+    private instance = null;
     @ViewChild("autoInput") input;
 
     ngOnInit() {
-        this.filteredOptions$ = of(this.options);
+        //this.filteredOptions$ = of(this.options);
     }
 
-    private filter(value: string): string[] {
-        const filterValue = value.toLowerCase();
-        return this.options.filter((optionValue) => optionValue.toLowerCase().includes(filterValue));
+    ngOnChanges(changes: SimpleChanges) {
+        console.log(changes);
     }
 
-    getFilteredOptions(value: string): Observable<string[]> {
-        return of(value).pipe(map((filterString) => this.filter(filterString)));
-    }
+    // private filter(value: string): string[] {
+    //     const filterValue = value.toLowerCase();
+    //     return this.options.filter(optionValue => optionValue.toLowerCase().includes(filterValue));
+    // }
 
-    onSelectionChange($event) {
-        const value: string = this.input.nativeElement.value;
-        this.filteredOptions$ = this.getFilteredOptions(value);
-        this.cityChanged.emit(value);
+    // getFilteredOptions(value: string): Observable<string[]> {
+    //     return of(value).pipe(map(filterString => this.filter(filterString)));
+    // }
+
+    // onSelectionChange($event) {
+    //     const value: string = this.input.nativeElement.value;
+    //     this.filteredOptions$ = this.getFilteredOptions(value);
+    //     this.cityChanged.emit(value);
+    // }
+
+    ngAfterViewInit() {
+        this.instance = places({
+            container: this.input.nativeElement,
+            type: "city",
+            useDeviceLocation: true
+        });
+        this.instance.on("change", e => {
+            this.onChange.emit(e);
+        });
+
+        // navigator.geolocation.getCurrentPosition(loc => {
+        //    console.log(loc)
+        // });
+    }
+    ngOnDestroy() {
+        this.instance.removeAllListeners("change");
+        this.instance.destroy();
     }
 }

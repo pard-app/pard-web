@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { DbServiceService } from "@services/db-service.service";
+import { DbServiceService } from "@services/db-service/db-service.service";
 import { ActivatedRoute } from "@angular/router";
 import { ListingItem } from "@models/listingitem.interface";
 import { Observable, BehaviorSubject, Subscription } from "rxjs";
