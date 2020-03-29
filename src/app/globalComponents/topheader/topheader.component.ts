@@ -4,18 +4,21 @@ import { Subscription } from "rxjs";
 import { NbPopoverDirective } from "@nebular/theme";
 import { ListingItem } from "@models/listingitem.interface";
 import { TranslateService } from "@ngx-translate/core";
+import ROUTES from "@constants/routing.constants";
 
 @Component({
     selector: "app-topheader",
     templateUrl: "./topheader.component.html",
-    styleUrls: ["./topheader.component.scss"],
+    styleUrls: ["./topheader.component.scss"]
 })
 export class TopheaderComponent implements OnInit, OnDestroy {
     public items = [
         { title: this.translate.instant("HOME"), link: "/" },
         { title: this.translate.instant("APP"), url: "https://pard.app" },
-        { title: this.translate.instant("ABOUT"), url: "https://pard.lt/" },
+        { title: this.translate.instant("ABOUT"), url: "https://pard.lt/" }
     ];
+
+    public globalRoutes = ROUTES;
     public lastItemAddedToCartSubscribtion: Subscription;
     public lastItemAddedToCart: ListingItem = null;
     private timer: ReturnType<typeof setTimeout>;
@@ -25,7 +28,7 @@ export class TopheaderComponent implements OnInit, OnDestroy {
     constructor(private cartStoreService: CartStoreService, private translate: TranslateService) {}
 
     ngOnInit(): void {
-        this.lastItemAddedToCartSubscribtion = this.cartStoreService._lastAddedItem$.subscribe((item) => {
+        this.lastItemAddedToCartSubscribtion = this.cartStoreService._lastAddedItem$.subscribe(item => {
             this.lastItemAddedToCart = item;
             this.addedNotificationPopover && this.handleNewItemNotification(item);
         });
@@ -44,8 +47,12 @@ export class TopheaderComponent implements OnInit, OnDestroy {
         this.translate.use(lang);
     }
 
+    getQuantity(id: string): number {
+        if (this.cartStoreService.get("cartItems")[id]) return this.cartStoreService.get("cartItems")[id].quantity;
+    }
+
     get count() {
-        return Object.values(this.cartStoreService.get("cartItems")).length;
+        return this.cartStoreService.cartItemsLength;
     }
 
     ngOnDestroy(): void {

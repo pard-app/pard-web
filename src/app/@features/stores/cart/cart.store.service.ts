@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from "@angular/core";
-import { ListingItem } from "@models/listingitem.interface";
+import { ListingItem, CartItem, CartItemObject } from "@models/listingitem.interface";
 import { BehaviorSubject, Observable } from "rxjs";
 import { CookieService } from "ngx-cookie-service";
 import { CART_CONSTANTS } from "@constants/cart.constants";
@@ -10,24 +10,44 @@ import { DbServiceService } from "@services/db-service.service";
 })
 export class CartStoreService {
     // private cartItems: Array<ListingItem | any> = [];
-    private _cartItems$ = new BehaviorSubject<{} | any>({});
+    private _cartItems$ = new BehaviorSubject<CartItemObject>({});
     // Expose the observable$ part of the `_cartItems$` subject (read only stream)
-    readonly cartItems$: Observable<{}> = this._cartItems$.asObservable();
-
+    private readonly cartItems$: Observable<CartItemObject> = this._cartItems$.asObservable();
+    private readonly cartItemLimit: number = 99;
     public _lastAddedItem$ = new BehaviorSubject<ListingItem>(null);
 
     constructor(private cookieService: CookieService, private dbService: DbServiceService) {}
 
-    public populateListingsFromCookieToState() {
-        const value = this.cookieService.get(CART_CONSTANTS.CART_ITEMS_IN_COOKIE);
+    public get cartItemsLength(): number {
+        return Object.keys(this.cartItems).length;
+    }
+
+    public get isCartFull(): boolean {
+        return this.cartItemsLength >= this.cartItemLimit;
+    }
+
+    // lastest emitted value
+    private get cartItems() {
+        return this._cartItems$.getValue();
+    }
+
+    private set cartItems(val: { [id: string]: CartItem }) {
+        this._cartItems$.next(val);
+    }
+
+    public get get() {
+        return itemName => this[itemName];
+    }
+    // TO LOCAL STORAGE
+    private syncListingsToLocalStorage() {
+        localStorage.setItem(CART_CONSTANTS.CART_ITEMS_IN_COOKIE, JSON.stringify(this.cartItems));
+    }
+    // FROM LOCAL STORAGE
+    public syncLocalStorageToListings() {
+        const value = localStorage.getItem(CART_CONSTANTS.CART_ITEMS_IN_COOKIE);
         if (!value) return;
         this.cartItems = JSON.parse(value);
     }
-
-    private syncListingsToCookies() {
-        this.cookieService.set(CART_CONSTANTS.CART_ITEMS_IN_COOKIE, JSON.stringify(this.cartItems));
-    }
-
     // renew data
     public syncListingsFromFireStore() {
         Object.keys(this.cartItems).map(id => {
@@ -36,7 +56,7 @@ export class CartStoreService {
                 .toPromise()
                 .then(x => {
                     if (x.data) {
-                        this.cartItems[x.id] = x.data;
+                        this.cartItems[x.id]["item"] = x.data;
                     } else {
                         this.removeCartItem(id);
                     }
@@ -44,24 +64,24 @@ export class CartStoreService {
         });
     }
 
-    // lastest emitted value
-    private get cartItems() {
-        return this._cartItems$.getValue();
-    }
-
-    private set cartItems(val) {
-        this._cartItems$.next(val);
-    }
-
-    public get get() {
-        return itemName => this[itemName];
-    }
-
     // Methods
     public addItemToCart(item: ListingItem) {
+        // don't add to cart if exceeds limit
+        if (this.isCartFull) return;
+
         this._lastAddedItem$.next(item);
-        this._cartItems$.next({ ...this._cartItems$.getValue(), [item.objectID]: item });
-        this.syncListingsToCookies();
+        const currentCartItems = this._cartItems$.getValue();
+        const findCartItemInCart: CartItem = currentCartItems[item.objectID];
+        this._cartItems$.next({
+            ...currentCartItems,
+            [item.objectID]: { item, quantity: findCartItemInCart ? findCartItemInCart.quantity + 1 : 1 }
+        });
+        this.syncListingsToLocalStorage();
+    }
+
+    public changeQuantity(key, val) {
+        this.cartItems[key].quantity = val;
+        this.syncListingsToLocalStorage();
     }
 
     public resetCart(): void {
@@ -69,10 +89,9 @@ export class CartStoreService {
     }
 
     public removeCartItem(id: string): void {
-        console.log(id);
         var mockObject = this.cartItems;
         delete mockObject[id];
         this.cartItems = mockObject;
-        this.syncListingsToCookies();
+        this.syncListingsToLocalStorage();
     }
 }

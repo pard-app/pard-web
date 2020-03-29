@@ -13,6 +13,12 @@
 
 .summary {
     grid-area: summary;
+    &__body {
+        max-height: 700px;
+        position: sticky;
+        top: 60px;
+        flex: unset;
+    }
 }
 
 .items {

@@ -1,44 +1,29 @@
 <div class="content-section cart-grid">
+    <!-- ALWAYS HAS A SUMMARY -->
     <nb-card fullWidth class="summary">
         <nb-card-header>
             <h5>{{ "SUMMARY" | translate }}</h5>
         </nb-card-header>
-        <nb-card-body>
-            <p *ngFor="let item of cartItems | keyvalue">
-                {{ item.value.title }}: <strong>{{ item.value.price | currency }}</strong>
-            </p>
-
-            <h5>
-                {{ "TOTAL" | translate }}: <strong>{{ totalAmount | currency }}</strong>
-            </h5>
-
-            <h6>
-                <button nbButton outline status="info" fullWidth>{{ "CHECKOUT" | translate }}</button>
-            </h6>
+        <nb-card-body class="summary__body">
+            <app-cart-summary [view]="view" [cartItems]="cartItems" [totalAmount]="totalAmount"></app-cart-summary>
         </nb-card-body>
     </nb-card>
 
     <nb-card fullWidth class="items">
         <nb-card-header>
-            <h1>{{ "YOUR_CART" | translate }}</h1>
+            <h1>{{ "YOUR_CART" | translate }} {{ view }}</h1>
         </nb-card-header>
-        <nb-card-body>
-            <nb-card accent="info" *ngFor="let item of cartItems | keyvalue">
-                <nb-card-header>{{ item.value?.title }}</nb-card-header>
-                <nb-card-body>
-                    A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases. Originally, nebula was a name for any diffuse
-                    astronomical object, including galaxies beyond the Milky Way.
-                </nb-card-body>
-                <nb-card-footer>
-                    <nb-select [placeholder]="'QUANTITY' | translate">
-                        <nb-option value="1">1</nb-option>
-                        <nb-option value="2">2</nb-option>
-                        <nb-option value="3">3</nb-option>
-                        <nb-option value="4">4</nb-option>
-                    </nb-select>
-                    <button nbButton basic status="danger" (click)="removeItem(item.key)">{{ "REMOVE" | translate }}</button>
-                </nb-card-footer>
-            </nb-card>
+
+        <nb-card-body *ngIf="view === globalRoutes.CART_LISTINGS_PAGE_ROOT">
+            <app-cart-listing-card
+                (removeItem)="removeItem($event)"
+                (changeQuantity)="changeQuantity($event)"
+                *ngFor="let item of cartItems | keyvalue"
+                [cartItem]="item"
+            ></app-cart-listing-card>
+        </nb-card-body>
+        <nb-card-body *ngIf="view === globalRoutes.CART_CHECKOUT_PAGE_ROOT">
+            <app-cart-checkout></app-cart-checkout>
         </nb-card-body>
     </nb-card>
 </div>

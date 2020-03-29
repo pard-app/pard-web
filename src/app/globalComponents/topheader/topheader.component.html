@@ -1,5 +1,5 @@
 <nb-layout-header class="top-header">
-    <svg [routerLink]="'/'" class="top-header__button">
+    <svg [routerLink]="globalRoutes.ROOT" class="top-header__button">
         <use xlink:href="assets/icons/pard-text.svg#Layer_1"></use>
     </svg>
 
@@ -16,7 +16,7 @@
             outline
             status="primary"
             [nbPopover]="templateRef"
-            [routerLink]="'cart'"
+            [routerLink]="globalRoutes.CART_PAGE_ROOT"
             nbPopoverPlacement="bottom"
             nbPopoverTrigger="noop"
             class="top-header__button"
@@ -34,24 +34,15 @@
 <ng-template #templateRef>
     <nb-card size="tiny" class="notification">
         <nb-card-header class="notification__header">
-            <img
-                class="notification__image"
-                [src]="
-                    lastItemAddedToCart.image
-                        ? lastItemAddedToCart.image
-                        : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png'
-                "
-                alt="item.name"
-            />
+            <img class="notification__image" [src]="lastItemAddedToCart.image ? lastItemAddedToCart.image : ''" alt="item.name" />
         </nb-card-header>
         <nb-card-body class="notification__body">
-            <button [routerLink]="'cart'" nbButton fullWidth outline size="small">
+            <button [routerLink]="globalRoutes.CART_PAGE_ROOT" nbButton fullWidth outline size="small">
                 {{ "VIEW_CART" | translate }}
             </button>
             <h6 class="notification__title">
-                {{ "ADDED_TO_CART" | translate }}
+                {{ lastItemAddedToCart.title }} (x{{ getQuantity(lastItemAddedToCart.objectID) }}) {{ "ADDED_TO_CART" | translate }}
             </h6>
-            <small>{{ lastItemAddedToCart.title }}</small>
         </nb-card-body>
         <!-- <nb-card-footer></nb-card-footer> -->
     </nb-card>

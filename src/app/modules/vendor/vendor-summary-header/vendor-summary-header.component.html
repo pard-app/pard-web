@@ -10,7 +10,7 @@
     </nb-card>
     <nb-card *ngIf="vendor$ | async as vendorAfterAsync" class="vendor__summary" size="small">
         <nb-card-header>
-            <h1>{{ vendorAfterAsync.company }}</h1>
+            <h1>{{ vendorAfterAsync.title }}</h1>
         </nb-card-header>
         <nb-card-body>
             <h4>{{ vendorAfterAsync.city + ", " + vendorAfterAsync.country }}</h4>

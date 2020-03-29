@@ -1,0 +1,17 @@
+.cart-item {
+    &__card {
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 10px;
+    }
+    &__header {
+        display: flex;
+        align-items: center;
+        padding: 10px 10px;
+    }
+    &__image {
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 10px;
+    }
+}

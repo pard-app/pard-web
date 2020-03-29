@@ -19,7 +19,7 @@ import { DbServiceService } from "src/app/@features/services/db-service.service"
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
 import { VendorListingsComponent } from "./modules/vendor/vendor-listings-page/vendor-listings.component";
-import { CardListingComponent } from "./modules/card-listing/card-listing.component";
+import { CardListingComponent } from "./globalComponents/card-listing/card-listing.component";
 
 // NEBULAR MODULES
 import {
@@ -44,7 +44,9 @@ import {
     NbIconModule,
     NbPopoverModule,
     NbSelectModule,
-    NbBadgeModule
+    NbBadgeModule,
+    NbStepperModule,
+    NbTooltipModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { TopheaderComponent } from "./globalComponents/topheader/topheader.component";
@@ -54,6 +56,9 @@ import { VendorModule } from "./modules/vendor/vendor.module";
 import { VendorSingleListingViewComponent } from "./modules/vendor/vendor-single-listing-page/vendor-single-listing-view.component";
 import { VendorListingsSearchComponent } from "./modules/vendor/vendor-listings-page/vendor-listings-search/vendor-listings-search.component";
 import { VendorSummaryHeaderComponent } from "./modules/vendor/vendor-summary-header/vendor-summary-header.component";
+import { CartCheckoutComponent } from "./modules/cart/cart-checkout/cart-checkout.component";
+import { CartListingCardComponent } from "./modules/cart/cart-listings/cart-listing-card/cart-listing-card.component";
+import { CartSummaryComponent } from "./modules/cart/cart-summary/cart-summary.component";
 
 //Injectables
 
@@ -76,7 +81,10 @@ export function createTranslateLoader(http: HttpClient) {
         VendorListingsComponent,
         VendorSummaryHeaderComponent,
         VendorListingsSearchComponent,
-        VendorSingleListingViewComponent
+        VendorSingleListingViewComponent,
+        CartCheckoutComponent,
+        CartListingCardComponent,
+        CartSummaryComponent
     ],
     imports: [
         BrowserModule,
@@ -115,7 +123,9 @@ export function createTranslateLoader(http: HttpClient) {
         NbIconModule,
         NbPopoverModule,
         NbSelectModule,
-        NbBadgeModule
+        NbBadgeModule,
+        NbStepperModule,
+        NbTooltipModule
     ],
     providers: [DbServiceService, NbAutocompleteDirective, NbMenuService, CookieService, { provide: DEFAULT_CURRENCY_CODE, useValue: "EUR" }],
     bootstrap: [AppComponent]
