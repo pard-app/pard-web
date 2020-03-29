@@ -19,4 +19,8 @@ export class CardListingComponent implements OnInit {
     addToCart() {
         this.cartStoreService.addItemToCart(this.item);
     }
+
+    get isCartFull(): boolean {
+        return this.cartStoreService.isCartFull;
+    }
 }

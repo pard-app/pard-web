@@ -13,7 +13,7 @@ export class CartStoreService {
     private _cartItems$ = new BehaviorSubject<CartItemObject>({});
     // Expose the observable$ part of the `_cartItems$` subject (read only stream)
     private readonly cartItems$: Observable<CartItemObject> = this._cartItems$.asObservable();
-    private readonly cartItemLimit: number = 5;
+    private readonly cartItemLimit: number = 100;
     public _lastAddedItem$ = new BehaviorSubject<ListingItem>(null);
 
     constructor(private cookieService: CookieService, private dbService: DbServiceService) {}
@@ -22,7 +22,7 @@ export class CartStoreService {
         return Object.keys(this.cartItems).length;
     }
 
-    private get isCartFull(): boolean {
+    public get isCartFull(): boolean {
         return this.cartItemsLength >= this.cartItemLimit;
     }
 

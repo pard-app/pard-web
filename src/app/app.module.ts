@@ -45,7 +45,8 @@ import {
     NbPopoverModule,
     NbSelectModule,
     NbBadgeModule,
-    NbStepperModule
+    NbStepperModule,
+    NbTooltipModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { TopheaderComponent } from "./globalComponents/topheader/topheader.component";
@@ -123,7 +124,8 @@ export function createTranslateLoader(http: HttpClient) {
         NbPopoverModule,
         NbSelectModule,
         NbBadgeModule,
-        NbStepperModule
+        NbStepperModule,
+        NbTooltipModule
     ],
     providers: [DbServiceService, NbAutocompleteDirective, NbMenuService, CookieService, { provide: DEFAULT_CURRENCY_CODE, useValue: "EUR" }],
     bootstrap: [AppComponent]
