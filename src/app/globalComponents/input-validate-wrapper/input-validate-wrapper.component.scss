@@ -1,0 +1,16 @@
+@import "~src/app/@features/styles/themes";
+
+.validation {
+    height: 30px;
+    opacity: 0;
+
+    &__message {
+        color: nb-theme(color-danger-500);
+        line-height: 35px;
+    }
+
+    &--appear {
+        transition: 0.1s ease;
+        opacity: 1;
+    }
+}

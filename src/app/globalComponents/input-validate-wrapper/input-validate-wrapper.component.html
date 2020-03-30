@@ -1,0 +1,5 @@
+<label class="label" [for]="for">Email</label>
+<ng-content></ng-content>
+<div class="validation" [ngClass]="{ 'validation--appear': invalidCondition }">
+    <p class="validation__message" *ngIf="invalidCondition">{{ invalidMessage }}</p>
+</div>
