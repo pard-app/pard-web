@@ -1,40 +1,102 @@
-<nb-stepper orientation="horizontal">
-    <nb-step [label]="'Basic'">
+<nb-card [style.visibility]="formProgress === 0 ? 'hidden' : 'visible'">
+    <nb-progress-bar [value]="formProgress" [status]="status" [displayValue]="true" [size]="'giant'"></nb-progress-bar>
+</nb-card>
+
+<nb-stepper #stepper [linear]="true" orientation="horizontal">
+    <nb-step [label]="'Basic'" [formGroup]="formBasic">
         <nb-card>
-            <nb-card-body>
+            <nb-card-header>
                 <h4>Basic Information</h4>
-                <form [formGroup]="myForm">
-                    Value: {{ myForm.value | json }}
-                    <input formControlName="name" type="text" nbInput fullWidth fieldSize="medium" [placeholder]="'Fullname'" />
-                    <input formControlName="email" type="text" nbInput fullWidth fieldSize="medium" [placeholder]="'Email'" />
-                    <input formControlName="phone" type="text" nbInput fullWidth fieldSize="medium" [placeholder]="'Phone number'" />
-                </form>
+            </nb-card-header>
+            <nb-card-body>
+                <app-input-validate-wrapper for="firstName" [ref]="formBasicField('firstName')" label="First name" invalidMessage="Required">
+                    <input class="input" formControlName="firstName" type="text" nbInput fullWidth fieldSize="medium" />
+                </app-input-validate-wrapper>
+
+                <app-input-validate-wrapper for="lastName" label="Last name" [ref]="formBasicField('lastName')" invalidMessage="Required">
+                    <input class="input" formControlName="lastName" type="text" nbInput fullWidth fieldSize="medium" />
+                </app-input-validate-wrapper>
+
+                <app-input-validate-wrapper for="email" label="Email" [ref]="formBasicField('email')" invalidMessage="Email Invalid">
+                    <input class="input" formControlName="email" type="text" nbInput fullWidth fieldSize="medium" />
+                </app-input-validate-wrapper>
             </nb-card-body>
+            <nb-card-footer>
+                <button nbButton nbStepperNext (click)="formProgress = 50" [disabled]="formBasic.invalid" outline status="success">next</button>
+            </nb-card-footer>
         </nb-card>
-        <button nbButton disabled nbStepperNext>prev</button>
-        <button nbButton nbStepperNext>next</button>
     </nb-step>
 
-    <nb-step [label]="'Delivery'">
+    <nb-step [label]="'Delivery'" [formGroup]="formDelivery">
         <nb-card>
+            <nb-card-header>
+                <h4>Delivery Information</h4>
+            </nb-card-header>
             <nb-card-body>
-                <h4>Delivery</h4>
-                <input type="text" nbInput fullWidth fieldSize="medium" [placeholder]="'Delivery'" [(ngModel)]="inputItemNgModel" />
-                <input type="text" nbInput fullWidth fieldSize="medium" [placeholder]="'Address'" [(ngModel)]="inputItemNgModel" />
-                <input type="text" nbInput fullWidth fieldSize="medium" [placeholder]="'Delivery Comments'" [(ngModel)]="inputItemNgModel" />
+                <div class="deliverymyself">
+                    <nb-checkbox formControlName="delivery"><h5>I will pick up delivery myself</h5></nb-checkbox>
+                </div>
+
+                <app-input-validate-wrapper for="mobile" [ref]="formDeliveryField('mobile')" label="Mobile" invalidMessage="Required">
+                    <input class="input" formControlName="mobile" type="text" nbInput fullWidth fieldSize="medium" />
+                </app-input-validate-wrapper>
+
+                <div *ngIf="formDeliveryField('delivery').value == false">
+                    <app-input-validate-wrapper for="address" label="Address" [ref]="formDeliveryField('address')" invalidMessage="Required">
+                        <input class="input" formControlName="address" type="text" nbInput fullWidth fieldSize="medium" />
+                    </app-input-validate-wrapper>
+
+                    <app-input-validate-wrapper for="country" label="Country" [ref]="formDeliveryField('country')" invalidMessage="Required">
+                        <input class="input" formControlName="country" type="text" nbInput fullWidth fieldSize="medium" />
+                    </app-input-validate-wrapper>
+
+                    <app-input-validate-wrapper for="city" label="City" [ref]="formDeliveryField('city')" invalidMessage="Required">
+                        <input class="input" formControlName="city" type="text" nbInput fullWidth fieldSize="medium" />
+                    </app-input-validate-wrapper>
+
+                    <app-input-validate-wrapper for="county" label="County" [ref]="formDeliveryField('county')" invalidMessage="Required">
+                        <input class="input" formControlName="county" type="text" nbInput fullWidth fieldSize="medium" />
+                    </app-input-validate-wrapper>
+
+                    <app-input-validate-wrapper for="postCode" label="Postcode" [ref]="formDeliveryField('postCode')" invalidMessage="Required">
+                        <input class="input" formControlName="postCode" type="text" nbInput fullWidth fieldSize="medium" />
+                    </app-input-validate-wrapper>
+
+                    <app-input-validate-wrapper for="comments" label="comments" [ref]="formDeliveryField('comments')" invalidMessage="Required">
+                        <textarea nbInput fullWidth formControlName="comments" fieldSize="medium" fullWidth></textarea>
+                    </app-input-validate-wrapper>
+                </div>
             </nb-card-body>
+            <nb-card-footer>
+                <button nbButton nbStepperPrevious>prev</button>
+                <button
+                    nbButton
+                    nbStepperNext
+                    (click)="formProgress = 80"
+                    [disabled]="!formDeliveryField('delivery').value && formDelivery.invalid"
+                    outline
+                    status="success"
+                >
+                    next
+                </button>
+            </nb-card-footer>
         </nb-card>
-        <button nbButton nbStepperPrevious>prev</button>
-        <button nbButton nbStepperNext>next</button>
     </nb-step>
 
     <nb-step label="Payment">
-        <h4>Payment</h4>
-        <p class="lorem">
-            Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down. Nullizzle sapien velizzle, my shizz pimpin', shizzle my nizzle
-            crocodizzle shut the shizzle up, gravida vizzle, dang.
-        </p>
-        <button nbButton nbStepperPrevious>prev</button>
-        <button nbButton nbStepperNext>next</button>
+        <nb-card>
+            <nb-card-header>
+                <h4>Payment</h4>
+            </nb-card-header>
+            <nb-card-body>
+                <p class="lorem">
+                    Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down. Nullizzle sapien velizzle, my shizz pimpin', shizzle my nizzle
+                    crocodizzle shut the shizzle up, gravida vizzle, dang.
+                </p>
+            </nb-card-body>
+            <nb-card-footer>
+                <button nbButton nbStepperNext hero status="success" fullWidth>Submit Order</button>
+            </nb-card-footer>
+        </nb-card>
     </nb-step>
 </nb-stepper>

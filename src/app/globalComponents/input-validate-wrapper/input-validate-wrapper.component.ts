@@ -9,6 +9,8 @@ export class InputValidateWrapperComponent implements OnInit {
     @Input() invalidCondition: boolean;
     @Input() invalidMessage: string;
     @Input() for: string;
+    @Input() label: string;
+    @Input() ref: any;
 
     constructor() {}
 

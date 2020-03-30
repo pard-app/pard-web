@@ -55,6 +55,8 @@ export class CartStoreService {
                 .toPromise()
                 .then(x => {
                     if (x.data) {
+                        console.log(this.cartItems);
+
                         this.cartItems[x.id]["item"] = x.data;
                     } else {
                         this.removeCartItem(id);
