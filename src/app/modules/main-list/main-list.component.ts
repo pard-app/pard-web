@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { DbServiceService } from "src/app/@features/services/db-service.service";
+import { DbServiceService } from "@services/db-service/db-service.service";
 import { IVendor } from "@models/vendor.interface";
 import { Subscriber, Observable, Subscription, BehaviorSubject } from "rxjs";
 import * as algoliasearch from "algoliasearch";

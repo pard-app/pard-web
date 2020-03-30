@@ -3,7 +3,7 @@ import { ListingItem, CartItem, CartItemObject } from "@models/listingitem.inter
 import { BehaviorSubject, Observable } from "rxjs";
 import { CookieService } from "ngx-cookie-service";
 import { CART_CONSTANTS } from "@constants/cart.constants";
-import { DbServiceService } from "@services/db-service.service";
+import { DbServiceService } from "@services/db-service/db-service.service";
 
 @Injectable({
     providedIn: "root"

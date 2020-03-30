@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChildrenDecorator } from "@angular/core";
 import { Subscription, Observable, of } from "rxjs";
-import { DbServiceService } from "src/app/@features/services/db-service.service";
+import { DbServiceService } from "@services/db-service/db-service.service";
 import { ActivatedRoute } from "@angular/router";
 import { IVendor } from "@models/vendor.interface";
 import { ListingItem } from "@models/listingitem.interface";
