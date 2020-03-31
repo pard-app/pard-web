@@ -20,6 +20,10 @@
                 <app-input-validate-wrapper for="email" label="Email" [ref]="formBasicField('email')" invalidMessage="Email Invalid">
                     <input class="input" formControlName="email" type="text" nbInput fullWidth fieldSize="medium" />
                 </app-input-validate-wrapper>
+
+                <app-input-validate-wrapper for="mobile" [ref]="formBasicField('mobile')" label="Mobile" invalidMessage="Required">
+                    <input class="input" formControlName="mobile" type="text" nbInput fullWidth fieldSize="medium" />
+                </app-input-validate-wrapper>
             </nb-card-body>
             <nb-card-footer>
                 <button nbButton nbStepperNext (click)="formProgress = 50" [disabled]="formBasic.invalid" outline status="success">next</button>
@@ -34,14 +38,10 @@
             </nb-card-header>
             <nb-card-body>
                 <div class="deliverymyself">
-                    <nb-checkbox formControlName="delivery"><h5>I will pick up delivery myself</h5></nb-checkbox>
+                    <nb-checkbox formControlName="delivery"><h5>I want delivery</h5></nb-checkbox>
                 </div>
 
-                <app-input-validate-wrapper for="mobile" [ref]="formDeliveryField('mobile')" label="Mobile" invalidMessage="Required">
-                    <input class="input" formControlName="mobile" type="text" nbInput fullWidth fieldSize="medium" />
-                </app-input-validate-wrapper>
-
-                <div *ngIf="formDeliveryField('delivery').value == false">
+                <div *ngIf="formDeliveryField('delivery').value == true">
                     <app-input-validate-wrapper for="address" label="Address" [ref]="formDeliveryField('address')" invalidMessage="Required">
                         <input class="input" formControlName="address" type="text" nbInput fullWidth fieldSize="medium" />
                     </app-input-validate-wrapper>
@@ -73,7 +73,7 @@
                     nbButton
                     nbStepperNext
                     (click)="formProgress = 80"
-                    [disabled]="!formDeliveryField('delivery').value && formDelivery.invalid"
+                    [disabled]="formDeliveryField('delivery').value && formDelivery.invalid"
                     outline
                     status="success"
                 >
@@ -95,7 +95,7 @@
                 </p>
             </nb-card-body>
             <nb-card-footer>
-                <button nbButton nbStepperNext hero status="success" fullWidth>Submit Order</button>
+                <button nbButton nbStepperNext hero status="success" (click)="submitOrder()" fullWidth>Submit Order</button>
             </nb-card-footer>
         </nb-card>
     </nb-step>
