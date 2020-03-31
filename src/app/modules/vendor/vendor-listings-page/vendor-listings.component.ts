@@ -18,21 +18,26 @@ export class VendorListingsComponent implements OnInit {
     constructor(private vendorService: VendorService, private listingService: ListingService, private route: ActivatedRoute) {}
 
     ngOnInit(): void {
-        this.route.params.subscribe(params => {
+        this.route.params.subscribe(async params => {
             this.vendorId = params.vendorId;
-            this.getVendorListings();
             this.getVendor();
+            const { hits } = await this.requestSearchResults();
+            this._listingsList$.next(hits);
         });
     }
 
-    private async getVendorListings() {
-        const data = await this.listingService.getVendorListings(this.vendorId);
-        this._listingsList$.next(data.hits);
+    private async requestSearchResults(query = "") {
+        return this.listingService.searchVendorListings(query, this.vendorId);
     }
 
     private async getVendor() {
         const data = await this.vendorService.getVendorById(this.vendorId);
         console.log(data);
         this._vendor$.next(data);
+    }
+
+    public async inputTextWritten(query) {
+        const { hits } = await this.requestSearchResults(query);
+        this._listingsList$.next(hits);
     }
 }
