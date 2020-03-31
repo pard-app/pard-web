@@ -9,7 +9,7 @@ import { IVendor } from "@models/vendor.interface";
 export class VendorService {
     constructor(private algoliaService: AlgoliaService) {}
 
-    public searchVendor(query: string = "", hitsPerPage = 50): AlgPromise<IVendor> {
-        return this.algoliaService.vendorsIndex.search({ query, hitsPerPage });
+    public searchVendor(query: string = "", hitsPerPage = 50) {
+        return this.algoliaService.vendorsIndex.search(query, { hitsPerPage });
     }
 }

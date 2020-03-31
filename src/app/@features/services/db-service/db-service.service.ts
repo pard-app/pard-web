@@ -30,14 +30,6 @@ export class DbServiceService {
             .pipe(map(x => x.data() as IVendor));
     }
 
-    public getVendorListings(vendor: string): Observable<Array<any>> {
-        return this.store.collection("listings", ref => ref.where("vendor", "==", `${vendor}`).where("published", "==", true)).valueChanges({ idField: "id" });
-    }
-
-    public getListings(published = true): Observable<Array<any>> {
-        return this.store.collection("listings", ref => ref.where("published", "==", published)).valueChanges({ idField: "id" });
-    }
-
     public getListingById(id: string): Observable<ListingItem | any> {
         return this.store
             .doc("listings/" + id)
