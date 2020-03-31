@@ -12,4 +12,8 @@ export class VendorService {
     public searchVendor(query: string = "", hitsPerPage = 50) {
         return this.algoliaService.vendorsIndex.search(query);
     }
+
+    public getVendorById(id: string) {
+        return this.algoliaService.vendorsIndex.getObject(id);
+    }
 }

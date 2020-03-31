@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { CartStoreService } from "src/app/@features/stores/cart/cart.store.service";
-import { DbServiceService } from "@services/db-service/db-service.service";
 import { CartItem } from "@models/listingitem.interface";
 import ROUTES from "@constants/routing.constants";
 import { ActivatedRoute } from "@angular/router";
@@ -18,7 +17,7 @@ export class CartComponent implements OnInit {
         return this.cartStoreService.get("cartItems");
     }
 
-    constructor(private cartStoreService: CartStoreService, private dbService: DbServiceService, private route: ActivatedRoute) {}
+    constructor(private cartStoreService: CartStoreService, private route: ActivatedRoute) {}
 
     get totalAmountPrice() {
         return Object.values(this.cartItems).reduce((acc, currItem: CartItem) => acc + currItem.item.price * currItem.quantity, 0);

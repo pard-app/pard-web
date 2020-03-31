@@ -21,4 +21,8 @@ export class ListingService {
     public getListingsByIds(ids: string[]) {
         return this.algoliaService.listingsIndex.getObjects(ids);
     }
+
+    public getListingById(id: string) {
+        return this.algoliaService.listingsIndex.getObject(id);
+    }
 }

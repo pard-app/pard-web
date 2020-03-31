@@ -2,7 +2,6 @@ import { Injectable, OnInit } from "@angular/core";
 import { ListingItem, CartItem, CartItemObject } from "@models/listingitem.interface";
 import { BehaviorSubject, Observable } from "rxjs";
 import { CART_CONSTANTS } from "@constants/cart.constants";
-import { DbServiceService } from "@services/db-service/db-service.service";
 import { ListingService } from "@services/listing/listing.service";
 
 @Injectable({
