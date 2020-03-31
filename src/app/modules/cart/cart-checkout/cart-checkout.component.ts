@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CartStoreService } from "../../../@features/stores/cart/cart.store.service";
+import { CartItem } from "@models/listingitem.interface";
 
 @Component({
     selector: "app-cart-checkout",
@@ -69,27 +70,17 @@ export class CartCheckoutComponent implements OnInit {
             };
         }
 
-        let orders = [];
-        const cart = Object.entries(this.cartStoreService.get("cartItems"));
-        const cartTest = this.cartStoreService.get("cartItems");
-        for (let item in cartTest) {
-            console.log(cartTest[item]);
-        }
-        // Very dirty way of mapping cart items by vendors
-        for (let entry of cart) {
-            if (!orders[entry[1]["item"].vendor]) {
-                orders[entry[1]["item"].vendor] = {
-                    ...buyer,
-                    ...delivery,
-                    vendor: entry[1]["item"].vendor,
-                    listings: [(entry[0] = { ...entry[1]["item"], quantity: entry[1]["quantity"] })]
-                };
-            } else {
-                orders[entry[1]["item"].vendor].listings.push((entry[0] = { ...entry[1]["item"], quantity: entry[1]["quantity"] }));
-            }
-        }
+        const cartItemsArray: Array<CartItem> = Object.values(this.cartStoreService.get("cartItems"));
 
-        console.log(orders);
+        const ordersGroupedByVendor = cartItemsArray.reduce((accumulator, currentValue) => {
+            const parent = accumulator.find(e => e.vendor === currentValue.item.vendor);
+            if (parent) {
+                parent.orders.push({ ...currentValue.item });
+            } else {
+                accumulator.push({ vendor: currentValue.item.vendor, orders: [{ ...currentValue.item }] });
+            }
+            return accumulator;
+        }, []);
     }
 
     get status() {
