@@ -2,7 +2,7 @@ import { Injectable, OnInit } from "@angular/core";
 import { ListingItem, CartItem, CartItemObject } from "@models/listingitem.interface";
 import { BehaviorSubject, Observable } from "rxjs";
 import { CART_CONSTANTS } from "@constants/cart.constants";
-import { DbServiceService } from "@services/db-service/db-service.service";
+import { ListingService } from "@services/listing/listing.service";
 
 @Injectable({
     providedIn: "root"
@@ -15,7 +15,7 @@ export class CartStoreService {
     private readonly cartItemLimit: number = 99;
     public _lastAddedItem$ = new BehaviorSubject<ListingItem>(null);
 
-    constructor(private dbService: DbServiceService) {}
+    constructor(private listingService: ListingService) {}
 
     public get cartItemsLength(): number {
         return Object.keys(this.cartItems).length;
@@ -48,20 +48,10 @@ export class CartStoreService {
         this.cartItems = JSON.parse(value);
     }
     // renew data
-    public syncListingsFromFireStore() {
-        Object.keys(this.cartItems).map(id => {
-            this.dbService
-                .getListingById(id)
-                .toPromise()
-                .then(x => {
-                    if (x.data) {
-                        console.log(this.cartItems);
-
-                        this.cartItems[x.id]["item"] = x.data;
-                    } else {
-                        this.removeCartItem(id);
-                    }
-                });
+    public async syncListingsFromFireStore() {
+        const { results } = await this.listingService.getListingsByIds(Object.keys(this.cartItems));
+        results.map((item: ListingItem) => {
+            this.cartItems[item.objectID]["item"] = item;
         });
     }
 

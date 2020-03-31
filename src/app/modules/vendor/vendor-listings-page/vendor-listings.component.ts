@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy, ViewChildrenDecorator } from "@angular/core";
-import { Subscription, Observable, of } from "rxjs";
-import { DbServiceService } from "@services/db-service/db-service.service";
+import { BehaviorSubject } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
-import { IVendor } from "@models/vendor.interface";
 import { ListingItem } from "@models/listingitem.interface";
-import { map, flatMap } from "rxjs/operators";
+import { ListingService } from "@services/listing/listing.service";
+import { VendorService } from "@services/vendor/vendor.service";
 
 @Component({
     selector: "app-vendor-listings",
@@ -12,11 +11,11 @@ import { map, flatMap } from "rxjs/operators";
     styleUrls: ["./vendor-listings.component.scss"]
 })
 export class VendorListingsComponent implements OnInit {
-    public listingsList$: Observable<Array<ListingItem>>;
-    public vendor$: Observable<IVendor>;
+    public _listingsList$ = new BehaviorSubject<Array<ListingItem> | any>([]);
+    public _vendor$ = new BehaviorSubject({});
     private vendorId: string;
 
-    constructor(private dbService: DbServiceService, private route: ActivatedRoute) {}
+    constructor(private vendorService: VendorService, private listingService: ListingService, private route: ActivatedRoute) {}
 
     ngOnInit(): void {
         this.route.params.subscribe(params => {
@@ -26,11 +25,14 @@ export class VendorListingsComponent implements OnInit {
         });
     }
 
-    private getVendorListings(): void {
-        this.listingsList$ = this.dbService.getVendorListings(this.vendorId);
+    private async getVendorListings() {
+        const data = await this.listingService.getVendorListings(this.vendorId);
+        this._listingsList$.next(data.hits);
     }
 
-    private getVendor(): void {
-        this.vendor$ = this.dbService.getVendorById(this.vendorId) as Observable<IVendor>;
+    private async getVendor() {
+        const data = await this.vendorService.getVendorById(this.vendorId);
+        console.log(data);
+        this._vendor$.next(data);
     }
 }

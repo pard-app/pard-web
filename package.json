@@ -26,7 +26,7 @@
     "@nebular/theme": "^5.0.0",
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
-    "algoliasearch": "^3.35.1",
+    "algoliasearch": "^4.1.0",
     "eva-icons": "^1.1.2",
     "firebase": "^7.12.0",
     "husky": "^4.2.3",

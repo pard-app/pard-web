@@ -1,11 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { DbServiceService } from "@services/db-service/db-service.service";
 import { ActivatedRoute } from "@angular/router";
-import { ListingItem } from "@models/listingitem.interface";
-import { Observable, BehaviorSubject, Subscription } from "rxjs";
-import { IVendor } from "@models/vendor.interface";
+import { BehaviorSubject } from "rxjs";
 import { CartStoreService } from "src/app/@features/stores/cart/cart.store.service";
-import { convertObservableToBehaviorSubject } from "src/app/@features/utils";
+import { ListingService } from "@services/listing/listing.service";
+import { VendorService } from "@services/vendor/vendor.service";
 
 @Component({
     selector: "app-vendor-single-listing-view",
@@ -13,18 +11,25 @@ import { convertObservableToBehaviorSubject } from "src/app/@features/utils";
     styleUrls: ["./vendor-single-listing-view.component.scss"]
 })
 export class VendorSingleListingViewComponent implements OnInit {
-    constructor(private dbService: DbServiceService, private route: ActivatedRoute, private cartStoreService: CartStoreService) {}
-    public listing$: BehaviorSubject<ListingItem>;
-    public vendor$: Observable<IVendor>;
+    constructor(
+        private listingService: ListingService,
+        private vendorService: VendorService,
+        private route: ActivatedRoute,
+        private cartStoreService: CartStoreService
+    ) {}
+    public _listing$ = new BehaviorSubject({} as any);
+    public _vendor$ = new BehaviorSubject({} as any);
 
     addToCart() {
-        this.cartStoreService.addItemToCart(this.listing$.getValue());
+        this.cartStoreService.addItemToCart(this._listing$.getValue());
     }
 
-    ngOnInit(): void {
-        this.route.params.subscribe(({ listingId, vendorId }) => {
-            this.listing$ = convertObservableToBehaviorSubject(this.dbService.getListingById(listingId), null);
-            this.vendor$ = this.dbService.getVendorById(vendorId);
+    ngOnInit() {
+        this.route.params.subscribe(async ({ listingId, vendorId }) => {
+            const listingData = await this.listingService.getListingById(listingId);
+            this._listing$.next(listingData);
+            const vendorData = await this.vendorService.getVendorById(vendorId);
+            this._vendor$.next(vendorData);
         });
     }
 }

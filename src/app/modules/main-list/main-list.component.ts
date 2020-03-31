@@ -1,26 +1,23 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { DbServiceService } from "@services/db-service/db-service.service";
+import { Component, OnInit } from "@angular/core";
 import { IVendor } from "@models/vendor.interface";
-import { Subscriber, Observable, Subscription, BehaviorSubject } from "rxjs";
-import * as algoliasearch from "algoliasearch";
-import { environment } from "src/environments/environment";
+import { Observable, BehaviorSubject } from "rxjs";
 import { ActivatedRoute, Params, Router } from "@angular/router";
-import { filter, map } from "rxjs/operators";
+import { map } from "rxjs/operators";
+import { VendorService } from "@services/vendor/vendor.service";
+import { ListingService } from "@services/listing/listing.service";
+import { ListingItem } from "@models/listingitem.interface";
 @Component({
     selector: "app-main-list",
     templateUrl: "./main-list.component.html",
     styleUrls: ["./main-list.component.scss"]
 })
 export class MainListComponent implements OnInit {
-    public _vendorsList$ = new BehaviorSubject<Array<IVendor>>([]);
-    public _listingsList$ = new BehaviorSubject<Array<any>>([]);
+    public _vendorsList$ = new BehaviorSubject<Array<IVendor> | any>([]);
+    public _listingsList$ = new BehaviorSubject<Array<ListingItem> | any>([]);
     public currentCity: string = null;
     public currentActiveTab$: Observable<Params>;
-    private searchClient: any = algoliasearch(environment.algoliaConfig.appId, environment.algoliaConfig.apiKey);
-    private listingsIndex: algoliasearch.Index = this.searchClient.initIndex("listings");
-    private vendorsIndex: algoliasearch.Index = this.searchClient.initIndex("vendors");
 
-    constructor(public dataService: DbServiceService, private route: ActivatedRoute, private router: Router) {}
+    constructor(public vendorService: VendorService, private listingService: ListingService, private route: ActivatedRoute, private router: Router) {}
 
     ngOnInit(): void {
         this.currentActiveTab$ = this.route.queryParams.pipe(map(params => params));
@@ -29,21 +26,17 @@ export class MainListComponent implements OnInit {
     }
 
     private async searchVendorData(query: string = "") {
-        const vendorSearchData = await this.vendorsIndex.search({
-            query: query,
-            hitsPerPage: 50
-        });
+        const { hits } = await this.vendorService.searchVendor(query);
+        this._vendorsList$.next(hits);
 
-        if (vendorSearchData.hits.length) {
-            this._vendorsList$.next(vendorSearchData.hits);
+        if (hits.length) {
+            console.log(hits);
         }
     }
 
     private async searchListingsData(query: string = "") {
-        const listingsSearchData = await this.listingsIndex.search({
-            query: query,
-            hitsPerPage: 50
-        });
+        const listingsSearchData = await this.listingService.searchListing(query);
+
         if (listingsSearchData.hits.length) {
             console.log(listingsSearchData.hits);
             this._listingsList$.next(listingsSearchData.hits);
@@ -56,8 +49,5 @@ export class MainListComponent implements OnInit {
 
     onCityChange(ev) {
         this.currentCity = ev;
-        console.log(ev);
-
-        // this.vendorsList$ = this.dataService.getMyListings(this.currentCity);
     }
 }
