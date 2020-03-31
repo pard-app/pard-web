@@ -10,5 +10,3 @@ export class AlgoliaService {
     public vendorsIndex: SearchIndex = this.searchClient.initIndex("vendors");
     constructor() {}
 }
-
-// export type AlgPromise<T> = Promise<algolia.Response<T>>;

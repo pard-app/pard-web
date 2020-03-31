@@ -27,7 +27,7 @@ export class VendorListingsComponent implements OnInit {
     }
 
     private getVendorListings(): void {
-        this.listingsList$ = this.dbService.getVendorListings(this.vendorId);
+        // this.listingsList$ = this.dbService.getVendorListings(this.vendorId);
     }
 
     private getVendor(): void {

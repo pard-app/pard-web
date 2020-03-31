@@ -6,14 +6,15 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 import { map } from "rxjs/operators";
 import { VendorService } from "@services/vendor/vendor.service";
 import { ListingService } from "@services/listing/listing.service";
+import { ListingItem } from "@models/listingitem.interface";
 @Component({
     selector: "app-main-list",
     templateUrl: "./main-list.component.html",
     styleUrls: ["./main-list.component.scss"]
 })
 export class MainListComponent implements OnInit {
-    public _vendorsList$ = new BehaviorSubject<Array<IVendor>>([]);
-    public _listingsList$ = new BehaviorSubject<Array<any>>([]);
+    public _vendorsList$ = new BehaviorSubject<Array<IVendor> | any>([]);
+    public _listingsList$ = new BehaviorSubject<Array<ListingItem> | any>([]);
     public currentCity: string = null;
     public currentActiveTab$: Observable<Params>;
 
@@ -26,10 +27,11 @@ export class MainListComponent implements OnInit {
     }
 
     private async searchVendorData(query: string = "") {
-        const vendorSearchData = await this.vendorService.searchVendor(query);
+        const { hits } = await this.vendorService.searchVendor(query);
+        this._vendorsList$.next(hits);
 
-        if (vendorSearchData.hits.length) {
-            this._vendorsList$.next(vendorSearchData.hits);
+        if (hits.length) {
+            console.log(hits);
         }
     }
 
