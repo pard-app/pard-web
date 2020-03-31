@@ -43,7 +43,6 @@ export class CartCheckoutComponent implements OnInit {
     get formDeliveryField() {
         return fieldName => this.formDelivery.get(fieldName);
     }
-
     public async submitOrder() {
         console.log(this.formBasic.value);
         console.log(this.formDelivery.value);
@@ -72,7 +71,10 @@ export class CartCheckoutComponent implements OnInit {
 
         let orders = [];
         const cart = Object.entries(this.cartStoreService.get("cartItems"));
-
+        const cartTest = this.cartStoreService.get("cartItems");
+        for (let item in cartTest) {
+            console.log(cartTest[item]);
+        }
         // Very dirty way of mapping cart items by vendors
         for (let entry of cart) {
             if (!orders[entry[1]["item"].vendor]) {
