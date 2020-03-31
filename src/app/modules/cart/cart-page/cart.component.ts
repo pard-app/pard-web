@@ -20,7 +20,7 @@ export class CartComponent implements OnInit {
 
     constructor(private cartStoreService: CartStoreService, private dbService: DbServiceService, private route: ActivatedRoute) {}
 
-    get totalAmount() {
+    get totalAmountPrice() {
         return Object.values(this.cartItems).reduce((acc, currItem: CartItem) => acc + currItem.item.price * currItem.quantity, 0);
     }
 

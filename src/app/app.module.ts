@@ -6,7 +6,6 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { CookieService } from "ngx-cookie-service";
 import { FooterComponent } from "./globalComponents/footer/footer.component";
 import { MainListComponent } from "./modules/main-list/main-list.component";
 import { TopBannerComponent } from "./globalComponents/top-banner/top-banner.component";
@@ -46,7 +45,9 @@ import {
     NbSelectModule,
     NbBadgeModule,
     NbStepperModule,
-    NbTooltipModule
+    NbTooltipModule,
+    NbProgressBarModule,
+    NbCheckboxModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { TopheaderComponent } from "./globalComponents/topheader/topheader.component";
@@ -59,6 +60,7 @@ import { VendorSummaryHeaderComponent } from "./modules/vendor/vendor-summary-he
 import { CartCheckoutComponent } from "./modules/cart/cart-checkout/cart-checkout.component";
 import { CartListingCardComponent } from "./modules/cart/cart-listings/cart-listing-card/cart-listing-card.component";
 import { CartSummaryComponent } from "./modules/cart/cart-summary/cart-summary.component";
+import { InputValidateWrapperComponent } from "./globalComponents/input-validate-wrapper/input-validate-wrapper.component";
 
 //Injectables
 
@@ -84,7 +86,8 @@ export function createTranslateLoader(http: HttpClient) {
         VendorSingleListingViewComponent,
         CartCheckoutComponent,
         CartListingCardComponent,
-        CartSummaryComponent
+        CartSummaryComponent,
+        InputValidateWrapperComponent
     ],
     imports: [
         BrowserModule,
@@ -125,9 +128,11 @@ export function createTranslateLoader(http: HttpClient) {
         NbSelectModule,
         NbBadgeModule,
         NbStepperModule,
-        NbTooltipModule
+        NbTooltipModule,
+        NbProgressBarModule,
+        NbCheckboxModule
     ],
-    providers: [DbServiceService, NbAutocompleteDirective, NbMenuService, CookieService, { provide: DEFAULT_CURRENCY_CODE, useValue: "EUR" }],
+    providers: [DbServiceService, NbAutocompleteDirective, NbMenuService, { provide: DEFAULT_CURRENCY_CODE, useValue: "EUR" }],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

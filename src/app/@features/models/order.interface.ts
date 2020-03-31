@@ -1,16 +1,18 @@
 export class OrderModel {
-    address: string;
+    // Basic form info
+    name: string;
     email: string;
     phone: string;
-    comments: string;
-    completed: boolean;
-    date: string;
     delivery: boolean;
-    id: string;
+    address: string;
+    comments: string;
+    // Not UI visible data:
+    date: string;
     orderNumber: string;
     listings: [];
-    status: string;
     vendor: string;
     sum: number;
-    name: string;
+    status: string;
+    completed: boolean;
+    id: string;
 }

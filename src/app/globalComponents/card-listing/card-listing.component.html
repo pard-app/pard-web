@@ -3,7 +3,7 @@
         <nb-icon icon="shopping-cart"></nb-icon>
     </div>
 
-    <nb-card size="small" class="clickable-card" [routerLink]="globalRoutes.VENDOR_PAGE_ROOT + '/' + item.vendor + '/' + item.objectID">
+    <nb-card size="small" class="clickable-card" [routerLink]="'/' + globalRoutes.VENDOR_PAGE_ROOT + '/' + item.vendor + '/' + item.objectID">
         <nb-badge [text]="item.stock" position="top left" status="primary"></nb-badge>
 
         <nb-card-header class="vendor-card__header">

@@ -1,0 +1,5 @@
+<label class="label" [for]="for">{{ label }}:</label>
+<ng-content></ng-content>
+<div class="validation" [ngClass]="{ 'validation--appear': ref.invalid && ref.touched }">
+    <p class="validation__message" *ngIf="ref.invalid && ref.touched">{{ invalidMessage }}</p>
+</div>
