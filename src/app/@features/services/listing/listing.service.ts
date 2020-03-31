@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { AlgoliaService } from "@services/algolia/algolia.service";
 import { ListingItem } from "@models/listingitem.interface";
+import { from } from "rxjs";
 
 @Injectable({
     providedIn: "root"
@@ -13,7 +14,7 @@ export class ListingService {
         return this.algoliaService.listingsIndex.search(query, { hitsPerPage });
     }
 
-    public getVendorListings(objectID: string) {
-        return this.algoliaService.listingsIndex.searchForFacetValues("objectID", objectID);
+    public getVendorListings(vendorId: string) {
+        return this.algoliaService.listingsIndex.search("", { filters: "vendor:" + vendorId });
     }
 }

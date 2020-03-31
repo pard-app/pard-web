@@ -13,16 +13,6 @@ import { ListingItem } from "@models/listingitem.interface";
 export class DbServiceService {
     constructor(public store: AngularFirestore) {}
 
-    getMyListings(address = null) {
-        if (address) {
-            return this.store
-                .collection<IVendor>("vendors", ref => ref.where("address", "==", address))
-                .valueChanges({ idField: "id" });
-        } else {
-            return this.store.collection<IVendor>("vendors").valueChanges({ idField: "id" });
-        }
-    }
-
     public getVendorById(id: string): Observable<IVendor> {
         return this.store
             .doc("vendors/" + id)

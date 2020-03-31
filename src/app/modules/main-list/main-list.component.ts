@@ -50,6 +50,5 @@ export class MainListComponent implements OnInit {
 
     onCityChange(ev) {
         this.currentCity = ev;
-        console.log(ev);
     }
 }
