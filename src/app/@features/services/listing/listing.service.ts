@@ -17,4 +17,8 @@ export class ListingService {
     public getVendorListings(vendorId: string) {
         return this.algoliaService.listingsIndex.search("", { filters: "vendor:" + vendorId });
     }
+
+    public getListingsByIds(ids: string[]) {
+        return this.algoliaService.listingsIndex.getObjects(ids);
+    }
 }

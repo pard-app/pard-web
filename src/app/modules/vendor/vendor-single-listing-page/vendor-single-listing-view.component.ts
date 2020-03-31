@@ -23,7 +23,7 @@ export class VendorSingleListingViewComponent implements OnInit {
 
     ngOnInit(): void {
         this.route.params.subscribe(({ listingId, vendorId }) => {
-            this.listing$ = convertObservableToBehaviorSubject(this.dbService.getListingById(listingId), null);
+            // this.listing$ = convertObservableToBehaviorSubject(this.dbService.getListingById(listingId), null);
             this.vendor$ = this.dbService.getVendorById(vendorId);
         });
     }

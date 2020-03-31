@@ -19,11 +19,4 @@ export class DbServiceService {
             .get()
             .pipe(map(x => x.data() as IVendor));
     }
-
-    public getListingById(id: string): Observable<ListingItem | any> {
-        return this.store
-            .doc("listings/" + id)
-            .get()
-            .pipe(map(x => ({ data: x.data(), id: x.id })));
-    }
 }
