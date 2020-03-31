@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { CartStoreService } from "src/app/@features/stores/cart/cart.store.service";
-import { DbServiceService } from "src/app/@features/services/db-service.service";
+import { DbServiceService } from "@services/db-service/db-service.service";
 import { CartItem } from "@models/listingitem.interface";
 import ROUTES from "@constants/routing.constants";
 import { ActivatedRoute } from "@angular/router";

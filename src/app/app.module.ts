@@ -14,7 +14,7 @@ import { SearchSmartItemsComponent } from "./globalComponents/search-smart-items
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { CardVendorComponent } from "./globalComponents/card-vendor/card-vendor.component";
-import { DbServiceService } from "src/app/@features/services/db-service.service";
+import { DbServiceService } from "@services/db-service/db-service.service";
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
 import { VendorListingsComponent } from "./modules/vendor/vendor-listings-page/vendor-listings.component";
