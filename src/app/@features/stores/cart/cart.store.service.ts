@@ -48,7 +48,7 @@ export class CartStoreService {
         this.cartItems = JSON.parse(value);
     }
     // renew data
-    public async syncListingsFromFireStore() {
+    public async syncListingsFromAlgolia() {
         const { results } = await this.listingService.getListingsByIds(Object.keys(this.cartItems));
         results.map((item: ListingItem) => {
             this.cartItems[item.objectID]["item"] = item;

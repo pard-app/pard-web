@@ -16,4 +16,8 @@ export class VendorService {
     public getVendorById(id: string) {
         return this.algoliaService.vendorsIndex.getObject(id);
     }
+
+    public getMultipleVendors(ids: any) {
+        return this.algoliaService.vendorsIndex.getObjects(ids);
+    }
 }

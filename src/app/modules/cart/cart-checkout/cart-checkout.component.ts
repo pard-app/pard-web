@@ -1,7 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CartStoreService } from "../../../@features/stores/cart/cart.store.service";
 import { CartItem } from "@models/listingitem.interface";
+import { VendorService } from "@services/vendor/vendor.service";
+import { IVendor } from "@models/vendor.interface";
 
 @Component({
     selector: "app-cart-checkout",
@@ -12,20 +14,22 @@ export class CartCheckoutComponent implements OnInit {
     public formBasic: FormGroup;
     public formDelivery: FormGroup;
     public formProgress: number = 0;
+    public order: any;
+    @Output() deliveryChanged: EventEmitter<any> = new EventEmitter();
+    @Input() vendors: any;
 
-    constructor(private fb: FormBuilder, private cartStoreService: CartStoreService) {}
+    constructor(private fb: FormBuilder, private cartStoreService: CartStoreService, private vendorService: VendorService) {}
 
     ngOnInit(): void {
         this.formBasic = this.fb.group({
             firstName: ["", [Validators.required]],
             lastName: ["", [Validators.required]],
             email: ["", [Validators.required, Validators.email]],
-            mobile: ["", [Validators.required]],
-            dateOfBirth: ""
+            mobile: ["", [Validators.required]]
         });
 
         this.formDelivery = this.fb.group({
-            delivery: true,
+            delivery: false,
             address: ["", [Validators.required]],
             country: ["", [Validators.required]],
             city: ["", [Validators.required]],
@@ -33,8 +37,6 @@ export class CartCheckoutComponent implements OnInit {
             postCode: ["", [Validators.required]],
             comments: ""
         });
-
-        console.log(this.formBasic.value);
     }
 
     get formBasicField() {
@@ -44,11 +46,8 @@ export class CartCheckoutComponent implements OnInit {
     get formDeliveryField() {
         return fieldName => this.formDelivery.get(fieldName);
     }
-    public async submitOrder() {
-        console.log(this.formBasic.value);
-        console.log(this.formDelivery.value);
-        console.log(this.cartStoreService.get("cartItems"));
 
+    public async generateOrder() {
         const buyer = {
             firstName: this.formBasic.value.firstName,
             lastName: this.formBasic.value.lastName,
@@ -59,7 +58,7 @@ export class CartCheckoutComponent implements OnInit {
 
         let delivery;
 
-        if (this.formBasic.value.delivery) {
+        if (this.formDelivery.value.delivery) {
             delivery = {
                 address: this.formDelivery.value.address,
                 country: this.formDelivery.value.country,
@@ -75,13 +74,28 @@ export class CartCheckoutComponent implements OnInit {
         const ordersGroupedByVendor = cartItemsArray.reduce((accumulator, currentValue) => {
             const parent = accumulator.find(e => e.vendor === currentValue.item.vendor);
             if (parent) {
-                parent.orders.push({ ...currentValue.item });
+                parent.sum += currentValue.item.price * currentValue.quantity;
+                parent.orders.push({ ...currentValue.item, quantity: currentValue.quantity });
             } else {
-                accumulator.push({ vendor: currentValue.item.vendor, orders: [{ ...currentValue.item }] });
+                accumulator.push({
+                    vendor: currentValue.item.vendor,
+                    ...buyer,
+                    ...delivery,
+                    sum: currentValue.item.price * currentValue.quantity,
+                    orders: [{ ...currentValue.item, quantity: currentValue.quantity }]
+                });
             }
             return accumulator;
         }, []);
+
+        console.log(ordersGroupedByVendor);
     }
+
+    public toggleDelivery() {
+        this.formDelivery.value.delivery ? this.deliveryChanged.emit(false) : this.deliveryChanged.emit(true);
+    }
+
+    public async submitOrder() {}
 
     get status() {
         if (this.formProgress <= 25) {

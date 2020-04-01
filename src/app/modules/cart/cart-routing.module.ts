@@ -3,6 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { CartComponent } from "./cart-page/cart.component";
 import { CartCheckoutComponent } from "./cart-checkout/cart-checkout.component";
+import { CartResolver } from "./cart.resolver";
 
 export const CART_ROUTES: Routes = [
     { path: "", component: CartComponent },

@@ -2,3 +2,10 @@
     margin: 20px 0;
     font-size: 1.1em;
 }
+
+.actions {
+    display: flex;
+    button:first-child {
+        margin-right: 10px;
+    }
+}
