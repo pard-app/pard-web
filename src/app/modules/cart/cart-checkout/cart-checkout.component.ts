@@ -65,7 +65,7 @@ export class CartCheckoutComponent implements OnInit {
                 address: this.formDelivery.value.address,
                 country: this.formDelivery.value.country,
                 city: this.formDelivery.value.city,
-                county: this.formDelivery.value.country,
+                county: this.formDelivery.value.county,
                 postCode: this.formDelivery.value.postCode,
                 comments: this.formDelivery.value.comments
             };
