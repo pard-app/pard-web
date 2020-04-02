@@ -14,7 +14,7 @@ import { SearchSmartItemsComponent } from "./globalComponents/search-smart-items
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { CardVendorComponent } from "./globalComponents/card-vendor/card-vendor.component";
-import { DbServiceService } from "@services/db-service/db-service.service";
+import { DbService } from "@services/db-service/db-service.service";
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
 import { VendorListingsComponent } from "./modules/vendor/vendor-listings-page/vendor-listings.component";
@@ -62,6 +62,7 @@ import { CartCheckoutComponent } from "./modules/cart/cart-checkout/cart-checkou
 import { CartListingCardComponent } from "./modules/cart/cart-listings/cart-listing-card/cart-listing-card.component";
 import { CartSummaryComponent } from "./modules/cart/cart-summary/cart-summary.component";
 import { InputValidateWrapperComponent } from "./globalComponents/input-validate-wrapper/input-validate-wrapper.component";
+import { AngularFireFunctionsModule, REGION } from "@angular/fire/functions";
 
 //Injectables
 
@@ -99,7 +100,7 @@ export function createTranslateLoader(http: HttpClient) {
         ReactiveFormsModule,
         FormsModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFirestoreModule,
+        AngularFireFunctionsModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -134,7 +135,13 @@ export function createTranslateLoader(http: HttpClient) {
         NbCheckboxModule,
         NbUserModule
     ],
-    providers: [DbServiceService, NbAutocompleteDirective, NbMenuService, { provide: DEFAULT_CURRENCY_CODE, useValue: "EUR" }],
+    providers: [
+        DbService,
+        NbAutocompleteDirective,
+        NbMenuService,
+        { provide: DEFAULT_CURRENCY_CODE, useValue: "EUR" },
+        { provide: REGION, useValue: "europe-west1" }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

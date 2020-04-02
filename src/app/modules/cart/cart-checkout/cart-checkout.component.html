@@ -21,8 +21,8 @@
                     <input class="input" formControlName="email" type="text" nbInput fullWidth fieldSize="medium" />
                 </app-input-validate-wrapper>
 
-                <app-input-validate-wrapper for="mobile" [ref]="formBasicField('mobile')" label="Mobile" invalidMessage="Required">
-                    <input class="input" formControlName="mobile" type="text" nbInput fullWidth fieldSize="medium" />
+                <app-input-validate-wrapper for="phone" [ref]="formBasicField('phone')" label="Phone" invalidMessage="Required">
+                    <input class="input" formControlName="phone" type="text" nbInput fullWidth fieldSize="medium" />
                 </app-input-validate-wrapper>
             </nb-card-body>
             <nb-card-footer>
@@ -138,6 +138,7 @@
                         >:<em> {{ formDelivery.value.comments }}</em>
                     </div>
                 </div>
+                <div class="items"></div>
             </nb-card-body>
             <nb-card-footer>
                 <div class="actions">
