@@ -1,15 +1,22 @@
 export interface IVendor {
-    title: string;
     address: string;
+    bank: string;
+    city: string;
+    company: string;
+    country: string;
     description: string;
     email: string;
     image: string;
-    location: Geolocation;
-    name: string;
     phone: string;
-    web: string;
-    country: string;
-    city: string;
-    company: string;
+    registered: string;
+    regno: string;
+    delivery: boolean;
+    delivery_costs: number;
+    delivery_note: string;
+    title: string;
     objectID: string;
+    _geoloc: {
+        lat: number;
+        lng: number;
+    };
 }
