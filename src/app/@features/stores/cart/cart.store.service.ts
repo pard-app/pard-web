@@ -3,6 +3,8 @@ import { ListingItem, CartItem, CartItemObject } from "@models/listingitem.inter
 import { BehaviorSubject, Observable } from "rxjs";
 import { CART_CONSTANTS } from "@constants/cart.constants";
 import { ListingService } from "@services/listing/listing.service";
+import { IVendor } from "@models/vendor.interface";
+import { VendorService } from "@services/vendor/vendor.service";
 
 @Injectable({
     providedIn: "root"
@@ -15,7 +17,10 @@ export class CartStoreService {
     private readonly cartItemLimit: number = 99;
     public _lastAddedItem$ = new BehaviorSubject<ListingItem>(null);
 
-    constructor(private listingService: ListingService) {}
+    // Vendors
+    private readonly _vendorsOfCartItems$ = new BehaviorSubject<Array<IVendor> | any>([]);
+
+    constructor(private listingService: ListingService, private vendorService: VendorService) {}
 
     public get cartItemsLength(): number {
         return Object.keys(this.cartItems).length;
@@ -28,6 +33,10 @@ export class CartStoreService {
     // lastest emitted value
     private get cartItems() {
         return this._cartItems$.getValue();
+    }
+
+    private get vendorsOfCartItems() {
+        return this._vendorsOfCartItems$.getValue();
     }
 
     private set cartItems(val: { [id: string]: CartItem }) {
@@ -53,6 +62,15 @@ export class CartStoreService {
         results.map((item: ListingItem) => {
             this.cartItems[item.objectID]["item"] = item;
         });
+    }
+
+    public async syncVendorsFromListings() {
+        const cartItemsArray: Array<CartItem> = Object.values(this.get("cartItems"));
+        let uniqueVendors = [];
+        cartItemsArray.map(({ item }) => !uniqueVendors.includes(item.vendor) && uniqueVendors.push(item.vendor));
+
+        const { results } = await this.vendorService.getMultipleVendors(uniqueVendors);
+        this._vendorsOfCartItems$.next(results);
     }
 
     // Methods
@@ -84,5 +102,6 @@ export class CartStoreService {
         delete mockObject[id];
         this.cartItems = mockObject;
         this.syncListingsToLocalStorage();
+        this.syncVendorsFromListings();
     }
 }

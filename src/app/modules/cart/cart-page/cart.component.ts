@@ -4,6 +4,7 @@ import { CartItem } from "@models/listingitem.interface";
 import ROUTES from "@constants/routing.constants";
 import { ActivatedRoute } from "@angular/router";
 import { VendorService } from "@services/vendor/vendor.service";
+import { IVendor } from "@models/vendor.interface";
 
 @Component({
     selector: "app-cart",
@@ -13,34 +14,45 @@ import { VendorService } from "@services/vendor/vendor.service";
 export class CartComponent implements OnInit {
     public globalRoutes = ROUTES;
     public view: string = ROUTES.CART_LISTINGS_PAGE_ROOT;
-    public vendors: any;
     public delivery: boolean;
+
+    async ngOnInit() {
+        this.route.url.subscribe(x => {
+            if (!x.length) return;
+            const isCheckout = x[0].path === this.globalRoutes.CART_CHECKOUT_PAGE_ROOT;
+            if (isCheckout) this.view = this.globalRoutes.CART_CHECKOUT_PAGE_ROOT;
+        });
+
+        await this.cartStoreService.syncListingsFromAlgolia();
+        this.cartStoreService.syncVendorsFromListings();
+    }
 
     public get cartItems(): [] {
         return this.cartStoreService.get("cartItems");
     }
 
-    constructor(private cartStoreService: CartStoreService, private route: ActivatedRoute, private vendorService: VendorService) {}
+    public get vendorsOfCartItems(): IVendor[] {
+        return this.cartStoreService.get("vendorsOfCartItems");
+    }
+
+    constructor(private cartStoreService: CartStoreService, private route: ActivatedRoute) {}
 
     get totalListingCosts() {
         return Object.values(this.cartItems).reduce((acc, currItem: CartItem) => acc + currItem.item.price * currItem.quantity, 0);
     }
 
     get totalDeliveryCosts() {
-        if (this.vendors) {
-            return this.vendors.reduce((acc, currItem) => {
-                if (currItem.delivery) {
-                    return acc + currItem.delivery_costs;
-                } else {
-                    return acc;
-                }
-            }, 0);
-        } else {
-            return 0;
-        }
+        if (!this.delivery) return 0;
+        return this.vendorsOfCartItems.reduce((acc, currItem) => {
+            if (currItem.delivery) {
+                return acc + currItem.delivery_costs;
+            } else {
+                return acc;
+            }
+        }, 0);
     }
 
-    get totalPrice() {
+    get totalPriceWithDelivery() {
         return this.totalListingCosts + this.totalDeliveryCosts;
     }
 
@@ -52,36 +64,8 @@ export class CartComponent implements OnInit {
         this.cartStoreService.changeQuantity(key, value);
     }
 
-    public async getVendorData() {
-        const cartItemsArray: Array<CartItem> = Object.values(this.cartStoreService.get("cartItems"));
-        let uniqueVendors = [];
-
-        cartItemsArray.map(item => {
-            if (!uniqueVendors.includes(item.item.vendor)) {
-                uniqueVendors.push(item.item.vendor);
-            }
-        });
-
-        this.vendors = (await this.vendorService.getMultipleVendors(uniqueVendors)).results;
-    }
-
     toggleDelivery(delivery: boolean) {
         this.delivery = delivery;
-        console.log("delivery", this.delivery);
-    }
-
-    ngOnInit() {
-        this.route.url.subscribe(x => {
-            if (!x.length) return;
-            const isCheckout = x[0].path === this.globalRoutes.CART_CHECKOUT_PAGE_ROOT;
-            if (isCheckout) this.view = this.globalRoutes.CART_CHECKOUT_PAGE_ROOT;
-        });
-
-        //this.vendors = this.route.snapshot.data.vendors;
-
-        this.cartStoreService.syncListingsFromAlgolia().then(() => {
-            this.getVendorData();
-        });
     }
 
     ngOnDestroy(): void {}

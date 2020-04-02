@@ -8,8 +8,8 @@
             <app-cart-summary
                 [view]="view"
                 [cartItems]="cartItems"
-                [totalAmount]="delivery ? totalPrice : totalListingCosts"
-                [vendors]="vendors"
+                [totalAmount]="totalPriceWithDelivery"
+                [vendors]="vendorsOfCartItems"
                 [delivery]="delivery"
             ></app-cart-summary>
         </nb-card-body>
@@ -29,7 +29,7 @@
             ></app-cart-listing-card>
         </nb-card-body>
         <nb-card-body *ngIf="view === globalRoutes.CART_CHECKOUT_PAGE_ROOT">
-            <app-cart-checkout [vendors]="vendors" (deliveryChanged)="toggleDelivery($event)"></app-cart-checkout>
+            <app-cart-checkout [vendors]="vendorsOfCartItems" (deliveryChanged)="toggleDelivery($event)"></app-cart-checkout>
         </nb-card-body>
     </nb-card>
 </div>
