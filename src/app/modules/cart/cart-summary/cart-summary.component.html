@@ -1,6 +1,14 @@
+<h4>{{ "ITEMS" | translate }}</h4>
 <p *ngFor="let item of cartItems | keyvalue">
     {{ item.value.item?.title }}: <strong>{{ item.value.item?.price | currency }}</strong> (x{{ item.value.quantity }})
 </p>
+
+<div *ngIf="delivery">
+    <h4>{{ "DELIVERY_COSTS" | translate }}</h4>
+    <p *ngFor="let vendor of vendors">
+        {{ vendor.title }}: <strong>{{ vendor.delivery ? (vendor.delivery_costs | currency) : ("NO_DELIVERY" | translate) }}</strong>
+    </p>
+</div>
 
 <h5>
     {{ "TOTAL" | translate }}: <strong>{{ totalAmount | currency }}</strong>

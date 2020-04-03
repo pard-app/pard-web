@@ -62,3 +62,8 @@ h6 {
         height: 270px;
     }
 }
+
+.user-picture.image {
+    background-size: contain !important;
+    background-position: center;
+}

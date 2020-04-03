@@ -11,6 +11,9 @@ export class CartSummaryComponent {
     @Input() cartItems: CartItemObject;
     @Input() view: string;
     @Input() totalAmount: string | number;
+    @Input() vendors: any;
+    @Input() delivery: boolean;
+
     public globalRoutes = ROUTES;
     get cartItemsLength() {
         return Object.keys(this.cartItems).length;

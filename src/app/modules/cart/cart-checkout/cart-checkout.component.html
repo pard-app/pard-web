@@ -2,7 +2,7 @@
     <nb-progress-bar [value]="formProgress" [status]="status" [displayValue]="true" [size]="'giant'"></nb-progress-bar>
 </nb-card>
 
-<nb-stepper #stepper [linear]="true" orientation="horizontal">
+<nb-stepper #stepper [linear]="true" orientation="horizontal" disableStepNavigation="true">
     <nb-step [label]="'Basic'" [formGroup]="formBasic">
         <nb-card>
             <nb-card-header>
@@ -21,12 +21,14 @@
                     <input class="input" formControlName="email" type="text" nbInput fullWidth fieldSize="medium" />
                 </app-input-validate-wrapper>
 
-                <app-input-validate-wrapper for="mobile" [ref]="formBasicField('mobile')" label="Mobile" invalidMessage="Required">
-                    <input class="input" formControlName="mobile" type="text" nbInput fullWidth fieldSize="medium" />
+                <app-input-validate-wrapper for="phone" [ref]="formBasicField('phone')" label="Phone" invalidMessage="Required">
+                    <input class="input" formControlName="phone" type="text" nbInput fullWidth fieldSize="medium" />
                 </app-input-validate-wrapper>
             </nb-card-body>
             <nb-card-footer>
-                <button nbButton nbStepperNext (click)="formProgress = 50" [disabled]="formBasic.invalid" outline status="success">next</button>
+                <div class="actions">
+                    <button nbButton nbStepperNext (click)="formProgress = 25" [disabled]="formBasic.invalid" outline status="success">next</button>
+                </div>
             </nb-card-footer>
         </nb-card>
     </nb-step>
@@ -37,8 +39,27 @@
                 <h4>Delivery Information</h4>
             </nb-card-header>
             <nb-card-body>
+                <div class="vendor-delivery">
+                    <div *ngFor="let vendor of vendors">
+                        <nb-card>
+                            <nb-card-body>
+                                <nb-user
+                                    shape="rectangle"
+                                    [badgeStatus]="vendor.delivery ? 'success' : 'danger'"
+                                    [badgeText]="vendor.delivery ? 'Delivery' : 'No delivery'"
+                                    [name]="vendor.title"
+                                    badgePosition="bottom start"
+                                    size="giant"
+                                    [picture]="vendor.image"
+                                    [title]="vendor.delivery ? (vendor.delivery_costs | currency) + ', ' + vendor.delivery_note : ''"
+                                ></nb-user>
+                            </nb-card-body>
+                        </nb-card>
+                    </div>
+                </div>
+
                 <div class="deliverymyself">
-                    <nb-checkbox formControlName="delivery"><h5>I want delivery</h5></nb-checkbox>
+                    <nb-checkbox formControlName="delivery" (click)="toggleDelivery()"><h5>I want delivery</h5></nb-checkbox>
                 </div>
 
                 <div *ngIf="formDeliveryField('delivery').value == true">
@@ -68,17 +89,62 @@
                 </div>
             </nb-card-body>
             <nb-card-footer>
-                <button nbButton nbStepperPrevious>prev</button>
-                <button
-                    nbButton
-                    nbStepperNext
-                    (click)="formProgress = 80"
-                    [disabled]="formDeliveryField('delivery').value && formDelivery.invalid"
-                    outline
-                    status="success"
-                >
-                    next
-                </button>
+                <div class="actions">
+                    <button nbButton nbStepperPrevious>prev</button>
+                    <button
+                        nbButton
+                        nbStepperNext
+                        (click)="generateOrder(); formProgress = 50"
+                        [disabled]="formDeliveryField('delivery').value && formDelivery.invalid"
+                        outline
+                        status="success"
+                    >
+                        next
+                    </button>
+                </div>
+            </nb-card-footer>
+        </nb-card>
+    </nb-step>
+
+    <nb-step label="Review">
+        <nb-card>
+            <nb-card-header>
+                <h4>Review</h4>
+            </nb-card-header>
+            <nb-card-body>
+                <div class="buyer">
+                    <h1>{{ "BUYER" | translate }}</h1>
+                    <strong>{{ "NAME" | translate }}</strong
+                    >: {{ formBasic.value.firstName + " " + formBasic.value.lastName }}
+                    <br />
+                    <strong>{{ "EMAIL" | translate }}</strong
+                    >: {{ formBasic.value.email }}
+                    <br />
+                    <strong>{{ "PHONE" | translate }}</strong
+                    >: {{ formBasic.value.phone }}
+
+                    <div *ngIf="this.formDelivery.value.delivery">
+                        <strong>{{ "ADDRESS" | translate }}</strong
+                        >: {{ formDelivery.value.address }} <br />
+                        <strong>{{ "CITY" | translate }}</strong
+                        >: {{ formDelivery.value.city }} <br />
+                        <strong>{{ "COUNTY" | translate }}</strong
+                        >: {{ formDelivery.value.county }} <br />
+                        <strong>{{ "COUNTRY" | translate }}</strong
+                        >: {{ formDelivery.value.country }} <br />
+                        <strong>{{ "POSTCODE" | translate }}</strong
+                        >: {{ formDelivery.value.postCode }} <br />
+                        <strong>{{ "COMMENTS" | translate }}</strong
+                        >:<em> {{ formDelivery.value.comments }}</em>
+                    </div>
+                </div>
+                <div class="items"></div>
+            </nb-card-body>
+            <nb-card-footer>
+                <div class="actions">
+                    <button nbButton nbStepperPrevious>prev</button>
+                    <button nbButton nbStepperNext hero status="success" (click)="submitOrder(); formProgress = 75" fullWidth>Submit Order</button>
+                </div>
             </nb-card-footer>
         </nb-card>
     </nb-step>
@@ -90,12 +156,11 @@
             </nb-card-header>
             <nb-card-body>
                 <p class="lorem">
-                    Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down. Nullizzle sapien velizzle, my shizz pimpin', shizzle my nizzle
-                    crocodizzle shut the shizzle up, gravida vizzle, dang.
+                    Pay to ....
                 </p>
             </nb-card-body>
             <nb-card-footer>
-                <button nbButton nbStepperNext hero status="success" (click)="submitOrder()" fullWidth>Submit Order</button>
+                <button nbButton nbStepperNext hero status="primary" (click)="formProgress = 100" fullWidth>Print</button>
             </nb-card-footer>
         </nb-card>
     </nb-step>

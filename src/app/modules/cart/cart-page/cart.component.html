@@ -5,7 +5,13 @@
             <h5>{{ "SUMMARY" | translate }}</h5>
         </nb-card-header>
         <nb-card-body class="summary__body">
-            <app-cart-summary [view]="view" [cartItems]="cartItems" [totalAmount]="totalAmountPrice"></app-cart-summary>
+            <app-cart-summary
+                [view]="view"
+                [cartItems]="cartItems"
+                [totalAmount]="totalPriceWithDelivery"
+                [vendors]="vendorsOfCartItems"
+                [delivery]="delivery"
+            ></app-cart-summary>
         </nb-card-body>
     </nb-card>
 
@@ -23,7 +29,7 @@
             ></app-cart-listing-card>
         </nb-card-body>
         <nb-card-body *ngIf="view === globalRoutes.CART_CHECKOUT_PAGE_ROOT">
-            <app-cart-checkout></app-cart-checkout>
+            <app-cart-checkout [vendors]="vendorsOfCartItems" (deliveryChanged)="toggleDelivery($event)"></app-cart-checkout>
         </nb-card-body>
     </nb-card>
 </div>
