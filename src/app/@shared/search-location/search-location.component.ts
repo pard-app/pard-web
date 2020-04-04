@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, ChangeDetectionStrategy, ViewChild, AfterViewInit, OnDestroy, SimpleChanges, OnChanges } from "@angular/core";
-import places, { PlacesInstance } from "places.js";
+import { Component, Output, EventEmitter, ChangeDetectionStrategy, ViewChild, AfterViewInit, OnDestroy } from "@angular/core";
+import places, { PlacesInstance, ChangeEvent } from "places.js";
 
 // import options from "./options";
 @Component({
@@ -7,35 +7,27 @@ import places, { PlacesInstance } from "places.js";
     templateUrl: "./search-location.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchLocationComponent implements OnInit, AfterViewInit, OnDestroy {
+export class SearchLocationComponent implements AfterViewInit, OnDestroy {
     @ViewChild("autoInput") input;
-    @Output() onChange? = new EventEmitter();
+    @Output() cityChanged? = new EventEmitter<ChangeEvent>();
     @Output() onClear? = new EventEmitter();
 
-    private instance: PlacesInstance = null;
-
-    ngOnInit() {
-        //this.filteredOptions$ = of(this.options);
-    }
+    private placesSearchInstance: PlacesInstance = null;
 
     ngAfterViewInit() {
-        this.instance = places({
+        this.placesSearchInstance = places({
             container: this.input.nativeElement,
             type: "city",
             useDeviceLocation: true,
         });
 
-        this.instance.on("change", (e) => {
-            this.onChange.emit(e);
-        });
-
-        navigator.geolocation.getCurrentPosition((loc) => {
-            console.log(loc);
+        this.placesSearchInstance.on("change", (suggestion: ChangeEvent) => {
+            this.cityChanged.emit(suggestion);
         });
     }
 
     ngOnDestroy() {
-        this.instance.removeAllListeners("change");
-        this.instance.destroy();
+        this.placesSearchInstance.removeAllListeners("change");
+        this.placesSearchInstance.destroy();
     }
 }

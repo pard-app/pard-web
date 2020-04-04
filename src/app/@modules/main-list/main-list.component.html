@@ -14,18 +14,18 @@
                     [tabTitle]="'VENDORS' | translate"
                     [tabIcon]="'home-outline'"
                     [active]="(currentActiveTab$ | async).view == 'vendors'"
-                    [nbSpinner]="!_vendorsList$"
+                    [nbSpinner]="!vendorsList$"
                     [tabId]="'vendors'"
                     nbSpinnerSize="giant"
                     nbSpinnerStatus="primary"
                     class="grid-tab"
                 >
                     <div class="grid-parent grid-parent__vendors">
-                        <section class="grid-child" *ngFor="let item of _vendorsList$ | async">
+                        <section class="grid-child" *ngFor="let item of vendorsList$ | async">
                             <app-card-vendor [item]="item"></app-card-vendor>
                         </section>
                     </div>
-                    <h2 *ngIf="_vendorsList$ | async" class="title--thin title--space">{{ "NOTHING_FOUND" | translate }} 😥</h2>
+                    <h2 *ngIf="vendorsList$ | async" class="title--thin title--space">{{ "NOTHING_FOUND" | translate }} 😥</h2>
                 </nb-tab>
 
                 <nb-tab
@@ -35,7 +35,7 @@
                     class="grid-tab"
                     [tabIcon]="'archive-outline'"
                 >
-                    <app-list-listings [listingsList$]="_listingsList$"></app-list-listings>
+                    <app-list-listings [listingsList$]="listingsList$"></app-list-listings>
                 </nb-tab>
             </nb-tabset>
         </nb-card-body>
