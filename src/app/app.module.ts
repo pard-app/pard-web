@@ -9,13 +9,6 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { DbService } from "@services/db-service/db-service.service";
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
-
-//Injectables
-
-export function createTranslateLoader(http: HttpClient) {
-    return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
-}
-
 // NEBULAR MODULES
 import { NbAutocompleteDirective, NbMenuService, NbLayoutModule, NbThemeModule } from "@nebular/theme";
 
@@ -41,7 +34,7 @@ import { TopheaderModule } from "@modules/topheader/topheader.module";
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
-                useFactory: createTranslateLoader,
+                useFactory: (http) => new TranslateHttpLoader(http, "./assets/i18n/", ".json"),
                 deps: [HttpClient],
             },
         }),
