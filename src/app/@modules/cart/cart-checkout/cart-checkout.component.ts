@@ -94,9 +94,7 @@ export class CartCheckoutComponent implements OnInit {
     }
 
     public async submitOrder() {
-        console.log(this.orders);
-
-        this.dbService.placeOrder(this.orders, this.buyer, this.delivery).then(
+        this.dbService.placeOrder(this.orders, this.buyer, this.delivery, false).then(
             async (response) => {
                 console.log("response : ", response);
             },
