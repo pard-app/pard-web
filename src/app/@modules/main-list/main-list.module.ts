@@ -5,10 +5,11 @@ import { MainListComponent } from "./main-list.component";
 import { VendorModule } from "@modules/vendor/vendor.module";
 import { SharedModule } from "@shared/shared.module";
 import { NbTabsetModule, NbSpinnerModule, NbCardModule } from "@nebular/theme";
+import { SearchBoxModule } from "./search-box/search-box.module";
 
 @NgModule({
     declarations: [MainListComponent],
-    imports: [CommonModule, TranslateModule, VendorModule, SharedModule, NbTabsetModule, NbSpinnerModule, NbCardModule],
+    imports: [CommonModule, TranslateModule, VendorModule, SharedModule, NbTabsetModule, NbSpinnerModule, NbCardModule, SearchBoxModule],
     exports: [MainListComponent],
 })
 export class MainListModule {}
