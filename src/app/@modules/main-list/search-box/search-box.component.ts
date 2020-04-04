@@ -8,7 +8,7 @@ import { LocationService } from "@core/stores/location/location.service";
     styleUrls: ["./search-box.component.scss"],
 })
 export class SearchBoxComponent implements OnInit {
-    public currentCity: string = null;
+    public currentCity: string = this.locationService.currentCity;
 
     constructor(private locationService: LocationService) {}
 
@@ -20,8 +20,8 @@ export class SearchBoxComponent implements OnInit {
 
     public onClear() {
         this.locationService.currentLocation = {} as any;
-        this.currentCity = null;
         this.locationService.currentCity = null;
+        this.currentCity = null;
     }
 
     ngOnInit(): void {}

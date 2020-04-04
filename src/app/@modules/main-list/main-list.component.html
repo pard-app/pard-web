@@ -25,7 +25,7 @@
                             <app-card-vendor [item]="item"></app-card-vendor>
                         </section>
                     </div>
-                    <h2 *ngIf="!(vendorsList$ | async).length" class="title--thin title--space">{{ "NOTHING_FOUND" | translate }} 😥</h2>
+                    <h2 *ngIf="!(vendorsList$ | async)?.length" class="title--thin title--space">{{ "NOTHING_FOUND" | translate }} 😥</h2>
                 </nb-tab>
 
                 <nb-tab
