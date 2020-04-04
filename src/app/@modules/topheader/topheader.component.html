@@ -1,0 +1,51 @@
+<nb-layout-header class="top-header">
+    <svg [routerLink]="globalRoutes.ROOT" class="top-header__button">
+        <use xlink:href="assets/icons/pard-text.svg#Layer_1"></use>
+    </svg>
+
+    <div class="top-header__languages">
+        <img src="assets/images/flags/united-kingdom.svg" (click)="setLanguage('en')" />
+        <img src="assets/images/flags/lithuania.svg" (click)="setLanguage('lt')" />
+        <img src="assets/images/flags/latvia.svg" (click)="setLanguage('lv')" />
+    </div>
+
+    <div class="top-header__cart">
+        <button
+            outline
+            nbButton
+            outline
+            status="primary"
+            [nbPopover]="templateRef"
+            [routerLink]="globalRoutes.CART_PAGE_ROOT"
+            nbPopoverPlacement="bottom"
+            nbPopoverTrigger="noop"
+            class="top-header__button"
+        >
+            <nb-icon icon="shopping-cart-outline"></nb-icon>
+        </button>
+        <div *ngIf="count" class="cart-display-count">{{ count }}</div>
+    </div>
+    <button outline nbButton [nbContextMenu]="items" class="top-header__button">
+        <nb-icon icon="menu-outline"></nb-icon>
+    </button>
+</nb-layout-header>
+
+<!-- Notificatiopn template -->
+<ng-template #templateRef>
+    <nb-card size="tiny" class="notification">
+        <nb-card-header class="notification__header">
+            <img class="notification__image" [src]="lastItemAddedToCart.image ? lastItemAddedToCart.image : ''" alt="item.name" />
+        </nb-card-header>
+        <nb-card-body class="notification__body">
+            <button [routerLink]="globalRoutes.CART_PAGE_ROOT" nbButton fullWidth outline size="small">
+                {{ "VIEW_CART" | translate }}
+            </button>
+            <h6 class="notification__title">
+                {{ lastItemAddedToCart.title }} (x{{ getQuantity(lastItemAddedToCart.objectID) }}) {{ "ADDED_TO_CART" | translate }}
+            </h6>
+        </nb-card-body>
+        <!-- <nb-card-footer></nb-card-footer> -->
+    </nb-card>
+</ng-template>
+
+<nb-layout-header class="top-header--fake"></nb-layout-header>

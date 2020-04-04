@@ -1,147 +1,65 @@
-import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { NgModule, DEFAULT_CURRENCY_CODE } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { FooterComponent } from "./globalComponents/footer/footer.component";
-import { MainListComponent } from "./modules/main-list/main-list.component";
-import { TopBannerComponent } from "./globalComponents/top-banner/top-banner.component";
-import { SearchLocationComponent } from "./globalComponents/search-location/search-location.component";
-import { SearchSmartItemsComponent } from "./globalComponents/search-smart-items/search-smart-items.component";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-import { CardVendorComponent } from "./globalComponents/card-vendor/card-vendor.component";
 import { DbService } from "@services/db-service/db-service.service";
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
-import { VendorListingsComponent } from "./modules/vendor/vendor-listings-page/vendor-listings.component";
-import { CardListingComponent } from "./globalComponents/card-listing/card-listing.component";
-
-// NEBULAR MODULES
-import {
-    NbThemeModule,
-    NbLayoutModule,
-    NbAutocompleteModule,
-    NbCardModule,
-    NbOverlayModule,
-    NbDialogModule,
-    NbAutocompleteDirective,
-    NbInputModule,
-    NbFormFieldModule,
-    NbOptionModule,
-    NbCdkAdapterModule,
-    NbTabsetModule,
-    NbRouteTabsetModule,
-    NbSpinnerModule,
-    NbContextMenuModule,
-    NbButtonModule,
-    NbMenuService,
-    NbMenuModule,
-    NbIconModule,
-    NbPopoverModule,
-    NbSelectModule,
-    NbBadgeModule,
-    NbStepperModule,
-    NbTooltipModule,
-    NbProgressBarModule,
-    NbCheckboxModule,
-    NbUserModule
-} from "@nebular/theme";
-import { NbEvaIconsModule } from "@nebular/eva-icons";
-import { TopheaderComponent } from "./globalComponents/topheader/topheader.component";
-import { CartComponent } from "./modules/cart/cart-page/cart.component";
-import { ListListingsComponent } from "./globalComponents/list-listings/list-listings.component";
-import { VendorModule } from "./modules/vendor/vendor.module";
-import { VendorSingleListingViewComponent } from "./modules/vendor/vendor-single-listing-page/vendor-single-listing-view.component";
-import { VendorListingsSearchComponent } from "./modules/vendor/vendor-listings-page/vendor-listings-search/vendor-listings-search.component";
-import { VendorSummaryHeaderComponent } from "./modules/vendor/vendor-summary-header/vendor-summary-header.component";
-import { CartCheckoutComponent } from "./modules/cart/cart-checkout/cart-checkout.component";
-import { CartListingCardComponent } from "./modules/cart/cart-listings/cart-listing-card/cart-listing-card.component";
-import { CartSummaryComponent } from "./modules/cart/cart-summary/cart-summary.component";
-import { InputValidateWrapperComponent } from "./globalComponents/input-validate-wrapper/input-validate-wrapper.component";
-import { AngularFireFunctionsModule, REGION } from "@angular/fire/functions";
 
 //Injectables
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
+
+// NEBULAR MODULES
+import { NbAutocompleteDirective, NbMenuService, NbLayoutModule, NbThemeModule } from "@nebular/theme";
+
+import { VendorModule } from "@modules/vendor/vendor.module";
+import { AngularFireFunctionsModule, REGION } from "@angular/fire/functions";
+import { CartModule } from "@modules/cart/cart.module";
+import { MainListModule } from "@modules/main-list/main-list.module";
+import { FooterModule } from "@modules/footer/footer.module";
+import { SharedModule } from "@shared/shared.module";
+import { TopheaderModule } from "@modules/topheader/topheader.module";
 @NgModule({
-    declarations: [
-        AppComponent,
-        FooterComponent,
-        MainListComponent,
-        TopBannerComponent,
-        SearchLocationComponent,
-        SearchSmartItemsComponent,
-        CardVendorComponent,
-        CardListingComponent,
-        TopheaderComponent,
-        CartComponent,
-        ListListingsComponent,
-        VendorListingsComponent,
-        VendorSummaryHeaderComponent,
-        VendorListingsSearchComponent,
-        VendorSingleListingViewComponent,
-        CartCheckoutComponent,
-        CartListingCardComponent,
-        CartSummaryComponent,
-        InputValidateWrapperComponent
-    ],
+    declarations: [AppComponent],
     imports: [
+        // 3'RD PT
         BrowserModule,
         HttpClientModule,
         AppRoutingModule,
-        VendorModule,
         BrowserAnimationsModule,
-        ReactiveFormsModule,
-        FormsModule,
+        NbLayoutModule,
+        NbThemeModule.forRoot({ name: "corporate" }),
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireFunctionsModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
                 useFactory: createTranslateLoader,
-                deps: [HttpClient]
-            }
+                deps: [HttpClient],
+            },
         }),
-        //Nebular
-        NbThemeModule.forRoot({ name: "corporate" }),
-        NbLayoutModule,
-        NbEvaIconsModule,
-        NbAutocompleteModule,
-        NbCardModule,
-        NbOverlayModule,
-        NbDialogModule,
-        NbInputModule,
-        NbFormFieldModule,
-        NbOptionModule,
-        NbTabsetModule,
-        NbRouteTabsetModule,
-        NbSpinnerModule,
-        NbContextMenuModule,
-        NbButtonModule,
-        NbMenuModule.forRoot(),
-        NbIconModule,
-        NbPopoverModule,
-        NbSelectModule,
-        NbBadgeModule,
-        NbStepperModule,
-        NbTooltipModule,
-        NbProgressBarModule,
-        NbCheckboxModule,
-        NbUserModule
+        // LOCAL Modules
+        VendorModule,
+        CartModule,
+        MainListModule,
+        FooterModule,
+        SharedModule,
+        TopheaderModule,
     ],
     providers: [
         DbService,
         NbAutocompleteDirective,
         NbMenuService,
         { provide: DEFAULT_CURRENCY_CODE, useValue: "EUR" },
-        { provide: REGION, useValue: "europe-west1" }
+        { provide: REGION, useValue: "europe-west1" },
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

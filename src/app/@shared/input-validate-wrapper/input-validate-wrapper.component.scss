@@ -1,0 +1,26 @@
+@import "~src/app/@core/styles/themes";
+
+.validation {
+    height: 35px;
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+    cursor: text;
+
+    &__message {
+        color: nb-theme(color-danger-500);
+        line-height: 30px;
+        font-size: 0.9em;
+    }
+
+    &--appear {
+        transition: 0.1s ease;
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.label {
+    margin: 10px 0;
+    font-size: 1em;
+}

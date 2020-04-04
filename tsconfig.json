@@ -13,10 +13,14 @@
         "target": "es2015",
         "lib": ["es2018", "dom"],
         "paths": {
-            "@models/*": ["src/app/@features/models/*"],
-            "@constants/*": ["src/app/@features/constants/*"],
-            "@utils/*": ["src/app/@features/utils/*"],
-            "@services/*": ["src/app/@features/services/*"]
+            "@assets/*": ["src/assets/*"],
+            "@models/*": ["src/app/@core/models/*"],
+            "@constants/*": ["src/app/@core/constants/*"],
+            "@utils/*": ["src/app/@core/utils/*"],
+            "@services/*": ["src/app/@core/services/*"],
+            "@core/*": ["src/app/@core/*"],
+            "@modules/*": ["src/app/@modules/*"],
+            "@shared/*": ["src/app/@shared/*"]
         }
     },
     "angularCompilerOptions": {

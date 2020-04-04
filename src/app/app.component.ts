@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { CartStoreService } from "./@features/stores/cart/cart.store.service";
+import { CartStoreService } from "@core/stores/cart/cart.store.service";
 
 @Component({
     selector: "app-root",
-    templateUrl: "./app.component.html"
+    templateUrl: "./app.component.html",
 })
 export class AppComponent {
     title = "pard-web";
