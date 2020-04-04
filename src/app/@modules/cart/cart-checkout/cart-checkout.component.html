@@ -3,40 +3,42 @@
 </nb-card>
 
 <nb-stepper #stepper [linear]="true" orientation="horizontal" disableStepNavigation="true">
-    <nb-step [label]="'Basic'" [formGroup]="formBasic">
+    <nb-step [label]="'Information' | translate" [formGroup]="formBasic">
         <nb-card>
             <nb-card-header>
-                <h4>Basic Information</h4>
+                <h4>{{ "BASIC_INFORMATION" | translate }}</h4>
             </nb-card-header>
             <nb-card-body>
-                <app-input-validate-wrapper for="firstName" [ref]="formBasicField('firstName')" label="First name" invalidMessage="Required">
+                <app-input-validate-wrapper for="firstName" [ref]="formBasicField('firstName')" label="FIRST_NAME" invalidMessage="REQUIRED" required="true">
                     <input class="input" formControlName="firstName" type="text" nbInput fullWidth fieldSize="medium" />
                 </app-input-validate-wrapper>
 
-                <app-input-validate-wrapper for="lastName" label="Last name" [ref]="formBasicField('lastName')" invalidMessage="Required">
+                <app-input-validate-wrapper for="lastName" label="LAST_NAME" [ref]="formBasicField('lastName')" invalidMessage="REQUIRED" required="true">
                     <input class="input" formControlName="lastName" type="text" nbInput fullWidth fieldSize="medium" />
                 </app-input-validate-wrapper>
 
-                <app-input-validate-wrapper for="email" label="Email" [ref]="formBasicField('email')" invalidMessage="Email Invalid">
+                <app-input-validate-wrapper for="email" label="EMAIL" [ref]="formBasicField('email')" invalidMessage="INVALID_EMAIL" required="true">
                     <input class="input" formControlName="email" type="text" nbInput fullWidth fieldSize="medium" />
                 </app-input-validate-wrapper>
 
-                <app-input-validate-wrapper for="phone" [ref]="formBasicField('phone')" label="Phone" invalidMessage="Required">
+                <app-input-validate-wrapper for="phone" [ref]="formBasicField('phone')" label="PHONE">
                     <input class="input" formControlName="phone" type="text" nbInput fullWidth fieldSize="medium" />
                 </app-input-validate-wrapper>
             </nb-card-body>
             <nb-card-footer>
                 <div class="actions">
-                    <button nbButton nbStepperNext (click)="formProgress = 25" [disabled]="formBasic.invalid" outline status="success">next</button>
+                    <button nbButton nbStepperNext (click)="formProgress = 30" [disabled]="formBasic.invalid" outline status="success">
+                        {{ "NEXT" | translate }}
+                    </button>
                 </div>
             </nb-card-footer>
         </nb-card>
     </nb-step>
 
-    <nb-step [label]="'Delivery'" [formGroup]="formDelivery">
+    <nb-step [label]="'Delivery' | translate" [formGroup]="formDelivery">
         <nb-card>
             <nb-card-header>
-                <h4>Delivery Information</h4>
+                <h4>{{ "DELIVERY_INFORMATION" | translate }}</h4>
             </nb-card-header>
             <nb-card-body>
                 <div class="vendor-delivery">
@@ -46,7 +48,7 @@
                                 <nb-user
                                     shape="rectangle"
                                     [badgeStatus]="vendor.delivery ? 'success' : 'danger'"
-                                    [badgeText]="vendor.delivery ? 'Delivery' : 'No delivery'"
+                                    [badgeText]="vendor.delivery ? ('DELIVERY' | translate) : ('NO_DELIVERY' | translate)"
                                     [name]="vendor.title"
                                     badgePosition="bottom start"
                                     size="giant"
@@ -58,58 +60,60 @@
                     </div>
                 </div>
 
-                <div class="deliverymyself">
-                    <nb-checkbox formControlName="delivery" (click)="toggleDelivery()"><h5>I want delivery</h5></nb-checkbox>
+                <div class="delivery-checkbox">
+                    <nb-checkbox formControlName="delivery" (click)="toggleDelivery()"
+                        ><h5>{{ "I_WANT_DELIVERY" | translate }}</h5></nb-checkbox
+                    >
                 </div>
 
                 <div *ngIf="formDeliveryField('delivery').value == true">
-                    <app-input-validate-wrapper for="address" label="Address" [ref]="formDeliveryField('address')" invalidMessage="Required">
+                    <app-input-validate-wrapper for="address" label="ADDRESS" [ref]="formDeliveryField('address')" invalidMessage="REQUIRED" required="true">
                         <input class="input" formControlName="address" type="text" nbInput fullWidth fieldSize="medium" />
                     </app-input-validate-wrapper>
 
-                    <app-input-validate-wrapper for="country" label="Country" [ref]="formDeliveryField('country')" invalidMessage="Required">
+                    <app-input-validate-wrapper for="country" label="COUNTRY" [ref]="formDeliveryField('country')" invalidMessage="REQUIRED" required="true">
                         <input class="input" formControlName="country" type="text" nbInput fullWidth fieldSize="medium" />
                     </app-input-validate-wrapper>
 
-                    <app-input-validate-wrapper for="city" label="City" [ref]="formDeliveryField('city')" invalidMessage="Required">
+                    <app-input-validate-wrapper for="city" label="CITY" [ref]="formDeliveryField('city')" invalidMessage="REQUIRED" required="true">
                         <input class="input" formControlName="city" type="text" nbInput fullWidth fieldSize="medium" />
                     </app-input-validate-wrapper>
 
-                    <app-input-validate-wrapper for="county" label="County" [ref]="formDeliveryField('county')" invalidMessage="Required">
+                    <app-input-validate-wrapper for="county" label="COUNTY" [ref]="formDeliveryField('county')">
                         <input class="input" formControlName="county" type="text" nbInput fullWidth fieldSize="medium" />
                     </app-input-validate-wrapper>
 
-                    <app-input-validate-wrapper for="postCode" label="Postcode" [ref]="formDeliveryField('postCode')" invalidMessage="Required">
+                    <app-input-validate-wrapper for="postCode" label="POSTCODE" [ref]="formDeliveryField('postCode')" invalidMessage="REQUIRED" required="true">
                         <input class="input" formControlName="postCode" type="text" nbInput fullWidth fieldSize="medium" />
                     </app-input-validate-wrapper>
 
-                    <app-input-validate-wrapper for="comments" label="comments" [ref]="formDeliveryField('comments')" invalidMessage="Required">
+                    <app-input-validate-wrapper for="comments" label="COMMENTS" [ref]="formDeliveryField('comments')">
                         <textarea nbInput fullWidth formControlName="comments" fieldSize="medium" fullWidth></textarea>
                     </app-input-validate-wrapper>
                 </div>
             </nb-card-body>
             <nb-card-footer>
                 <div class="actions">
-                    <button nbButton nbStepperPrevious>prev</button>
+                    <button nbButton nbStepperPrevious>{{ "PREVIOUS" | translate }}</button>
                     <button
                         nbButton
                         nbStepperNext
-                        (click)="generateOrder(); formProgress = 50"
+                        (click)="generateOrder(); formProgress = 60"
                         [disabled]="formDeliveryField('delivery').value && formDelivery.invalid"
                         outline
                         status="success"
                     >
-                        next
+                        {{ "NEXT" | translate }}
                     </button>
                 </div>
             </nb-card-footer>
         </nb-card>
     </nb-step>
 
-    <nb-step label="Review">
+    <nb-step [label]="'REVIEW' | translate">
         <nb-card>
             <nb-card-header>
-                <h4>Review</h4>
+                <h4>{{ "REVIEW" | translate }}</h4>
             </nb-card-header>
             <nb-card-body>
                 <div class="buyer">
@@ -138,29 +142,89 @@
                         >:<em> {{ formDelivery.value.comments }}</em>
                     </div>
                 </div>
-                <div class="items"></div>
+                <div class="items">
+                    <h1>{{ "ITEMS" | translate }}</h1>
+                    <nb-user
+                        *ngFor="let item of cartItems | keyvalue"
+                        shape="rectangle"
+                        badgeStatus="primary"
+                        [badgeText]="(item.value.item?.price | currency) + ' (×' + item.value.quantity + ')'"
+                        [name]="item.value.item?.title"
+                        badgePosition="bottom start"
+                        size="giant"
+                        [picture]="item.value.item?.image"
+                        [title]="item.value.item?.description"
+                    ></nb-user>
+                </div>
+
+                <div class="vendors">
+                    <h1>{{ "VENDORS" | translate }}</h1>
+                    <div></div>
+                    <nb-user
+                        *ngFor="let vendor of vendors"
+                        shape="rectangle"
+                        [name]="vendor.title"
+                        size="giant"
+                        [picture]="vendor.image"
+                        [title]="vendor.description"
+                    ></nb-user>
+                </div>
             </nb-card-body>
             <nb-card-footer>
                 <div class="actions">
-                    <button nbButton nbStepperPrevious>prev</button>
-                    <button nbButton nbStepperNext hero status="success" (click)="submitOrder(); formProgress = 75" fullWidth>Submit Order</button>
+                    <button nbButton nbStepperPrevious>{{ "PREVIOUS" | translate }}</button>
+                    <button nbButton nbStepperNext hero status="success" (click)="submitOrder(); formProgress = 100" fullWidth>
+                        {{ "PLACE_ORDER" | translate }}
+                    </button>
                 </div>
             </nb-card-footer>
         </nb-card>
     </nb-step>
 
-    <nb-step label="Payment">
-        <nb-card>
+    <nb-step [label]="'PAYMENT' | translate">
+        <nb-card [nbSpinner]="loading" nbSpinnerStatus="primary">
             <nb-card-header>
-                <h4>Payment</h4>
+                <h4>{{ "PAYMENT" | translate }}</h4>
             </nb-card-header>
-            <nb-card-body>
-                <p class="lorem">
-                    Pay to ....
-                </p>
+            <nb-card-body *ngIf="loading"> {{ "PLEASE_WAIT" | translate }} </nb-card-body>
+
+            <nb-card-body *ngIf="!loading">
+                <nb-card *ngFor="let order of confirmedOrder" class="order">
+                    <nb-card-header>
+                        <h1>{{ order.orderId }}</h1>
+                        <h2>{{ order.sum | currency }}</h2>
+                    </nb-card-header>
+                    <nb-card-body>
+                        <nb-user
+                            shape="rectangle"
+                            [name]="order.seller.title"
+                            size="giant"
+                            [picture]="order.seller.image"
+                            [title]="order.seller.description"
+                        ></nb-user>
+
+                        <div *ngFor="let listing of order.listings">
+                            <nb-user
+                                [name]="listing.title"
+                                size="large"
+                                badgeStatus="primary"
+                                [badgeText]="(listing.price | currency) + ' (×' + listing.quantity + ')'"
+                                [picture]="listing.image"
+                                [title]="listing.description"
+                            ></nb-user>
+                        </div>
+                    </nb-card-body>
+
+                    <nb-card-footer>
+                        <h5 *ngIf="order.seller.bank">
+                            {{ "PLEASE_PAY" | translate }} {{ order.sum | currency }} {{ "TO" | translate }} {{ order.seller.bank }}
+                            {{ "SPECIFYING" | translate }} {{ order.orderId }} {{ "AS_PAYMENT_ID" | translate }}
+                        </h5>
+                    </nb-card-footer>
+                </nb-card>
             </nb-card-body>
             <nb-card-footer>
-                <button nbButton nbStepperNext hero status="primary" (click)="formProgress = 100" fullWidth>Print</button>
+                <!-- <button nbButton nbStepperNext hero status="primary" (click)="formProgress = 100" fullWidth>{{ "SAVE"}}</button> -->
             </nb-card-footer>
         </nb-card>
     </nb-step>

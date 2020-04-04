@@ -1,6 +1,6 @@
 <h4>{{ "ITEMS" | translate }}</h4>
 <p *ngFor="let item of cartItems | keyvalue">
-    {{ item.value.item?.title }}: <strong>{{ item.value.item?.price | currency }}</strong> (x{{ item.value.quantity }})
+    {{ item.value.item?.title }}: <strong>{{ item.value.item?.price | currency }}</strong> (×{{ item.value.quantity }})
 </p>
 
 <div *ngIf="delivery">

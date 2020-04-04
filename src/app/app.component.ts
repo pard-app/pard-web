@@ -1,13 +1,13 @@
 import { Component } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { CartStoreService } from "@core/stores/cart/cart.store.service";
+import { CartStoreService } from "src/app/@core/stores/cart/cart.store.service";
 
 @Component({
     selector: "app-root",
     templateUrl: "./app.component.html",
 })
 export class AppComponent {
-    title = "pard-web";
+    title = "Pard";
     constructor(private translate: TranslateService, private cartStoreService: CartStoreService) {
         this.translate.setDefaultLang("en");
         this.translate.use(this.translate.getBrowserLang());

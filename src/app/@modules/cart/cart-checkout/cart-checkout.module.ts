@@ -2,8 +2,17 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { CartCheckoutComponent } from "./cart-checkout.component";
 import { TranslateModule } from "@ngx-translate/core";
-import { NbInputModule, NbCardModule, NbStepperModule, NbCheckboxModule, NbButtonModule, NbUserModule, NbProgressBarModule } from "@nebular/theme";
-import { SharedModule } from "@shared/shared.module";
+import {
+    NbInputModule,
+    NbCardModule,
+    NbStepperModule,
+    NbCheckboxModule,
+    NbButtonModule,
+    NbUserModule,
+    NbProgressBarModule,
+    NbSpinnerModule,
+} from "@nebular/theme";
+import { SharedModule } from "../../../@shared/shared.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
@@ -21,6 +30,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
         NbCheckboxModule,
         NbButtonModule,
         NbUserModule,
+        NbSpinnerModule,
     ],
     exports: [CartCheckoutComponent],
 })
