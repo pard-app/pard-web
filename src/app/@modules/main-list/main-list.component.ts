@@ -14,7 +14,6 @@ import { ListingItem } from "src/app/@core/models/listingitem.interface";
 export class MainListComponent implements OnInit {
     public _vendorsList$ = new BehaviorSubject<Array<IVendor> | any>([]);
     public _listingsList$ = new BehaviorSubject<Array<ListingItem> | any>([]);
-    public currentCity: string = null;
     public currentActiveTab$: Observable<Params>;
 
     constructor(public vendorService: VendorService, private listingService: ListingService, private route: ActivatedRoute, private router: Router) {}
@@ -45,9 +44,5 @@ export class MainListComponent implements OnInit {
 
     changeTab({ tabId }) {
         this.router.navigate([], { queryParams: { view: tabId } });
-    }
-
-    onCityChange(ev) {
-        this.currentCity = ev;
     }
 }
