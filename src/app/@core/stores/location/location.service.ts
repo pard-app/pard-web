@@ -12,6 +12,7 @@ export class LocationService {
     // Expose the observable$ part of the `_currentLocation$` subject (read only stream)
     public readonly currentLocation$: Observable<Hit> = this._currentLocation$.asObservable();
     public readonly currentVendorIdsAtLocation$: Observable<string[]> = this._currentVendorIdsAtLocation$.asObservable();
+    public currentCity;
 
     public set currentLocation(location) {
         this._currentLocation$.next(location);

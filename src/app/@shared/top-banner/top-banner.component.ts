@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { LocationService } from "@core/stores/location/location.service";
 @Component({
     selector: "app-top-banner",
     templateUrl: "./top-banner.component.html",
@@ -8,17 +9,15 @@ import { HttpClient } from "@angular/common/http";
 export class TopBannerComponent implements OnInit {
     @Input() displayFormsContainer: boolean = true;
 
-    public currentCity;
-
-    constructor(private httpClient: HttpClient) {}
+    constructor(private locationService: LocationService, private http: HttpClient) {}
 
     ngOnInit(): void {}
 
     get getBackgroundImage() {
-        if (this.currentCity) {
-            return `url(assets/images/${this.currentCity}.jpg)`;
+        if (this.locationService.currentCity) {
+            return `url(assets/images/${this.locationService.currentCity}.jpg)`;
         } else {
-            return "rgb(238, 243, 255)";
+            return "none";
         }
     }
 }

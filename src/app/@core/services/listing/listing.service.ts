@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { environment } from "src/environments/environment";
 import { AlgoliaService } from "@services/algolia/algolia.service";
 import { ListingItem } from "src/app/@core/models/listingitem.interface";
 import { from, Observable } from "rxjs";
