@@ -24,6 +24,10 @@ export class SearchLocationComponent implements AfterViewInit, OnDestroy {
         this.placesSearchInstance.on("change", (suggestion: ChangeEvent) => {
             this.cityChanged.emit(suggestion);
         });
+
+        this.placesSearchInstance.on("clear", () => {
+            this.onClear.emit();
+        });
     }
 
     ngOnDestroy() {

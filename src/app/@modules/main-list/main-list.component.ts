@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { IVendor } from "src/app/@core/models/vendor.interface";
 import { Observable, Subscription } from "rxjs";
 import { ActivatedRoute, Params, Router } from "@angular/router";
-import { map, flatMap } from "rxjs/operators";
+import { map, flatMap, skip, take, debounceTime, first, single } from "rxjs/operators";
 import { VendorService } from "@services/vendor/vendor.service";
 import { ListingService } from "@services/listing/listing.service";
 import { ListingItem } from "@models/listingitem.interface";
@@ -31,23 +31,32 @@ export class MainListComponent implements OnInit, OnDestroy {
         this.currentActiveTab$ = this.route.queryParams.pipe(map((params) => params));
         this.searchVendorData({});
         this.searchListingsData({});
-        this.fetchByLocation();
     }
 
     private searchVendorData({ query = "" }) {
-        this.vendorsList$ = this.vendorService.searchVendor({ query }).pipe(map(({ hits }) => hits));
+        const locationSub = this.locationService.currentLocation$.subscribe(({ _geoloc }) => {
+            if (_geoloc) {
+                this.vendorsList$ = this.vendorService.searchVendor({ query, aroundLatLng: geoLocStr(_geoloc) }).pipe(
+                    map(({ hits }) => {
+                        this.locationService.currentVendorIdsAtLocation = hits.map(({ objectID }) => objectID);
+                        return hits;
+                    })
+                );
+            } else {
+                this.locationService.currentVendorIdsAtLocation = [];
+                this.vendorsList$ = this.vendorService.searchVendor({ query }).pipe(map(({ hits }) => hits));
+            }
+        });
+        this.subscriptions.add(locationSub);
     }
 
     private searchListingsData({ query = "" }) {
-        this.listingsList$ = this.listingService.searchListing({ query }).pipe(map(({ hits }) => hits));
-    }
-
-    private fetchByLocation() {
-        const locationSub = this.locationService.curretLocation$.subscribe(({ _geoloc }) => {
-            console.log(_geoloc);
-            if (!_geoloc) return;
-            this.vendorsList$ = this.vendorService.searchVendor({ query: "", aroundLatLng: geoLocStr(_geoloc) }).pipe(map(({ hits }) => hits));
-            // this.listingsList$ = this.listingService.searchListing({ query: "", }).pipe(map(({ hits }) => hits));
+        const locationSub = this.locationService.currentVendorIdsAtLocation$.subscribe((vendorIds) => {
+            if (vendorIds && vendorIds.length) {
+                this.listingsList$ = this.listingService.searchListingByVendorsIds({ query, vendorIds }).pipe(map(({ hits }) => hits));
+            } else {
+                this.listingsList$ = this.listingService.searchListing({ query }).pipe(map(({ hits }) => hits));
+            }
         });
         this.subscriptions.add(locationSub);
     }

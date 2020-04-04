@@ -20,6 +20,13 @@ export class ListingService {
         return this.algoliaService.listingsIndex.search(query, { filters: "vendor:" + vendorId, ...pagination });
     }
 
+    public searchListingByVendorsIds({ query = "", vendorIds, pagination = {} }) {
+        const formatIds = vendorIds.reduce((acc, currVal, idx) => (acc += `vendor:${currVal} ${idx + 1 < vendorIds.length ? "OR " : ""}`), "");
+        return from(
+            this.algoliaService.listingsIndex.search<ListingItem[]>(query, { filters: formatIds })
+        );
+    }
+
     public getListingsByIds(ids: string[]) {
         return this.algoliaService.listingsIndex.getObjects(ids);
     }

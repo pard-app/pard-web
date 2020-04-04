@@ -12,9 +12,12 @@ export class SearchBoxComponent implements OnInit {
 
     constructor(private locationService: LocationService) {}
 
-    currentCityOnChange(ev: ChangeEvent) {
-        console.log(ev);
+    public currentCityOnChange(ev: ChangeEvent) {
         this.locationService.currentLocation = ev?.suggestion?.hit;
+    }
+
+    public onClear() {
+        this.locationService.currentLocation = {} as any;
     }
 
     ngOnInit(): void {}
