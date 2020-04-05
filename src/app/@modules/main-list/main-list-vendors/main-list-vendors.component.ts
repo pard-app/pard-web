@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { IVendor } from "src/app/@core/models/vendor.interface";
 import { Observable, Subscription } from "rxjs";
-import { map, delay, finalize } from "rxjs/operators";
+import { map } from "rxjs/operators";
 import { VendorService } from "@services/vendor/vendor.service";
 import { ListingItem } from "@models/listingitem.interface";
 import { LocationStore } from "@core/stores/location/location.store";

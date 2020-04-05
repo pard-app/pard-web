@@ -1,4 +1,4 @@
 <nb-form-field>
-    <nb-icon nbPrefix icon="home-outline" pack="eva"></nb-icon>
+    <nb-icon nbPrefix status="primary" icon="home-outline" pack="eva" (click)="getMyLocation()" class="home-icon"></nb-icon>
     <input fullWidth #autoInput nbInput type="address" [placeholder]="'CITY_NAME' | translate" />
 </nb-form-field>

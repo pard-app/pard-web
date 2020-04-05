@@ -6,6 +6,7 @@ import { LocationStore } from "@core/stores/location/location.store";
 @Component({
     selector: "app-search-location",
     templateUrl: "./search-location.component.html",
+    styleUrls: ["./search-location.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchLocationComponent implements AfterViewInit, OnDestroy {
@@ -20,10 +21,11 @@ export class SearchLocationComponent implements AfterViewInit, OnDestroy {
         this.placesSearchInstance = places({
             container: this.input.nativeElement,
             type: "city",
-            useDeviceLocation: true,
         });
 
         this.placesSearchInstance.on("change", (suggestion: ChangeEvent) => {
+            console.log(suggestion);
+
             this.cityChanged.emit(suggestion);
         });
 
@@ -31,7 +33,16 @@ export class SearchLocationComponent implements AfterViewInit, OnDestroy {
             this.onClear.emit();
         });
     }
-
+    getMyLocation() {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                console.log(position);
+            },
+            (err) => {
+                console.log(err);
+            }
+        );
+    }
     clearInput() {
         this.placesSearchInstance.setVal("");
     }
