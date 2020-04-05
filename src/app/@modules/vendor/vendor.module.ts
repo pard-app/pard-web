@@ -6,12 +6,12 @@ import { VendorListingsComponent } from "./vendor-listings-page/vendor-listings.
 import { VendorSingleListingViewComponent } from "./vendor-single-listing-page/vendor-single-listing-view.component";
 import { VendorSummaryHeaderComponent } from "./vendor-summary-header/vendor-summary-header.component";
 import { SharedModule } from "@shared/shared.module";
-import { NbCardModule, NbSpinnerModule } from "@nebular/theme";
+import { NbCardModule, NbSpinnerModule, NbInputModule } from "@nebular/theme";
 import { VendorListingsSearchComponent } from "./vendor-listings-page/vendor-listings-search/vendor-listings-search.component";
 
 @NgModule({
     declarations: [VendorListingsComponent, VendorSingleListingViewComponent, VendorSummaryHeaderComponent, VendorListingsSearchComponent],
-    imports: [CommonModule, SharedModule, VendorRoutingModule, TranslateModule, NbCardModule, NbSpinnerModule],
+    imports: [CommonModule, SharedModule, VendorRoutingModule, TranslateModule, NbInputModule, NbCardModule, NbSpinnerModule],
     exports: [VendorListingsComponent],
 })
 export class VendorModule {}

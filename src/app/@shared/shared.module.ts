@@ -24,6 +24,7 @@ import { CardListingComponent } from "./card-listing/card-listing.component";
 import { TranslateModule } from "@ngx-translate/core";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
+import { LoadingComponent } from "./loading/loading.component";
 
 @NgModule({
     declarations: [
@@ -34,6 +35,7 @@ import { CommonModule } from "@angular/common";
         SearchLocationComponent,
         SearchSmartItemsComponent,
         TopBannerComponent,
+        LoadingComponent,
     ],
     imports: [
         CommonModule,
@@ -58,6 +60,7 @@ import { CommonModule } from "@angular/common";
         SearchLocationComponent,
         SearchSmartItemsComponent,
         TopBannerComponent,
+        LoadingComponent,
     ],
 })
 export class SharedModule {}

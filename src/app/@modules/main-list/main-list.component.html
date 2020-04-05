@@ -14,10 +14,7 @@
                     [tabTitle]="'VENDORS' | translate"
                     [tabIcon]="'home-outline'"
                     [active]="(currentActiveTab$ | async).view == 'vendors'"
-                    [nbSpinner]="!vendorsList$"
                     [tabId]="'vendors'"
-                    nbSpinnerSize="giant"
-                    nbSpinnerStatus="primary"
                     class="grid-tab"
                 >
                     <div class="grid-parent grid-parent__vendors">

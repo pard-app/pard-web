@@ -1,0 +1,76 @@
+@import "~src/app/@core/styles/themes";
+
+.spinnerBox {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.configBorder {
+    width: 115px;
+    height: 115px;
+    padding: 3px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    &-1 {
+        transform: rotate(45px);
+        animation: spinClockwise 3s ease-in-out 0s infinite alternate;
+    }
+    &-2 {
+        transform: rotate(0);
+        animation: spinXClockwise 3s ease-in-out 0s infinite alternate;
+    }
+    &--primary {
+        background-color: nb-theme(color-primary-400);
+    }
+}
+
+.innerFill {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    &--primary {
+        background-color: nb-theme(color-primary-500);
+    }
+}
+
+@keyframes spinXClockwise {
+    0% {
+        transform: rotate(45deg);
+    }
+    25% {
+        transform: rotate(-45deg);
+    }
+    50% {
+        transform: rotate(-135deg);
+    }
+    75% {
+        transform: rotate(-225deg);
+    }
+    100% {
+        transform: rotate(-315deg);
+    }
+}
+
+@keyframes spinClockwise {
+    0% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(90deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    75% {
+        transform: rotate(270deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
