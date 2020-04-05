@@ -1,4 +1,9 @@
-.deliverymyself {
+nb-stepper {
+    padding: 20px;
+    display: block;
+}
+
+.delivery-checkbox {
     margin: 20px 0;
     font-size: 1.1em;
 }
@@ -8,4 +13,10 @@
     button:first-child {
         margin-right: 10px;
     }
+}
+
+.items,
+.vendors,
+.order {
+    margin-top: 20px;
 }

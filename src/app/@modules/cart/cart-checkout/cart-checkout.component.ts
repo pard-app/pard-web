@@ -1,9 +1,10 @@
 import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { CartStoreService } from "@core/stores/cart/cart.store.service";
-import { CartItem } from "src/app/@core/models/listingitem.interface";
-import { VendorService } from "@services/vendor/vendor.service";
-import { DbService } from "@services/db-service/db-service.service";
+import { CartStoreService } from "src/app/@core/stores/cart/cart.store.service";
+import { CartItem, CartItemObject } from "src/app/@core/models/listingitem.interface";
+import { VendorService } from "src/app/@core/services/vendor/vendor.service";
+import { DbService } from "src/app/@core/services/db-service/db-service.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     selector: "app-cart-checkout",
@@ -17,18 +18,27 @@ export class CartCheckoutComponent implements OnInit {
     public orders: any;
     public buyer: any;
     public delivery: any;
+    public loading: boolean = true;
+    public confirmedOrder: any;
 
     @Output() deliveryChanged: EventEmitter<any> = new EventEmitter();
     @Input() vendors: any;
+    @Input() cartItems: CartItemObject;
 
-    constructor(private fb: FormBuilder, private cartStoreService: CartStoreService, private vendorService: VendorService, private dbService: DbService) {}
+    constructor(
+        private fb: FormBuilder,
+        private cartStoreService: CartStoreService,
+        private vendorService: VendorService,
+        private dbService: DbService,
+        private translate: TranslateService
+    ) {}
 
     ngOnInit(): void {
         this.formBasic = this.fb.group({
             firstName: ["", [Validators.required]],
             lastName: ["", [Validators.required]],
             email: ["", [Validators.required, Validators.email]],
-            phone: ["", [Validators.required]],
+            phone: [""],
         });
 
         this.formDelivery = this.fb.group({
@@ -94,13 +104,15 @@ export class CartCheckoutComponent implements OnInit {
     }
 
     public async submitOrder() {
-        console.log(this.orders);
-
-        this.dbService.placeOrder(this.orders, this.buyer, this.delivery).then(
+        this.dbService.placeOrder(this.orders, this.buyer, this.delivery, false).then(
             async (response) => {
-                console.log("response : ", response);
+                this.loading = false;
+                this.confirmedOrder = response;
+                console.log(this.confirmedOrder);
             },
             async (err) => {
+                this.loading = false;
+                this.confirmedOrder = this.translate.instant("ERROR_WHILE_PLACING_ORDER");
                 console.log(err);
             }
         );
