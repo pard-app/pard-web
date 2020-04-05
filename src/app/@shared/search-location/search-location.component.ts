@@ -33,7 +33,7 @@ export class SearchLocationComponent implements AfterViewInit, OnDestroy {
     }
 
     clearInput() {
-        this.input.nativeElement.value = "";
+        this.placesSearchInstance.setVal("");
     }
 
     ngOnDestroy() {
