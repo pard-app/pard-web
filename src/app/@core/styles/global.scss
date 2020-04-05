@@ -9,7 +9,11 @@
 p {
     margin: 0;
 }
-
+a {
+    &:focus {
+        outline: none;
+    }
+}
 body {
     margin: 0;
 }

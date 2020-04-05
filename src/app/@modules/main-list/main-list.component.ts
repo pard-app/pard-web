@@ -34,9 +34,9 @@ export class MainListComponent implements OnInit, OnDestroy {
     }
 
     private searchVendorData({ query = "" }) {
-        const locationSub = this.locationStore.currentLocation$.subscribe(({ _geoloc }) => {
-            if (_geoloc) {
-                this.vendorsList$ = this.vendorService.searchVendor({ query, aroundLatLng: geoLocStr(_geoloc) }).pipe(
+        const locationSub = this.locationStore.currentLocation$.subscribe((location) => {
+            if (location && location._geoloc) {
+                this.vendorsList$ = this.vendorService.searchVendor({ query, aroundLatLng: geoLocStr(location._geoloc) }).pipe(
                     map(({ hits }) => {
                         this.locationStore.currentVendorIdsAtLocation = hits.map(({ objectID }) => objectID);
                         return hits;

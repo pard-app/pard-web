@@ -88,6 +88,7 @@
     "CREATE": "Create",
 
     "SELECT_LOCATION": "Select a location",
+    "CHANGE_LOCATION": "Change location",
     "MARKETPLACE": "Marketplace",
     "WELCOME_TO": "Welcome to",
     "CITY_NAME": "City name",

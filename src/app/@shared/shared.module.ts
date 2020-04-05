@@ -11,6 +11,7 @@ import {
     NbIconModule,
     NbSelectModule,
     NbBadgeModule,
+    NbFormFieldModule,
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { CardVendorComponent } from "./card-vendor/card-vendor.component";
@@ -43,6 +44,7 @@ import { CommonModule } from "@angular/common";
         NbCardModule,
         NbInputModule,
         NbButtonModule,
+        NbFormFieldModule,
         NbIconModule,
         NbSelectModule,
         NbBadgeModule,

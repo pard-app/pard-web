@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter, ChangeDetectionStrategy, ViewChild, AfterViewInit, OnDestroy } from "@angular/core";
 import places, { PlacesInstance, ChangeEvent } from "places.js";
+import { LocationStore } from "@core/stores/location/location.store";
 
 // import options from "./options";
 @Component({
@@ -11,8 +12,9 @@ export class SearchLocationComponent implements AfterViewInit, OnDestroy {
     @ViewChild("autoInput") input;
     @Output() cityChanged? = new EventEmitter<ChangeEvent>();
     @Output() onClear? = new EventEmitter();
-
     private placesSearchInstance: PlacesInstance = null;
+
+    constructor(private locationStore: LocationStore) {}
 
     ngAfterViewInit() {
         this.placesSearchInstance = places({
@@ -28,6 +30,10 @@ export class SearchLocationComponent implements AfterViewInit, OnDestroy {
         this.placesSearchInstance.on("clear", () => {
             this.onClear.emit();
         });
+    }
+
+    clearInput() {
+        this.input.nativeElement.value = "";
     }
 
     ngOnDestroy() {
