@@ -1,4 +1,6 @@
-<app-top-banner (currentCityOnChange)="onCityChange($event)"></app-top-banner>
+<app-top-banner>
+    <app-search-box></app-search-box>
+</app-top-banner>
 
 <section class="content-section">
     <h2 class="title title--thin title--space">
@@ -12,18 +14,10 @@
                     [tabTitle]="'VENDORS' | translate"
                     [tabIcon]="'home-outline'"
                     [active]="(currentActiveTab$ | async).view == 'vendors'"
-                    [nbSpinner]="!_vendorsList$"
                     [tabId]="'vendors'"
-                    nbSpinnerSize="giant"
-                    nbSpinnerStatus="primary"
                     class="grid-tab"
                 >
-                    <div class="grid-parent grid-parent__vendors">
-                        <section class="grid-child" *ngFor="let item of _vendorsList$ | async">
-                            <app-card-vendor [item]="item"></app-card-vendor>
-                        </section>
-                    </div>
-                    <h2 *ngIf="_vendorsList$ | async" class="title--thin title--space">{{ "NOTHING_FOUND" | translate }} 😥</h2>
+                    <main-list-vendors></main-list-vendors>
                 </nb-tab>
 
                 <nb-tab
@@ -33,7 +27,7 @@
                     class="grid-tab"
                     [tabIcon]="'archive-outline'"
                 >
-                    <app-list-listings [listingsList$]="_listingsList$"></app-list-listings>
+                    <main-list-listings></main-list-listings>
                 </nb-tab>
             </nb-tabset>
         </nb-card-body>

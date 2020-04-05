@@ -1,31 +1,26 @@
 import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { LocationStore } from "@core/stores/location/location.store";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 @Component({
     selector: "app-top-banner",
     templateUrl: "./top-banner.component.html",
-    styleUrls: ["./top-banner.component.scss"]
+    styleUrls: ["./top-banner.component.scss"],
 })
 export class TopBannerComponent implements OnInit {
-    @Output() currentCityOnChange: EventEmitter<string> = new EventEmitter();
     @Input() displayFormsContainer: boolean = true;
-    private places: any;
+    public imageUrl$: Observable<string>;
 
-    public currentCity;
+    constructor(private locationStore: LocationStore, private http: HttpClient) {}
 
-    constructor(private httpClient: HttpClient) {}
-
-    ngOnInit(): void {}
-
-    changeCity(ev) {
-        this.currentCity = ev;
-        this.currentCityOnChange.emit(ev);
-    }
-
-    get getBackgroundImage() {
-        if (this.currentCity) {
-            return `url(assets/images/${this.currentCity}.jpg)`;
-        } else {
-            return "rgb(238, 243, 255)";
-        }
+    ngOnInit(): void {
+        this.imageUrl$ = this.locationStore.currentLocationSuggestion$.pipe(
+            map(() => {
+                const img = `assets/images/${this.locationStore.currentCity}.jpg`;
+                if (img.includes("undefined")) return;
+                return img;
+            })
+        );
     }
 }

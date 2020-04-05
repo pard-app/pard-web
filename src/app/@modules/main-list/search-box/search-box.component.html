@@ -1,0 +1,16 @@
+<div class="search-box">
+    <h3 class="title text-alternate">
+        {{ currentCity ? ("WELCOME_TO" | translate) : ("SELECT_LOCATION" | translate) }}
+        <span class="city-name" *ngIf="currentCity">{{ currentCity }}</span>
+    </h3>
+    <!-- <app-search-smart-items></app-search-smart-items> -->
+    <app-search-location
+        #searchLocation
+        [style.display]="currentCity && 'none'"
+        (onClear)="onClear()"
+        (cityChanged)="currentCityOnChange($event)"
+    ></app-search-location>
+    <button (click)="onClear()" *ngIf="currentCity" fullWidth nbButton hero status="primary">
+        {{ "CHANGE_LOCATION" | translate }} <nb-icon icon="edit-2"></nb-icon>
+    </button>
+</div>

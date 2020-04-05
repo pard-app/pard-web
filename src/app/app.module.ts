@@ -10,7 +10,7 @@ import { DbService } from "@services/db-service/db-service.service";
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
 // NEBULAR MODULES
-import { NbAutocompleteDirective, NbMenuService, NbLayoutModule, NbThemeModule } from "@nebular/theme";
+import { NbAutocompleteDirective, NbLayoutModule, NbThemeModule, NbMenuModule } from "@nebular/theme";
 
 import { VendorModule } from "@modules/vendor/vendor.module";
 import { AngularFireFunctionsModule, REGION } from "@angular/fire/functions";
@@ -29,6 +29,7 @@ import { TopheaderModule } from "@modules/topheader/topheader.module";
         BrowserAnimationsModule,
         NbLayoutModule,
         NbThemeModule.forRoot({ name: "corporate" }),
+        NbMenuModule.forRoot(),
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireFunctionsModule,
         TranslateModule.forRoot({
@@ -46,13 +47,7 @@ import { TopheaderModule } from "@modules/topheader/topheader.module";
         SharedModule,
         TopheaderModule,
     ],
-    providers: [
-        DbService,
-        NbAutocompleteDirective,
-        NbMenuService,
-        { provide: DEFAULT_CURRENCY_CODE, useValue: "EUR" },
-        { provide: REGION, useValue: "europe-west1" },
-    ],
+    providers: [DbService, NbAutocompleteDirective, { provide: DEFAULT_CURRENCY_CODE, useValue: "EUR" }, { provide: REGION, useValue: "europe-west1" }],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

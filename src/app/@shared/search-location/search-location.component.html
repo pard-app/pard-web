@@ -1,7 +1,4 @@
-<!-- <input fullWidth #autoInput nbInput type="text" [(ngModel)]="currentText" [placeholder]="'CITY_NAME' | translate" [nbAutocomplete]="auto" />
-<nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
-    <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option">
-        {{ option }}
-    </nb-option>
-</nb-autocomplete> -->
-<input fullWidth #autoInput nbInput type="address" [placeholder]="'CITY_NAME' | translate" />
+<nb-form-field>
+    <nb-icon nbPrefix status="primary" icon="home-outline" pack="eva" (click)="getMyLocation()" class="home-icon"></nb-icon>
+    <input fullWidth #autoInput nbInput type="address" [placeholder]="'CITY_NAME' | translate" />
+</nb-form-field>
