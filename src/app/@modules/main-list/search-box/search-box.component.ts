@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { ChangeEvent } from "places.js";
-import { LocationService } from "@core/stores/location/location.service";
+import { LocationStore } from "@core/stores/location/location.store";
 
 @Component({
     selector: "app-search-box",
@@ -8,19 +8,19 @@ import { LocationService } from "@core/stores/location/location.service";
     styleUrls: ["./search-box.component.scss"],
 })
 export class SearchBoxComponent implements OnInit {
-    public currentCity: string = this.locationService.currentCity;
+    public currentCity: string = this.locationStore.currentCity;
 
-    constructor(private locationService: LocationService) {}
+    constructor(private locationStore: LocationStore) {}
 
     public currentCityOnChange(ev: ChangeEvent) {
-        this.locationService.currentLocation = ev?.suggestion?.hit;
+        this.locationStore.currentLocation = ev?.suggestion?.hit;
         this.currentCity = ev.suggestion.name;
-        this.locationService.currentCity = ev.suggestion.name;
+        this.locationStore.currentCity = ev.suggestion.name;
     }
 
     public onClear() {
-        this.locationService.currentLocation = {} as any;
-        this.locationService.currentCity = null;
+        this.locationStore.currentLocation = {} as any;
+        this.locationStore.currentCity = null;
         this.currentCity = null;
     }
 

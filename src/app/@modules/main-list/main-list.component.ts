@@ -6,7 +6,7 @@ import { map, flatMap, skip, take, debounceTime, first, single } from "rxjs/oper
 import { VendorService } from "@services/vendor/vendor.service";
 import { ListingService } from "@services/listing/listing.service";
 import { ListingItem } from "@models/listingitem.interface";
-import { LocationService } from "@core/stores/location/location.service";
+import { LocationStore } from "@core/stores/location/location.store";
 import { geoLocStr } from "@utils/index";
 @Component({
     selector: "app-main-list",
@@ -20,7 +20,7 @@ export class MainListComponent implements OnInit, OnDestroy {
     public currentActiveTab$: Observable<Params>;
 
     constructor(
-        public locationService: LocationService,
+        public locationStore: LocationStore,
         public vendorService: VendorService,
         private listingService: ListingService,
         private route: ActivatedRoute,
@@ -34,16 +34,16 @@ export class MainListComponent implements OnInit, OnDestroy {
     }
 
     private searchVendorData({ query = "" }) {
-        const locationSub = this.locationService.currentLocation$.subscribe(({ _geoloc }) => {
+        const locationSub = this.locationStore.currentLocation$.subscribe(({ _geoloc }) => {
             if (_geoloc) {
                 this.vendorsList$ = this.vendorService.searchVendor({ query, aroundLatLng: geoLocStr(_geoloc) }).pipe(
                     map(({ hits }) => {
-                        this.locationService.currentVendorIdsAtLocation = hits.map(({ objectID }) => objectID);
+                        this.locationStore.currentVendorIdsAtLocation = hits.map(({ objectID }) => objectID);
                         return hits;
                     })
                 );
             } else {
-                this.locationService.currentVendorIdsAtLocation = [];
+                this.locationStore.currentVendorIdsAtLocation = [];
                 this.vendorsList$ = this.vendorService.searchVendor({ query }).pipe(map(({ hits }) => hits));
             }
         });
@@ -51,7 +51,7 @@ export class MainListComponent implements OnInit, OnDestroy {
     }
 
     private searchListingsData({ query = "" }) {
-        const locationSub = this.locationService.currentVendorIdsAtLocation$.subscribe((vendorIds) => {
+        const locationSub = this.locationStore.currentVendorIdsAtLocation$.subscribe((vendorIds) => {
             if (vendorIds && vendorIds.length) {
                 this.listingsList$ = this.listingService.searchListingByVendorsIds({ query, vendorIds }).pipe(map(({ hits }) => hits));
             } else {

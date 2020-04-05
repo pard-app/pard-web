@@ -4,7 +4,7 @@ import { Hit } from "places.js";
 @Injectable({
     providedIn: "root",
 })
-export class LocationService {
+export class LocationStore {
     // private cartItems: Array<ListingItem | any> = [];
     private _currentLocation$ = new BehaviorSubject<Hit>({} as Hit);
     private _currentVendorIdsAtLocation$ = new BehaviorSubject<string[]>([]);
