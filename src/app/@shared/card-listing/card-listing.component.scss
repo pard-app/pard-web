@@ -10,9 +10,11 @@
     color: nb-theme(color-secondary-600);
 }
 
-.vendor-card {
+.listing-card {
     position: relative;
-
+    &__card {
+        margin-bottom: 0;
+    }
     &__header {
         position: relative;
         padding: 0;

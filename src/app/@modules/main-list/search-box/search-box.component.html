@@ -1,6 +1,7 @@
 <div class="search-box">
     <h3 class="title text-alternate">
-        {{ currentCity ? ("WELCOME_TO" | translate) + " " + currentCity : ("SELECT_LOCATION" | translate) }}
+        {{ currentCity ? ("WELCOME_TO" | translate) : ("SELECT_LOCATION" | translate) }}
+        <span class="city-name" *ngIf="currentCity">{{ currentCity }}</span>
     </h3>
     <form class="example-form">
         <!-- <app-search-smart-items></app-search-smart-items> -->
