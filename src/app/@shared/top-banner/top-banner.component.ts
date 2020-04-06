@@ -11,12 +11,18 @@ import { map } from "rxjs/operators";
 export class TopBannerComponent implements OnInit {
     @Input() displayFormsContainer: boolean = true;
     public imageUrl$: Observable<string>;
+    public showFindLocationIcon: boolean;
 
     constructor(private locationStore: LocationStore, private http: HttpClient) {}
 
     ngOnInit(): void {
         this.imageUrl$ = this.locationStore.currentLocationSuggestion$.pipe(
-            map(() => {
+            map((location) => {
+                if (location) {
+                    this.showFindLocationIcon = false;
+                } else {
+                    this.showFindLocationIcon = true;
+                }
                 const img = `assets/images/${this.locationStore.currentCity}.jpg`;
                 if (img.includes("undefined")) return;
                 return img;

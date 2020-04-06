@@ -9,6 +9,19 @@
     font-weight: 600;
     border-bottom-left-radius: 50% 20%;
     border-bottom-right-radius: 50% 20%;
+    position: relative;
+    .svg-find-location {
+        top: 1%;
+        z-index: 2;
+        right: 3%;
+        height: 100%;
+        width: 450px;
+        position: absolute;
+        background-image: url(/assets/icons/find_location.svg);
+        background-position: 90% 50%;
+        background-size: 83%;
+        background-repeat: no-repeat;
+    }
 }
 
 .cutout {

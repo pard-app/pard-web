@@ -1,3 +1,4 @@
 <header [style]="(imageUrl$ | async) ? 'background-image: url(' + (imageUrl$ | async) + ')' : ''" class="app-header" role="banner">
     <ng-content></ng-content>
+    <div *ngIf="showFindLocationIcon" class="svg-find-location"></div>
 </header>

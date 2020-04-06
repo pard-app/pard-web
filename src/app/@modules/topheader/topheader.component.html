@@ -12,8 +12,8 @@
     <div class="top-header__cart">
         <button
             outline
+            ghost
             nbButton
-            outline
             status="primary"
             [nbPopover]="templateRef"
             [routerLink]="globalRoutes.CART_PAGE_ROOT"
@@ -25,7 +25,7 @@
         </button>
         <div *ngIf="count" class="cart-display-count">{{ count }}</div>
     </div>
-    <button outline nbButton [nbContextMenu]="items" class="top-header__button">
+    <button ghost nbButton status="primary" [nbContextMenu]="items" class="top-header__button">
         <nb-icon icon="menu-outline"></nb-icon>
     </button>
 </nb-layout-header>

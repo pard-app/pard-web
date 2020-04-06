@@ -16,7 +16,6 @@
 
     &__button {
         width: 70px;
-        margin: 0px 10px;
         cursor: pointer;
         &:focus {
             outline: none;
@@ -29,8 +28,8 @@
         .cart-display-count {
             position: absolute;
             bottom: -5px;
-            right: -5px;
-            background-color: nb-theme(color-primary-600);
+            right: 0;
+            background-color: nb-theme(color-success-600);
             border-radius: 50%;
             width: 20px;
             height: 20px;
