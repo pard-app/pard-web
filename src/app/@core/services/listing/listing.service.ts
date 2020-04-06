@@ -9,9 +9,9 @@ import { from, Observable } from "rxjs";
 export class ListingService {
     constructor(private algoliaService: AlgoliaService) {}
 
-    public searchListing({ query = "", hitsPerPage = 50 } = {}): Observable<ListingItem[] | any> {
+    public searchListing({ query = "", hitsPerPage = 50, page = 0 } = {}): Observable<ListingItem[] | any> {
         return from(
-            this.algoliaService.listingsIndex.search<ListingItem[]>(query, { hitsPerPage })
+            this.algoliaService.listingsIndex.search<ListingItem[]>(query, { hitsPerPage, page })
         );
     }
 
@@ -19,10 +19,10 @@ export class ListingService {
         return this.algoliaService.listingsIndex.search(query, { filters: "vendor:" + vendorId, ...pagination });
     }
 
-    public searchListingByVendorsIds({ query = "", vendorIds, pagination = {} }) {
+    public searchListingByVendorIds({ query = "", vendorIds, hitsPerPage = 16, page = 0 }) {
         const formatIds = vendorIds.reduce((acc, currVal, idx) => (acc += `vendor:${currVal} ${idx + 1 < vendorIds.length ? "OR " : ""}`), "");
         return from(
-            this.algoliaService.listingsIndex.search<ListingItem[]>(query, { filters: formatIds })
+            this.algoliaService.listingsIndex.search<ListingItem[]>(query, { filters: formatIds, hitsPerPage, page })
         );
     }
 
