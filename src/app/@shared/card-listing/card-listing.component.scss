@@ -20,27 +20,9 @@
         padding: 0;
         line-height: 0;
     }
-
-    &__add-cart-btn {
-        position: absolute;
-        top: -7px;
-        right: -7px;
-        border-radius: 50%;
+    &__footer {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: nb-theme(color-primary-600);
-        color: nb-theme(color-primary-100);
-        width: 44px;
-        height: 44px;
-        transition: 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-        cursor: pointer;
-        font-size: 2em;
-        font-weight: 100;
-        pointer-events: painted;
-        z-index: 1;
-        &:hover {
-            transform: scale(1.15);
-        }
+        justify-content: flex-end;
+        padding: 5px;
     }
 }

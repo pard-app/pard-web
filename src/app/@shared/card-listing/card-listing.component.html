@@ -1,22 +1,22 @@
 <div class="listing-card">
-    <div class="listing-card__add-cart-btn" (click)="addToCart()">
-        <nb-icon icon="shopping-cart"></nb-icon>
-    </div>
-
-    <nb-card
-        size="small"
-        class="listing-card__card clickable-card"
-        [routerLink]="'/' + globalRoutes.VENDOR_PAGE_ROOT + '/' + item.vendor + '/' + item.objectID"
-    >
+    <nb-card size="small" class="listing-card__card">
         <nb-badge [text]="item.stock" position="top left" status="primary"></nb-badge>
 
         <nb-card-header class="listing-card__header">
-            <img class="card-image" [src]="item.image ? item.image : ''" [alt]="item.title" />
+            <img
+                class="card-image clickable-card"
+                [src]="item.image ? item.image : ''"
+                [alt]="item.title"
+                [routerLink]="'/' + globalRoutes.VENDOR_PAGE_ROOT + '/' + item.vendor + '/' + item.objectID"
+            />
         </nb-card-header>
         <nb-card-body class="card-body">
             <h5 class="price">{{ item.price | currency }}</h5>
             <h6>{{ item.title }}</h6>
             <p>{{ item.description }}</p>
         </nb-card-body>
+        <nb-card-footer class="listing-card__footer">
+            <button nbButton ghost status="info" (click)="addToCart()">Add to cart</button>
+        </nb-card-footer>
     </nb-card>
 </div>
