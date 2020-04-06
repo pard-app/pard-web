@@ -24,8 +24,6 @@ export class SearchLocationComponent implements AfterViewInit, OnDestroy {
         });
 
         this.placesSearchInstance.on("change", (suggestion: ChangeEvent) => {
-            console.log(suggestion);
-
             this.cityChanged.emit(suggestion);
         });
 
