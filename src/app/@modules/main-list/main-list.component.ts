@@ -14,7 +14,12 @@ export class MainListComponent implements OnInit, OnDestroy {
     constructor(public locationStore: LocationStore, private route: ActivatedRoute, private router: Router) {}
 
     ngOnInit(): void {
-        this.currentActiveTab$ = this.route.queryParams.pipe(map((params) => params));
+        this.currentActiveTab$ = this.route.queryParams.pipe(
+            map((params) => {
+                if (!params.view) return { view: "vendors" };
+                return params;
+            })
+        );
     }
 
     public changeTab({ tabId }) {
