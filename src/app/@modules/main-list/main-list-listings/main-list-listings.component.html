@@ -1,2 +1,5 @@
-<app-loading *ngIf="isLoading" wrapperHeight="300px" status="primary"></app-loading>
 <app-list-listings [listingsList$]="listingsList$"></app-list-listings>
+<button *ngIf="!allLoaded" (click)="loadMore()" fullWidth nbButton hero status="primary" size="large">
+    {{ "MORE" | translate }}<nb-icon icon="grid"></nb-icon>
+</button>
+<app-loading *ngIf="isLoading" wrapperHeight="200px" status="primary"></app-loading>
