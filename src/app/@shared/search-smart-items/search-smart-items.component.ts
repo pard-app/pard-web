@@ -56,12 +56,10 @@ export class SearchSmartItemsComponent implements OnInit {
 
     private _filter(value: string): string[] {
         const filterValue = value.toLowerCase();
-
         return this.options.filter((option) => option.toLowerCase().includes(filterValue));
     }
 
     selectCountry({ option }) {
         this.router.navigate(["/marketplace"]);
-        console.log(option.value);
     }
 }
