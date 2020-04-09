@@ -9,20 +9,17 @@ import { LocationStore } from "@core/stores/location/location.store";
 })
 export class SearchBoxComponent implements OnInit {
     @ViewChild("searchLocation", { static: false }) searchLocationComponent;
-    public currentCity: string = this.locationStore.currentCity;
 
     constructor(private locationStore: LocationStore) {}
 
     public currentCityOnChange(ev: ChangeEvent) {
         this.locationStore.currentLocation = ev?.suggestion?.hit;
-        this.currentCity = ev.suggestion.name;
         this.locationStore.currentLocationSuggestion = ev.suggestion;
     }
 
     public onClear() {
         this.locationStore.currentLocation = undefined;
         this.locationStore.currentLocationSuggestion = null;
-        this.currentCity = null;
         this.searchLocationComponent.clearInput();
     }
 

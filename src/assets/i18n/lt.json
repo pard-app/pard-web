@@ -87,6 +87,8 @@
     "CONFIRM": "Patvirtinti",
     "REJECT": "Atmesti",
     "CREATE": "Sukurti",
+    "FILTER_BY_LISTING_OR_VENDOR": "Filter by product or business",
+    "SEARCH_VENDOR_LISTINGS": "Ieškoti skelbimuose",
 
     "SELECT_LOCATION": "Pasirinkite lokaciją",
     "CHANGE_LOCATION": "Keisti lokaciją",
@@ -106,6 +108,5 @@
     "QUANTITY": "Kiekis",
     "REMOVE": "Pašalinti",
     "NOTHING_FOUND": "Nieko nerasta.",
-    "HOME": "Pagrindinis",
-    "SEARCH_VENDOR_LISTINGS": "Ieškoti skelbimuose"
+    "HOME": "Pagrindinis"
 }

@@ -86,6 +86,7 @@
     "CONFIRM": "Apstiprināt",
     "REJECT": "Noraidīt",
     "CREATE": "Izveidot",
+    "FILTER_BY_LISTING_OR_VENDOR": "Filter by product or business",
 
     "SELECT_LOCATION": "Izvēlies pilsētu",
     "CHANGE_LOCATION": "Change location",
