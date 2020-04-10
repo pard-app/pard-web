@@ -59,7 +59,7 @@ h6 {
 .clickable-card {
     box-shadow: nb-theme(color-basic-transparent-400) 0px 1px 10px;
     transition: 0.1s cubic-bezier(0.42, 0.95, 0.72, 0.32);
-    border-radius: nb-theme(border-radius);
+    border-radius: nb-theme(card-border-radius);
     overflow: hidden;
     cursor: pointer;
 
