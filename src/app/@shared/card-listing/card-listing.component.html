@@ -1,22 +1,19 @@
-<div class="listing-card">
-    <nb-card size="small" class="listing-card__card">
-        <nb-badge [text]="item.stock" position="top left" status="primary"></nb-badge>
-
-        <nb-card-header class="listing-card__header">
-            <img
-                class="card-image clickable-card"
-                [src]="item.image ? item.image : ''"
-                [alt]="item.title"
-                [routerLink]="'/' + globalRoutes.VENDOR_PAGE_ROOT + '/' + item.vendor + '/' + item.objectID"
-            />
-        </nb-card-header>
-        <nb-card-body class="card-body">
-            <h5 class="price">{{ item.price | currency }}</h5>
-            <h6>{{ item.title }}</h6>
-            <p>{{ item.description }}</p>
-        </nb-card-body>
-        <nb-card-footer class="listing-card__footer">
-            <button nbButton ghost status="info" (click)="addToCart()">Add to cart</button>
-        </nb-card-footer>
-    </nb-card>
+<div class="listing-card clickable-card">
+    <div class="listing-card__header">
+        <img
+            *ngIf="item.image"
+            class="card-image"
+            [src]="item.image ? item.image : ''"
+            [alt]="item.title"
+            [routerLink]="'/' + globalRoutes.VENDOR_PAGE_ROOT + '/' + item.vendor + '/' + item.objectID"
+        />
+    </div>
+    <div class="card-body">
+        <h4 class="product-title">{{ item.title.length > 15 ? (item.title | slice: 0:15) + "..." : item.title }}</h4>
+        <h6 class="product-price">{{ item.price | currency }}</h6>
+        <p>{{ item.description.length > 60 ? (item.description | slice: 0:60) + "..." : item.description }}</p>
+    </div>
+    <div class="product-actions">
+        <button nbButton ghost status="info" (click)="addToCart()">Add to cart</button>
+    </div>
 </div>

@@ -19,4 +19,5 @@ export interface IVendor {
         lat: number;
         lng: number;
     };
+    listings: Array<any>;
 }

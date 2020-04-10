@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { AlgoliaService } from "@services/algolia/algolia.service";
 import { IVendor } from "src/app/@core/models/vendor.interface";
 import { Observable, from } from "rxjs";
+import { ListingItem } from "@models/listingitem.interface";
 
 @Injectable({
     providedIn: "root",
@@ -13,9 +14,11 @@ export class VendorService {
 
     constructor(private algoliaService: AlgoliaService) {}
 
-    public searchVendor({ query = "", hitsPerPage = 50, aroundLatLng = "" } = {}): Observable<IVendor | any> {
+    public searchVendor({ query = "", hitsPerPage = 6, aroundLatLng = "" } = {}): Observable<IVendor | any> {
         const lat_lng_opts = aroundLatLng ? { aroundLatLng, aroundRadius: this.aroundRadiusMeters } : null;
-        return from(this.algoliaService.vendorsIndex.search<IVendor>(query, lat_lng_opts));
+        return from(
+            this.algoliaService.vendorsIndex.search<IVendor>(query, { hitsPerPage, ...lat_lng_opts })
+        );
     }
 
     public getVendorById(id: string) {

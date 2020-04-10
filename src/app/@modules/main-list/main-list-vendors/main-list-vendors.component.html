@@ -1,6 +1,11 @@
 <app-loading *ngIf="isLoading" wrapperHeight="300px" status="primary"></app-loading>
-<div class="grid-parent grid-parent__vendors">
-    <section class="grid-child" *ngFor="let item of vendorsList$ | async">
+<!-- <div class="grid-parent grid-parent__vendors">
+    <section class="grid-child" *ngFor="let item of vendorsWithListings">
+        <app-card-vendor [item]="item"></app-card-vendor>
+    </section>
+</div> -->
+<div class="row">
+    <section class="column" *ngFor="let item of vendorsWithListings">
         <app-card-vendor [item]="item"></app-card-vendor>
     </section>
 </div>

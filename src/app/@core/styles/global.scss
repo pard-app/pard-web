@@ -28,7 +28,7 @@ h6 {
 
 .content-section {
     margin: 60px auto 100px auto;
-    max-width: 1200px;
+    max-width: 1260px;
 }
 
 .ap-icon-pin {
@@ -57,13 +57,16 @@ h6 {
 }
 
 .clickable-card {
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 10px;
-    transition: 0.1s ease-out;
+    box-shadow: nb-theme(color-basic-transparent-400) 0px 1px 10px;
+    transition: 0.1s cubic-bezier(0.42, 0.95, 0.72, 0.32);
+    border-radius: nb-theme(border-radius);
+    overflow: hidden;
+    cursor: pointer;
 
-    &:hover {
-        cursor: pointer;
-        box-shadow: nb-theme(color-basic-500) 0px 2px 15px;
-        border-bottom: 5px solid nb-theme(color-info-500);
+    &:hover,
+    &:focus {
+        box-shadow: nb-theme(color-basic-transparent-900) 0px 1px 10px;
+        outline: none;
     }
 
     @media only screen and (max-width: 600px) {
@@ -74,4 +77,8 @@ h6 {
 .user-picture.image {
     background-size: contain !important;
     background-position: center;
+}
+
+p {
+    font-family: "Bellota Text";
 }

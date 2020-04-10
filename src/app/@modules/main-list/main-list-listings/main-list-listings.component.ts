@@ -7,7 +7,7 @@ import { LocationStore } from "@core/stores/location/location.store";
 
 const paginationDefaultValue: { page: number; hitsPerPage: number } = {
     page: 0,
-    hitsPerPage: 16,
+    hitsPerPage: 6,
 };
 @Component({
     selector: "main-list-listings",
