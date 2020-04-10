@@ -1,18 +1,16 @@
-<section class="card vendor-card clickable-card" [routerLink]="globalRoutes.VENDOR_PAGE_ROOT + '/' + item.objectID">
-    <header>
-        <img *ngIf="item.image" class="card-image" [src]="item.image" [alt]="item.title" />
+<nb-card class="vendor-card clickable-card" [routerLink]="globalRoutes.VENDOR_PAGE_ROOT + '/' + item.objectID">
+    <nb-card-header class="vendor-card__header">
+        <img *ngIf="item.image" class="vendor-card__image" [src]="item.image" [alt]="item.title" />
         <div class="vendor-info">
-            <h3 class="vendor-title">{{ item.title }}</h3>
-            <h5 class="vendor-location">{{ item.city }}, {{ item.country }}</h5>
-            <p class="vendor-description" *ngIf="item.description">
-                {{ item.description.length > 300 ? (item.description | slice: 0:300) + "..." : item.description }}
+            <h3 class="vendor-info__title">{{ item.title }}</h3>
+            <h5 class="vendor-info__location">{{ item.city }}, {{ item.country }}</h5>
+            <p class="vendor-info__description" *ngIf="item.description">
+                {{ item.description }}
             </p>
         </div>
-    </header>
+    </nb-card-header>
 
-    <div class="card-body">
-        <div class="card-item" *ngFor="let listing of item.listings">
-            <img [src]="listing.image" />
-        </div>
-    </div>
-</section>
+    <nb-card-body class="vendor-card__body">
+        <img class="vendor-card__small-image" *ngFor="let listing of item.listings" [src]="listing.image" />
+    </nb-card-body>
+</nb-card>

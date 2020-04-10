@@ -1,12 +1,5 @@
 <app-loading *ngIf="isLoading" wrapperHeight="300px" status="primary"></app-loading>
-<!-- <div class="grid-parent grid-parent__vendors">
-    <section class="grid-child" *ngFor="let item of vendorsWithListings">
-        <app-card-vendor [item]="item"></app-card-vendor>
-    </section>
-</div> -->
-<div class="row">
-    <section class="column" *ngFor="let item of vendorsWithListings">
-        <app-card-vendor [item]="item"></app-card-vendor>
-    </section>
-</div>
-<!-- <h2 *ngIf="!(vendorsList$ | async)?.length" class="title--thin title--space">{{ "NOTHING_FOUND" | translate }} 😥</h2> -->
+
+<section class="grid-parent">
+    <app-card-vendor class="grid-child" *ngFor="let item of vendorsWithListings" [item]="item"></app-card-vendor>
+</section>
