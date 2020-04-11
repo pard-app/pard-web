@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy, Input } from "@angular/core";
 import { Subscription, BehaviorSubject, interval } from "rxjs";
 import { debounce } from "rxjs/operators";
 import { ListingService } from "@services/listing/listing.service";

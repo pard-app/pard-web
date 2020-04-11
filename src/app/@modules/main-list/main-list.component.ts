@@ -11,20 +11,9 @@ import { LocationStore } from "@core/stores/location/location.store";
 export class MainListComponent implements OnInit, OnDestroy {
     public currentActiveTab$: Observable<Params>;
 
-    constructor(public locationStore: LocationStore, private route: ActivatedRoute, private router: Router) {}
+    constructor(public locationStore: LocationStore) {}
 
-    ngOnInit(): void {
-        this.currentActiveTab$ = this.route.queryParams.pipe(
-            map((params) => {
-                if (!params.view) return { view: "vendors" };
-                return params;
-            })
-        );
-    }
-
-    public changeTab({ tabId }) {
-        this.router.navigate([], { queryParams: { view: tabId } });
-    }
+    ngOnInit(): void {}
 
     ngOnDestroy() {}
 }
