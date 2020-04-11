@@ -1,64 +1,40 @@
 @import "~src/app/@core/styles/themes";
 
-.card-image {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-}
-
-// .price {
-//     color: nb-theme(color-secondary-600);
-// }
-
-// .listing-card {
-//     position: relative;
-//     background: white;
-
-//     .card-body {
-//         padding: 15px;
-//     }
-
-//     &__card {
-//         margin-bottom: 0;
-//     }
-//     &__header {
-//         position: relative;
-//         padding: 0;
-//         line-height: 0;
-//     }
-//     &__footer {
-//         display: flex;
-//         justify-content: flex-end;
-//         padding: 5px;
-//     }
-// }
-
 .listing-card {
-    position: relative;
-    background: white;
     height: 100%;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.product-actions {
-    margin-top: auto;
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-}
-
-.card-body {
-    padding: 0 15px 15px 15px;
+    &__header {
+        padding: 0;
+        display: flex;
+    }
+    &__body {
+        padding: 5px 15px 5px 15px;
+        height: 100%;
+    }
+    &__footer {
+        padding: 0;
+        display: flex;
+        justify-content: flex-end;
+    }
+    &__image {
+        width: 100%;
+        height: 130px;
+        object-fit: cover;
+    }
 }
 
 .product-title {
     margin: 5px 0;
+    font-size: 1em;
     line-height: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .product-price {
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .product-description {
