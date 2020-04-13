@@ -25,6 +25,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { LoadingComponent } from "./loading/loading.component";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -41,6 +42,7 @@ import { LoadingComponent } from "./loading/loading.component";
         CommonModule,
         TranslateModule,
         RouterModule,
+        FormsModule,
         NbEvaIconsModule,
         NbAutocompleteModule,
         NbCardModule,
