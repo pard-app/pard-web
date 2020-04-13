@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from "@angular/core";
 
 @Component({
-  selector: 'app-only-listing',
-  templateUrl: './only-listing.component.html',
-  styleUrls: ['./only-listing.component.scss']
+    selector: "scenario-only-listing",
+    templateUrl: "./only-listing.component.html",
+    styleUrls: ["./only-listing.component.scss"],
 })
-export class OnlyListingComponent implements OnInit {
+export class OnlyListingComponent implements OnInit, OnDestroy {
+    constructor() {}
 
-  constructor() { }
+    ngOnInit(): void {
+        console.log("init");
+    }
 
-  ngOnInit(): void {
-  }
-
+    ngOnDestroy(): void {
+        console.log("destroy");
+    }
 }

@@ -11,7 +11,7 @@ import { LocationStore } from "@core/stores/location/location.store";
 })
 export class SearchLocationComponent implements AfterViewInit, OnDestroy {
     @ViewChild("autoInput") input;
-    @Output() cityChanged? = new EventEmitter<ChangeEvent>();
+    @Output() locationChanged? = new EventEmitter<ChangeEvent>();
     @Output() onClear? = new EventEmitter();
     private placesSearchInstance: PlacesInstance = null;
 
@@ -24,7 +24,7 @@ export class SearchLocationComponent implements AfterViewInit, OnDestroy {
         });
 
         this.placesSearchInstance.on("change", (suggestion: ChangeEvent) => {
-            this.cityChanged.emit(suggestion);
+            this.locationChanged.emit(suggestion);
         });
 
         this.placesSearchInstance.on("clear", () => {

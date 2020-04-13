@@ -1,11 +1,11 @@
-<app-search-box></app-search-box>
+<app-search-box (searchOnChange)="searchOnChange($event)"></app-search-box>
 
-<section class="content-section">
-    <h3 class="header-title"><a>Closest shops</a> to your location</h3>
+<section class="content-section" *ngIf="searchRequest$ | async as searchRequest">
+    <scenario-nothing *ngIf="!searchRequest.location && !searchRequest.listingOrVendor"></scenario-nothing>
+    <scenario-only-location *ngIf="searchRequest.location && !searchRequest.listingOrVendor"></scenario-only-location>
+    <scenario-only-listing *ngIf="!searchRequest.location && searchRequest.listingOrVendor"></scenario-only-listing>
+    <scenario-location-and-listing *ngIf="searchRequest.location && searchRequest.listingOrVendor"></scenario-location-and-listing>
 
     <main-list-vendors></main-list-vendors>
-
-    <h3 class="header-title">Newest listings</h3>
-
     <main-list-listings></main-list-listings>
 </section>

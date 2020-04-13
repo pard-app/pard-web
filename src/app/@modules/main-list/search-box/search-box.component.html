@@ -2,7 +2,12 @@
 
 <nb-card class="search-box">
     <nb-card-body class="search-box__body">
-        <app-search-location #searchLocation (onClear)="onClear()" (cityChanged)="currentCityOnChange($event)"></app-search-location>
-        <app-search-smart-items></app-search-smart-items>
+        <app-search-location #searchLocation (onClear)="onClearCity()" (locationChanged)="currentLocationOnChange($event)"></app-search-location>
+        <app-search-smart-items
+            [groupedItems$]="groupedItems$"
+            (onClear)="onClearListingOrVendor()"
+            (listingOrVendorChanged)="currentListingOrVendorOnChange($event)"
+        ></app-search-smart-items>
+        <nb-checkbox>I want delivery</nb-checkbox>
     </nb-card-body>
 </nb-card>

@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from "@angular/core";
 
 @Component({
-  selector: 'app-nothing',
-  templateUrl: './nothing.component.html',
-  styleUrls: ['./nothing.component.scss']
+    selector: "scenario-nothing",
+    templateUrl: "./nothing.component.html",
+    styleUrls: ["./nothing.component.scss"],
 })
-export class NothingComponent implements OnInit {
+export class NothingComponent implements OnInit, OnDestroy {
+    constructor() {}
 
-  constructor() { }
+    ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
+    ngOnDestroy(): void {}
 }
