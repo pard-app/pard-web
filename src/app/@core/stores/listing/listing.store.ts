@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 @Injectable({
     providedIn: "root",
 })
-export class ListingService {
+export class ListingStore {
     // private cartItems: Array<ListingItem | any> = [];
     private _currentListingOrVendor$ = new BehaviorSubject<any | null>(null);
 
