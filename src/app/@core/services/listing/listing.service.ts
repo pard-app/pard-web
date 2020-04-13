@@ -20,6 +20,7 @@ export class ListingService {
     }
 
     public searchListingByVendorIds({ query = "", vendorIds, hitsPerPage = 16, page = 0 }) {
+        //vendor:123 OR vendor:234 OR vendor:345...
         const formatIds = vendorIds.reduce((acc, currVal, idx) => (acc += `vendor:${currVal} ${idx + 1 < vendorIds.length ? "OR " : ""}`), "");
         return from(
             this.algoliaService.listingsIndex.search<ListingItem[]>(query, { filters: formatIds, hitsPerPage, page })

@@ -28,4 +28,14 @@ export class VendorService {
     public getMultipleVendors(ids: string[]) {
         return this.algoliaService.vendorsIndex.getObjects(ids);
     }
+
+    public getVendorsInPopularLocations(sortBy = null) {
+        this.algoliaService.vendorsIndex
+            .search("", {
+                facets: ["city"],
+                maxValuesPerFacet: 1,
+                facetFilters: [["city:Vilnius", "city:Riga"]],
+            })
+            .then((x) => console.log(x));
+    }
 }

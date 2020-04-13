@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
+import { VendorService } from "@services/vendor/vendor.service";
 
 @Component({
     selector: "scenario-nothing",
@@ -6,9 +7,11 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
     styleUrls: ["./nothing.component.scss"],
 })
 export class NothingComponent implements OnInit, OnDestroy {
-    constructor() {}
+    constructor(private vendorService: VendorService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.vendorService.getVendorsInPopularLocations();
+    }
 
     ngOnDestroy(): void {}
 }
