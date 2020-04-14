@@ -12,18 +12,7 @@ import { ScenariosModule } from "./scenarios/scenarios.module";
 
 @NgModule({
     declarations: [MainListComponent],
-    imports: [
-        CommonModule,
-        TranslateModule,
-        VendorModule,
-        SharedModule,
-        NbTabsetModule,
-        NbCardModule,
-        SearchBoxModule,
-        MainListListingsModule,
-        MainListVendorsModule,
-        ScenariosModule,
-    ],
+    imports: [CommonModule, TranslateModule, VendorModule, SharedModule, NbTabsetModule, NbCardModule, SearchBoxModule, ScenariosModule],
     exports: [MainListComponent],
 })
 export class MainListModule {}

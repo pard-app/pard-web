@@ -1,5 +1,4 @@
-<app-loading *ngIf="isLoading" wrapperHeight="300px" status="primary"></app-loading>
-
+<h3>{{ title }}</h3>
 <section class="grid-parent">
-    <app-card-vendor class="grid-child" *ngFor="let item of vendorsWithListings" [item]="item"></app-card-vendor>
+    <app-card-vendor class="grid-child" *ngFor="let item of vendorsWithListings$ | async" [item]="item"></app-card-vendor>
 </section>

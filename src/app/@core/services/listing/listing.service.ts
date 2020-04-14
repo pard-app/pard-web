@@ -16,7 +16,7 @@ export class ListingService {
     }
 
     public searchVendorListings(query = "", vendorId: string, pagination = {}, hitsPerPage = 4) {
-        return this.algoliaService.listingsIndex.search(query, { filters: "vendor:" + vendorId, hitsPerPage: hitsPerPage, ...pagination });
+        return this.algoliaService.listingsIndex.search(query, { filters: "vendor:" + vendorId, hitsPerPage, ...pagination });
     }
 
     public searchListingByVendorIds({ query = "", vendorIds, hitsPerPage = 16, page = 0 }) {

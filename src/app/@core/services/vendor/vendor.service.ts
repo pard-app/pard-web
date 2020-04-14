@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { AlgoliaService } from "@services/algolia/algolia.service";
 import { IVendor } from "src/app/@core/models/vendor.interface";
 import { Observable, from } from "rxjs";
-import { ListingItem } from "@models/listingitem.interface";
 
 @Injectable({
     providedIn: "root",
@@ -29,13 +28,21 @@ export class VendorService {
         return this.algoliaService.vendorsIndex.getObjects(ids);
     }
 
-    public getVendorsInPopularLocations(sortBy = null) {
-        this.algoliaService.vendorsIndex
-            .search("", {
-                facets: ["city"],
-                maxValuesPerFacet: 1,
-                facetFilters: [["city:Vilnius", "city:Riga"]],
-            })
-            .then((x) => console.log(x));
+    public async getVendorsInPopularLocations(sortBy = null): Promise<Observable<any>> {
+        const { facets } = await this.algoliaService.vendorsIndex.search("", {
+            facets: ["city"],
+            hitsPerPage: 0,
+        });
+
+        const citiesToQuery = Object.keys(facets.city).slice(0, 5);
+
+        const queries = citiesToQuery.map((cityName) => ({
+            indexName: "vendors",
+            query: cityName,
+            hitsPerPage: 3,
+            restrictSearchableAttributes: ["city", "address"],
+        }));
+
+        return from(this.algoliaService.searchClient.multipleQueries(queries));
     }
 }

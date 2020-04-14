@@ -1,1 +1,1 @@
-<p>nothing works!</p>
+<main-list-vendors *ngFor="let item of topVendorsInLocations$ | async" [vendorsWithListings$]="item.vendors" [title]="item.location"></main-list-vendors>

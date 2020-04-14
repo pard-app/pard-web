@@ -5,7 +5,4 @@
     <scenario-only-location *ngIf="searchRequest.location && !searchRequest.listingOrVendor"></scenario-only-location>
     <scenario-only-listing *ngIf="!searchRequest.location && searchRequest.listingOrVendor"></scenario-only-listing>
     <scenario-location-and-listing *ngIf="searchRequest.location && searchRequest.listingOrVendor"></scenario-location-and-listing>
-
-    <main-list-vendors></main-list-vendors>
-    <main-list-listings></main-list-listings>
 </section>
