@@ -1,3 +1,8 @@
+:host {
+    display: block;
+    padding: 5px 0;
+}
+
 .grid-parent {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -7,4 +12,8 @@
         grid-template-rows: auto auto;
         grid-gap: 15px;
     }
+}
+
+.vendors-title {
+    margin: 15px 0;
 }

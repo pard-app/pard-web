@@ -4,6 +4,7 @@ import { ListingService } from "@services/listing/listing.service";
 import { of, Observable } from "rxjs";
 import { map, mergeMap, flatMap, concatMap, mergeAll, concatAll, tap, toArray } from "rxjs/operators";
 import { IVendor } from "@models/vendor.interface";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
     selector: "scenario-nothing",
@@ -13,10 +14,15 @@ import { IVendor } from "@models/vendor.interface";
 export class NothingComponent implements OnInit, OnDestroy {
     public topVendorsInLocations$: Observable<any> = of([]);
 
-    constructor(private vendorService: VendorService, private listingService: ListingService) {}
+    constructor(private vendorService: VendorService, private listingService: ListingService, private http: HttpClient) {}
 
     async ngOnInit() {
+        this.handleTopNearMe();
         this.handleTopVendorsInLocations();
+    }
+
+    private async handleTopNearMe() {
+        this.http.get("https://europe-west1-pard-app.cloudfunctions.net/geolocation").subscribe((x) => console.log(x));
     }
 
     private async handleTopVendorsInLocations() {
