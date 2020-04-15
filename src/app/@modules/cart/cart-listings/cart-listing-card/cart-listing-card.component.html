@@ -1,19 +1,25 @@
-<nb-card class="cart-item__card" accent="info">
+<nb-card class="cart-item__card">
     <nb-card-header class="cart-item__header">
         <img class="cart-item__image" [src]="cartItem.value.item?.image" />
-        <h5>{{ cartItem.value.item?.title }}</h5>
+        <div class="cart-item__content">
+            <h5 class="cart-item__title">{{ cartItem.value.item?.title }}</h5>
+            <h4 class="cart-item__price">{{ cartItem.value.item?.price | currency }}</h4>
+            <p>{{ cartItem.value.item?.description }}</p>
+        </div>
     </nb-card-header>
-    <nb-card-body>
-        {{ cartItem.value.item?.description }}
+    <nb-card-body class="cart-item__body">
+        <h4></h4>
     </nb-card-body>
-    <nb-card-footer>
-        <nb-select
-            (selectedChange)="changeQuantity.emit({ key: cartItem.key, value: $event })"
-            [selected]="cartItem.value.quantity"
+    <nb-card-footer class="cart-item__footer">
+        <input
+            nbInput
             [placeholder]="'QUANTITY' | translate"
-        >
-            <nb-option *ngFor="let number of quantityArr" [value]="number">{{ number }}</nb-option>
-        </nb-select>
+            type="number"
+            min="1"
+            [(ngModel)]="quantity"
+            (change)="changeQuantity.emit({ key: cartItem.key, value: quantity })"
+            class="cart-item__quantity"
+        />
         <button nbButton basic status="danger" (click)="removeItem.emit(cartItem.key)">{{ "REMOVE" | translate }}</button>
     </nb-card-footer>
 </nb-card>

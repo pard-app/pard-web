@@ -14,18 +14,11 @@ export class CartListingCardComponent implements OnInit {
     @Input() cartItem: KeyIndexCartItem;
     @Output() removeItem = new EventEmitter();
     @Output() changeQuantity = new EventEmitter<{ key: string; value: number }>();
-
-    public quantityArr: Array<Number> = Array.from(Array(10).keys());
+    public quantity: number;
 
     constructor() {}
 
-    // removeItem(id): void {
-    //     // this.removeItem.emit(id);
-    // }
-
-    // changeQuantity(key: string, value: number) {
-    //     // this.changeQuantity.emit(key, value);
-    // }
-
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.quantity = this.cartItem.value.quantity;
+    }
 }
