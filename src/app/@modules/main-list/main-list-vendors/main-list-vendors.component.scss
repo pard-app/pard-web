@@ -1,12 +1,12 @@
 :host {
     display: block;
-    padding: 5px 0;
+    padding: 8px 0;
 }
 
 .grid-parent {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 25px;
+    grid-gap: 15px;
     @media (max-width: 900px) {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto;

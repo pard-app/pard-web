@@ -1,3 +1,4 @@
+<main-list-vendors [vendorsWithListings$]="topVendorsNearMe$" [title]="'Vendors near your location'"></main-list-vendors>
 <!-- Top In Cities Vendors -->
 <main-list-vendors
     *ngFor="let item of topVendorsInLocations$ | async"
