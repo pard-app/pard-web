@@ -144,30 +144,30 @@
                 </div>
                 <div class="items">
                     <h1>{{ "ITEMS" | translate }}</h1>
-                    <nb-user
-                        *ngFor="let item of cartItems | keyvalue"
-                        shape="rectangle"
-                        badgeStatus="primary"
-                        [badgeText]="(item.value.item?.price | currency) + ' (×' + item.value.quantity + ')'"
-                        [name]="item.value.item?.title"
-                        badgePosition="bottom start"
-                        size="giant"
-                        [picture]="item.value.item?.image"
-                        [title]="item.value.item?.description"
-                    ></nb-user>
-                </div>
 
-                <div class="vendors">
-                    <h1>{{ "VENDORS" | translate }}</h1>
-                    <div></div>
-                    <nb-user
-                        *ngFor="let vendor of vendors"
-                        shape="rectangle"
-                        [name]="vendor.title"
-                        size="giant"
-                        [picture]="vendor.image"
-                        [title]="vendor.description"
-                    ></nb-user>
+                    <nb-card *ngFor="let entry of review" class="card-review">
+                        <nb-card-header>
+                            <nb-user
+                                shape="rectangle"
+                                [name]="entry.vendor.title"
+                                size="giant"
+                                [picture]="entry.vendor.image"
+                                [title]="entry.vendor.description"
+                            ></nb-user>
+                        </nb-card-header>
+                        <nb-card-body>
+                            <div class="products">
+                                <div class="card-product" *ngFor="let item of entry.listings">
+                                    <img [src]="item.image" [alt]="item.title" />
+                                    <section>
+                                        <h5>{{ item.title }}</h5>
+                                        <h6>{{ (item.price | currency) + " (×" + item.quantity + ")" }}</h6>
+                                        <p>{{ item.description }}</p>
+                                    </section>
+                                </div>
+                            </div>
+                        </nb-card-body>
+                    </nb-card>
                 </div>
             </nb-card-body>
             <nb-card-footer>

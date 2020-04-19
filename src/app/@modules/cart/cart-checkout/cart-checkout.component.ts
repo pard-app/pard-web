@@ -16,6 +16,7 @@ export class CartCheckoutComponent implements OnInit {
     public formDelivery: FormGroup;
     public formProgress: number = 0;
     public orders: any;
+    public review: any;
     public buyer: any;
     public delivery: any;
     public loading: boolean = true;
@@ -95,6 +96,26 @@ export class CartCheckoutComponent implements OnInit {
             return accumulator;
         }, []);
 
+        const ordersGroupedByVendorWithData = cartItemsArray.reduce((accumulator, currentValue) => {
+            console.log(currentValue);
+            const parent = accumulator.find((e) => e.vendor === currentValue.item.vendor);
+            if (parent) {
+                parent.listings.push({ id: currentValue.item.objectID, quantity: currentValue.quantity, ...currentValue.item });
+            } else {
+                accumulator.push({
+                    vendor: currentValue.item.vendor,
+                    listings: [{ id: currentValue.item.objectID, quantity: currentValue.quantity, ...currentValue.item }],
+                });
+            }
+            return accumulator;
+        }, []);
+
+        ordersGroupedByVendorWithData.map((order) => {
+            order.vendor = this.vendors.find((vendor) => vendor.objectID === order.vendor);
+        });
+
+        this.review = ordersGroupedByVendorWithData;
+        console.log(this.review);
         this.orders = ordersGroupedByVendor;
         this.delivery = this.formDelivery.value.delivery;
     }
