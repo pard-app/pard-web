@@ -6,7 +6,7 @@ import { interval, Subscription, Observable, of, forkJoin, BehaviorSubject } fro
 import { IVendor } from "@models/vendor.interface";
 import { ListingItem } from "@models/listingitem.interface";
 import { VendorService } from "@services/vendor/vendor.service";
-import { geoLocStr } from "@utils/index";
+import { geoLocStr, noPagesLeft } from "@utils/index";
 
 const paginationDefaultValue = (pp = 6) => ({
     page: 0,
@@ -65,7 +65,7 @@ export class OnlyLocationComponent implements OnInit, OnDestroy {
                 .toPromise();
             const vendors = await this.listingService.fillVendorWithItsListings(hits);
             this._vendors$.next([...this._vendors$.getValue(), ...vendors]);
-            if (page === nbPages - 1) this.allVendorsLoaded = true;
+            if (noPagesLeft(page, nbPages)) this.allVendorsLoaded = true;
         });
     }
 
@@ -75,11 +75,11 @@ export class OnlyLocationComponent implements OnInit, OnDestroy {
                 .searchListing({ query: "", hitsPerPage: pagination.hitsPerPage, page: pagination.page, aroundLatLng: geoLocStr(_geoloc) })
                 .toPromise();
             this._listings$.next([...this._listings$.getValue(), ...hits]);
-            if (page === nbPages - 1) this.allListingsLoaded = true;
+            if (noPagesLeft(page, nbPages)) this.allListingsLoaded = true;
         });
     }
 
-    public loadMore(which): void {
+    public loadMore(which: string): void {
         const previousVal = which == "LOAD_VENDORS" ? this._paginationVendors$.getValue() : this._paginationListings$.getValue();
         switch (which) {
             case "LOAD_VENDORS":
@@ -103,6 +103,8 @@ export class OnlyLocationComponent implements OnInit, OnDestroy {
         this.listingsSubscription.unsubscribe();
         this.vendorsSubscription.unsubscribe();
         this._listings$.next([]);
+        this.allListingsLoaded = false;
+        this.allVendorsLoaded = false;
         this._vendors$.next([]);
         this._paginationVendors$.next(paginationDefaultValue());
         this._paginationListings$.next(paginationDefaultValue(12));

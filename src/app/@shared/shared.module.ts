@@ -27,6 +27,7 @@ import { CommonModule } from "@angular/common";
 import { LoadingComponent } from "./loading/loading.component";
 import { FormsModule } from "@angular/forms";
 import { ListVendorsComponent } from "./list-vendors/list-vendors.component";
+import { ButtonLoadMoreComponent } from "./button-load-more/button-load-more.component";
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import { ListVendorsComponent } from "./list-vendors/list-vendors.component";
         TopBannerComponent,
         LoadingComponent,
         ListVendorsComponent,
+        ButtonLoadMoreComponent,
     ],
     imports: [
         CommonModule,
@@ -66,6 +68,7 @@ import { ListVendorsComponent } from "./list-vendors/list-vendors.component";
         TopBannerComponent,
         LoadingComponent,
         ListVendorsComponent,
+        ButtonLoadMoreComponent,
     ],
 })
 export class SharedModule {}

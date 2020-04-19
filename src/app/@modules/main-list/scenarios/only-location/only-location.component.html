@@ -1,5 +1,5 @@
 <app-list-vendors [vendorsWithListings$]="vendors$" [title]="'Top vendors in <a>' + currentLocationName + '</a>'"></app-list-vendors>
-<button *ngIf="!allVendorsLoaded" nbButton outline status="info" (click)="loadMore('LOAD_VENDORS')">Load more</button>
+<app-button-load-more *ngIf="!allVendorsLoaded" (click)="loadMore('LOAD_VENDORS')"></app-button-load-more>
 
 <app-list-listings [listingsList$]="listings$" [title]="'Top listings in <a>' + currentLocationName + '</a>'"></app-list-listings>
-<button *ngIf="!allListingsLoaded" nbButton outline status="info" (click)="loadMore('LOAD_LISTINGS')">Load more</button>
+<app-button-load-more *ngIf="!allListingsLoaded" (click)="loadMore('LOAD_LISTINGS')"></app-button-load-more>
