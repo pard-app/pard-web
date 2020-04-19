@@ -8,10 +8,10 @@ import { ListingItem } from "@models/listingitem.interface";
 import { VendorService } from "@services/vendor/vendor.service";
 import { geoLocStr } from "@utils/index";
 
-const paginationDefaultValue: { page: number; hitsPerPage: number } = {
+const paginationDefaultValue = (pp = 6) => ({
     page: 0,
-    hitsPerPage: 6,
-};
+    hitsPerPage: pp,
+});
 @Component({
     selector: "scenario-only-location",
     templateUrl: "./only-location.component.html",
@@ -25,16 +25,19 @@ export class OnlyLocationComponent implements OnInit, OnDestroy {
     public readonly listings$: Observable<ListingItem[]> = this._listings$.asObservable();
     public readonly vendors$: Observable<IVendor[]> = this._vendors$.asObservable();
     // pagination handlers
-    private _paginationVendors$ = new BehaviorSubject(paginationDefaultValue);
-    private _paginationListings$ = new BehaviorSubject(paginationDefaultValue);
+    private _paginationVendors$ = new BehaviorSubject(paginationDefaultValue());
+    private _paginationListings$ = new BehaviorSubject(paginationDefaultValue(12));
     // subscriptions
     private subscriptions = new Subscription();
     private vendorsSubscription = new Subscription();
     private listingsSubscription = new Subscription();
     // location
     public currentLocationName: string;
+    // pagination
+    public allListingsLoaded: boolean = false;
+    public allVendorsLoaded: boolean = false;
 
-    constructor(public locationStore: LocationStore, private listingService: ListingService, private vendorService: VendorService) {}
+    constructor(private locationStore: LocationStore, private listingService: ListingService, private vendorService: VendorService) {}
 
     ngOnInit(): void {
         const subscribeToGlobalLocationChanges = this.locationStore.currentLocationSuggestion$
@@ -62,34 +65,46 @@ export class OnlyLocationComponent implements OnInit, OnDestroy {
                 .toPromise();
             const vendors = await this.listingService.fillVendorWithItsListings(hits);
             this._vendors$.next([...this._vendors$.getValue(), ...vendors]);
-            // if (page === nbPages - 1) this.allLoaded = true;
+            if (page === nbPages - 1) this.allVendorsLoaded = true;
         });
     }
 
     private createListingsSubscription(_geoloc): Subscription {
-        return this._paginationVendors$.subscribe(async (pagination) => {
+        return this._paginationListings$.subscribe(async (pagination) => {
             const { hits, page, nbPages } = await this.listingService
                 .searchListing({ query: "", hitsPerPage: pagination.hitsPerPage, page: pagination.page, aroundLatLng: geoLocStr(_geoloc) })
                 .toPromise();
-            console.log(hits);
             this._listings$.next([...this._listings$.getValue(), ...hits]);
-            // if (page === nbPages - 1) this.allLoaded = true;
+            if (page === nbPages - 1) this.allListingsLoaded = true;
         });
     }
 
-    public loadMore(): void {
-        const previousVal = this._paginationVendors$.getValue();
-        this._paginationVendors$.next({
-            ...previousVal,
-            page: previousVal.page + 1,
-        });
+    public loadMore(which): void {
+        const previousVal = which == "LOAD_VENDORS" ? this._paginationVendors$.getValue() : this._paginationListings$.getValue();
+        switch (which) {
+            case "LOAD_VENDORS":
+                this._paginationVendors$.next({
+                    ...previousVal,
+                    page: previousVal.page + 1,
+                });
+                break;
+            case "LOAD_LISTINGS":
+                this._paginationListings$.next({
+                    ...previousVal,
+                    page: previousVal.page + 1,
+                });
+                break;
+            default:
+                break;
+        }
     }
+
     private resetNecessaryValues(): void {
         this.listingsSubscription.unsubscribe();
         this.vendorsSubscription.unsubscribe();
         this._listings$.next([]);
         this._vendors$.next([]);
-        this._paginationVendors$.next(paginationDefaultValue);
-        this._paginationListings$.next(paginationDefaultValue);
+        this._paginationVendors$.next(paginationDefaultValue());
+        this._paginationListings$.next(paginationDefaultValue(12));
     }
 }
