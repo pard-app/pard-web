@@ -4,12 +4,11 @@ import { LocationAndListingComponent } from "./location-and-listing/location-and
 import { NothingComponent } from "./nothing/nothing.component";
 import { OnlyListingComponent } from "./only-listing/only-listing.component";
 import { OnlyLocationComponent } from "./only-location/only-location.component";
-import { MainListVendorsModule } from "../main-list-vendors/main-list-vendors.module";
-import { MainListListingsModule } from "../main-list-listings/main-list-listings.module";
+import { SharedModule } from "@shared/shared.module";
 
 @NgModule({
     declarations: [LocationAndListingComponent, NothingComponent, OnlyListingComponent, OnlyLocationComponent],
-    imports: [CommonModule, MainListListingsModule, MainListVendorsModule],
+    imports: [CommonModule, SharedModule],
     exports: [LocationAndListingComponent, NothingComponent, OnlyListingComponent, OnlyLocationComponent],
 })
 export class ScenariosModule {}

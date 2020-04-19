@@ -26,6 +26,7 @@ import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { LoadingComponent } from "./loading/loading.component";
 import { FormsModule } from "@angular/forms";
+import { ListVendorsComponent } from "./list-vendors/list-vendors.component";
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import { FormsModule } from "@angular/forms";
         SearchSmartItemsComponent,
         TopBannerComponent,
         LoadingComponent,
+        ListVendorsComponent,
     ],
     imports: [
         CommonModule,
@@ -63,6 +65,7 @@ import { FormsModule } from "@angular/forms";
         SearchSmartItemsComponent,
         TopBannerComponent,
         LoadingComponent,
+        ListVendorsComponent,
     ],
 })
 export class SharedModule {}
