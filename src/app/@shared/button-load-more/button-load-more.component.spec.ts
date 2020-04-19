@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MainListVendorsComponent } from './main-list-vendors.component';
+import { ButtonLoadMoreComponent } from './button-load-more.component';
 
-describe('MainListVendorsComponent', () => {
-  let component: MainListVendorsComponent;
-  let fixture: ComponentFixture<MainListVendorsComponent>;
+describe('ButtonLoadMoreComponent', () => {
+  let component: ButtonLoadMoreComponent;
+  let fixture: ComponentFixture<ButtonLoadMoreComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MainListVendorsComponent ]
+      declarations: [ ButtonLoadMoreComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MainListVendorsComponent);
+    fixture = TestBed.createComponent(ButtonLoadMoreComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

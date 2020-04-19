@@ -13,10 +13,10 @@ export class VendorService {
 
     constructor(private algoliaService: AlgoliaService) {}
 
-    public searchVendor({ query = "", hitsPerPage = 6, aroundLatLng = "" } = {}): Observable<IVendor | any> {
+    public searchVendor({ query = "", hitsPerPage = 6, page = 0, aroundLatLng = "" } = {}): Observable<IVendor | any> {
         const lat_lng_opts = aroundLatLng ? { aroundLatLng, aroundRadius: this.aroundRadiusMeters } : null;
         return from(
-            this.algoliaService.vendorsIndex.search<IVendor>(query, { hitsPerPage, ...lat_lng_opts })
+            this.algoliaService.vendorsIndex.search<IVendor>(query, { hitsPerPage, page, ...lat_lng_opts })
         );
     }
 

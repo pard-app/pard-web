@@ -2,21 +2,25 @@ import { Injectable } from "@angular/core";
 import { AlgoliaService } from "@services/algolia/algolia.service";
 import { ListingItem } from "src/app/@core/models/listingitem.interface";
 import { from, Observable } from "rxjs";
+import { IVendor } from "@models/vendor.interface";
 
 @Injectable({
     providedIn: "root",
 })
 export class ListingService {
+    private readonly aroundRadiusMeters = 40000; /* 40km radius */
+
     constructor(private algoliaService: AlgoliaService) {}
 
-    public searchListing({ query = "", hitsPerPage = 50, page = 0 } = {}): Observable<ListingItem[] | any> {
+    public searchListing({ query = "", hitsPerPage = 50, page = 0, aroundLatLng = "" } = {}): Observable<ListingItem[] | any> {
+        const lat_lng_opts = aroundLatLng ? { aroundLatLng, aroundRadius: this.aroundRadiusMeters } : null;
         return from(
-            this.algoliaService.listingsIndex.search<ListingItem[]>(query, { hitsPerPage, page })
+            this.algoliaService.listingsIndex.search<ListingItem[]>(query, { hitsPerPage, page, ...lat_lng_opts })
         );
     }
 
-    public searchVendorListings(query = "", vendorId: string, pagination = {}, hitsPerPage = 4) {
-        return this.algoliaService.listingsIndex.search(query, { filters: "vendor:" + vendorId, hitsPerPage, ...pagination });
+    public searchVendorListings(query = "", vendorId: string, pagination = {}) {
+        return this.algoliaService.listingsIndex.search(query, { filters: "vendor:" + vendorId, ...pagination });
     }
 
     public searchListingByVendorIds({ query = "", vendorIds, hitsPerPage = 16, page = 0 }) {
@@ -33,5 +37,15 @@ export class ListingService {
 
     public getListingById(id: string) {
         return this.algoliaService.listingsIndex.getObject(id);
+    }
+
+    public async fillVendorWithItsListings(vendors: Array<IVendor>): Promise<Array<IVendor>> {
+        // For every vendor, find his item and place into object
+        return Promise.all(
+            vendors.map(async (vendor: IVendor) => {
+                const { hits: listingsOfVendor } = await this.searchVendorListings("", vendor.objectID, { hitsPerPage: 4 });
+                return { ...vendor, listings: listingsOfVendor } as IVendor;
+            })
+        );
     }
 }

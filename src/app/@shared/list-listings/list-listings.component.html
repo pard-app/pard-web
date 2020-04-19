@@ -1,5 +1,5 @@
-<div class="row">
-    <section class="column" *ngFor="let item of listingsList$ | async">
-        <app-card-listing [item]="item"></app-card-listing>
-    </section>
-</div>
+<h3 class="listings-title" [innerHTML]="title"></h3>
+
+<section class="grid-parent">
+    <app-card-listing *ngFor="let item of listingsList$ | async" [item]="item"></app-card-listing>
+</section>
