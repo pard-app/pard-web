@@ -28,7 +28,7 @@ export class NothingComponent implements OnInit, OnDestroy {
         const { cityLatLong } = (await this.http.get("https://europe-west1-pard-app.cloudfunctions.net/geolocation").toPromise()) as { cityLatLong: string };
         this.topVendorsNearMe$ = this.vendorService
             .searchVendor({ query: "", aroundLatLng: cityLatLong, hitsPerPage: 6 })
-            .pipe(mergeMap(async ({ hits }: any) => await this.fillVendorWithItsListings(hits)));
+            .pipe(mergeMap(async ({ hits }: any) => await this.listingService.fillVendorWithItsListings(hits)));
     }
 
     private async handleTopVendorsInLocations() {
@@ -37,21 +37,11 @@ export class NothingComponent implements OnInit, OnDestroy {
             flatMap(({ results }) => results),
             mergeMap(async (locationWithVendors: any) => {
                 // Fulfill vendors with their listings
-                const vendors = await this.fillVendorWithItsListings(locationWithVendors.hits);
+                const vendors = await this.listingService.fillVendorWithItsListings(locationWithVendors.hits);
                 // Here we're turning vendors[] to observable because main-list-vendors expects an observable
                 return { location: locationWithVendors.query, vendors: of(vendors) };
             }),
             toArray()
-        );
-    }
-
-    private async fillVendorWithItsListings(vendors: Array<IVendor>): Promise<Array<IVendor>> {
-        // For every vendor, find his item and place into object
-        return Promise.all(
-            vendors.map(async (vendor: IVendor) => {
-                const { hits: listingsOfVendor } = await this.listingService.searchVendorListings("", vendor.objectID, { hitsPerPage: 4 });
-                return { ...vendor, listings: listingsOfVendor } as IVendor;
-            })
         );
     }
 

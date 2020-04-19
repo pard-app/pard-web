@@ -1,1 +1,3 @@
 <p>only-location works!</p>
+<app-list-vendors [vendorsWithListings$]="vendors$" [title]="'Top vendors in <a>' + currentLocationName + '</a>'"></app-list-vendors>
+<app-list-listings [listingsList$]="listings$"></app-list-listings>
