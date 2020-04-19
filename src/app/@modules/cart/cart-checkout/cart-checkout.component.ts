@@ -97,7 +97,6 @@ export class CartCheckoutComponent implements OnInit {
         }, []);
 
         const ordersGroupedByVendorWithData = cartItemsArray.reduce((accumulator, currentValue) => {
-            console.log(currentValue);
             const parent = accumulator.find((e) => e.vendor === currentValue.item.vendor);
             if (parent) {
                 parent.listings.push({ id: currentValue.item.objectID, quantity: currentValue.quantity, ...currentValue.item });
@@ -115,7 +114,6 @@ export class CartCheckoutComponent implements OnInit {
         });
 
         this.review = ordersGroupedByVendorWithData;
-        console.log(this.review);
         this.orders = ordersGroupedByVendor;
         this.delivery = this.formDelivery.value.delivery;
     }
@@ -129,7 +127,6 @@ export class CartCheckoutComponent implements OnInit {
             async (response) => {
                 this.loading = false;
                 this.confirmedOrder = response;
-                console.log(this.confirmedOrder);
             },
             async (err) => {
                 this.loading = false;

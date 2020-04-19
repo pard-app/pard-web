@@ -19,7 +19,6 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     declarations: [CartCheckoutComponent],
     imports: [
         CommonModule,
-        SharedModule,
         FormsModule,
         ReactiveFormsModule,
         NbProgressBarModule,
@@ -31,6 +30,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
         NbButtonModule,
         NbUserModule,
         NbSpinnerModule,
+        SharedModule,
     ],
     exports: [CartCheckoutComponent],
 })

@@ -157,13 +157,8 @@
                         </nb-card-header>
                         <nb-card-body>
                             <div class="products">
-                                <div class="card-product" *ngFor="let item of entry.listings">
-                                    <img [src]="item.image" [alt]="item.title" />
-                                    <section>
-                                        <h5>{{ item.title }}</h5>
-                                        <h6>{{ (item.price | currency) + " (×" + item.quantity + ")" }}</h6>
-                                        <p>{{ item.description }}</p>
-                                    </section>
+                                <div *ngFor="let item of entry.listings">
+                                    <app-card-listing [item]="item" [viewOnly]="true"></app-card-listing>
                                 </div>
                             </div>
                         </nb-card-body>

@@ -5,15 +5,17 @@
             *ngIf="item.image"
             [src]="item.image ? item.image : ''"
             [alt]="item.title"
-            [routerLink]="'/' + globalRoutes.VENDOR_PAGE_ROOT + '/' + item.vendor + '/' + item.objectID"
+            [routerLink]="!viewOnly ? '/' + globalRoutes.VENDOR_PAGE_ROOT + '/' + item.vendor + '/' + item.objectID : null"
         />
     </nb-card-header>
     <nb-card-body class="listing-card__body">
-        <h6 class="product-price">{{ item.price | currency }}</h6>
+        <h6 class="product-price">
+            {{ item.price | currency }} <span *ngIf="item.quantity">× {{ item.quantity }}</span>
+        </h6>
         <h4 class="product-title">{{ item.title }}</h4>
         <!-- <p>{{ item.description.length > 60 ? (item.description | slice: 0:60) + "..." : item.description }}</p> -->
     </nb-card-body>
-    <nb-card-footer class="listing-card__footer">
+    <nb-card-footer class="listing-card__footer" *ngIf="!viewOnly">
         <button nbButton ghost status="info" (click)="addToCart()">Add to cart</button>
     </nb-card-footer>
 </nb-card>
