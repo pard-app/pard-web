@@ -17,7 +17,11 @@
             <nb-option-group class="option-group" *ngFor="let group of groupedItems$ | async" [title]="group.name | uppercase">
                 <nb-option class="option-item" *ngFor="let option of group.children" [value]="option">
                     <img class="option-item__image" [src]="option.image" alt="" />
-                    {{ option.title }}
+                    <div class="option-item__box">
+                        <span class="option-item__title">
+                            {{ option.title }}
+                        </span>
+                    </div>
                 </nb-option>
             </nb-option-group>
         </nb-autocomplete>

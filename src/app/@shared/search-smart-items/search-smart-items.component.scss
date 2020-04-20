@@ -31,6 +31,14 @@
         height: 50px;
         object-fit: cover;
     }
+    &__box {
+    }
+    &__title {
+    }
+    &__description {
+        font-size: 0.8em;
+        font-weight: lighter;
+    }
 }
 
 .option-group ::ng-deep .option-group-title {

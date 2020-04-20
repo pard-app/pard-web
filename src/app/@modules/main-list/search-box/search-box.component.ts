@@ -6,6 +6,7 @@ import { ListingStore } from "@core/stores/listing/listing.store";
 import { AlgoliaService } from "@services/algolia/algolia.service";
 import { debounce, map, filter, flatMap, mergeMap, toArray } from "rxjs/operators";
 import { SearchVendorOrListingGroup } from "@models/vendorAndListing.interface";
+import { Router } from "@angular/router";
 
 export class SearchRequest {
     location: Suggestion | null = null;
@@ -26,7 +27,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     private currentVendorAndListingText$ = new Subject<string>();
     private sub = new Subscription();
 
-    constructor(private locationStore: LocationStore, private listingStore: ListingStore, private algoliaService: AlgoliaService) {}
+    constructor(private locationStore: LocationStore, private listingStore: ListingStore, private algoliaService: AlgoliaService, private router: Router) {}
 
     ngOnInit(): void {
         this.filterOnListingOrVendorWrite();
@@ -78,7 +79,14 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
                     mergeMap((results) =>
                         results.map(({ hits, index }) => ({
                             name: index,
-                            children: hits.map(({ title, image, description, id }) => ({ title, image, description, id, type: index })),
+                            children: hits.map(({ title, image, description, objectID, vendor }) => ({
+                                title,
+                                image,
+                                description,
+                                objectID,
+                                type: index,
+                                vendor,
+                            })),
                         }))
                     ),
                     filter(({ children }: SearchVendorOrListingGroup) => !!children.length),
@@ -89,11 +97,17 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         });
     }
 
-    public currentListingOrVendorOnChange(event): void {
+    public currentListingOrVendorOnChange({ type, title, objectID, vendor }): void {
+        console.log(event);
+        if (type === "listings") {
+            this.router.navigate(["/vendor/" + vendor + "/" + objectID]);
+        } else if (type === "vendors") {
+            this.router.navigate(["/vendor/" + objectID]);
+        }
         // Set in store
-        this.listingStore.currentListingOrVendor = event;
+        this.listingStore.currentListingOrVendor = title;
         // Set in current component
-        this.searchRequest.listingOrVendor = event;
+        this.searchRequest.listingOrVendor = title;
         this.searchOnChange.emit(this.searchRequest);
     }
 }
