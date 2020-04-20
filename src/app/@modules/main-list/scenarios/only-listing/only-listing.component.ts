@@ -18,7 +18,7 @@ export class OnlyListingComponent implements OnInit, OnDestroy {
     constructor(private listingService: ListingService, private vendorService: VendorService, private listingStore: ListingStore) {}
 
     ngOnInit(): void {
-        const subscribeToGlobalLocationChanges = this.listingStore.currentListingOrVendor$.pipe(debounce(() => interval(50))).subscribe(async (data) => {
+        const subscribeToGlobalListingOrVendor = this.listingStore.currentListingOrVendor$.pipe(debounce(() => interval(50))).subscribe(async (data) => {
             console.log(data);
             // this.currentListingOrVendor = name;
             this.resetNecessaryValues();
@@ -26,7 +26,7 @@ export class OnlyListingComponent implements OnInit, OnDestroy {
             // this.listingsSubscription = this.createListingsSubscription(hit._geoloc);
         });
 
-        this.subscriptions.add(subscribeToGlobalLocationChanges);
+        this.subscriptions.add(subscribeToGlobalListingOrVendor);
     }
 
     private resetNecessaryValues(): void {}

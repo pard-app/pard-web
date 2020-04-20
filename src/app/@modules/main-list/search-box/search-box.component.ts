@@ -78,7 +78,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
                     mergeMap((results) =>
                         results.map(({ hits, index }) => ({
                             name: index,
-                            children: hits.map(({ title }) => title),
+                            children: hits.map(({ title, image, description, id }) => ({ title, image, description, id, type: index })),
                         }))
                     ),
                     filter(({ children }: SearchVendorOrListingGroup) => !!children.length),
