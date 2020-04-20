@@ -6,6 +6,7 @@
         <app-search-smart-items
             [groupedItems$]="groupedItems$"
             (onClear)="onClearListingOrVendor()"
+            (onWrite)="onWriteListingOrVendor($event)"
             (listingOrVendorChanged)="currentListingOrVendorOnChange($event)"
         ></app-search-smart-items>
         <nb-checkbox>I want delivery</nb-checkbox>

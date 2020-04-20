@@ -25,7 +25,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { LoadingComponent } from "./loading/loading.component";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ListVendorsComponent } from "./list-vendors/list-vendors.component";
 import { ButtonLoadMoreComponent } from "./button-load-more/button-load-more.component";
 
@@ -47,6 +47,7 @@ import { ButtonLoadMoreComponent } from "./button-load-more/button-load-more.com
         TranslateModule,
         RouterModule,
         FormsModule,
+        ReactiveFormsModule,
         NbEvaIconsModule,
         NbAutocompleteModule,
         NbCardModule,

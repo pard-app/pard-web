@@ -15,7 +15,7 @@ export class SearchLocationComponent implements AfterViewInit, OnDestroy {
     @Output() onClear? = new EventEmitter();
     private placesSearchInstance: PlacesInstance = null;
 
-    constructor(private locationStore: LocationStore) {}
+    constructor() {}
 
     ngAfterViewInit() {
         this.placesSearchInstance = places({
@@ -41,6 +41,7 @@ export class SearchLocationComponent implements AfterViewInit, OnDestroy {
             }
         );
     }
+
     clearInput() {
         this.placesSearchInstance.setVal("");
     }
