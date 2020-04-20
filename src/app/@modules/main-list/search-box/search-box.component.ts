@@ -1,7 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, ViewChild, OnDestroy } from "@angular/core";
 import { ChangeEvent, Suggestion } from "places.js";
 import { LocationStore } from "@core/stores/location/location.store";
-import { of, interval, BehaviorSubject, Observable, Subject } from "rxjs";
+import { of, interval, BehaviorSubject, Observable, Subject, Subscription } from "rxjs";
 import { ListingStore } from "@core/stores/listing/listing.store";
 import { AlgoliaService } from "@services/algolia/algolia.service";
 import { debounce, map, filter, flatMap, mergeMap, toArray } from "rxjs/operators";
@@ -17,19 +17,25 @@ export class SearchRequest {
     templateUrl: "./search-box.component.html",
     styleUrls: ["./search-box.component.scss"],
 })
-export class SearchBoxComponent implements OnInit {
+export class SearchBoxComponent implements OnInit, OnDestroy {
     @ViewChild("searchLocation", { static: false }) searchLocationComponent;
     @Output() searchOnChange = new EventEmitter<SearchRequest>();
     private searchRequest: SearchRequest = new SearchRequest();
     private _groupedItems$ = new BehaviorSubject<SearchVendorOrListingGroup[]>([]);
     public groupedItems$ = this._groupedItems$.asObservable();
     private currentVendorAndListingText$ = new Subject<string>();
+    private sub = new Subscription();
 
     constructor(private locationStore: LocationStore, private listingStore: ListingStore, private algoliaService: AlgoliaService) {}
 
     ngOnInit(): void {
-        this.onWriteListingOrVendor("");
         this.filterOnListingOrVendorWrite();
+        // initiate first search an empty string (searches for all)
+        this.onWriteListingOrVendor("");
+    }
+
+    ngOnDestroy(): void {
+        this.sub.unsubscribe();
     }
 
     public onClearCity(): void {
@@ -64,9 +70,7 @@ export class SearchBoxComponent implements OnInit {
     }
 
     private async filterOnListingOrVendorWrite() {
-        this.currentVendorAndListingText$.pipe(debounce(() => interval(300))).subscribe(async (query) => {
-            console.log(query);
-
+        this.sub = this.currentVendorAndListingText$.pipe(debounce(() => interval(300))).subscribe(async (query) => {
             const data = await this.algoliaService
                 .searchVendorsAndListings(query)
                 .pipe(

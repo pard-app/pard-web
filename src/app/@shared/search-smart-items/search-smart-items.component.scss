@@ -11,3 +11,8 @@
         cursor: pointer;
     }
 }
+
+.option-group ::ng-deep .option-group-title {
+    background: var(--color-info-100);
+    font-weight: bold;
+}
