@@ -1,29 +1,24 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Observable } from "rxjs";
-import { ActivatedRoute, Params, Router } from "@angular/router";
-import { map } from "rxjs/operators";
+import { Component, OnInit, OnDestroy, ViewChild, ViewContainerRef } from "@angular/core";
+import { Observable, BehaviorSubject, Subject } from "rxjs";
 import { LocationStore } from "@core/stores/location/location.store";
+import { SearchRequest } from "./search-box/search-box.component";
+
 @Component({
     selector: "app-main-list",
     templateUrl: "./main-list.component.html",
     styleUrls: ["./main-list.component.scss"],
 })
 export class MainListComponent implements OnInit, OnDestroy {
-    public currentActiveTab$: Observable<Params>;
+    private _searchRequest$ = new BehaviorSubject<SearchRequest>(new SearchRequest());
+    public readonly searchRequest$: Observable<SearchRequest> = this._searchRequest$.asObservable();
+    @ViewChild("container", { read: ViewContainerRef }) container: ViewContainerRef;
 
-    constructor(public locationStore: LocationStore, private route: ActivatedRoute, private router: Router) {}
+    constructor(public locationStore: LocationStore) {}
 
-    ngOnInit(): void {
-        this.currentActiveTab$ = this.route.queryParams.pipe(
-            map((params) => {
-                if (!params.view) return { view: "vendors" };
-                return params;
-            })
-        );
-    }
+    ngOnInit() {}
 
-    public changeTab({ tabId }) {
-        this.router.navigate([], { queryParams: { view: tabId } });
+    searchOnChange(srqObj: SearchRequest) {
+        this._searchRequest$.next(srqObj);
     }
 
     ngOnDestroy() {}

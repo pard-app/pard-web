@@ -13,9 +13,11 @@ export class VendorService {
 
     constructor(private algoliaService: AlgoliaService) {}
 
-    public searchVendor({ query = "", hitsPerPage = 50, aroundLatLng = "" } = {}): Observable<IVendor | any> {
+    public searchVendor({ query = "", hitsPerPage = 6, page = 0, aroundLatLng = "" } = {}): Observable<IVendor | any> {
         const lat_lng_opts = aroundLatLng ? { aroundLatLng, aroundRadius: this.aroundRadiusMeters } : null;
-        return from(this.algoliaService.vendorsIndex.search<IVendor>(query, lat_lng_opts));
+        return from(
+            this.algoliaService.vendorsIndex.search<IVendor>(query, { hitsPerPage, page, ...lat_lng_opts })
+        );
     }
 
     public getVendorById(id: string) {
@@ -24,5 +26,23 @@ export class VendorService {
 
     public getMultipleVendors(ids: string[]) {
         return this.algoliaService.vendorsIndex.getObjects(ids);
+    }
+
+    public async getVendorsInPopularLocations(sortBy = null): Promise<Observable<any>> {
+        const { facets } = await this.algoliaService.vendorsIndex.search("", {
+            facets: ["city"],
+            hitsPerPage: 0,
+        });
+
+        const citiesToQuery = Object.keys(facets.city).slice(0, 5);
+
+        const queries = citiesToQuery.map((cityName) => ({
+            indexName: "vendors",
+            query: cityName,
+            hitsPerPage: 3,
+            restrictSearchableAttributes: ["city", "address"],
+        }));
+
+        return from(this.algoliaService.searchClient.multipleQueries(queries));
     }
 }

@@ -25,6 +25,9 @@ import { TranslateModule } from "@ngx-translate/core";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { LoadingComponent } from "./loading/loading.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ListVendorsComponent } from "./list-vendors/list-vendors.component";
+import { ButtonLoadMoreComponent } from "./button-load-more/button-load-more.component";
 
 @NgModule({
     declarations: [
@@ -36,11 +39,15 @@ import { LoadingComponent } from "./loading/loading.component";
         SearchSmartItemsComponent,
         TopBannerComponent,
         LoadingComponent,
+        ListVendorsComponent,
+        ButtonLoadMoreComponent,
     ],
     imports: [
         CommonModule,
         TranslateModule,
         RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
         NbEvaIconsModule,
         NbAutocompleteModule,
         NbCardModule,
@@ -61,6 +68,8 @@ import { LoadingComponent } from "./loading/loading.component";
         SearchSmartItemsComponent,
         TopBannerComponent,
         LoadingComponent,
+        ListVendorsComponent,
+        ButtonLoadMoreComponent,
     ],
 })
 export class SharedModule {}

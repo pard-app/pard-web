@@ -10,6 +10,7 @@ import { Observable } from "rxjs";
 })
 export class ListListingsComponent implements OnInit {
     @Input() listingsList$: Observable<Array<ListingItem>>;
+    @Input() title: string = "Mysterious listings";
 
     constructor() {}
 

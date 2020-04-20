@@ -1,0 +1,4 @@
+<h3 class="vendors-title" [innerHTML]="title"></h3>
+<section class="grid-parent">
+    <app-card-vendor class="grid-child" *ngFor="let item of vendorsWithListings$ | async" [item]="item"></app-card-vendor>
+</section>

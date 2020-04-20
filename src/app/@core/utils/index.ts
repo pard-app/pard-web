@@ -23,3 +23,7 @@ type geoloc = {
 export function geoLocStr(latLngObj: geoloc): string {
     return `${latLngObj.lat}, ${latLngObj.lng}`;
 }
+
+export const noPagesLeft = (currentPage: number, totalPages: number): boolean => {
+    return currentPage === totalPages - 1 || currentPage === totalPages;
+};

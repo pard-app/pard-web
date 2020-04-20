@@ -1,29 +1,8 @@
-<app-search-box></app-search-box>
+<app-search-box (searchOnChange)="searchOnChange($event)"></app-search-box>
 
-<section class="content-section">
-    <nb-card class="card">
-        <nb-card-body>
-            <nb-tabset fullWidth (changeTab)="changeTab($event)">
-                <nb-tab
-                    [tabTitle]="'VENDORS' | translate"
-                    [tabIcon]="'home-outline'"
-                    [active]="(currentActiveTab$ | async).view == 'vendors'"
-                    [tabId]="'vendors'"
-                    class="grid-tab"
-                >
-                    <main-list-vendors></main-list-vendors>
-                </nb-tab>
-
-                <nb-tab
-                    [active]="(currentActiveTab$ | async).view == 'listings'"
-                    [tabTitle]="'LISTINGS' | translate"
-                    [tabId]="'listings'"
-                    class="grid-tab"
-                    [tabIcon]="'archive-outline'"
-                >
-                    <main-list-listings></main-list-listings>
-                </nb-tab>
-            </nb-tabset>
-        </nb-card-body>
-    </nb-card>
+<section class="content-section" *ngIf="searchRequest$ | async as searchRequest">
+    <scenario-nothing *ngIf="!searchRequest.location && !searchRequest.listingOrVendor"></scenario-nothing>
+    <scenario-only-location *ngIf="searchRequest.location && !searchRequest.listingOrVendor"></scenario-only-location>
+    <scenario-only-listing *ngIf="!searchRequest.location && searchRequest.listingOrVendor"></scenario-only-listing>
+    <scenario-location-and-listing *ngIf="searchRequest.location && searchRequest.listingOrVendor"></scenario-location-and-listing>
 </section>
