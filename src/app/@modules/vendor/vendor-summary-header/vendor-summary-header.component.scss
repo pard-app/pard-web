@@ -4,6 +4,17 @@
         flex-direction: row;
         padding: var(--card-padding);
         height: 200px;
+        @media only screen and (max-width: 950px) {
+            display: none;
+        }
+    }
+    &__containerMobile {
+        display: flex;
+        flex-direction: column;
+        padding: var(--card-padding);
+        @media only screen and (min-width: 950px) {
+            display: none;
+        }
     }
     &__presentation {
         display: flex;
@@ -22,6 +33,11 @@
         }
     }
 
+    &__presentationMobile {
+        display: flex;
+        flex-direction: row;
+    }
+
     &__presentationHeader {
         display: flex;
         flex-direction: row;
@@ -34,6 +50,7 @@
     // }
 
     &__descriptionMobile {
+        padding-top: 1.5rem;
         @media only screen and (min-width: 950px) {
             display: none;
         }

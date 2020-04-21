@@ -29,6 +29,33 @@
             <a vendorAfterAsync.email>{{ vendorAfterAsync.email }}</a>
         </div>
     </nb-card>
+
+    <nb-card class="vendor__containerMobile">
+        <div class="vendor__presentationMobile">
+            <div class="vendor__presentation">
+                <div class="vendor__presentationHeader">
+                    <div class="vendor__imageWrapperMobile">
+                        <img [src]="vendorAfterAsync.image" class="vendor__imageMobile" />
+                    </div>
+                    <div>
+                        <h1>{{ vendorAfterAsync.title }}</h1>
+                        <h4>{{ vendorAfterAsync.city + ", " + vendorAfterAsync.country }}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="vendor__contacts">
+                <p>
+                    <span> {{ "Contacts" | translate }} :</span>
+                </p>
+                <a [href]="'tel:' + vendorAfterAsync.phone">{{ vendorAfterAsync.phone }}</a>
+                <a vendorAfterAsync.email>{{ vendorAfterAsync.email }}</a>
+            </div>
+        </div>
+        <p class="vendor__descriptionMobile">
+            Zero waste bulk store. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla.
+        </p>
+    </nb-card>
 </div>
 
 <!-- <nb-card class="vendor__image-wrapper">
