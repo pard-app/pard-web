@@ -1,5 +1,16 @@
 @import "~src/app/@core/styles/themes";
 
+.vendors-and-listings {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-box {
+    flex: 1;
+}
+.search-button {
+    margin: 0 2px;
+}
 .remove-icon {
     width: 100%;
     height: 100%;
@@ -10,4 +21,29 @@
         opacity: 0.8;
         cursor: pointer;
     }
+}
+
+.option-item {
+    padding: 2px;
+    &__image {
+        padding: 3px;
+        width: 46px;
+        height: 46px;
+        object-fit: cover;
+    }
+    &__box {
+        display: flex;
+        align-items: center;
+    }
+    &__title {
+    }
+    &__description {
+        font-size: 0.8em;
+        font-weight: lighter;
+    }
+}
+
+.option-group ::ng-deep .option-group-title {
+    background: var(--color-info-100);
+    font-weight: bold;
 }
