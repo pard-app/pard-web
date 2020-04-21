@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ListingService } from "@services/listing/listing.service";
 import { VendorService } from "@services/vendor/vendor.service";
 import { ListingStore } from "@core/stores/listing/listing.store";
-import { debounce } from "rxjs/operators";
-import { interval, Subscriber, Subscription, BehaviorSubject, Observable } from "rxjs";
+import { throttleTime } from "rxjs/operators";
+import { Subscription, BehaviorSubject, Observable } from "rxjs";
 import { ListingItem } from "@models/listingitem.interface";
 import { IVendor } from "@models/vendor.interface";
 import { noPagesLeft, geoLocStr } from "@utils/index";
@@ -34,19 +34,18 @@ export class OnlyListingComponent implements OnInit, OnDestroy {
     // pagination
     public allListingsLoaded: boolean = false;
     public allVendorsLoaded: boolean = false;
+    // template data
+    public currentListingOrVendor: string;
 
     constructor(private listingService: ListingService, private vendorService: VendorService, private listingStore: ListingStore) {}
 
     ngOnInit(): void {
-        const subscribeToGlobalListingOrVendor = this.listingStore.currentListingOrVendor$
-            .pipe(debounce(() => interval(50)))
-            .subscribe(async (listingOrVendorText) => {
-                console.log(listingOrVendorText);
-                // this.currentListingOrVendor = name;
-                this.resetNecessaryValues();
-                this.vendorsSubscription = this.createVendorsSubscription(listingOrVendorText);
-                this.listingsSubscription = this.createListingsSubscription(listingOrVendorText);
-            });
+        const subscribeToGlobalListingOrVendor = this.listingStore.currentListingOrVendor$.pipe(throttleTime(1000)).subscribe(async (listingOrVendorText) => {
+            this.currentListingOrVendor = listingOrVendorText;
+            this.resetNecessaryValues();
+            this.vendorsSubscription = this.createVendorsSubscription(listingOrVendorText);
+            this.listingsSubscription = this.createListingsSubscription(listingOrVendorText);
+        });
 
         this.subscriptions.add(subscribeToGlobalListingOrVendor);
     }
