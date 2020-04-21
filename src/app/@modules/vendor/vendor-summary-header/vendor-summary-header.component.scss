@@ -1,32 +1,125 @@
-//
 .vendor {
-    &__showcase {
-        max-width: 500px;
-        min-height: 300px;
+    &__container {
         display: flex;
-        align-items: center;
-        @media only screen and (max-width: 600px) {
-            flex-direction: column;
+        flex-direction: row;
+        padding: var(--card-padding);
+        height: 200px;
+    }
+    &__presentation {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        flex-grow: 1;
+        h1,
+        h4,
+        p {
+            margin: 0;
+            max-width: 500px;
         }
-        &--margin {
-            margin: -200px auto 35px auto;
-        }
-        &--noMargin {
-            margin: 0px auto 35px auto;
+        p {
+            padding-top: auto;
         }
     }
-    &__summary {
-        margin: auto;
-        width: 100%;
+
+    &__presentationHeader {
+        display: flex;
+        flex-direction: row;
     }
+
+    // &__description {
+    //     // @media only screen and (max-width: 950px) {
+    //     //     display: none;
+    //     // }
+    // }
+
+    &__descriptionMobile {
+        @media only screen and (min-width: 950px) {
+            display: none;
+        }
+    }
+
     &__image {
         object-fit: contain;
-        width: 100px;
-        height: 100px;
-        &-wrapper {
-            height: 100%;
-            padding: 5px;
-            margin: 5px;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    &__imageWrapper {
+        margin-right: 1.5rem;
+        height: 100%;
+        @media only screen and (max-width: 950px) {
+            display: none;
+        }
+    }
+    &__imageMobile {
+        object-fit: contain;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    &__imageWrapperMobile {
+        height: 74px;
+        margin-right: 1.5rem;
+        @media only screen and (min-width: 950px) {
+            display: none;
+        }
+    }
+    &__contacts {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        text-align: right;
+        @media only screen and (max-width: 950px) {
+            justify-content: flex-start;
+        }
+
+        p {
+            span {
+                text-transform: uppercase;
+                opacity: 0.8;
+                font-size: 12px;
+            }
+        }
+        a {
+            margin-top: 8px;
+            color: var(--color-info-default);
+            @media only screen and (max-width: 950px) {
+                font-size: 14px;
+                margin-top: 4px;
+            }
         }
     }
 }
+
+// .vendor {
+//     &__showcase {
+//         max-width: 500px;
+//         min-height: 300px;
+//         display: flex;
+//         align-items: center;
+//         @media only screen and (max-width: 600px) {
+//             flex-direction: column;
+//         }
+//         &--margin {
+//             margin: -200px auto 35px auto;
+//         }
+//         &--noMargin {
+//             margin: 0px auto 35px auto;
+//         }
+//     }
+//     &__summary {
+//         margin: auto;
+//         width: 100%;
+//     }
+//     &__image {
+//         object-fit: contain;
+//         width: 100px;
+//         height: 100px;
+//         &-wrapper {
+//             height: 100%;
+//             padding: 5px;
+//             margin: 5px;
+//         }
+//     }
+// }

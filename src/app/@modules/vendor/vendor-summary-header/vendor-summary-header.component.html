@@ -1,23 +1,52 @@
-<div
-    [ngClass]="{ vendor__showcase: true, 'vendor__showcase--margin': !noMargin, 'vendor__showcase--noMargin': noMargin }"
-    [nbSpinner]="!(vendor$ | async)"
-    nbSpinnerStatus="success"
->
-    <nb-card class="vendor__image-wrapper">
-        <nb-card-body class="vendor__image-wrapper">
-            <img *ngIf="vendor$ | async as vendorAfterAsync" [src]="vendorAfterAsync.image" class="vendor__image" />
-        </nb-card-body>
-    </nb-card>
-    <nb-card *ngIf="vendor$ | async as vendorAfterAsync" class="vendor__summary" size="small">
-        <nb-card-header>
-            <h1>{{ vendorAfterAsync.title }}</h1>
-        </nb-card-header>
-        <nb-card-body>
-            <h4>{{ vendorAfterAsync.city + ", " + vendorAfterAsync.country }}</h4>
-            <p>
-                <a [href]="'tel:' + vendorAfterAsync.phone">{{ vendorAfterAsync.phone }}</a>
+<div *ngIf="vendor$ | async as vendorAfterAsync" [nbSpinner]="!(vendor$ | async)" nbSpinnerStatus="success" class="vendor">
+    <nb-card class="vendor__container">
+        <div class="vendor__imageWrapper">
+            <img [src]="vendorAfterAsync.image" class="vendor__image" />
+        </div>
+
+        <div class="vendor__presentation">
+            <div class="vendor__presentationHeader">
+                <div class="vendor__imageWrapperMobile">
+                    <img [src]="vendorAfterAsync.image" class="vendor__imageMobile" />
+                </div>
+                <div>
+                    <h1>{{ vendorAfterAsync.title }}</h1>
+                    <h4>{{ vendorAfterAsync.city + ", " + vendorAfterAsync.country }}</h4>
+                </div>
+            </div>
+            <!-- <p>{{ vendorAfterAsync.description }}</p> -->
+
+            <p class="vendor__description">
+                Zero waste bulk store. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla.
             </p>
-            <p>{{ vendorAfterAsync.description }}</p>
-        </nb-card-body>
+        </div>
+        <div class="vendor__contacts">
+            <p>
+                <span> {{ "Contacts" | translate }} :</span>
+            </p>
+            <a [href]="'tel:' + vendorAfterAsync.phone">{{ vendorAfterAsync.phone }}</a>
+            <a vendorAfterAsync.email>{{ vendorAfterAsync.email }}</a>
+        </div>
     </nb-card>
 </div>
+
+<!-- <nb-card class="vendor__image-wrapper">
+    <nb-card-body class="vendor__image-wrapper">
+        <img [src]="vendorAfterAsync.image" class="vendor__image" />
+    </nb-card-body>
+</nb-card>
+<nb-card *ngIf="vendor$ | async as vendorAfterAsync" class="vendor__summary" size="small">
+    <nb-card-header>
+        <h1>{{ vendorAfterAsync.title }}</h1>
+    </nb-card-header>
+    <nb-card-body>
+        <h4>{{ vendorAfterAsync.city + ", " + vendorAfterAsync.country }}</h4>
+        <p>
+            <a [href]="'tel:' + vendorAfterAsync.phone">{{ vendorAfterAsync.phone }}</a>
+        </p>
+        <p>{{ vendorAfterAsync.description }}</p>
+    </nb-card-body>
+</nb-card> -->
+
+<!-- <nb-badge text="badgeText"></nb-badge> -->
