@@ -7,8 +7,11 @@
             [groupedItems$]="groupedItems$"
             (onClear)="onClearListingOrVendor()"
             (onWrite)="onWriteListingOrVendor($event)"
-            (listingOrVendorChanged)="currentListingOrVendorOnChange($event)"
+            (listingOrVendorClicked)="listingOrVendorClicked($event)"
+            (onClickSearchVendorOrListingButton)="onClickSearchVendorOrListingButton($event)"
         ></app-search-smart-items>
         <nb-checkbox>I want delivery</nb-checkbox>
     </nb-card-body>
 </nb-card>
+
+<!-- (onClickSearchButton)="" -->

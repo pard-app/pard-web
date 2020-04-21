@@ -10,7 +10,8 @@ import { SearchVendorOrListingGroup } from "@models/vendorAndListing.interface";
 })
 export class SearchSmartItemsComponent implements OnInit, OnDestroy {
     @Output() onClear = new EventEmitter();
-    @Output() listingOrVendorChanged = new EventEmitter();
+    @Output() listingOrVendorClicked = new EventEmitter();
+    @Output() onClickSearchVendorOrListingButton = new EventEmitter();
     @Output() onWrite = new EventEmitter();
     @Input() groupedItems$: Observable<SearchVendorOrListingGroup[]>;
     public input: FormControl = new FormControl();
@@ -29,12 +30,17 @@ export class SearchSmartItemsComponent implements OnInit, OnDestroy {
         this.sub.unsubscribe();
     }
 
-    public onPick(ev) {
-        this.listingOrVendorChanged.emit(ev);
+    public onPick(ev): void {
+        this.listingOrVendorClicked.emit(ev);
     }
 
-    public clearInput() {
+    public vendorOrListingSearch(): void {
+        const value = this.input.value;
+        value && this.onClickSearchVendorOrListingButton.emit(value);
+    }
+
+    public clearInput(): void {
         this.onClear.emit();
-        this.input.setValue(null);
+        this.input.setValue("");
     }
 }

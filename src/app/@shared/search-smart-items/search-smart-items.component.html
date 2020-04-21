@@ -26,7 +26,7 @@
             </nb-option-group>
         </nb-autocomplete>
     </nb-form-field>
-    <button class="search-button" [disabled]="!input.value" nbButton size="medium" status="info">
+    <button (click)="vendorOrListingSearch()" class="search-button" [disabled]="!input.value" nbButton size="medium" status="info">
         <nb-icon icon="search-outline"></nb-icon>
     </button>
 </div>

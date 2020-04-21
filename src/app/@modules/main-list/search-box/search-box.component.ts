@@ -97,17 +97,19 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         });
     }
 
-    public currentListingOrVendorOnChange({ type, title, objectID, vendor }): void {
-        console.log(event);
+    public listingOrVendorClicked({ type, title, objectID, vendor }): void {
         if (type === "listings") {
             this.router.navigate(["/vendor/" + vendor + "/" + objectID]);
         } else if (type === "vendors") {
             this.router.navigate(["/vendor/" + objectID]);
         }
+    }
+
+    public onClickSearchVendorOrListingButton(text): void {
         // Set in store
-        this.listingStore.currentListingOrVendor = title;
+        this.listingStore.currentListingOrVendor = text;
         // Set in current component
-        this.searchRequest.listingOrVendor = title;
+        this.searchRequest.listingOrVendor = text;
         this.searchOnChange.emit(this.searchRequest);
     }
 }
