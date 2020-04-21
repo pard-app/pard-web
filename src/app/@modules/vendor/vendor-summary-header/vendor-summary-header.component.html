@@ -37,11 +37,16 @@
                     <div class="vendor__imageWrapperMobile">
                         <img [src]="vendorAfterAsync.image" class="vendor__imageMobile" />
                     </div>
+
                     <div>
                         <h1>{{ vendorAfterAsync.title }}</h1>
                         <h4>{{ vendorAfterAsync.city + ", " + vendorAfterAsync.country }}</h4>
                     </div>
                 </div>
+            </div>
+            <div class="vendor__smContacts">
+                <button nbButton ghost status="info"><nb-icon icon="phone-outline"></nb-icon></button>
+                <button nbButton ghost status="info"><nb-icon icon="email-outline"></nb-icon></button>
             </div>
             <div class="vendor__contacts">
                 <p>

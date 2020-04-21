@@ -43,6 +43,28 @@
         flex-direction: row;
     }
 
+    &__smPresentationAndContacts {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__smContacts {
+        margin-right: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        @media only screen and (min-width: 640px) {
+            display: none;
+        }
+        button {
+            width: 50px;
+
+            cursor: pointer;
+            &:focus {
+                outline: none;
+            }
+        }
+    }
     // &__description {
     //     // @media only screen and (max-width: 950px) {
     //     //     display: none;
@@ -76,8 +98,8 @@
     }
 
     &__imageWrapperMobile {
-        height: 74px;
-        margin-right: 1.5rem;
+        height: 75px;
+        margin-right: 1rem;
         @media only screen and (min-width: 950px) {
             display: none;
         }
@@ -89,6 +111,9 @@
         text-align: right;
         @media only screen and (max-width: 950px) {
             justify-content: flex-start;
+        }
+        @media only screen and (max-width: 640px) {
+            display: none;
         }
 
         p {
