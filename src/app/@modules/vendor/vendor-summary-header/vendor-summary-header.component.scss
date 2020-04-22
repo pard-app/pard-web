@@ -24,15 +24,16 @@
         justify-content: space-between;
 
         flex-grow: 1;
-        h1,
-        h4,
-        p {
-            margin: 0;
-            max-width: 500px;
-        }
-        p {
-            padding-top: auto;
-        }
+    }
+
+    &__vendorTitle,
+    &__vendorLocation,
+    &__description {
+        margin: 0;
+        max-width: 500px;
+    }
+    &__description {
+        padding-top: auto;
     }
 
     &__presentationMobile {
@@ -58,20 +59,15 @@
         @media only screen and (min-width: 640px) {
             display: none;
         }
-        button {
-            width: 50px;
+    }
 
-            cursor: pointer;
-            &:focus {
-                outline: none;
-            }
+    &__smContactsButton {
+        width: 50px;
+        cursor: pointer;
+        &:focus {
+            outline: none;
         }
     }
-    // &__description {
-    //     // @media only screen and (max-width: 950px) {
-    //     //     display: none;
-    //     // }
-    // }
 
     &__descriptionMobile {
         padding-top: 1.5rem;
@@ -117,53 +113,21 @@
         @media only screen and (max-width: 640px) {
             display: none;
         }
+    }
 
-        p {
-            span {
-                text-transform: uppercase;
-                opacity: 0.8;
-                font-size: 12px;
-            }
-        }
-        a {
-            margin-top: 8px;
-            color: var(--color-info-default);
-            @media only screen and (max-width: 950px) {
-                font-size: 14px;
-                margin-top: 4px;
-            }
+    &__contactsSectionTitle {
+        text-transform: uppercase;
+        opacity: 0.8;
+        font-size: 12px;
+    }
+    &__contactsLink {
+        margin-top: 8px;
+        color: var(--color-info-default);
+        cursor: pointer;
+        text-decoration: underline;
+        @media only screen and (max-width: 950px) {
+            font-size: 14px;
+            margin-top: 4px;
         }
     }
 }
-
-// .vendor {
-//     &__showcase {
-//         max-width: 500px;
-//         min-height: 300px;
-//         display: flex;
-//         align-items: center;
-//         @media only screen and (max-width: 600px) {
-//             flex-direction: column;
-//         }
-//         &--margin {
-//             margin: -200px auto 35px auto;
-//         }
-//         &--noMargin {
-//             margin: 0px auto 35px auto;
-//         }
-//     }
-//     &__summary {
-//         margin: auto;
-//         width: 100%;
-//     }
-//     &__image {
-//         object-fit: contain;
-//         width: 100px;
-//         height: 100px;
-//         &-wrapper {
-//             height: 100%;
-//             padding: 5px;
-//             margin: 5px;
-//         }
-//     }
-// }
