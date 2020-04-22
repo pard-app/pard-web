@@ -19,6 +19,8 @@ import { MainListModule } from "@modules/main-list/main-list.module";
 import { FooterModule } from "@modules/footer/footer.module";
 import { SharedModule } from "@shared/shared.module";
 import { TopheaderModule } from "@modules/topheader/topheader.module";
+import { PrivacyPolicyModule } from "@modules/privacy-policy/privacy-policy.module";
+import { TermsAndConditionsModule } from "@modules/terms-and-conditions/terms-and-conditions.module";
 @NgModule({
     declarations: [AppComponent],
     imports: [
@@ -46,6 +48,8 @@ import { TopheaderModule } from "@modules/topheader/topheader.module";
         FooterModule,
         SharedModule,
         TopheaderModule,
+        PrivacyPolicyModule,
+        TermsAndConditionsModule,
     ],
     providers: [DbService, NbAutocompleteDirective, { provide: DEFAULT_CURRENCY_CODE, useValue: "EUR" }, { provide: REGION, useValue: "europe-west1" }],
     bootstrap: [AppComponent],

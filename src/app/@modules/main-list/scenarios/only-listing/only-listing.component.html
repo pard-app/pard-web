@@ -1,1 +1,2 @@
-<p>only-listing works!</p>
+<app-list-listings [listingsList$]="listings$" [title]="'Listings found for: <i>' + currentListingOrVendor + '</i>'"></app-list-listings>
+<app-list-vendors [vendorsWithListings$]="vendors$" [title]="'Vendors found for: <i>' + currentListingOrVendor + '</i>'"></app-list-vendors>

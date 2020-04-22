@@ -4,6 +4,7 @@
         flex-direction: row;
         padding: var(--card-padding);
         height: 200px;
+        margin-bottom: 5px;
         @media only screen and (max-width: 950px) {
             display: none;
         }
@@ -11,6 +12,7 @@
     &__containerMobile {
         display: flex;
         flex-direction: column;
+        margin-bottom: 5px;
         padding: var(--card-padding);
         @media only screen and (min-width: 950px) {
             display: none;

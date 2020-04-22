@@ -8,9 +8,12 @@
     &__body {
         overflow: unset;
         display: grid;
-        grid-template-columns: 1fr 1fr 0.4fr;
-        grid-gap: 35px;
+        grid-template-columns: 0.7fr 1fr 0.4fr;
+        grid-gap: 20px;
         align-items: center;
+        @media only screen and (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
     }
 }
 

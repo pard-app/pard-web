@@ -1,3 +1,20 @@
 <footer class="footer">
-    &copy; pard.app 2020
+    <div class="social-icons">
+        <a href="" class="icon">
+            <button nbButton size="medium">
+                <nb-icon icon="facebook"></nb-icon>
+            </button>
+        </a>
+        <a href="https://www.linkedin.com/company/42282596" class="icon">
+            <button nbButton size="medium">
+                <nb-icon icon="linkedin"></nb-icon>
+            </button>
+        </a>
+    </div>
+    <a [routerLink]="['/privacy_policy']">{{ "PRIVACY_POLICY" | translate }}</a>
+    <a [routerLink]="['/terms_and_conditions']">{{ "TERMS_AND_CONDITIONS" | translate }}</a>
+    <a>{{ "SPONSORS" | translate }}</a>
+    <a>{{ "CAREERS" | translate }}</a>
+    <p>pard@pard.app</p>
+    <p>&copy; pard.app 2020</p>
 </footer>
