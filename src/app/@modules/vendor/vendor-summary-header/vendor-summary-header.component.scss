@@ -54,6 +54,7 @@
     &__smContacts {
         margin-right: 1rem;
         display: flex;
+        margin: 0;
         flex-direction: column;
         justify-content: space-around;
         @media only screen and (min-width: 640px) {
