@@ -7,7 +7,7 @@
         <!-- VENDORS FOUND AFTER TAKING TOO LONG -->
         <h3 *ngIf="waitLocalVendors.waiting == false && waitLocalVendors.waitedForTooLong == true && topVendorsNearMe.length; else elseBlock">
             {{ "FOUND_VENDORS_NEAR" | translate }}
-            <button (click)="displayVendorsOnClick()" nbButton outline status="info" size="small">
+            <button (click)="displayVendorsOnClick()" nbButton ghost status="info" size="small">
                 <nb-icon icon="arrowhead-down-outline"></nb-icon>{{ "SHOW_VENDORS" | translate }}
             </button>
         </h3>
