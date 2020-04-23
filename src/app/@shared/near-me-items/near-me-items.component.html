@@ -2,7 +2,7 @@
     <ng-container *ngIf="waitLocalVendors$ | async as waitLocalVendors">
         <!-- LOADING -->
         <h3 [nbSpinner]="true" nbSpinnerStatus="control" size="medium" *ngIf="waitLocalVendors.waiting == true">
-            {{ "LOOKING_FOR_NEAR_VENDORS" | translate }}
+            {{ "LOOKING_FOR_NEAR_VENDORS" | translate }} <nb-icon icon="pin" status="info"></nb-icon>
         </h3>
         <!-- VENDORS FOUND AFTER TAKING TOO LONG -->
         <h3 *ngIf="waitLocalVendors.waiting == false && waitLocalVendors.waitedForTooLong == true && topVendorsNearMe.length; else elseBlock">
