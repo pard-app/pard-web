@@ -21,6 +21,7 @@ export class SearchLocationComponent implements AfterViewInit, OnDestroy {
         this.placesSearchInstance = places({
             container: this.input.nativeElement,
             type: "city",
+            countries: ["lt"],
         });
 
         this.placesSearchInstance.on("change", (suggestion: ChangeEvent) => {
