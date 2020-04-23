@@ -13,7 +13,7 @@ export class AlgoliaService {
 
     constructor() {}
 
-    public searchVendorsAndListings(query: string): Observable<any> {
+    public searchVendorsAndListings(query: string, options = {}): Observable<any> {
         const settings = [
             { indexName: "listings", restrictSearchableAttributes: ["title", "description"] },
             { indexName: "vendors", restrictSearchableAttributes: ["company", "description"] },
@@ -24,6 +24,7 @@ export class AlgoliaService {
             restrictSearchableAttributes: restrictSearchableAttributes,
             query,
             hitsPerPage: 6,
+            ...options,
         }));
 
         return from(this.searchClient.multipleQueries(queries));
