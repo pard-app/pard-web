@@ -1,4 +1,4 @@
-<app-list-vendors [vendorsWithListings$]="topVendorsNearMe$" [title]="'Vendors near your location'"></app-list-vendors>
+<app-near-me-items></app-near-me-items>
 <!-- Top In Cities Vendors -->
 <app-list-vendors
     *ngFor="let item of topVendorsInLocations$ | async"
