@@ -41,7 +41,6 @@ export class NearMeItemsComponent implements OnInit {
         const data = await this.vendorService
             .searchVendor({ query: "", aroundLatLng: cityLatLong, hitsPerPage: 6 })
             .pipe(
-                delay(2000),
                 mergeMap(async ({ hits }: any) => await this.listingService.fillVendorWithItsListings(hits)),
                 finalize(() => {
                     const currentVal = this._waitLocalVendors$.getValue();
