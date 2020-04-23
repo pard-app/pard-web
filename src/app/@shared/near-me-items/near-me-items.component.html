@@ -1,0 +1,25 @@
+<ng-container *ngIf="topVendorsNearMe$ | async as topVendorsNearMe">
+    <ng-container *ngIf="waitLocalVendors$ | async as waitLocalVendors">
+        <!-- LOADING -->
+        <h3 [nbSpinner]="true" nbSpinnerStatus="control" size="medium" *ngIf="waitLocalVendors.waiting == true">
+            {{ "LOOKING_FOR_NEAR_VENDORS" | translate }} <nb-icon icon="pin" status="info"></nb-icon>
+        </h3>
+        <!-- VENDORS FOUND AFTER TAKING TOO LONG -->
+        <h3 *ngIf="waitLocalVendors.waiting == false && waitLocalVendors.waitedForTooLong == true && topVendorsNearMe.length; else elseBlock">
+            {{ "FOUND_VENDORS_NEAR" | translate }}
+            <button (click)="displayVendorsOnClick()" nbButton ghost status="info" size="small">
+                <nb-icon icon="arrowhead-down-outline"></nb-icon>{{ "SHOW_VENDORS" | translate }}
+            </button>
+        </h3>
+        <!-- NO VENDORS FOUND -->
+        <ng-template #elseBlock>
+            <h3 *ngIf="!topVendorsNearMe.length && waitLocalVendors.waiting === false">{{ "NO_VENDORS_NEAR" | translate }}</h3>
+        </ng-template>
+        <!-- VENDORS FOUND IMMEDIATELY -->
+        <app-list-vendors
+            *ngIf="waitLocalVendors.waiting === false && waitLocalVendors.waitedForTooLong === false"
+            [vendorsWithListings$]="topVendorsNearMe$"
+            [title]="'Vendors near your location'"
+        ></app-list-vendors>
+    </ng-container>
+</ng-container>

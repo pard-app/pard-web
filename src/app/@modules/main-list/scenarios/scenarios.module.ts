@@ -5,11 +5,12 @@ import { NothingComponent } from "./nothing/nothing.component";
 import { OnlyListingComponent } from "./only-listing/only-listing.component";
 import { OnlyLocationComponent } from "./only-location/only-location.component";
 import { SharedModule } from "@shared/shared.module";
-import { NbButtonModule } from "@nebular/theme";
+import { NbButtonModule, NbIconModule } from "@nebular/theme";
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
     declarations: [LocationAndListingComponent, NothingComponent, OnlyListingComponent, OnlyLocationComponent],
-    imports: [CommonModule, SharedModule, NbButtonModule],
+    imports: [CommonModule, SharedModule, NbButtonModule, TranslateModule, NbButtonModule, NbIconModule],
     exports: [LocationAndListingComponent, NothingComponent, OnlyListingComponent, OnlyLocationComponent],
 })
 export class ScenariosModule {}
