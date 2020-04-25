@@ -66,7 +66,6 @@ export class OnlyListingComponent implements OnInit, OnDestroy {
             const { hits, page, nbPages } = await this.listingService
                 .searchListing({ query: listingOrVendorText, hitsPerPage: pagination.hitsPerPage, page: pagination.page })
                 .toPromise();
-            console.log(hits);
             this._listings$.next([...this._listings$.getValue(), ...hits]);
             if (noPagesLeft(page, nbPages)) this.allListingsLoaded = true;
         });
