@@ -5,8 +5,8 @@
         </div>
         <div class="listing__shareAndDescription">
             <a class="listing__shareSection">
-                <h5 class="listing__shareText">{{ "SHARE" | translate }}</h5>
-                <nb-icon class="listing__shareIcon" icon="external-link-outline"></nb-icon>
+                <p class="listing__shareText">{{ "SHARE" | translate }}</p>
+                <!-- <nb-icon class="listing__shareIcon" icon="external-link-outline"></nb-icon> -->
             </a>
             <div class="listing__descriptionSection">
                 <div class="listing__descriptionWrapper">
@@ -14,7 +14,10 @@
                     <h3 class="listing__price">{{ listing.price | currency }}</h3>
                     <p>{{ listing.description }}</p>
                     <a href="" class="listing__deliveryInformation">{{ "DELIVERY_INFORMATION" | translate }}</a>
-                    <button class="listing__addToCardButton" nbButton status="info">{{ "ADD_TO_CART" | translate }}</button>
+                    <button class="listing__addToCardButton" nbButton status="info">
+                        <nb-icon icon="shopping-bag-outline"></nb-icon>
+                        {{ "ADD_TO_CART" | translate }}
+                    </button>
                 </div>
             </div>
         </div>

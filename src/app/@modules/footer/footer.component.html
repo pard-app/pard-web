@@ -11,10 +11,14 @@
             </button>
         </a>
     </div>
-    <a [routerLink]="['/privacy_policy']">{{ "PRIVACY_POLICY" | translate }}</a>
-    <a [routerLink]="['/terms_and_conditions']">{{ "TERMS_AND_CONDITIONS" | translate }}</a>
-    <a>{{ "SPONSORS" | translate }}</a>
-    <a>{{ "CAREERS" | translate }}</a>
-    <p>pard@pard.app</p>
-    <p>&copy; pard.app 2020</p>
+    <div class="footer__links">
+        <a [routerLink]="['/privacy_policy']">{{ "PRIVACY_POLICY" | translate }}</a>
+        <a [routerLink]="['/terms_and_conditions']">{{ "TERMS_AND_CONDITIONS" | translate }}</a>
+        <a>{{ "SPONSORS" | translate }}</a>
+        <a>{{ "CAREERS" | translate }}</a>
+    </div>
+    <div class="footer__trademark">
+        <p>pard@pard.app</p>
+        <p>&copy; pard.app 2020</p>
+    </div>
 </footer>

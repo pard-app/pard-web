@@ -99,6 +99,10 @@ p {
 }
 
 .flexible-card {
+    overflow: hidden;
+    @media only screen and (max-width: 950px) {
+        border-radius: 0;
+    }
     @media only screen and (max-width: 640px) {
         border: none;
     }
