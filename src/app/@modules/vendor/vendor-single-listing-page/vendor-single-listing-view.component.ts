@@ -32,6 +32,8 @@ export class VendorSingleListingViewComponent implements OnInit {
             this._listing$.next(listingData);
             const vendorData = await this.vendorService.getVendorById(vendorId);
             this._vendor$.next(vendorData);
+            const { hits } = await this.listingService.searchVendorListings("", vendorId);
+            this._listingsList$.next(hits);
         });
     }
 }
