@@ -32,7 +32,6 @@ export class VendorListingsComponent implements OnInit {
 
     private async getVendor() {
         const data = await this.vendorService.getVendorById(this.vendorId);
-        console.log(data);
         this._vendor$.next(data);
     }
 

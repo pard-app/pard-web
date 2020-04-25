@@ -8,6 +8,7 @@ import { debounce, map, filter, flatMap, mergeMap, toArray } from "rxjs/operator
 import { SearchVendorOrListingGroup } from "@models/vendorAndListing.interface";
 import { Router } from "@angular/router";
 import { geoLocStr } from "@utils/index";
+import ROUTES, { locationQueryParams } from "src/app/@core/constants/routing.constants";
 
 export class SearchRequest {
     location: Suggestion | null = null;
@@ -43,8 +44,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
 
     public onClearCity(): void {
         // Clear store
-        this.locationStore.currentLocation = undefined;
-        this.locationStore.currentLocationSuggestion = null;
+        this.locationStore.currentLocation = null;
         // Clear component
         this.searchLocationComponent.clearInput();
         this.searchRequest.location = null;
@@ -61,8 +61,8 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
 
     public currentLocationOnChange({ suggestion }: ChangeEvent): void {
         // Set in store
-        this.locationStore.currentLocation = suggestion?.hit;
-        this.locationStore.currentLocationSuggestion = suggestion;
+        this.locationStore.currentLocation = suggestion;
+        this.router.navigate([ROUTES.ROOT], locationQueryParams({ location: suggestion.name, geoloc: geoLocStr(suggestion.hit._geoloc) }));
         // Set in current component
         this.searchRequest.location = suggestion;
         this.searchOnChange.emit(this.searchRequest);
@@ -76,9 +76,9 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         this.sub = combineLatest([this.currentVendorAndListingText$, this.locationStore.currentLocation$])
             .pipe(debounce(() => interval(300)))
             .subscribe(async ([query, location]) => {
-                const opts = location ? { aroundLatLng: geoLocStr(location._geoloc), aroundRadius: 40000 } : {};
-                if (location && location.locale_names[0]) {
-                    this.currentLocationName = `(${location.locale_names[0]})`;
+                const opts = location ? { aroundLatLng: geoLocStr(location.hit._geoloc), aroundRadius: 40000 } : {};
+                if (location && location.name) {
+                    this.currentLocationName = `(${location.name})`;
                 } else {
                     this.currentLocationName = "";
                 }
