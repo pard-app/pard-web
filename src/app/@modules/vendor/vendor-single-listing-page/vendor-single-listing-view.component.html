@@ -12,7 +12,7 @@
                 <div class="listing__descriptionWrapper">
                     <h1 class="listing__listingTitle">{{ listing.title }}</h1>
                     <h3 class="listing__price">{{ listing.price | currency }}</h3>
-                    <p>{{ listing.description }}</p>
+                    <p class="listing__description">{{ listing.description }}</p>
                     <a href="" class="listing__deliveryInformation">{{ "DELIVERY_INFORMATION" | translate }}</a>
                     <button class="listing__addToCardButton" nbButton status="info">
                         <nb-icon icon="shopping-bag-outline"></nb-icon>
@@ -22,12 +22,13 @@
             </div>
         </div>
     </nb-card>
-    <app-vendor-summary-header [vendor$]="_vendor$" [noMargin]="true"></app-vendor-summary-header>
+
     <nb-card class="flexible-card">
         <nb-card-body>
             <app-list-listings [listingsList$]="_listingsList$"></app-list-listings>
         </nb-card-body>
     </nb-card>
+    <app-vendor-summary-header [vendor$]="_vendor$" [noMargin]="true"></app-vendor-summary-header>
 </div>
 
 <!-- <nb-card-header class="listing__header">

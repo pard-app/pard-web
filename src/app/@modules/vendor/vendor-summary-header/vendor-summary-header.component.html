@@ -1,5 +1,5 @@
 <div *ngIf="vendor$ | async as vendorAfterAsync" [nbSpinner]="!(vendor$ | async)" nbSpinnerStatus="success" class="vendor">
-    <nb-card class="vendor__container">
+    <nb-card class="vendor__container flexible-card">
         <div class="vendor__imageWrapper">
             <img [src]="vendorAfterAsync.image" class="vendor__image" />
         </div>

@@ -2,9 +2,12 @@
     display: flex;
     flex-direction: row;
     height: 700px;
+    @media only screen and (max-width: 1260px) {
+        border-radius: 0;
+    }
     @media only screen and (max-width: 950px) {
-        height: 400px;
-        margin-bottom: 5px;
+        min-height: 400px;
+        height: 100%;
     }
     @media only screen and (max-width: 640px) {
         flex-direction: column;
@@ -12,9 +15,11 @@
     }
 
     &__imageWrapper {
-        flex-grow: 1;
+        flex-grow: 3;
         width: 0;
-
+        @media only screen and (max-width: 950px) {
+            flex-grow: 1;
+        }
         @media only screen and (max-width: 640px) {
             width: auto;
         }
@@ -29,13 +34,22 @@
         }
     }
     &__shareAndDescription {
-        flex-grow: 1;
+        flex-grow: 2;
         flex-direction: column;
         display: flex;
         width: 0;
-        padding: 10px;
+        padding: var(--card-padding);
+        @media only screen and (max-width: 950px) {
+            flex-grow: 1;
+        }
         @media only screen and (max-width: 640px) {
             width: auto;
+        }
+    }
+
+    &__description {
+        @media only screen and (max-width: 640px) {
+            max-width: 95%;
         }
     }
     &__shareSection {
@@ -45,6 +59,9 @@
         align-items: center;
         height: 15px;
         cursor: pointer;
+        @media only screen and (max-width: 640px) {
+            height: auto;
+        }
     }
     &__shareIcon {
         margin-left: 2px;
@@ -61,13 +78,16 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        @media only screen and (max-width: 640px) {
+        }
     }
     &__descriptionWrapper {
         margin-top: -15px;
         display: flex;
         flex-direction: column;
-        width: 400px;
+        max-width: 400px;
         @media only screen and (max-width: 640px) {
+            max-width: 550px;
             width: 100%;
         }
     }
