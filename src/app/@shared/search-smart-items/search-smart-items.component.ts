@@ -1,40 +1,47 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, Input } from "@angular/core";
-import { Observable, of } from "rxjs";
-export interface Group {
-    name: string;
-    children: string[];
-}
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, Input, OnDestroy } from "@angular/core";
+import { Observable, of, Subscription } from "rxjs";
+import { FormControl } from "@angular/forms";
+import { SearchVendorOrListingGroup } from "@models/vendorAndListing.interface";
 
 @Component({
     selector: "app-search-smart-items",
     templateUrl: "./search-smart-items.component.html",
     styleUrls: ["./search-smart-items.component.scss"],
 })
-export class SearchSmartItemsComponent {
+export class SearchSmartItemsComponent implements OnInit, OnDestroy {
     @Output() onClear = new EventEmitter();
-    @Output() listingOrVendorChanged = new EventEmitter();
-    @Input() groupedItems$: Observable<Group[]>;
-    @ViewChild("theInput") input: ElementRef;
-
-    public currVal: string = null;
+    @Output() listingOrVendorClicked = new EventEmitter();
+    @Output() onClickSearchVendorOrListingButton = new EventEmitter();
+    @Output() onWrite = new EventEmitter();
+    @Input() groupedItems$: Observable<SearchVendorOrListingGroup[]>;
+    @Input() placeholder: string;
+    public input: FormControl = new FormControl();
+    private sub = new Subscription();
 
     constructor() {}
 
-    public onCurrentValueChange() {
-        !this.currVal && this.clearInput();
+    ngOnInit(): void {
+        this.sub = this.input.valueChanges.subscribe((str) => {
+            !str && this.onClear.emit();
+            this.onWrite.emit(str);
+        });
     }
 
-    public onPick(ev) {
-        this.listingOrVendorChanged.emit(ev);
+    ngOnDestroy(): void {
+        this.sub.unsubscribe();
     }
 
-    public clearInputButtonOnClick() {
-        this.currVal = null;
+    public onPick(ev): void {
+        this.listingOrVendorClicked.emit(ev);
     }
 
-    public clearInput() {
-        this.input.nativeElement.value = null;
-        this.currVal = null;
+    public vendorOrListingSearch(): void {
+        const value = this.input.value;
+        value && this.onClickSearchVendorOrListingButton.emit(value);
+    }
+
+    public clearInput(): void {
         this.onClear.emit();
+        this.input.setValue("");
     }
 }

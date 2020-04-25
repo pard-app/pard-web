@@ -118,8 +118,9 @@ $nb-themes: nb-register-theme(
         text-heading-5-font-size: 1.125rem,
         text-heading-6-font-size: 1.125rem,
         search-background-color: "rgba(255, 255, 255, 0.9)",
-        border-radius: 0,
+        border-radius: 3px,
         card-border-radius: 10px,
+        link-text-decoration: none,
     ),
     corporate,
     corporate

@@ -12,6 +12,7 @@ import {
     NbSelectModule,
     NbBadgeModule,
     NbFormFieldModule,
+    NbSpinnerModule,
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { CardVendorComponent } from "./card-vendor/card-vendor.component";
@@ -24,10 +25,10 @@ import { CardListingComponent } from "./card-listing/card-listing.component";
 import { TranslateModule } from "@ngx-translate/core";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
-import { LoadingComponent } from "./loading/loading.component";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ListVendorsComponent } from "./list-vendors/list-vendors.component";
 import { ButtonLoadMoreComponent } from "./button-load-more/button-load-more.component";
+import { NearMeItemsComponent } from "./near-me-items/near-me-items.component";
 
 @NgModule({
     declarations: [
@@ -38,15 +39,16 @@ import { ButtonLoadMoreComponent } from "./button-load-more/button-load-more.com
         SearchLocationComponent,
         SearchSmartItemsComponent,
         TopBannerComponent,
-        LoadingComponent,
         ListVendorsComponent,
         ButtonLoadMoreComponent,
+        NearMeItemsComponent,
     ],
     imports: [
         CommonModule,
         TranslateModule,
         RouterModule,
         FormsModule,
+        ReactiveFormsModule,
         NbEvaIconsModule,
         NbAutocompleteModule,
         NbCardModule,
@@ -56,6 +58,7 @@ import { ButtonLoadMoreComponent } from "./button-load-more/button-load-more.com
         NbIconModule,
         NbSelectModule,
         NbBadgeModule,
+        NbSpinnerModule,
     ],
     providers: [NbAutocompleteDirective, NbMenuService],
     exports: [
@@ -66,9 +69,9 @@ import { ButtonLoadMoreComponent } from "./button-load-more/button-load-more.com
         SearchLocationComponent,
         SearchSmartItemsComponent,
         TopBannerComponent,
-        LoadingComponent,
         ListVendorsComponent,
         ButtonLoadMoreComponent,
+        NearMeItemsComponent,
     ],
 })
 export class SharedModule {}

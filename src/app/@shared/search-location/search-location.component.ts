@@ -15,12 +15,13 @@ export class SearchLocationComponent implements AfterViewInit, OnDestroy {
     @Output() onClear? = new EventEmitter();
     private placesSearchInstance: PlacesInstance = null;
 
-    constructor(private locationStore: LocationStore) {}
+    constructor() {}
 
     ngAfterViewInit() {
         this.placesSearchInstance = places({
             container: this.input.nativeElement,
             type: "city",
+            countries: ["lt"],
         });
 
         this.placesSearchInstance.on("change", (suggestion: ChangeEvent) => {
@@ -41,6 +42,7 @@ export class SearchLocationComponent implements AfterViewInit, OnDestroy {
             }
         );
     }
+
     clearInput() {
         this.placesSearchInstance.setVal("");
     }
