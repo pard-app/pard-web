@@ -40,6 +40,7 @@ export class CartCheckoutComponent implements OnInit {
             lastName: ["", [Validators.required]],
             email: ["", [Validators.required, Validators.email]],
             phone: [""],
+            terms: false,
         });
 
         this.formDelivery = this.fb.group({
