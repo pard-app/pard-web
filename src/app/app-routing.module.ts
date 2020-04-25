@@ -9,7 +9,7 @@ const routes: Routes = [
     { path: ROUTES.VENDOR_PAGE_ROOT, loadChildren: () => import("@modules/vendor/vendor-routing.module").then((m) => m.VendorRoutingModule) },
     { path: ROUTES.CART_PAGE_ROOT, loadChildren: () => import("@modules/cart/cart-routing.module").then((m) => m.CartRoutingModule) },
     {
-        path: ROUTES.TEMRS_AND_CONDITIONS,
+        path: ROUTES.TERMS_AND_CONDITIONS,
         loadChildren: () => import("@modules/terms-and-conditions/terms-and-conditions-routing.module").then((m) => m.TermsAndConditionsRoutingModule),
     },
     {

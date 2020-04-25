@@ -126,5 +126,8 @@
                 taikomi lt &#303;statymai, neatsi&#382;velgiant &#303; jo &#303;statym&#371; kolizijos nuostatas.
             </p>
         </nb-card-body>
+        <nb-card-footer *ngIf="isModal">
+            <button nbButton basic status="primary" (click)="closeModal()">{{ "CLOSE" | translate }}</button>
+        </nb-card-footer>
     </nb-card>
 </div>

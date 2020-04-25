@@ -5,6 +5,9 @@ import { CartItem, CartItemObject } from "src/app/@core/models/listingitem.inter
 import { VendorService } from "src/app/@core/services/vendor/vendor.service";
 import { DbService } from "src/app/@core/services/db-service/db-service.service";
 import { TranslateService } from "@ngx-translate/core";
+import ROUTING_CONSTANTS from "src/app/@core/constants/routing.constants";
+import { NbDialogService } from "@nebular/theme";
+import { TermsAndConditionsModalComponent } from "src/app/@modules/terms-and-conditions/terms-and-conditions-page/terms-and-conditions-modal.component";
 
 @Component({
     selector: "app-cart-checkout",
@@ -21,6 +24,7 @@ export class CartCheckoutComponent implements OnInit {
     public delivery: any;
     public loading: boolean = true;
     public confirmedOrder: any;
+    public ROUTES: { [name: string]: string };
 
     @Output() deliveryChanged: EventEmitter<any> = new EventEmitter();
     @Input() vendors: any;
@@ -31,7 +35,8 @@ export class CartCheckoutComponent implements OnInit {
         private cartStoreService: CartStoreService,
         private vendorService: VendorService,
         private dbService: DbService,
-        private translate: TranslateService
+        private translate: TranslateService,
+        private dialogService: NbDialogService
     ) {}
 
     ngOnInit(): void {
@@ -52,6 +57,8 @@ export class CartCheckoutComponent implements OnInit {
             postCode: ["", [Validators.required]],
             comments: "",
         });
+
+        this.ROUTES = ROUTING_CONSTANTS;
     }
 
     get formBasicField() {
@@ -135,6 +142,10 @@ export class CartCheckoutComponent implements OnInit {
                 console.log(err);
             }
         );
+    }
+
+    openTerms() {
+        this.dialogService.open(TermsAndConditionsModalComponent);
     }
 
     get status() {

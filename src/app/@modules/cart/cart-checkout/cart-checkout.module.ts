@@ -11,6 +11,7 @@ import {
     NbUserModule,
     NbProgressBarModule,
     NbSpinnerModule,
+    NbDialogModule,
 } from "@nebular/theme";
 import { SharedModule } from "../../../@shared/shared.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -31,6 +32,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
         NbUserModule,
         NbSpinnerModule,
         SharedModule,
+        NbDialogModule.forChild(),
     ],
     exports: [CartCheckoutComponent],
 })

@@ -36,3 +36,12 @@ nb-stepper {
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 25px;
 }
+
+.terms-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    nb-checkbox {
+        margin-right: 10px;
+    }
+}
