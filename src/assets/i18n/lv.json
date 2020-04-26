@@ -78,6 +78,7 @@
     "DELIVERY_COSTS_PLACEHOLDER": "(Piegādes izmaksas, eiro)",
     "DELIVERY_NOTE_PLACEHOLDER": "(Es piegādāju uz...)",
     "DELIVERY": "Piegāde",
+    "DELIVERY_INFORMATION": "Delivery information",
     "NEW": "Jauns",
     "ACTIVE_ORDERS": "Aktīvie pasūtījumi",
     "SEE_COMPLETED": "Skatīt pabeigtos",
@@ -106,5 +107,7 @@
     "QUANTITY": "Daudzums",
     "REMOVE": "Izņemt",
     "NOTHING_FOUND": "Nekas netika atrasts.",
-    "HOME": "HOME"
+    "HOME": "HOME",
+    "CONTACTS": "Contacts",
+    "SHARE": "Share"
 }

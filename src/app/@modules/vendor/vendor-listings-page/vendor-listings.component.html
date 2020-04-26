@@ -1,13 +1,9 @@
-<app-top-banner [displayFormsContainer]="false"></app-top-banner>
-
 <section class="content-section">
     <app-vendor-summary-header [vendor$]="_vendor$"></app-vendor-summary-header>
 
     <app-vendor-listings-search (onChange)="inputTextWritten($event)"></app-vendor-listings-search>
 
-    <nb-card>
-        <nb-card-body>
-            <app-list-listings [listingsList$]="_listingsList$"></app-list-listings>
-        </nb-card-body>
-    </nb-card>
+    <div class="cartlist">
+        <app-list-listings [listingsList$]="_listingsList$"></app-list-listings>
+    </div>
 </section>

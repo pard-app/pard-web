@@ -79,6 +79,7 @@
     "DELIVERY_COSTS_PLACEHOLDER": "(Prekę pristatyti man kainuoja... eur)",
     "DELIVERY_NOTE_PLACEHOLDER": "(Aš pristatau tik... )",
     "DELIVERY": "Pristatymas",
+    "DELIVERY_INFORMATION": "Informacija apie pristatymą",
     "NEW": "Naujas",
     "ACTIVE_ORDERS": "Aktyvūs užsakymai",
     "SEE_COMPLETED": "Žiūrėti užbaigtus",
@@ -99,7 +100,7 @@
     "VENDORS_IN": "Pardavėjai",
     "VIEW_CART": "Žiūrėti krepšelį",
     "ADDED_TO_CART": "Pridėta į krepšelį!",
-    "ADD_TO_CART": "Pridėti į krepšelį",
+    "ADD_TO_CART": "Į krepšelį",
     "YOUR_CART": "Jūsų krepšelis",
     "BACK_TO_CART": "Grįžti į krepšelį",
     "SUMMARY": "Santrauka",
@@ -108,5 +109,7 @@
     "QUANTITY": "Kiekis",
     "REMOVE": "Pašalinti",
     "NOTHING_FOUND": "Nieko nerasta.",
-    "HOME": "Pagrindinis"
+    "HOME": "Pagrindinis",
+    "CONTACTS": "Kontaktai",
+    "SHARE": "Dalintis"
 }

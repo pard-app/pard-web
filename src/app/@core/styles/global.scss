@@ -6,6 +6,10 @@
     @include nb-theme-global();
 }
 
+body {
+    overflow-x: hidden;
+}
+
 p {
     margin: 0;
 }
@@ -67,17 +71,34 @@ h6 {
         box-shadow: nb-theme(color-basic-transparent-500) 0px 0px 8px;
         outline: none;
     }
-
-    @media only screen and (max-width: 600px) {
-        height: 270px;
-    }
-}
-
-.user-picture.image {
-    background-size: contain !important;
-    background-position: center;
 }
 
 p {
-    font-family: "Bellota Text";
+    font-family: "Roboto", sans-serif;
+}
+
+.layout {
+    @media only screen and (max-width: 640px) {
+        background-color: white !important;
+    }
+}
+
+.flexible-card {
+    overflow: hidden;
+
+    @media only screen and (max-width: 1260px) {
+        border-radius: 0;
+        margin: 0;
+        border: 0;
+    }
+    @media only screen and (max-width: 640px) {
+        border: none;
+    }
+}
+
+.cartlist {
+    @media only screen and (max-width: 1260px) {
+        padding: var(--card-padding);
+        background-color: white;
+    }
 }
