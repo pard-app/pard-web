@@ -40,14 +40,12 @@ export class OnlyLocationComponent implements OnInit, OnDestroy {
     constructor(private locationStore: LocationStore, private listingService: ListingService, private vendorService: VendorService) {}
 
     ngOnInit(): void {
-        const subscribeToGlobalLocationChanges = this.locationStore.currentLocation$
-            .pipe(debounce(() => interval(50)))
-            .subscribe(async ({ name, hit = {} }) => {
-                this.currentLocationName = name;
-                this.resetNecessaryValues();
-                this.vendorsSubscription = this.createVendorsSubscription(hit._geoloc);
-                this.listingsSubscription = this.createListingsSubscription(hit._geoloc);
-            });
+        const subscribeToGlobalLocationChanges = this.locationStore.currentLocation$.pipe(debounce(() => interval(50))).subscribe(async ({ name, _geoloc }) => {
+            this.currentLocationName = name;
+            this.resetNecessaryValues();
+            this.vendorsSubscription = this.createVendorsSubscription(_geoloc);
+            this.listingsSubscription = this.createListingsSubscription(_geoloc);
+        });
 
         this.subscriptions.add(subscribeToGlobalLocationChanges);
     }

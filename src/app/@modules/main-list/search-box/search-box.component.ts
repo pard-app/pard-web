@@ -9,9 +9,10 @@ import { SearchVendorOrListingGroup } from "@models/vendorAndListing.interface";
 import { Router } from "@angular/router";
 import { geoLocStr } from "@utils/index";
 import ROUTES, { locationQueryParams } from "src/app/@core/constants/routing.constants";
+import { ILocation } from "@models/location.interface";
 
 export class SearchRequest {
-    location: Suggestion | null = null;
+    location: ILocation | null = null;
     listingOrVendor: string | null = null;
 }
 
@@ -21,7 +22,6 @@ export class SearchRequest {
     styleUrls: ["./search-box.component.scss"],
 })
 export class SearchBoxComponent implements OnInit, OnDestroy {
-    @ViewChild("searchLocation", { static: false }) searchLocationComponent;
     @Output() searchOnChange = new EventEmitter<SearchRequest>();
     private searchRequest: SearchRequest = new SearchRequest();
     private _groupedItems$ = new BehaviorSubject<SearchVendorOrListingGroup[]>([]);
@@ -46,7 +46,6 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         // Clear store
         this.locationStore.currentLocation = null;
         // Clear component
-        this.searchLocationComponent.clearInput();
         this.searchRequest.location = null;
         this.searchOnChange.emit(this.searchRequest);
     }
@@ -59,12 +58,12 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         this.searchOnChange.emit(this.searchRequest);
     }
 
-    public currentLocationOnChange({ suggestion }: ChangeEvent): void {
+    public currentLocationOnChange(location: ILocation): void {
         // Set in store
-        this.locationStore.currentLocation = suggestion;
-        this.router.navigate([ROUTES.ROOT], locationQueryParams({ location: suggestion.name, geoloc: geoLocStr(suggestion.hit._geoloc) }));
+        this.locationStore.currentLocation = location;
+        this.router.navigate([ROUTES.ROOT], locationQueryParams({ location: location.name, geoloc: geoLocStr(location._geoloc) }));
         // Set in current component
-        this.searchRequest.location = suggestion;
+        this.searchRequest.location = location;
         this.searchOnChange.emit(this.searchRequest);
     }
 
@@ -76,7 +75,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         this.sub = combineLatest([this.currentVendorAndListingText$, this.locationStore.currentLocation$])
             .pipe(debounce(() => interval(300)))
             .subscribe(async ([query, location]) => {
-                const opts = location ? { aroundLatLng: geoLocStr(location.hit._geoloc), aroundRadius: 40000 } : {};
+                const opts = location ? { aroundLatLng: geoLocStr(location._geoloc), aroundRadius: 40000 } : {};
                 if (location && location.name) {
                     this.currentLocationName = `(${location.name})`;
                 } else {
