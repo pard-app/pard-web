@@ -18,7 +18,6 @@ export class SearchLocationComponent implements OnInit, OnDestroy {
     @Output() locationChanged? = new EventEmitter<ILocation>();
     @Output() onClear? = new EventEmitter();
     public input: FormControl = new FormControl();
-    private placesSearchInstance: PlacesInstance = null;
     private _places$ = new BehaviorSubject<Array<ILocation>>([]);
     public readonly places$: Observable<Array<ILocation>> = this._places$.asObservable();
     private sub = new Subscription();
@@ -51,7 +50,5 @@ export class SearchLocationComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.sub.unsubscribe();
-        this.placesSearchInstance.removeAllListeners("change");
-        this.placesSearchInstance.destroy();
     }
 }
