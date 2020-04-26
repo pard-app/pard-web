@@ -21,11 +21,11 @@ export class LocationStore {
     constructor(private route: ActivatedRoute, private algolia: AlgoliaService) {
         this.route.queryParams
             .pipe(
-                tap((x) => !x.location && (this.currentLocation = null)),
+                tap((x) => !x[QUERY_PARAMS.LOCATION] && (this.currentLocation = null)),
                 filter((x) => x[QUERY_PARAMS.LOCATION])
             )
             .subscribe(async (x) => {
-                const data = await this.algolia.placeById(x.location);
+                const data = await this.algolia.placeById(x[QUERY_PARAMS.LOCATION]);
                 this.currentLocation = mapHitToLocation(data);
             });
     }

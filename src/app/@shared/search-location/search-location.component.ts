@@ -24,11 +24,10 @@ export class SearchLocationComponent implements OnInit, OnDestroy {
     public readonly places$: Observable<Array<ILocation>> = this._places$.asObservable();
     private sub = new Subscription();
 
-    constructor(private algolia: AlgoliaService, private locationStore: LocationStore) {
-        this.locationStore.currentLocation$.pipe(filter((x) => !!x)).subscribe((x) => this.onPick(x));
-    }
+    constructor(private algolia: AlgoliaService, private locationStore: LocationStore) {}
 
     async ngOnInit() {
+        this.locationStore.currentLocation$.pipe(filter((x) => !!x)).subscribe((x) => this.onPick(x));
         const { hits } = await this.algolia.places("");
         this._places$.next(mapHitsToLocations(hits));
 

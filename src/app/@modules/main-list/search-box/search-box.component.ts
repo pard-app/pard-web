@@ -8,7 +8,7 @@ import { debounce, map, filter, flatMap, mergeMap, toArray } from "rxjs/operator
 import { SearchVendorOrListingGroup } from "@models/vendorAndListing.interface";
 import { Router } from "@angular/router";
 import { geoLocStr } from "@utils/index";
-import { ROUTING_CONSTANTS, locationQueryParams } from "src/app/@core/constants/routing.constants";
+import { ROUTING_CONSTANTS, locationQueryParams, QUERY_PARAMS } from "src/app/@core/constants/routing.constants";
 import { ILocation } from "@models/location.interface";
 
 export class SearchRequest {
@@ -44,7 +44,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
 
     public onClearCity(): void {
         // Clear store
-        this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({}));
+        this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({ [QUERY_PARAMS.LOCATION]: null }));
         // Clear component
         this.searchRequest.location = null;
         this.searchOnChange.emit(this.searchRequest);
@@ -52,7 +52,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
 
     public onClearListingOrVendor(): void {
         // Clear store
-        this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({}));
+        this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({ [QUERY_PARAMS.VENDORORLISTING]: null }));
         // Clear component
         this.searchRequest.listingOrVendor = null;
         this.searchOnChange.emit(this.searchRequest);
@@ -60,7 +60,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
 
     public currentLocationOnChange(location: ILocation): void {
         // Set in store
-        this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({ location: location.objectID }));
+        this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({ [QUERY_PARAMS.LOCATION]: location.objectID }));
         // Set in current component
         this.searchRequest.location = location;
         this.searchOnChange.emit(this.searchRequest);
@@ -68,7 +68,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
 
     public onClickSearchVendorOrListingButton(text): void {
         // Set in store
-        this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({}));
+        this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({ [QUERY_PARAMS.VENDORORLISTING]: text }));
         // Set in current component
         this.searchRequest.listingOrVendor = text;
         this.searchOnChange.emit(this.searchRequest);

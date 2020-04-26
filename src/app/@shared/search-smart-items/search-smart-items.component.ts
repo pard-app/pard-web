@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, Input, 
 import { Observable, of, Subscription } from "rxjs";
 import { FormControl } from "@angular/forms";
 import { SearchVendorOrListingGroup } from "@models/vendorAndListing.interface";
+import { ListingStore } from "@core/stores/listing/listing.store";
+import { filter } from "rxjs/operators";
 
 @Component({
     selector: "app-search-smart-items",
@@ -18,9 +20,16 @@ export class SearchSmartItemsComponent implements OnInit, OnDestroy {
     public input: FormControl = new FormControl();
     private sub = new Subscription();
 
-    constructor() {}
+    constructor(private listingStore: ListingStore) {
+        // this.sub.add();
+    }
 
     ngOnInit(): void {
+        this.listingStore.currentListingOrVendor$.pipe(filter((x) => !!x)).subscribe((x) => {
+            this.input.setValue(x);
+            this.vendorOrListingSearch();
+        });
+
         this.sub = this.input.valueChanges.subscribe((str) => {
             !str && this.onClear.emit();
             this.onWrite.emit(str);
