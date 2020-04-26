@@ -85,6 +85,7 @@
     "DELIVERY_COSTS_PLACEHOLDER": "(How much will it cost for you to deliver an item)",
     "DELIVERY_NOTE_PLACEHOLDER": "(I deliver to..)",
     "DELIVERY": "Delivery",
+    "DELIVERY_INFORMATION": "Delivery information",
     "NEW": "New",
     "ACTIVE_ORDERS": "Active orders",
     "SEE_COMPLETED": "See completed",
@@ -141,5 +142,7 @@
     "TO": "to",
     "SPECIFYING": "specifying",
     "AS_PAYMENT_ID": "as the reason for payment.",
-    "HEADING_TITLE": "Find <strong>local products</strong>, get them delivered to <strong>you</strong>."
+    "HEADING_TITLE": "Find <strong>local products</strong>, get them delivered to <strong>you</strong>.",
+    "CONTACTS": "Contacts",
+    "SHARE": "Share"
 }
