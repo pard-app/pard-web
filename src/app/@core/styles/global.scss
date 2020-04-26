@@ -110,3 +110,10 @@ p {
         border: none;
     }
 }
+
+.cartlist {
+    @media only screen and (max-width: 1260px) {
+        padding: var(--card-padding);
+        background-color: white;
+    }
+}

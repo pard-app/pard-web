@@ -22,13 +22,10 @@
             </div>
         </div>
     </nb-card>
-
-    <nb-card class="flexible-card">
-        <nb-card-body>
-            <app-list-listings [listingsList$]="_listingsList$"></app-list-listings>
-        </nb-card-body>
-    </nb-card>
     <app-vendor-summary-header [vendor$]="_vendor$" [noMargin]="true"></app-vendor-summary-header>
+    <div class="cartlist">
+        <app-list-listings [listingsList$]="_listingsList$"></app-list-listings>
+    </div>
 </div>
 
 <!-- <nb-card-header class="listing__header">

@@ -3,9 +3,7 @@
 
     <app-vendor-listings-search (onChange)="inputTextWritten($event)"></app-vendor-listings-search>
 
-    <nb-card class="flexible-card">
-        <nb-card-body>
-            <app-list-listings [listingsList$]="_listingsList$"></app-list-listings>
-        </nb-card-body>
-    </nb-card>
+    <div class="cartlist">
+        <app-list-listings [listingsList$]="_listingsList$"></app-list-listings>
+    </div>
 </section>
