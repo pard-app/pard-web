@@ -1,6 +1,5 @@
 @import "~src/app/@core/styles/themes";
-
-.vendors-and-listings {
+:host {
     display: flex;
     justify-content: space-between;
 }

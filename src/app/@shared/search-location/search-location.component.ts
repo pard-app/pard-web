@@ -1,6 +1,11 @@
-import { Component, Output, EventEmitter, ChangeDetectionStrategy, ViewChild, AfterViewInit, OnDestroy } from "@angular/core";
-import places, { PlacesInstance, ChangeEvent } from "places.js";
+import { Component, Output, EventEmitter, ChangeDetectionStrategy, OnDestroy, OnInit } from "@angular/core";
+import { PlacesInstance, ChangeEvent, SearchClientOptions, Hit } from "places.js";
 import { LocationStore } from "@core/stores/location/location.store";
+import { AlgoliaService } from "@services/algolia/algolia.service";
+import { Observable, of, Subscription, Subject, BehaviorSubject } from "rxjs";
+import { FormControl } from "@angular/forms";
+import { mapHitToLocation, mapHitsToLocations } from "@core/mappers/location.mappers";
+import { ILocation } from "@models/location.interface";
 
 // import options from "./options";
 @Component({
@@ -9,46 +14,41 @@ import { LocationStore } from "@core/stores/location/location.store";
     styleUrls: ["./search-location.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchLocationComponent implements AfterViewInit, OnDestroy {
-    @ViewChild("autoInput") input;
-    @Output() locationChanged? = new EventEmitter<ChangeEvent>();
+export class SearchLocationComponent implements OnInit, OnDestroy {
+    @Output() locationChanged? = new EventEmitter<ILocation>();
     @Output() onClear? = new EventEmitter();
-    private placesSearchInstance: PlacesInstance = null;
+    public input: FormControl = new FormControl();
+    private _places$ = new BehaviorSubject<Array<ILocation>>([]);
+    public readonly places$: Observable<Array<ILocation>> = this._places$.asObservable();
+    private sub = new Subscription();
 
-    constructor() {}
+    constructor(private algolia: AlgoliaService) {}
 
-    ngAfterViewInit() {
-        this.placesSearchInstance = places({
-            container: this.input.nativeElement,
-            type: "city",
-            countries: ["lt"],
-        });
+    async ngOnInit() {
+        const { hits } = await this.algolia.places("");
+        this._places$.next(mapHitsToLocations(hits));
 
-        this.placesSearchInstance.on("change", (suggestion: ChangeEvent) => {
-            this.locationChanged.emit(suggestion);
-        });
-
-        this.placesSearchInstance.on("clear", () => {
-            this.onClear.emit();
+        this.sub = this.input.valueChanges.subscribe(async (str) => {
+            if (str === undefined || typeof str === "object") return;
+            !str && this.onClear.emit();
+            const { hits } = await this.algolia.places(str);
+            this._places$.next(mapHitsToLocations(hits));
         });
     }
-    getMyLocation() {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                console.log(position);
-            },
-            (err) => {
-                console.log(err);
-            }
-        );
+
+    public clearInput() {
+        this.input.setValue("");
+        this.onClear.emit();
     }
 
-    clearInput() {
-        this.placesSearchInstance.setVal("");
+    public onPick(location: ILocation): void {
+        if (typeof location === "object") {
+            this.input.setValue(location.name);
+            this.locationChanged.emit(location);
+        }
     }
 
     ngOnDestroy() {
-        this.placesSearchInstance.removeAllListeners("change");
-        this.placesSearchInstance.destroy();
+        this.sub.unsubscribe();
     }
 }

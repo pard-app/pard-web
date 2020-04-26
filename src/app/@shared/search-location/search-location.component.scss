@@ -2,3 +2,24 @@
 .home-icon {
     cursor: pointer;
 }
+.item {
+    &-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    &-val ::ng-deep,
+    &-county ::ng-deep,
+    &-administrative ::ng-deep {
+        em {
+            font-style: normal;
+            font-weight: 900;
+            color: nb-theme(color-info-500);
+        }
+    }
+}
+
+.item-administrative,
+.item-county {
+    margin-left: 5px;
+    font-size: 0.7em;
+}
