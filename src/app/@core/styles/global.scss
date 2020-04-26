@@ -71,25 +71,10 @@ h6 {
         box-shadow: nb-theme(color-basic-transparent-500) 0px 0px 8px;
         outline: none;
     }
-    //breaks on small screen
-    // @media only screen and (max-width: 600px) {
-    //     height: 270px;
-    // }
-}
-
-.user-picture.image {
-    background-size: contain !important;
-    background-position: center;
 }
 
 p {
     font-family: "Roboto", sans-serif;
-}
-
-.searchInput {
-    input::placeholder {
-        font-family: "Roboto", sans-serif;
-    }
 }
 
 .layout {
