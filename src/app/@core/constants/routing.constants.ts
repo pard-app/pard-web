@@ -13,14 +13,12 @@ enum ROUTING_CONSTANTS {
 }
 
 enum QUERY_PARAMS {
-    GEOLOC = "geoloc",
     LOCATION = "location",
     VENDORORLISTING = "vendorOrListing",
 }
 
-export const locationQueryParams = ({ geoloc = undefined, location = undefined, vendorOrListing = undefined }): NavigationExtras => {
+export const locationQueryParams = ({ location = undefined, vendorOrListing = undefined }): NavigationExtras => {
     const queryParams = removeUndefinedObjectValues({
-        [QUERY_PARAMS.GEOLOC]: geoloc,
         [QUERY_PARAMS.LOCATION]: location,
         [QUERY_PARAMS.VENDORORLISTING]: vendorOrListing,
     });

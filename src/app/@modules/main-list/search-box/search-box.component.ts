@@ -44,7 +44,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
 
     public onClearCity(): void {
         // Clear store
-        this.locationStore.currentLocation = null;
+        this.router.navigate([ROUTES.ROOT]);
         // Clear component
         this.searchRequest.location = null;
         this.searchOnChange.emit(this.searchRequest);
@@ -60,8 +60,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
 
     public currentLocationOnChange(location: ILocation): void {
         // Set in store
-        this.locationStore.currentLocation = location;
-        this.router.navigate([ROUTES.ROOT], locationQueryParams({ location: location.name, geoloc: geoLocStr(location._geoloc) }));
+        this.router.navigate([ROUTES.ROOT], locationQueryParams({ location: location.objectID }));
         // Set in current component
         this.searchRequest.location = location;
         this.searchOnChange.emit(this.searchRequest);

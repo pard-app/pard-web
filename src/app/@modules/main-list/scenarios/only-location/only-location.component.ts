@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { LocationStore } from "@core/stores/location/location.store";
 import { ListingService } from "@services/listing/listing.service";
-import { debounce } from "rxjs/operators";
+import { debounce, filter } from "rxjs/operators";
 import { interval, Subscription, Observable, BehaviorSubject } from "rxjs";
 import { IVendor } from "@models/vendor.interface";
 import { ListingItem } from "@models/listingitem.interface";
@@ -40,12 +40,17 @@ export class OnlyLocationComponent implements OnInit, OnDestroy {
     constructor(private locationStore: LocationStore, private listingService: ListingService, private vendorService: VendorService) {}
 
     ngOnInit(): void {
-        const subscribeToGlobalLocationChanges = this.locationStore.currentLocation$.pipe(debounce(() => interval(50))).subscribe(async ({ name, _geoloc }) => {
-            this.currentLocationName = name;
-            this.resetNecessaryValues();
-            this.vendorsSubscription = this.createVendorsSubscription(_geoloc);
-            this.listingsSubscription = this.createListingsSubscription(_geoloc);
-        });
+        const subscribeToGlobalLocationChanges = this.locationStore.currentLocation$
+            .pipe(
+                filter((x) => !!x),
+                debounce(() => interval(50))
+            )
+            .subscribe(async ({ name, _geoloc }) => {
+                this.currentLocationName = name;
+                this.resetNecessaryValues();
+                this.vendorsSubscription = this.createVendorsSubscription(_geoloc);
+                this.listingsSubscription = this.createListingsSubscription(_geoloc);
+            });
 
         this.subscriptions.add(subscribeToGlobalLocationChanges);
     }

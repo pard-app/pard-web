@@ -6,6 +6,7 @@ import { Observable, of, Subscription, Subject, BehaviorSubject } from "rxjs";
 import { FormControl } from "@angular/forms";
 import { mapHitToLocation, mapHitsToLocations } from "@core/mappers/location.mappers";
 import { ILocation } from "@models/location.interface";
+import { filter } from "rxjs/operators";
 
 // import options from "./options";
 @Component({
@@ -22,7 +23,9 @@ export class SearchLocationComponent implements OnInit, OnDestroy {
     public readonly places$: Observable<Array<ILocation>> = this._places$.asObservable();
     private sub = new Subscription();
 
-    constructor(private algolia: AlgoliaService) {}
+    constructor(private algolia: AlgoliaService, private locationStore: LocationStore) {
+        this.locationStore.currentLocation$.pipe(filter((x) => !!x)).subscribe((x) => this.onPick(x));
+    }
 
     async ngOnInit() {
         const { hits } = await this.algolia.places("");
