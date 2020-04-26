@@ -1,11 +1,11 @@
 import { Injectable, OnInit } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
-import { Hit, Suggestion } from "places.js";
 import { ActivatedRoute } from "@angular/router";
 import { ILocation } from "@models/location.interface";
 import { AlgoliaService } from "@services/algolia/algolia.service";
 import { mapHitToLocation } from "@core/mappers/location.mappers";
-import { filter } from "rxjs/operators";
+import { filter, tap } from "rxjs/operators";
+import { QUERY_PARAMS } from "@constants/routing.constants";
 @Injectable({
     providedIn: "root",
 })
@@ -19,10 +19,15 @@ export class LocationStore {
     public readonly currentVendorIdsAtLocation$: Observable<string[]> = this._currentVendorIdsAtLocation$.asObservable();
 
     constructor(private route: ActivatedRoute, private algolia: AlgoliaService) {
-        this.route.queryParams.pipe(filter((x) => x.location)).subscribe(async (x) => {
-            const data = await this.algolia.placeById(x.location);
-            this.currentLocation = mapHitToLocation(data);
-        });
+        this.route.queryParams
+            .pipe(
+                tap((x) => !x.location && (this.currentLocation = null)),
+                filter((x) => x[QUERY_PARAMS.LOCATION])
+            )
+            .subscribe(async (x) => {
+                const data = await this.algolia.placeById(x.location);
+                this.currentLocation = mapHitToLocation(data);
+            });
     }
 
     private set currentLocation(val: ILocation) {

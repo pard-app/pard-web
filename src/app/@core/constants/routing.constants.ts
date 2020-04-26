@@ -17,7 +17,7 @@ enum QUERY_PARAMS {
     VENDORORLISTING = "vendorOrListing",
 }
 
-export const locationQueryParams = ({ location = undefined, vendorOrListing = undefined }): NavigationExtras => {
+const locationQueryParams = ({ location = undefined, vendorOrListing = undefined }): NavigationExtras => {
     const queryParams = removeUndefinedObjectValues({
         [QUERY_PARAMS.LOCATION]: location,
         [QUERY_PARAMS.VENDORORLISTING]: vendorOrListing,
@@ -28,4 +28,4 @@ export const locationQueryParams = ({ location = undefined, vendorOrListing = un
     };
 };
 
-export default ROUTING_CONSTANTS;
+export { ROUTING_CONSTANTS, QUERY_PARAMS, locationQueryParams };

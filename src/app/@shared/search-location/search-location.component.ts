@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, ChangeDetectionStrategy, OnDestroy, OnInit } from "@angular/core";
+import { Component, Output, EventEmitter, ChangeDetectionStrategy, OnDestroy, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { PlacesInstance, ChangeEvent, SearchClientOptions, Hit } from "places.js";
 import { LocationStore } from "@core/stores/location/location.store";
 import { AlgoliaService } from "@services/algolia/algolia.service";
@@ -18,6 +18,7 @@ import { filter } from "rxjs/operators";
 export class SearchLocationComponent implements OnInit, OnDestroy {
     @Output() locationChanged? = new EventEmitter<ILocation>();
     @Output() onClear? = new EventEmitter();
+    @ViewChild("autoInput") inputRef: ElementRef;
     public input: FormControl = new FormControl();
     private _places$ = new BehaviorSubject<Array<ILocation>>([]);
     public readonly places$: Observable<Array<ILocation>> = this._places$.asObservable();
@@ -47,6 +48,7 @@ export class SearchLocationComponent implements OnInit, OnDestroy {
     public onPick(location: ILocation): void {
         if (typeof location === "object") {
             this.input.setValue(location.name);
+            this.inputRef.nativeElement.blur();
             this.locationChanged.emit(location);
         }
     }

@@ -4,7 +4,7 @@ import { Subscription } from "rxjs";
 import { NbPopoverDirective } from "@nebular/theme";
 import { ListingItem } from "src/app/@core/models/listingitem.interface";
 import { TranslateService } from "@ngx-translate/core";
-import ROUTES from "src/app/@core/constants/routing.constants";
+import { ROUTING_CONSTANTS } from "src/app/@core/constants/routing.constants";
 import { Router } from "@angular/router";
 
 interface IRoute {
@@ -27,7 +27,7 @@ export class TopheaderComponent implements OnInit, OnDestroy {
         { title: this.translate.instant("ABOUT"), url: "https://pard.lt/" },
     ];
 
-    public globalRoutes = ROUTES;
+    public globalRoutes = ROUTING_CONSTANTS;
     public lastItemAddedToCartSubscribtion: Subscription;
     public lastItemAddedToCart: ListingItem = null;
     private timer: ReturnType<typeof setTimeout>;
