@@ -16,7 +16,7 @@ export class TopBannerComponent implements OnInit {
     constructor(private locationStore: LocationStore, private http: HttpClient) {}
 
     ngOnInit(): void {
-        this.imageUrl$ = this.locationStore.currentLocationSuggestion$.pipe(
+        this.imageUrl$ = this.locationStore.currentLocation$.pipe(
             map((location) => {
                 if (location) {
                     this.showFindLocationIcon = false;

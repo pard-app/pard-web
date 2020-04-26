@@ -14,6 +14,7 @@ export class SearchSmartItemsComponent implements OnInit, OnDestroy {
     @Output() onClickSearchVendorOrListingButton = new EventEmitter();
     @Output() onWrite = new EventEmitter();
     @Input() groupedItems$: Observable<SearchVendorOrListingGroup[]>;
+    @Input() placeholder: string;
     public input: FormControl = new FormControl();
     private sub = new Subscription();
 

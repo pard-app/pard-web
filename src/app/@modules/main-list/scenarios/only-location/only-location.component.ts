@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { LocationStore } from "@core/stores/location/location.store";
 import { ListingService } from "@services/listing/listing.service";
 import { debounce } from "rxjs/operators";
-import { interval, Subscription, Observable, of, forkJoin, BehaviorSubject } from "rxjs";
+import { interval, Subscription, Observable, BehaviorSubject } from "rxjs";
 import { IVendor } from "@models/vendor.interface";
 import { ListingItem } from "@models/listingitem.interface";
 import { VendorService } from "@services/vendor/vendor.service";
@@ -40,7 +40,7 @@ export class OnlyLocationComponent implements OnInit, OnDestroy {
     constructor(private locationStore: LocationStore, private listingService: ListingService, private vendorService: VendorService) {}
 
     ngOnInit(): void {
-        const subscribeToGlobalLocationChanges = this.locationStore.currentLocationSuggestion$
+        const subscribeToGlobalLocationChanges = this.locationStore.currentLocation$
             .pipe(debounce(() => interval(50)))
             .subscribe(async ({ name, hit = {} }) => {
                 this.currentLocationName = name;

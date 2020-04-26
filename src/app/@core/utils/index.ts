@@ -27,3 +27,7 @@ export function geoLocStr(latLngObj: geoloc): string {
 export const noPagesLeft = (currentPage: number, totalPages: number): boolean => {
     return currentPage === totalPages - 1 || currentPage === totalPages;
 };
+
+export const removeUndefinedObjectValues = (json) => {
+    return JSON.parse(JSON.stringify(json));
+};

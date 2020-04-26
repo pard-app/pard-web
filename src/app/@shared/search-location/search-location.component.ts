@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, ChangeDetectionStrategy, ViewChild, AfterViewInit, OnDestroy } from "@angular/core";
-import places, { PlacesInstance, ChangeEvent } from "places.js";
+import places, { PlacesInstance, ChangeEvent, SearchClientOptions } from "places.js";
 import { LocationStore } from "@core/stores/location/location.store";
+import { AlgoliaService } from "@services/algolia/algolia.service";
 
 // import options from "./options";
 @Component({
@@ -15,13 +16,16 @@ export class SearchLocationComponent implements AfterViewInit, OnDestroy {
     @Output() onClear? = new EventEmitter();
     private placesSearchInstance: PlacesInstance = null;
 
-    constructor() {}
+    constructor(private algolia: AlgoliaService) {}
 
     ngAfterViewInit() {
         this.placesSearchInstance = places({
             container: this.input.nativeElement,
             type: "city",
+            countries: ["lt"],
         });
+
+        this.algolia.places("Kaun", {}).then((x) => console.log(x));
 
         this.placesSearchInstance.on("change", (suggestion: ChangeEvent) => {
             this.locationChanged.emit(suggestion);
@@ -30,16 +34,6 @@ export class SearchLocationComponent implements AfterViewInit, OnDestroy {
         this.placesSearchInstance.on("clear", () => {
             this.onClear.emit();
         });
-    }
-    getMyLocation() {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                console.log(position);
-            },
-            (err) => {
-                console.log(err);
-            }
-        );
     }
 
     clearInput() {

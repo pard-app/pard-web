@@ -9,6 +9,7 @@ import { Observable } from "rxjs";
 export class ListVendorsComponent implements OnInit {
     public isLoading: boolean = true;
     @Input() vendorsWithListings$: Observable<any>;
+    @Input() vendorsWithListings: Array<any>;
     @Input() title: string = "Mysterious city";
 
     constructor() {}

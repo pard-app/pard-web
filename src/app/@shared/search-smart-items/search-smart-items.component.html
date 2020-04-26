@@ -4,15 +4,7 @@
         <div *ngIf="input.value" nbSuffix class="remove-icon" (click)="clearInput()">
             <nb-icon fullWidth status="primary" icon="close-outline" pack="eva"></nb-icon>
         </div>
-        <input
-            fullWidth
-            [formControl]="input"
-            #theInput
-            nbInput
-            type="text"
-            [placeholder]="'FILTER_BY_LISTING_OR_VENDOR' | translate"
-            [nbAutocomplete]="auto"
-        />
+        <input fullWidth [formControl]="input" #theInput nbInput type="text" [placeholder]="placeholder" [nbAutocomplete]="auto" />
         <nb-autocomplete #auto (selectedChange)="onPick($event)">
             <nb-option-group class="option-group" *ngFor="let group of groupedItems$ | async" [title]="group.name | uppercase">
                 <nb-option class="option-item" *ngFor="let option of group.children" [value]="option">
