@@ -20,18 +20,21 @@ export class AppComponent implements OnInit {
         this.translate
             .get(["cookie.header", "cookie.message", "cookie.dismiss", "cookie.allow", "cookie.deny", "cookie.link", "cookie.policy"])
             .subscribe((data) => {
-                this.ccService.getConfig().content = this.ccService.getConfig().content || {};
+                const cookieConfig = this.ccService.getConfig();
+                cookieConfig.content = this.ccService.getConfig().content || {};
+                const content = cookieConfig.content;
+
                 // Override default messages with the translated ones
-                this.ccService.getConfig().content.header = data["cookie.header"];
-                this.ccService.getConfig().content.message = data["cookie.message"];
-                this.ccService.getConfig().content.dismiss = data["cookie.dismiss"];
-                this.ccService.getConfig().content.allow = data["cookie.allow"];
-                this.ccService.getConfig().content.deny = data["cookie.deny"];
-                this.ccService.getConfig().content.link = data["cookie.link"];
-                this.ccService.getConfig().content.policy = data["cookie.policy"];
+                content.header = data["cookie.header"];
+                content.message = data["cookie.message"];
+                content.dismiss = data["cookie.dismiss"];
+                content.allow = data["cookie.allow"];
+                content.deny = data["cookie.deny"];
+                content.link = data["cookie.link"];
+                content.policy = data["cookie.policy"];
 
                 this.ccService.destroy(); // remove previous cookie bar (with default messages)
-                this.ccService.init(this.ccService.getConfig()); // update config with translated messages
+                this.ccService.init(cookieConfig); // update config with translated messages
             });
     }
 }
