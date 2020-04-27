@@ -22,7 +22,10 @@ export class LocationStore {
         this.route.queryParams
             .pipe(
                 tap((x) => !x[QUERY_PARAMS.LOCATION] && (this.currentLocation = null)),
-                filter((x) => x[QUERY_PARAMS.LOCATION])
+                filter((x) => {
+                    const currentLocationId = this._currentLocation$.getValue()?.objectID;
+                    return x[QUERY_PARAMS.LOCATION] && x[QUERY_PARAMS.LOCATION] !== currentLocationId;
+                })
             )
             .subscribe(async (x) => {
                 const data = await this.algolia.placeById(x[QUERY_PARAMS.LOCATION]);
