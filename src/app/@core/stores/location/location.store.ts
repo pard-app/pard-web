@@ -1,8 +1,11 @@
 import { Injectable, OnInit } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
-import { Hit, Suggestion } from "places.js";
 import { ActivatedRoute } from "@angular/router";
 import { ILocation } from "@models/location.interface";
+import { AlgoliaService } from "@services/algolia/algolia.service";
+import { mapHitToLocation } from "@core/mappers/location.mappers";
+import { filter, tap } from "rxjs/operators";
+import { QUERY_PARAMS } from "@constants/routing.constants";
 @Injectable({
     providedIn: "root",
 })
@@ -15,14 +18,19 @@ export class LocationStore {
     public readonly currentLocation$: Observable<ILocation | null> = this._currentLocation$.asObservable();
     public readonly currentVendorIdsAtLocation$: Observable<string[]> = this._currentVendorIdsAtLocation$.asObservable();
 
-    constructor(private route: ActivatedRoute) {
-        this.route.queryParams.subscribe((x) => {});
+    constructor(private route: ActivatedRoute, private algolia: AlgoliaService) {
+        this.route.queryParams
+            .pipe(
+                tap((x) => !x[QUERY_PARAMS.LOCATION] && (this.currentLocation = null)),
+                filter((x) => x[QUERY_PARAMS.LOCATION])
+            )
+            .subscribe(async (x) => {
+                const data = await this.algolia.placeById(x[QUERY_PARAMS.LOCATION]);
+                this.currentLocation = mapHitToLocation(data);
+            });
     }
-    // CURRENT LOCATION
-    public get currentLocation(): ILocation | null {
-        return this._currentLocation$.getValue();
-    }
-    public set currentLocation(val: ILocation) {
+
+    private set currentLocation(val: ILocation) {
         this._currentLocation$.next(val);
     }
 
@@ -32,11 +40,5 @@ export class LocationStore {
 
     public set currentVendorIdsAtLocation(value: string[]) {
         this._currentVendorIdsAtLocation$.next(value);
-    }
-
-    public get currentCity() {
-        const location = this._currentLocation$.getValue();
-        if (!location) return;
-        return location.name;
     }
 }

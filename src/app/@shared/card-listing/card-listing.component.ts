@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { CartStoreService } from "@core/stores/cart/cart.store.service";
 import { ListingItem } from "@core/models/listingitem.interface";
-import ROUTES from "@core/constants/routing.constants";
+import { ROUTING_CONSTANTS } from "@core/constants/routing.constants";
 
 @Component({
     selector: "app-card-listing",
@@ -11,7 +11,7 @@ import ROUTES from "@core/constants/routing.constants";
 export class CardListingComponent implements OnInit {
     @Input() item: ListingItem;
     @Input() viewOnly: boolean = false;
-    public globalRoutes = ROUTES;
+    public globalRoutes = ROUTING_CONSTANTS;
 
     constructor(private cartStoreService: CartStoreService) {}
 

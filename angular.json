@@ -24,8 +24,8 @@
                         "tsConfig": "tsconfig.app.json",
                         "aot": true,
                         "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": ["src/app/@core/styles/global.scss"],
-                        "scripts": []
+                        "styles": ["src/app/@core/styles/global.scss", "node_modules/cookieconsent/build/cookieconsent.min.css"],
+                        "scripts": ["node_modules/cookieconsent/build/cookieconsent.min.js"]
                     },
                     "configurations": {
                         "production": {

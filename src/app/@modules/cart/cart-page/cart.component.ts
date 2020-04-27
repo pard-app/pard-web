@@ -3,7 +3,7 @@ import { CartStoreService } from "src/app/@core/stores/cart/cart.store.service";
 import { CartItem } from "src/app/@core/models/listingitem.interface";
 import { ActivatedRoute } from "@angular/router";
 import { IVendor } from "src/app/@core/models/vendor.interface";
-import ROUTES from "src/app/@core/constants/routing.constants";
+import { ROUTING_CONSTANTS } from "src/app/@core/constants/routing.constants";
 
 @Component({
     selector: "app-cart",
@@ -11,8 +11,8 @@ import ROUTES from "src/app/@core/constants/routing.constants";
     styleUrls: ["./cart.component.scss"],
 })
 export class CartComponent implements OnInit {
-    public globalRoutes = ROUTES;
-    public view: string = ROUTES.CART_LISTINGS_PAGE_ROOT;
+    public globalRoutes = ROUTING_CONSTANTS;
+    public view: string = ROUTING_CONSTANTS.CART_LISTINGS_PAGE_ROOT;
     public delivery: boolean;
 
     constructor(private cartStoreService: CartStoreService, private route: ActivatedRoute) {}

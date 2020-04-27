@@ -5,7 +5,7 @@ import { CartItem, CartItemObject } from "src/app/@core/models/listingitem.inter
 import { VendorService } from "src/app/@core/services/vendor/vendor.service";
 import { DbService } from "src/app/@core/services/db-service/db-service.service";
 import { TranslateService } from "@ngx-translate/core";
-import ROUTING_CONSTANTS from "src/app/@core/constants/routing.constants";
+import { ROUTING_CONSTANTS } from "src/app/@core/constants/routing.constants";
 import { NbDialogService } from "@nebular/theme";
 import { TermsAndConditionsModalComponent } from "src/app/@modules/terms-and-conditions/terms-and-conditions-page/terms-and-conditions-modal.component";
 
