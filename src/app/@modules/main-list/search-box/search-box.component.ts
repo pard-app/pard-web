@@ -30,7 +30,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     private sub = new Subscription();
     public currentLocationName: string = "";
 
-    constructor(private locationStore: LocationStore, private listingStore: ListingStore, private algoliaService: AlgoliaService, private router: Router) {}
+    constructor(private locationStore: LocationStore, private algoliaService: AlgoliaService, private router: Router) {}
 
     ngOnInit(): void {
         this.filterOnListingOrVendorWrite();

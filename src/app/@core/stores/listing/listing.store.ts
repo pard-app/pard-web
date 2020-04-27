@@ -9,7 +9,7 @@ import { QUERY_PARAMS } from "@constants/routing.constants";
 })
 export class ListingStore {
     // private cartItems: Array<ListingItem | any> = [];
-    private _currentListingOrVendor$ = new BehaviorSubject<any | null>(null);
+    private _currentListingOrVendor$ = new BehaviorSubject<string>(null);
 
     // Expose the observable$ part of the `_currentListingOrVendor$` subject (read only stream)
     public readonly currentListingOrVendor$: Observable<any | null> = this._currentListingOrVendor$.asObservable();
@@ -18,7 +18,7 @@ export class ListingStore {
         this.route.queryParams
             .pipe(
                 tap((x) => !x[QUERY_PARAMS.VENDORORLISTING] && (this.currentListingOrVendor = null)),
-                filter((x) => x[QUERY_PARAMS.VENDORORLISTING])
+                filter((x) => x[QUERY_PARAMS.VENDORORLISTING] && x[QUERY_PARAMS.VENDORORLISTING] !== this._currentListingOrVendor$.getValue())
             )
             .subscribe(async (x) => {
                 this.currentListingOrVendor = x[QUERY_PARAMS.VENDORORLISTING];

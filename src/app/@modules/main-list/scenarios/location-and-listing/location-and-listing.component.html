@@ -1,1 +1,5 @@
-<p>location-and-listing works!</p>
+<app-list-listings [listingsList$]="listings$" [title]="currentListingOrVendor + ' in <a>' + currentLocation + '</a>'"></app-list-listings>
+<app-button-load-more *ngIf="!allListingsLoaded" (click)="loadMore('LOAD_LISTINGS')"></app-button-load-more>
+
+<app-list-vendors [vendorsWithListings$]="vendors$" [title]="currentListingOrVendor + ' in <a>' + currentLocation + '</a>'"></app-list-vendors>
+<app-button-load-more *ngIf="!allVendorsLoaded" (click)="loadMore('LOAD_VENDORS')"></app-button-load-more>
