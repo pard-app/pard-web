@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { CartItem, CartItemObject } from "src/app/@core/models/listingitem.interface";
-import ROUTES from "src/app/@core/constants/routing.constants";
+import { ROUTING_CONSTANTS } from "src/app/@core/constants/routing.constants";
 
 @Component({
     selector: "app-cart-summary",
@@ -14,7 +14,7 @@ export class CartSummaryComponent {
     @Input() vendors: any;
     @Input() delivery: boolean;
 
-    public globalRoutes = ROUTES;
+    public globalRoutes = ROUTING_CONSTANTS;
     get cartItemsLength() {
         return Object.keys(this.cartItems).length;
     }

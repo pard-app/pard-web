@@ -20,7 +20,6 @@ import { InputValidateWrapperComponent } from "./input-validate-wrapper/input-va
 import { ListListingsComponent } from "./list-listings/list-listings.component";
 import { SearchLocationComponent } from "./search-location/search-location.component";
 import { SearchSmartItemsComponent } from "./search-smart-items/search-smart-items.component";
-import { TopBannerComponent } from "./top-banner/top-banner.component";
 import { CardListingComponent } from "./card-listing/card-listing.component";
 import { TranslateModule } from "@ngx-translate/core";
 import { RouterModule } from "@angular/router";
@@ -38,7 +37,6 @@ import { NearMeItemsComponent } from "./near-me-items/near-me-items.component";
         ListListingsComponent,
         SearchLocationComponent,
         SearchSmartItemsComponent,
-        TopBannerComponent,
         ListVendorsComponent,
         ButtonLoadMoreComponent,
         NearMeItemsComponent,
@@ -68,7 +66,6 @@ import { NearMeItemsComponent } from "./near-me-items/near-me-items.component";
         ListListingsComponent,
         SearchLocationComponent,
         SearchSmartItemsComponent,
-        TopBannerComponent,
         ListVendorsComponent,
         ButtonLoadMoreComponent,
         NearMeItemsComponent,

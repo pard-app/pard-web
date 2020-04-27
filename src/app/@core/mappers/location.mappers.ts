@@ -1,5 +1,6 @@
 import { Hit } from "places.js";
 import { ILocation } from "@models/location.interface";
+import { removeUndefinedObjectValues } from "@utils/index";
 
 export const mapHitToLocation = ({
     country: { en, default: defaultCountry },
@@ -12,23 +13,24 @@ export const mapHitToLocation = ({
     _geoloc,
     objectID,
     _highlightResult: {
-        country: { en: highlightedCountryEn, default: highlightedDefaultCountry },
-        county: { default: highlightedCounty },
-        administrative: highlightedAdministrative,
-        locale_names: { en: highlightedLocaleNamesEn, default: highlightedLocaleNamesDefault },
-    },
-}: Hit | any): ILocation => ({
-    objectID,
-    _geoloc,
-    name: defaultLocaleNames[0],
-    county: defaultCounty,
-    administrative,
-    highlightedName: highlightedLocaleNamesDefault[0].value,
-    highlightedCounty: highlightedCounty[0].value,
-    highlightedAdministrative: highlightedAdministrative[0].value,
-});
+        country: { en: highlightedCountryEn = {}, default: highlightedDefaultCountry = {} } = {},
+        county: { default: highlightedCounty = {} } = {},
+        administrative: highlightedAdministrative = {},
+        locale_names: { en: highlightedLocaleNamesEn = {}, default: highlightedLocaleNamesDefault = {} } = {},
+    } = {},
+}: Hit | any): ILocation =>
+    removeUndefinedObjectValues({
+        objectID,
+        _geoloc: Array.isArray(_geoloc) ? _geoloc[0] : _geoloc,
+        name: defaultLocaleNames[0],
+        county: defaultCounty[0],
+        administrative: administrative[0],
+        highlightedName: highlightedLocaleNamesDefault[0]?.value,
+        highlightedCounty: highlightedCounty[0]?.value,
+        highlightedAdministrative: highlightedAdministrative[0]?.value,
+    });
 
-export const mapHitsToLocations = (hits) => hits.map((hit) => mapHitToLocation(hit));
+export const mapHitsToLocations = (hits): ILocation[] => hits.map((hit) => mapHitToLocation(hit));
 // {
 //     country: {
 //         en: "Lithuania",

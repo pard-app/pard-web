@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, ChangeDetectionStrategy, OnDestroy, OnInit } from "@angular/core";
+import { Component, Output, EventEmitter, ChangeDetectionStrategy, OnDestroy, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { PlacesInstance, ChangeEvent, SearchClientOptions, Hit } from "places.js";
 import { LocationStore } from "@core/stores/location/location.store";
 import { AlgoliaService } from "@services/algolia/algolia.service";
@@ -6,6 +6,7 @@ import { Observable, of, Subscription, Subject, BehaviorSubject } from "rxjs";
 import { FormControl } from "@angular/forms";
 import { mapHitToLocation, mapHitsToLocations } from "@core/mappers/location.mappers";
 import { ILocation } from "@models/location.interface";
+import { filter } from "rxjs/operators";
 
 // import options from "./options";
 @Component({
@@ -17,14 +18,16 @@ import { ILocation } from "@models/location.interface";
 export class SearchLocationComponent implements OnInit, OnDestroy {
     @Output() locationChanged? = new EventEmitter<ILocation>();
     @Output() onClear? = new EventEmitter();
+    @ViewChild("autoInput") inputRef: ElementRef;
     public input: FormControl = new FormControl();
     private _places$ = new BehaviorSubject<Array<ILocation>>([]);
     public readonly places$: Observable<Array<ILocation>> = this._places$.asObservable();
     private sub = new Subscription();
 
-    constructor(private algolia: AlgoliaService) {}
+    constructor(private algolia: AlgoliaService, private locationStore: LocationStore) {}
 
     async ngOnInit() {
+        this.locationStore.currentLocation$.pipe(filter((x) => !!x)).subscribe((x) => this.onPick(x));
         const { hits } = await this.algolia.places("");
         this._places$.next(mapHitsToLocations(hits));
 
@@ -44,6 +47,7 @@ export class SearchLocationComponent implements OnInit, OnDestroy {
     public onPick(location: ILocation): void {
         if (typeof location === "object") {
             this.input.setValue(location.name);
+            this.inputRef.nativeElement.blur();
             this.locationChanged.emit(location);
         }
     }
