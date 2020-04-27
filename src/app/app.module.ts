@@ -9,6 +9,8 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { DbService } from "@services/db-service/db-service.service";
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
+import { NgcCookieConsentModule, NgcCookieConsentConfig } from "ngx-cookieconsent";
+
 // NEBULAR MODULES
 import { NbAutocompleteDirective, NbLayoutModule, NbThemeModule, NbMenuModule } from "@nebular/theme";
 
@@ -21,6 +23,24 @@ import { SharedModule } from "@shared/shared.module";
 import { TopheaderModule } from "@modules/topheader/topheader.module";
 import { PrivacyPolicyModule } from "@modules/privacy-policy/privacy-policy.module";
 import { TermsAndConditionsModule } from "@modules/terms-and-conditions/terms-and-conditions.module";
+
+const cookieConfig: NgcCookieConsentConfig = {
+    cookie: {
+        domain: "localhost", // @TODO need a way to set this programmatically depending on the website // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
+    },
+    palette: {
+        popup: {
+            background: "rgba(255, 255, 255, 0.48)",
+            text: "#000",
+        },
+        button: {
+            background: "#0095ff",
+        },
+    },
+    theme: "edgeless",
+    type: "info",
+};
+
 @NgModule({
     declarations: [AppComponent],
     imports: [
@@ -34,6 +54,7 @@ import { TermsAndConditionsModule } from "@modules/terms-and-conditions/terms-an
         NbMenuModule.forRoot(),
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireFunctionsModule,
+        NgcCookieConsentModule.forRoot(cookieConfig),
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

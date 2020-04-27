@@ -85,7 +85,6 @@
     "DELIVERY_COSTS_PLACEHOLDER": "(How much will it cost for you to deliver an item)",
     "DELIVERY_NOTE_PLACEHOLDER": "(I deliver to..)",
     "DELIVERY": "Delivery",
-    "DELIVERY_INFORMATION": "Delivery information",
     "NEW": "New",
     "ACTIVE_ORDERS": "Active orders",
     "SEE_COMPLETED": "See completed",
@@ -144,5 +143,14 @@
     "AS_PAYMENT_ID": "as the reason for payment.",
     "HEADING_TITLE": "Find <strong>local products</strong>, get them delivered to <strong>you</strong>.",
     "CONTACTS": "Contacts",
-    "SHARE": "Share"
+    "SHARE": "Share",
+    "cookie": {
+        "header": "Cookies used on the website!",
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "allow": "Allow cookies",
+        "deny": "Decline",
+        "link": "Learn more",
+        "policy": "Cookie Policy"
+    }
 }
