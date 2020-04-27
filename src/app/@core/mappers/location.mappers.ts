@@ -30,7 +30,7 @@ export const mapHitToLocation = ({
         highlightedAdministrative: highlightedAdministrative[0]?.value,
     });
 
-export const mapHitsToLocations = (hits): ILocation[] => hits.map((hit) => mapHitToLocation(hit));
+export const mapHitsToLocations = (hits): ILocation[] => hits.map((hit) => hit && mapHitToLocation(hit));
 // {
 //     country: {
 //         en: "Lithuania",
