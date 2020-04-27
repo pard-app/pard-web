@@ -24,10 +24,24 @@
                 <app-input-validate-wrapper for="phone" [ref]="formBasicField('phone')" label="PHONE">
                     <input class="input" formControlName="phone" type="text" nbInput fullWidth fieldSize="medium" />
                 </app-input-validate-wrapper>
+
+                <div class="terms-checkbox">
+                    <nb-checkbox formControlName="terms"
+                        ><h5>{{ "ACCEPT_TERMS" | translate }}</h5></nb-checkbox
+                    >
+                    <a (click)="openTerms()">{{ "VIEW" | translate }}</a>
+                </div>
             </nb-card-body>
             <nb-card-footer>
                 <div class="actions">
-                    <button nbButton nbStepperNext (click)="formProgress = 30" [disabled]="formBasic.invalid" outline status="success">
+                    <button
+                        nbButton
+                        nbStepperNext
+                        (click)="formProgress = 30"
+                        [disabled]="formBasic.invalid || !formBasic.value.terms"
+                        outline
+                        status="success"
+                    >
                         {{ "NEXT" | translate }}
                     </button>
                 </div>
@@ -144,30 +158,25 @@
                 </div>
                 <div class="items">
                     <h1>{{ "ITEMS" | translate }}</h1>
-                    <nb-user
-                        *ngFor="let item of cartItems | keyvalue"
-                        shape="rectangle"
-                        badgeStatus="primary"
-                        [badgeText]="(item.value.item?.price | currency) + ' (×' + item.value.quantity + ')'"
-                        [name]="item.value.item?.title"
-                        badgePosition="bottom start"
-                        size="giant"
-                        [picture]="item.value.item?.image"
-                        [title]="item.value.item?.description"
-                    ></nb-user>
-                </div>
 
-                <div class="vendors">
-                    <h1>{{ "VENDORS" | translate }}</h1>
-                    <div></div>
-                    <nb-user
-                        *ngFor="let vendor of vendors"
-                        shape="rectangle"
-                        [name]="vendor.title"
-                        size="giant"
-                        [picture]="vendor.image"
-                        [title]="vendor.description"
-                    ></nb-user>
+                    <nb-card *ngFor="let entry of review" class="card-review">
+                        <nb-card-header>
+                            <nb-user
+                                shape="rectangle"
+                                [name]="entry.vendor.title"
+                                size="giant"
+                                [picture]="entry.vendor.image"
+                                [title]="entry.vendor.description"
+                            ></nb-user>
+                        </nb-card-header>
+                        <nb-card-body>
+                            <div class="products">
+                                <div *ngFor="let item of entry.listings">
+                                    <app-card-listing [item]="item" [viewOnly]="true"></app-card-listing>
+                                </div>
+                            </div>
+                        </nb-card-body>
+                    </nb-card>
                 </div>
             </nb-card-body>
             <nb-card-footer>

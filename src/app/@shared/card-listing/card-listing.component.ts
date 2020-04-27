@@ -10,6 +10,7 @@ import { ROUTING_CONSTANTS } from "@core/constants/routing.constants";
 })
 export class CardListingComponent implements OnInit {
     @Input() item: ListingItem;
+    @Input() viewOnly: boolean = false;
     public globalRoutes = ROUTING_CONSTANTS;
 
     constructor(private cartStoreService: CartStoreService) {}

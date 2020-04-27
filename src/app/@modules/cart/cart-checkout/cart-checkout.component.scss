@@ -1,3 +1,5 @@
+@import "~src/app/@core/styles/themes";
+
 nb-stepper {
     padding: 20px;
     display: block;
@@ -19,4 +21,27 @@ nb-stepper {
 .vendors,
 .order {
     margin-top: 20px;
+}
+
+.card-review {
+    nb-card-body {
+        nb-user:not(:last-child) {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.products {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 25px;
+}
+
+.terms-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    nb-checkbox {
+        margin-right: 10px;
+    }
 }

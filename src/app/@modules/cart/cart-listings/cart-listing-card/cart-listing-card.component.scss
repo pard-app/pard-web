@@ -1,3 +1,5 @@
+@import "~src/app/@core/styles/themes";
+
 .cart-item {
     &__card {
         box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 10px;
@@ -5,13 +7,30 @@
     &__header {
         display: flex;
         align-items: center;
-        padding: 10px 10px;
+        padding: 20px;
     }
     &__image {
-        height: 70px;
-        width: 70px;
-        border-radius: 50%;
+        height: 100px;
+        width: 100px;
+        border-radius: nb-theme(card-border-radius);
         object-fit: cover;
         margin-right: 10px;
+    }
+    &__body {
+        padding-bottom: 0;
+    }
+    &__price {
+        font-weight: 400;
+        margin-bottom: 4px;
+    }
+    &__footer {
+        border-top: 0;
+        padding-top: 0;
+
+        input {
+            margin: 0 15px 5px 0;
+            max-width: 80px;
+            display: inline-block;
+        }
     }
 }

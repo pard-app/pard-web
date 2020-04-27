@@ -10,6 +10,7 @@ export interface ListingItem extends AdditionalCartViewLogic {
     vendor: string;
     published: boolean;
     date: number;
+    quantity?: number;
 }
 
 interface AdditionalCartViewLogic {}
