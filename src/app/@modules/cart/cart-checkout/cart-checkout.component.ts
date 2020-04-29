@@ -25,6 +25,7 @@ export class CartCheckoutComponent implements OnInit {
     public loading: boolean = true;
     public confirmedOrder: any;
     public ROUTES: { [name: string]: string };
+    public captcha: string;
 
     @Output() deliveryChanged: EventEmitter<any> = new EventEmitter();
     @Input() vendors: any;
@@ -131,7 +132,7 @@ export class CartCheckoutComponent implements OnInit {
     }
 
     public async submitOrder() {
-        this.dbService.placeOrder(this.orders, this.buyer, this.delivery, false).then(
+        this.dbService.placeOrder(this.orders, this.buyer, this.delivery, false, this.captcha).then(
             async (response) => {
                 this.loading = false;
                 this.confirmedOrder = response;
@@ -158,5 +159,9 @@ export class CartCheckoutComponent implements OnInit {
         } else {
             return "success";
         }
+    }
+
+    resolved(captchaResponse: string) {
+        this.captcha = captchaResponse;
     }
 }
