@@ -3,7 +3,8 @@
     margin-bottom: 0;
     &__header {
         width: 100%;
-        height: 150px;
+        min-height: 160px;
+        max-height: 200px;
         display: flex;
     }
 

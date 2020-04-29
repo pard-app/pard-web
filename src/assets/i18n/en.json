@@ -80,6 +80,7 @@
     "EDIT_LISTING": "Edit listing",
     "MY_ORDERS": "My orders",
     "I_OFFER_DELIVERY": "I offer delivery",
+    "HOME_DELIVERY": "Home Delivery",
     "DELIVERY_COSTS": "Delivery costs",
     "DELIVERY_NOTE": "Delivery note",
     "DELIVERY_COSTS_PLACEHOLDER": "(How much will it cost for you to deliver an item)",
@@ -95,7 +96,9 @@
     "CREATE": "Create",
 
     "SELECT_LOCATION": "Select a location",
+    "LOCATION": "Location",
     "CHANGE_LOCATION": "Change location",
+
     "MARKETPLACE": "Marketplace",
     "WELCOME_TO": "Welcome to",
     "CITY_NAME": "City name",
@@ -114,7 +117,7 @@
     "NOTHING_FOUND": "Nothing found.",
     "HOME": "HOME",
     "SEARCH_VENDOR_LISTINGS": "Search in listings",
-    "FILTER_BY_LISTING_OR_VENDOR": "Filter by product or business",
+    "FILTER_BY_LISTING_OR_VENDOR": "Product or business",
     "FIRST_NAME": "First name",
     "LAST_NAME": "Last name",
     "NEXT": "Next",

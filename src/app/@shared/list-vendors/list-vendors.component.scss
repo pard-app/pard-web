@@ -2,18 +2,27 @@
     display: block;
     padding: 8px 0;
 }
-
+// x
 .grid-parent {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 15px;
-    @media (max-width: 900px) {
+    @media (max-width: 1160px) {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto;
         grid-gap: 15px;
+    }
+    @media (max-width: 760px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        // grid-gap: 15px;
     }
 }
 
 .vendors-title {
     margin: 15px 0;
+    @media only screen and (max-width: 640px) {
+        font-size: 1.1em;
+        margin: 8px 0;
+    }
 }
