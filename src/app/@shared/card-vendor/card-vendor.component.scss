@@ -1,37 +1,54 @@
 .vendor-card {
     height: 100%;
     margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     &__header {
         width: 100%;
         min-height: 160px;
         max-height: 200px;
         display: flex;
-        padding: var(--card-padding);
         border-bottom: 0;
     }
 
     &__image {
-        max-width: 100px;
-        max-height: 100px;
         height: 100%;
         width: 100%;
-        object-fit: contain;
+
         object-position: center;
+        object-fit: contain;
+        border-radius: var(--card-border-radius);
+    }
+    &__imageWrapper {
+        overflow: hidden;
+        max-width: 116px;
+        max-height: 116px;
+        height: 100%;
+        width: 100%;
         margin-right: 15px;
+        border-radius: var(--card-border-radius);
     }
 
     &__body {
         display: flex;
         flex-direction: row;
         padding: 0;
+        justify-content: flex-end;
     }
 
     &__small-image {
-        width: 25%;
-        height: 90px;
+        width: 33.33%;
+        height: 120px;
         flex-grow: 1;
         object-fit: cover;
         object-position: center;
+        @media (max-width: 760px) {
+            width: 25%;
+        }
+        @media (max-width: 580px) {
+            width: 33.33%;
+        }
     }
 
     .vendor-info {

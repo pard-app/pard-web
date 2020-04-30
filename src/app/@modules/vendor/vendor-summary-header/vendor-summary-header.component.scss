@@ -10,11 +10,21 @@
             display: none;
         }
     }
+    &__containerX {
+        display: flex;
+        flex-direction: row;
+
+        height: 200px;
+
+        flex-basis: 0;
+        @media only screen and (max-width: 950px) {
+            display: none;
+        }
+    }
     &__containerMobile {
         display: flex;
         flex-direction: column;
 
-        padding: var(--card-padding);
         @media only screen and (min-width: 950px) {
             display: none;
         }
@@ -87,6 +97,8 @@
     &__imageWrapper {
         margin-right: 1.5rem;
         height: 100%;
+        border-radius: var(--card-border-radius);
+        overflow: hidden;
         @media only screen and (max-width: 950px) {
             display: none;
         }
@@ -100,6 +112,8 @@
     &__imageWrapperMobile {
         height: 75px;
         margin-right: 1rem;
+        border-radius: var(--card-border-radius);
+        overflow: hidden;
         @media only screen and (min-width: 950px) {
             display: none;
         }

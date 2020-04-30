@@ -1,5 +1,7 @@
 <div *ngIf="vendor$ | async as vendorAfterAsync" [nbSpinner]="!(vendor$ | async)" nbSpinnerStatus="success" class="vendor">
-    <nb-card class="vendor__container flexible-card">
+    <div class="vendor__containerX">
+        <!-- <nb-card class="vendor__container flexible-card"> -->
+
         <div class="vendor__imageWrapper">
             <img [src]="vendorAfterAsync.image" class="vendor__image" />
         </div>
@@ -20,12 +22,12 @@
             </p>
         </div>
         <div class="vendor__contacts">
-            <p class="vendor__contactsSectionTitle">{{ "Contacts" | translate }} :</p>
-            <a class="vendor__contactsLink" [href]="'tel:' + vendorAfterAsync.phone">{{ vendorAfterAsync.phone }}</a>
-            <a class="vendor__contactsLink" [href]="'mailto:' + vendorAfterAsync.email" vendorAfterAsync.email>{{ vendorAfterAsync.email }}</a>
+            <p class="vendor__contactsSectionTitle">{{ "CONTACTS" | translate }} :</p>
+            <a class="vendor__contactsLink" [href]="'tel:' + vendorAfterAsync.phone">📱{{ vendorAfterAsync.phone }}</a>
+            <a class="vendor__contactsLink" [href]="'mailto:' + vendorAfterAsync.email" vendorAfterAsync.email>📧{{ vendorAfterAsync.email }}</a>
         </div>
-    </nb-card>
-
+        <!-- </nb-card> -->
+    </div>
     <nb-card class="vendor__containerMobile flexible-card">
         <div class="vendor__presentationMobile">
             <div class="vendor__presentation">
@@ -53,9 +55,9 @@
                 </a>
             </div>
             <div class="vendor__contacts">
-                <p class="vendor__contactsSectionTitle">{{ "Contacts" | translate }} :</p>
-                <a class="vendor__contactsLink" [href]="'tel:' + vendorAfterAsync.phone">{{ vendorAfterAsync.phone }}</a>
-                <a class="vendor__contactsLink" [href]="'mailto:' + vendorAfterAsync.email" vendorAfterAsync.email>{{ vendorAfterAsync.email }}</a>
+                <p class="vendor__contactsSectionTitle">{{ "CONTACTS" | translate }} :</p>
+                <a class="vendor__contactsLink" [href]="'tel:' + vendorAfterAsync.phone">📱{{ vendorAfterAsync.phone }}</a>
+                <a class="vendor__contactsLink" [href]="'mailto:' + vendorAfterAsync.email" vendorAfterAsync.email>📧{{ vendorAfterAsync.email }}</a>
             </div>
         </div>
         <p class="vendor__descriptionMobile">

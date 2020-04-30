@@ -17,6 +17,7 @@
     &__imageWrapper {
         flex-grow: 3;
         width: 0;
+
         @media only screen and (max-width: 950px) {
             flex-grow: 1;
         }
@@ -38,7 +39,7 @@
         flex-direction: column;
         display: flex;
         width: 0;
-        padding: var(--card-padding);
+
         @media only screen and (max-width: 950px) {
             flex-grow: 1;
         }
