@@ -1,8 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, OnDestroy } from "@angular/core";
-import { ChangeEvent, Suggestion } from "places.js";
 import { LocationStore } from "@core/stores/location/location.store";
 import { interval, BehaviorSubject, Subject, Subscription, combineLatest } from "rxjs";
-import { ListingStore } from "@core/stores/listing/listing.store";
 import { AlgoliaService } from "@services/algolia/algolia.service";
 import { debounce, map, filter, flatMap, mergeMap, toArray } from "rxjs/operators";
 import { SearchVendorOrListingGroup } from "@models/vendorAndListing.interface";

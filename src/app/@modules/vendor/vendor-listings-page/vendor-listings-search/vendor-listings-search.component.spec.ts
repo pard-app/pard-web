@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { VendorListingsSearchComponent } from "./vendor-listings-search.component";
+import { TranslateModule, TranslateService } from "@ngx-translate/core";
 
 describe("VendorListingsSearchComponent", () => {
     let component: VendorListingsSearchComponent;
@@ -9,6 +10,8 @@ describe("VendorListingsSearchComponent", () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [VendorListingsSearchComponent],
+            imports: [TranslateModule.forRoot()],
+            providers: [TranslateService],
         }).compileComponents();
     }));
 

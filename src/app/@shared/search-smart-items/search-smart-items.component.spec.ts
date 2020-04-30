@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { SearchSmartItemsComponent } from "./search-smart-items.component";
+import { RouterTestingModule } from "@angular/router/testing";
 
 describe("SearchSmartItemsComponent", () => {
     let component: SearchSmartItemsComponent;
@@ -9,6 +10,7 @@ describe("SearchSmartItemsComponent", () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [SearchSmartItemsComponent],
+            imports: [RouterTestingModule],
         }).compileComponents();
     }));
 

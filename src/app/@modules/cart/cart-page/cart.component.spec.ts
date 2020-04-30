@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { CartComponent } from "./cart.component";
 import { RouterTestingModule } from "@angular/router/testing";
+import { TranslateModule, TranslateService } from "@ngx-translate/core";
 
 describe("CartComponent", () => {
     let component: CartComponent;
@@ -10,7 +11,8 @@ describe("CartComponent", () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [CartComponent],
-            imports: [RouterTestingModule],
+            imports: [RouterTestingModule, TranslateModule.forRoot()],
+            providers: [TranslateService],
         }).compileComponents();
     }));
 
