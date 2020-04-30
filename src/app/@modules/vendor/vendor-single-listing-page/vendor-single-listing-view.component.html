@@ -1,4 +1,4 @@
-<nb-card class="content-section" *ngIf="_listing$ | async as listing">
+<nb-card class="content-section content-section__product" *ngIf="_listing$ | async as listing">
     <nb-card-header class="listing">
         <div class="listing__imageWrapper">
             <img class="listing__image" [src]="listing.image" />

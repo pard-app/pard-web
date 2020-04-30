@@ -7,26 +7,28 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 15px;
-    @media (max-width: 1200px) {
+    // @media (max-width: 1200px) {
+    //     grid-template-columns: 1fr 1fr;
+    //     grid-template-rows: auto auto;
+    //     grid-gap: 15px;
+    // }
+    @media (max-width: 1080px) {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto;
-        grid-gap: 15px;
+        grid-gap: 10px;
     }
-    @media (max-width: 760px) {
+    @media (max-width: 680px) {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto;
-        // grid-gap: 15px;
+        grid-gap: 10px;
     }
 }
 
 .vendors-title {
     margin: 15px 0;
-
+    white-space: nowrap;
     @media only screen and (max-width: 500px) {
         font-size: 1.1em;
         margin: 8px 0;
-        padding: var(--card-padding);
-        padding-top: 0;
-        padding-bottom: 0;
     }
 }
