@@ -9,13 +9,13 @@
         />
     </nb-card-header>
     <nb-card-body class="listing-card__body">
-        <h6 class="product-price">
+        <h3 class="product-price">
             {{ item.price | currency }} <span *ngIf="item.quantity">× {{ item.quantity }}</span>
-        </h6>
-        <h4 class="product-title">{{ item.title }}</h4>
+        </h3>
+        <p class="product-title">{{ item.title }}</p>
         <!-- <p>{{ item.description.length > 60 ? (item.description | slice: 0:60) + "..." : item.description }}</p> -->
     </nb-card-body>
     <nb-card-footer class="listing-card__footer" *ngIf="!viewOnly">
-        <button nbButton ghost status="info" (click)="addToCart()">Add to cart</button>
+        <button nbButton ghost status="info" (click)="addToCart()">{{ "ADD_TO_CART" | translate }}</button>
     </nb-card-footer>
 </nb-card>
