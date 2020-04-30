@@ -21,8 +21,12 @@
 
 .vendors-title {
     margin: 15px 0;
-    @media only screen and (max-width: 640px) {
+
+    @media only screen and (max-width: 500px) {
         font-size: 1.1em;
         margin: 8px 0;
+        padding: var(--card-padding);
+        padding-top: 0;
+        padding-bottom: 0;
     }
 }

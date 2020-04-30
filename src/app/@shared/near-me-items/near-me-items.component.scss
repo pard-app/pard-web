@@ -1,3 +1,8 @@
 .noItemsText {
     opacity: 0.8;
+    @media only screen and (max-width: 500px) {
+        padding: var(--card-padding);
+        padding-top: 0;
+        padding-bottom: 0;
+    }
 }

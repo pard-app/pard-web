@@ -4,6 +4,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @media only screen and (max-width: 500px) {
+        border-radius: 0;
+    }
     &__header {
         width: 100%;
         min-height: 160px;
@@ -22,8 +25,8 @@
     }
     &__imageWrapper {
         overflow: hidden;
-        max-width: 116px;
-        max-height: 116px;
+        max-width: 100px;
+        max-height: 100px;
         height: 100%;
         width: 100%;
         margin-right: 15px;
@@ -38,17 +41,17 @@
     }
 
     &__small-image {
-        width: 33.33%;
-        height: 120px;
+        width: 25%;
+        height: 100px;
         flex-grow: 1;
         object-fit: cover;
         object-position: center;
-        @media (max-width: 760px) {
-            width: 25%;
-        }
-        @media (max-width: 580px) {
-            width: 33.33%;
-        }
+        // @media (max-width: 760px) {
+        //     width: 25%;
+        // }
+        // @media (max-width: 580px) {
+        //     width: 33.33%;
+        // }
     }
 
     .vendor-info {
