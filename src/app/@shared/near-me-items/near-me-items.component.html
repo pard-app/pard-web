@@ -13,8 +13,7 @@
         </h3>
         <!-- NO VENDORS FOUND -->
         <ng-template #elseBlock>
-            <!-- I think user does not need to know that. I think it is better to just proceed with top listings rather than tell him something didnt work out
-            <h3 class="noItemsText" *ngIf="!topVendorsNearMe.length && waitLocalVendors.waiting === false">😞 {{ "NO_VENDORS_NEAR" | translate }}</h3> -->
+            <p class="noItemsText" *ngIf="!topVendorsNearMe.length && waitLocalVendors.waiting === false">😞 {{ "NO_VENDORS_NEAR" | translate }}</p>
         </ng-template>
         <!-- VENDORS FOUND IMMEDIATELY -->
         <app-list-vendors
