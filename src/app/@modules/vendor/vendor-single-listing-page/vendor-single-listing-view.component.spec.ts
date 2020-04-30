@@ -1,25 +1,27 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { VendorSingleListingViewComponent } from './vendor-single-listing-view.component';
+import { VendorSingleListingViewComponent } from "./vendor-single-listing-view.component";
+import { RouterTestingModule } from "@angular/router/testing";
+import { TranslateModule } from "@ngx-translate/core";
 
-describe('VendorSingleListingViewComponent', () => {
-  let component: VendorSingleListingViewComponent;
-  let fixture: ComponentFixture<VendorSingleListingViewComponent>;
+describe("VendorSingleListingViewComponent", () => {
+    let component: VendorSingleListingViewComponent;
+    let fixture: ComponentFixture<VendorSingleListingViewComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ VendorSingleListingViewComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [VendorSingleListingViewComponent],
+            imports: [RouterTestingModule, TranslateModule.forRoot()],
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(VendorSingleListingViewComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(VendorSingleListingViewComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it("should create", () => {
+        expect(component).toBeTruthy();
+    });
 });

@@ -24,7 +24,7 @@ import { TopheaderModule } from "@modules/topheader/topheader.module";
 import { PrivacyPolicyModule } from "@modules/privacy-policy/privacy-policy.module";
 import { TermsAndConditionsModule } from "@modules/terms-and-conditions/terms-and-conditions.module";
 
-const cookieConfig: NgcCookieConsentConfig = {
+export const cookieConfig: NgcCookieConsentConfig = {
     cookie: {
         domain: "localhost", // @TODO need a way to set this programmatically depending on the website // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
     },
