@@ -1,9 +1,12 @@
 <section class="content-section">
-    <app-vendor-summary-header [vendor$]="_vendor$"></app-vendor-summary-header>
-
-    <app-vendor-listings-search (onChange)="inputTextWritten($event)"></app-vendor-listings-search>
-
-    <div class="cartlist">
-        <app-list-listings [listingsList$]="_listingsList$"></app-list-listings>
-    </div>
+    <nb-card-header>
+        <app-vendor-summary-header [vendor$]="_vendor$"></app-vendor-summary-header>
+    </nb-card-header>
+    <nb-card-body>
+        <app-vendor-listings-search (onChange)="inputTextWritten($event)"></app-vendor-listings-search>
+    </nb-card-body>
+    <nb-card-footer>
+        <div class="cartlist">
+            <app-list-listings [listingsList$]="_listingsList$"></app-list-listings></div
+    ></nb-card-footer>
 </section>
