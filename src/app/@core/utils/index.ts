@@ -17,7 +17,7 @@ export function convertObservableToBehaviorSubject<T>(observable: Observable<T>,
 }
 
 export function geoLocStr(latLngObj: Geoloc): string | undefined {
-    return latLngObj && `${latLngObj.lat}, ${latLngObj.lng}`;
+    return !isObjectUndefinedOrEmpty(latLngObj) ? `${latLngObj.lat}, ${latLngObj.lng}` : undefined;
 }
 
 export const noPagesLeft = (currentPage: number, totalPages: number): boolean => {
@@ -25,5 +25,11 @@ export const noPagesLeft = (currentPage: number, totalPages: number): boolean =>
 };
 
 export const removeUndefinedObjectValues = (json) => {
-    return JSON.parse(JSON.stringify(json));
+    const value = JSON.stringify(json, (_key, value) => {
+        if (value === null || value === undefined) return undefined;
+        return value;
+    });
+    return JSON.parse(value);
 };
+
+export const isObjectUndefinedOrEmpty = (val: object) => !val || Object.entries(val).length === 0;
