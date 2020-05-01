@@ -132,17 +132,9 @@ export class CartCheckoutComponent implements OnInit {
     }
 
     public async submitOrder() {
-        this.dbService.placeOrder(this.orders, this.buyer, this.delivery, false, this.captcha).then(
-            async (response) => {
-                this.loading = false;
-                this.confirmedOrder = response;
-            },
-            async (err) => {
-                this.loading = false;
-                this.confirmedOrder = this.translate.instant("ERROR_WHILE_PLACING_ORDER");
-                console.log(err);
-            }
-        );
+        const response = await this.dbService.placeOrder(this.orders, this.buyer, this.delivery, false, this.captcha);
+        this.loading = false;
+        this.confirmedOrder = response ? response : this.translate.instant("ERROR_WHILE_PLACING_ORDER");
     }
 
     openTerms() {
