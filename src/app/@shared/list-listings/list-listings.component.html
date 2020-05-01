@@ -3,3 +3,5 @@
 <section class="grid-parent">
     <app-card-listing *ngFor="let item of listingsList$ | async" [item]="item"></app-card-listing>
 </section>
+
+<app-loading-box *ngIf="isLoading"></app-loading-box>
