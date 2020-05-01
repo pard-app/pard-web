@@ -68,7 +68,7 @@ export class OnlyLocationComponent implements OnInit, OnDestroy {
                 .toPromise();
             const vendors = await this.listingService.fillVendorWithItsListings(hits);
             this._vendors$.next([...this._vendors$.getValue(), ...vendors]);
-            if (noPagesLeft(page, nbPages)) this.allVendorsLoaded = true;
+            this.allVendorsLoaded = noPagesLeft(page, nbPages);
         });
     }
 
@@ -78,7 +78,7 @@ export class OnlyLocationComponent implements OnInit, OnDestroy {
                 .searchListing({ query: "", hitsPerPage: pagination.hitsPerPage, page: pagination.page, aroundLatLng: geoLocStr(_geoloc) })
                 .toPromise();
             this._listings$.next([...this._listings$.getValue(), ...hits]);
-            if (noPagesLeft(page, nbPages)) this.allListingsLoaded = true;
+            this.allListingsLoaded = noPagesLeft(page, nbPages);
         });
     }
 
