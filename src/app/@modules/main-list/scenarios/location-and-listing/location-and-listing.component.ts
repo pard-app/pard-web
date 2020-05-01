@@ -4,11 +4,10 @@ import { ListingItem } from "@models/listingitem.interface";
 import { IVendor } from "@models/vendor.interface";
 import { ListingService } from "@services/listing/listing.service";
 import { VendorService } from "@services/vendor/vendor.service";
-import { throttleTime, filter, takeLast, take, debounce, debounceTime, withLatestFrom } from "rxjs/operators";
+import { filter } from "rxjs/operators";
 import { ListingStore } from "@core/stores/listing/listing.store";
 import { noPagesLeft, geoLocStr } from "@utils/index";
 import { LocationStore } from "@core/stores/location/location.store";
-import { ActivatedRoute } from "@angular/router";
 import { ILocation } from "@models/location.interface";
 
 const paginationDefaultValue = (pp = 6) => ({
@@ -69,7 +68,7 @@ export class LocationAndListingComponent implements OnInit, OnDestroy {
                 .toPromise();
             const vendors = await this.listingService.fillVendorWithItsListings(hits);
             this._vendors$.next([...this._vendors$.getValue(), ...vendors]);
-            if (noPagesLeft(page, nbPages)) this.allVendorsLoaded = true;
+            this.allVendorsLoaded = noPagesLeft(page, nbPages);
         });
     }
 
@@ -79,7 +78,7 @@ export class LocationAndListingComponent implements OnInit, OnDestroy {
                 .searchListing({ query: listingOrVendorText, hitsPerPage: pagination.hitsPerPage, page: pagination.page, aroundLatLng: geoLocStr(geoloc) })
                 .toPromise();
             this._listings$.next([...this._listings$.getValue(), ...hits]);
-            if (noPagesLeft(page, nbPages)) this.allListingsLoaded = true;
+            this.allListingsLoaded = noPagesLeft(page, nbPages);
         });
     }
 
