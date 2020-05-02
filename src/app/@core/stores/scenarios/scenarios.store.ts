@@ -25,7 +25,6 @@ export class ScenariosStore implements OnDestroy {
     public readonly paginationVendors$ = this._paginationVendors$.asObservable();
     public readonly paginationListings$ = this._paginationListings$.asObservable();
     // sub
-    public subscriptions = new Subscription();
     public vendorsSubscription = new Subscription();
     public listingsSubscription = new Subscription();
     // pagination
@@ -52,12 +51,12 @@ export class ScenariosStore implements OnDestroy {
         this._vendors$.next([]);
         this.listingsSubscription.unsubscribe();
         this.vendorsSubscription.unsubscribe();
+        this._paginationVendors$.next(paginationDefaultValue());
+        this._paginationListings$.next(paginationDefaultValue(12));
         this.allListingsLoaded = false;
         this.allVendorsLoaded = false;
         this.isLoadingListings = false;
         this.isLoadingVendors = false;
-        this._paginationVendors$.next(paginationDefaultValue());
-        this._paginationListings$.next(paginationDefaultValue(12));
     }
 
     public loadMore(which: string): void {
@@ -81,7 +80,6 @@ export class ScenariosStore implements OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.subscriptions.unsubscribe();
         this.vendorsSubscription.unsubscribe();
         this.listingsSubscription.unsubscribe();
     }

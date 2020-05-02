@@ -14,7 +14,8 @@ import { ScenariosStore } from "@core/stores/scenarios/scenarios.store";
     templateUrl: "./location-and-listing.component.html",
     styleUrls: ["./location-and-listing.component.scss"],
 })
-export class LocationAndListingComponent implements OnInit {
+export class LocationAndListingComponent implements OnInit, OnDestroy {
+    private subscribeToGlobalListingOrVendor = new Subscription();
     constructor(
         private listingService: ListingService,
         private vendorService: VendorService,
@@ -24,7 +25,7 @@ export class LocationAndListingComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        const subscribeToGlobalListingOrVendor = combineLatest([this.locationStore.currentLocation$, this.listingStore.currentListingOrVendor$])
+        this.subscribeToGlobalListingOrVendor = combineLatest([this.locationStore.currentLocation$, this.listingStore.currentListingOrVendor$])
             .pipe(filter((combinedItems: [ILocation, string]) => !combinedItems.some((val) => !val)))
             .subscribe(async ([location, listingOrVendorText]) => {
                 this.scenariosStore.resetNecessaryValues();
@@ -33,27 +34,33 @@ export class LocationAndListingComponent implements OnInit {
                 this.scenariosStore.vendorsSubscription = this.createVendorsSubscription(listingOrVendorText, location._geoloc);
                 this.scenariosStore.listingsSubscription = this.createListingsSubscription(listingOrVendorText, location._geoloc);
             });
+    }
 
-        this.scenariosStore.subscriptions.add(subscribeToGlobalListingOrVendor);
+    ngOnDestroy() {
+        this.subscribeToGlobalListingOrVendor.unsubscribe();
     }
 
     private createVendorsSubscription(listingOrVendorText, geoloc): Subscription {
         return this.scenariosStore.paginationVendors$.subscribe(async (pagination) => {
+            this.scenariosStore.isLoadingVendors = true;
             const { hits, page, nbPages } = await this.vendorService
                 .searchVendor({ query: listingOrVendorText, hitsPerPage: pagination.hitsPerPage, page: pagination.page, aroundLatLng: geoLocStr(geoloc) })
                 .toPromise();
             const vendors = await this.listingService.fillVendorWithItsListings(hits);
             this.scenariosStore.pushToVendors(vendors);
+            this.scenariosStore.isLoadingVendors = false;
             this.scenariosStore.allVendorsLoaded = noPagesLeft(page, nbPages);
         });
     }
 
     private createListingsSubscription(listingOrVendorText, geoloc): Subscription {
         return this.scenariosStore.paginationListings$.subscribe(async (pagination) => {
+            this.scenariosStore.isLoadingListings = true;
             const { hits, page, nbPages } = await this.listingService
                 .searchListing({ query: listingOrVendorText, hitsPerPage: pagination.hitsPerPage, page: pagination.page, aroundLatLng: geoLocStr(geoloc) })
                 .toPromise();
             this.scenariosStore.pushToListings(hits);
+            this.scenariosStore.isLoadingListings = false;
             this.scenariosStore.allListingsLoaded = noPagesLeft(page, nbPages);
         });
     }

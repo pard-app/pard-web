@@ -2,23 +2,17 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { LocationStore } from "@core/stores/location/location.store";
 import { ListingService } from "@services/listing/listing.service";
 import { debounce, filter } from "rxjs/operators";
-import { interval, Subscription, Observable, BehaviorSubject } from "rxjs";
-import { IVendor } from "@models/vendor.interface";
-import { ListingItem } from "@models/listingitem.interface";
+import { interval, Subscription } from "rxjs";
 import { VendorService } from "@services/vendor/vendor.service";
 import { geoLocStr, noPagesLeft } from "@utils/index";
 import { ScenariosStore } from "@core/stores/scenarios/scenarios.store";
-
-const paginationDefaultValue = (pp = 6) => ({
-    page: 0,
-    hitsPerPage: pp,
-});
 @Component({
     selector: "scenario-only-location",
     templateUrl: "./only-location.component.html",
     styleUrls: ["./only-location.component.scss"],
 })
-export class OnlyLocationComponent implements OnInit {
+export class OnlyLocationComponent implements OnInit, OnDestroy {
+    private subscribeToGlobalLocationChanges = new Subscription();
     constructor(
         private locationStore: LocationStore,
         private listingService: ListingService,
@@ -27,7 +21,7 @@ export class OnlyLocationComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        const subscribeToGlobalLocationChanges = this.locationStore.currentLocation$
+        this.subscribeToGlobalLocationChanges = this.locationStore.currentLocation$
             .pipe(
                 filter((x) => !!x),
                 debounce(() => interval(50))
@@ -38,8 +32,10 @@ export class OnlyLocationComponent implements OnInit {
                 this.scenariosStore.vendorsSubscription = this.createVendorsSubscription(_geoloc);
                 this.scenariosStore.listingsSubscription = this.createListingsSubscription(_geoloc);
             });
+    }
 
-        this.scenariosStore.subscriptions.add(subscribeToGlobalLocationChanges);
+    ngOnDestroy() {
+        this.subscribeToGlobalLocationChanges.unsubscribe();
     }
 
     private createVendorsSubscription(_geoloc): Subscription {
