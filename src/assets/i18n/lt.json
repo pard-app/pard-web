@@ -114,5 +114,6 @@
     "HOME": "Pagrindinis",
     "CONTACTS": "Kontaktai",
     "SHARE": "Dalintis",
-    "VENDORS_NEAR_LOCATION": "Vendors near your location"
+    "VENDORS_NEAR_LOCATION": "Parduotuvės arti jūsų",
+    "NO_VENDORS_NEAR": "Dėja, nerandame parduotuvių šalia jusų"
 }

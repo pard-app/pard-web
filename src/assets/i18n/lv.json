@@ -111,5 +111,6 @@
     "HOME": "HOME",
     "CONTACTS": "Contacts",
     "SHARE": "Share",
-    "VENDORS_NEAR_LOCATION": "Vendors near your location"
+    "VENDORS_NEAR_LOCATION": "Vendors near your location",
+    "NO_VENDORS_NEAR": "Unfortunately, there is no vendor nearby"
 }
