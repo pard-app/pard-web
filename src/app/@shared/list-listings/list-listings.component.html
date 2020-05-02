@@ -1,7 +1,13 @@
-<h3 class="listings-title" [innerHTML]="title"></h3>
+<ng-container *ngIf="listingsList$ | async as listingsList">
+    <h3 class="listings-title" [innerHTML]="title"></h3>
 
-<section class="grid-parent">
-    <app-card-listing *ngFor="let item of listingsList$ | async" [item]="item"></app-card-listing>
-</section>
+    <section class="grid-parent">
+        <app-card-listing *ngFor="let item of listingsList" [item]="item"></app-card-listing>
+    </section>
 
-<app-loading-box *ngIf="isLoading"></app-loading-box>
+    <app-loading-box *ngIf="isLoading"></app-loading-box>
+
+    <nb-alert *ngIf="!isLoading && !listingsList.length" accent="warning">
+        <h3>{{ "NO_LISTINGS" | translate }}</h3>
+    </nb-alert>
+</ng-container>
