@@ -13,7 +13,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class NothingComponent implements OnInit, OnDestroy {
     public topVendorsInLocations$: Observable<any> = of([{}]);
-    public isLoading: boolean = true;
+    public isLoadingVendorsInLocations: boolean = true;
 
     constructor(private vendorService: VendorService, private listingService: ListingService, private http: HttpClient) {}
 
@@ -22,14 +22,14 @@ export class NothingComponent implements OnInit, OnDestroy {
     }
 
     private async handleTopVendorsInLocations() {
-        this.isLoading = true;
+        this.isLoadingVendorsInLocations = true;
         const vendorsInLocations$ = await this.vendorService.getVendorsInPopularLocations();
         this.topVendorsInLocations$ = vendorsInLocations$.pipe(
             flatMap(({ results }) => results),
             mergeMap(async (locationWithVendors: any) => {
                 // Fulfill vendors with their listings
                 const vendors = await this.listingService.fillVendorWithItsListings(locationWithVendors.hits);
-                this.isLoading = false;
+                this.isLoadingVendorsInLocations = false;
                 // Here we're turning vendors[] to observable because main-list-vendors expects an observable
                 return { location: locationWithVendors.query, vendors: of(vendors) };
             }),

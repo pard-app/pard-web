@@ -25,11 +25,7 @@ export const noPagesLeft = (currentPage: number, totalPages: number): boolean =>
 };
 
 export const removeUndefinedObjectValues = (json) => {
-    const value = JSON.stringify(json, (_key, value) => {
-        if (value === null || value === undefined) return undefined;
-        return value;
-    });
-    return JSON.parse(value);
+    return JSON.parse(JSON.stringify(json));
 };
 
 export const isObjectUndefinedOrEmpty = (val: object) => !val || Object.entries(val).length === 0;
