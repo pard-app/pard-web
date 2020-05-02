@@ -34,8 +34,10 @@ export class OnlyLocationComponent implements OnInit, OnDestroy {
     // location
     public currentLocationName: string;
     // pagination
-    public allListingsLoaded: boolean = false;
-    public allVendorsLoaded: boolean = false;
+    public allListingsLoaded: boolean;
+    public isLoadingListings: boolean;
+    public allVendorsLoaded: boolean;
+    public isLoadingVendors: boolean;
 
     constructor(private locationStore: LocationStore, private listingService: ListingService, private vendorService: VendorService) {}
 
@@ -63,22 +65,26 @@ export class OnlyLocationComponent implements OnInit, OnDestroy {
 
     private createVendorsSubscription(_geoloc): Subscription {
         return this._paginationVendors$.subscribe(async (pagination) => {
+            this.isLoadingVendors = true;
             const { hits, page, nbPages } = await this.vendorService
                 .searchVendor({ query: "", hitsPerPage: pagination.hitsPerPage, page: pagination.page, aroundLatLng: geoLocStr(_geoloc) })
                 .toPromise();
             const vendors = await this.listingService.fillVendorWithItsListings(hits);
             this._vendors$.next([...this._vendors$.getValue(), ...vendors]);
             this.allVendorsLoaded = noPagesLeft(page, nbPages);
+            this.isLoadingVendors = false;
         });
     }
 
     private createListingsSubscription(_geoloc): Subscription {
         return this._paginationListings$.subscribe(async (pagination) => {
+            this.isLoadingListings = true;
             const { hits, page, nbPages } = await this.listingService
                 .searchListing({ query: "", hitsPerPage: pagination.hitsPerPage, page: pagination.page, aroundLatLng: geoLocStr(_geoloc) })
                 .toPromise();
             this._listings$.next([...this._listings$.getValue(), ...hits]);
             this.allListingsLoaded = noPagesLeft(page, nbPages);
+            this.isLoadingListings = false;
         });
     }
 
