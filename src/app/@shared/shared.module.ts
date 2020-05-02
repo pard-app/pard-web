@@ -13,6 +13,7 @@ import {
     NbBadgeModule,
     NbFormFieldModule,
     NbSpinnerModule,
+    NbAlertModule,
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { CardVendorComponent } from "./card-vendor/card-vendor.component";
@@ -28,7 +29,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ListVendorsComponent } from "./list-vendors/list-vendors.component";
 import { ButtonLoadMoreComponent } from "./button-load-more/button-load-more.component";
 import { NearMeItemsComponent } from "./near-me-items/near-me-items.component";
-import { LoadingBoxComponent } from './loading-box/loading-box.component';
+import { LoadingBoxComponent } from "./loading-box/loading-box.component";
 
 @NgModule({
     declarations: [
@@ -59,6 +60,7 @@ import { LoadingBoxComponent } from './loading-box/loading-box.component';
         NbSelectModule,
         NbBadgeModule,
         NbSpinnerModule,
+        NbAlertModule,
     ],
     providers: [NbAutocompleteDirective, NbMenuService],
     exports: [
