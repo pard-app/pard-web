@@ -23,10 +23,6 @@
         grid-template-columns: 1fr 1fr;
         // grid-gap: 10px 3%;
     }
-    @media (max-width: 420px) {
-        grid-template-columns: 1fr;
-        // grid-gap: 10px 3%;
-    }
 }
 
 .listings-title {

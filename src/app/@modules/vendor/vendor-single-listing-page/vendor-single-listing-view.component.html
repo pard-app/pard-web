@@ -1,5 +1,5 @@
 <nb-card class="content-section content-section__product" *ngIf="_listing$ | async as listing">
-    <nb-card-header class="listing">
+    <nb-card-header class="listing responsive-padding">
         <div class="listing__imageWrapper">
             <img class="listing__image" [src]="listing.image" />
         </div>
@@ -22,12 +22,12 @@
             </div>
         </div>
     </nb-card-header>
-    <nb-card-body> <app-vendor-summary-header [vendor$]="_vendor$" [noMargin]="true"></app-vendor-summary-header></nb-card-body>
+    <nb-card-body class="responsive-padding"> <app-vendor-summary-header [vendor$]="_vendor$" [noMargin]="true"></app-vendor-summary-header></nb-card-body>
 
     <!-- NEED TO IMPLEMENT -->
     <!-- <nb-card-body>
         <app-vendor-listings-search (onChange)="inputTextWritten($event)"></app-vendor-listings-search>
     </nb-card-body> -->
 
-    <nb-card-footer> <app-list-listings [listingsList$]="_listingsList$"></app-list-listings></nb-card-footer>
+    <nb-card-footer class="responsive-padding"> <app-list-listings [listingsList$]="_listingsList$"></app-list-listings></nb-card-footer>
 </nb-card>

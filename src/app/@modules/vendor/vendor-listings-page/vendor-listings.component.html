@@ -1,12 +1,12 @@
 <section>
     <nb-card class="content-section content-section__vendor">
-        <nb-card-header>
+        <nb-card-header class="responsive-padding">
             <app-vendor-summary-header [vendor$]="_vendor$"></app-vendor-summary-header>
         </nb-card-header>
-        <nb-card-body>
+        <nb-card-body class="responsive-padding">
             <app-vendor-listings-search (onChange)="inputTextWritten($event)"></app-vendor-listings-search>
         </nb-card-body>
-        <nb-card-footer>
+        <nb-card-footer class="responsive-padding">
             <app-list-listings [listingsList$]="_listingsList$"></app-list-listings>
         </nb-card-footer>
     </nb-card>
