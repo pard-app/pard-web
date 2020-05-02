@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
     styleUrls: ["./list-vendors.component.scss"],
 })
 export class ListVendorsComponent implements OnInit {
-    public isLoading: boolean = true;
+    @Input() isLoading: boolean;
     @Input() vendorsWithListings$: Observable<any>;
     @Input() vendorsWithListings: Array<any>;
     @Input() title: string = "Mysterious city";

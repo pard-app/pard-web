@@ -1,25 +1,25 @@
 <ng-container *ngIf="topVendorsNearMe$ | async as topVendorsNearMe">
-    <ng-container *ngIf="waitLocalVendors$ | async as waitLocalVendors">
+    <nb-alert *ngIf="waitLocalVendors$ | async as waitLocalVendors" status="basic">
         <!-- LOADING -->
-        <h3 [nbSpinner]="true" nbSpinnerStatus="control" size="medium" *ngIf="waitLocalVendors.waiting == true">
+        <h4 [nbSpinner]="true" nbSpinnerStatus="control" size="medium" *ngIf="waitLocalVendors.waiting == true">
             {{ "LOOKING_FOR_NEAR_VENDORS" | translate }} <nb-icon icon="pin" status="info"></nb-icon>
-        </h3>
+        </h4>
         <!-- VENDORS FOUND AFTER TAKING TOO LONG -->
-        <h3 *ngIf="waitLocalVendors.waiting == false && waitLocalVendors.waitedForTooLong == true && topVendorsNearMe.length; else elseBlock">
+        <h4 *ngIf="waitLocalVendors.waiting == false && waitLocalVendors.waitedForTooLong == true && topVendorsNearMe.length; else elseBlock">
             {{ "FOUND_VENDORS_NEAR" | translate }}
             <button (click)="displayVendorsOnClick()" nbButton ghost status="info" size="small">
                 <nb-icon icon="arrowhead-down-outline"></nb-icon>{{ "SHOW_VENDORS" | translate }}
             </button>
-        </h3>
+        </h4>
         <!-- NO VENDORS FOUND -->
         <ng-template #elseBlock>
-            <h3 *ngIf="!topVendorsNearMe.length && waitLocalVendors.waiting === false">{{ "NO_VENDORS_NEAR" | translate }}</h3>
+            <h4 *ngIf="!topVendorsNearMe.length && waitLocalVendors.waiting === false">{{ "NO_VENDORS_NEAR" | translate }}</h4>
         </ng-template>
         <!-- VENDORS FOUND IMMEDIATELY -->
         <app-list-vendors
-            *ngIf="waitLocalVendors.waiting === false && waitLocalVendors.waitedForTooLong === false"
+            *ngIf="waitLocalVendors.waiting === false && waitLocalVendors.waitedForTooLong === false && topVendorsNearMe.length"
             [vendorsWithListings$]="topVendorsNearMe$"
-            [title]="'Vendors near your location'"
+            [title]="'VENRODS_NEAR_YOU' | translate"
         ></app-list-vendors>
-    </ng-container>
+    </nb-alert>
 </ng-container>

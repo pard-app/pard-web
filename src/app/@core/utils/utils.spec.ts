@@ -60,8 +60,10 @@ describe("Utilities", () => {
                     d: null,
                 })
             ).toEqual({
+                a: null,
                 b: "value",
                 c: "value",
+                d: null,
             });
         });
     });
