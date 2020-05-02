@@ -148,6 +148,7 @@
     "VIEW": "View",
     "CONTACTS": "Contacts",
     "SHARE": "Share",
+    "VENDORS_NEAR_LOCATION": "Vendors near your location",
     "cookie": {
         "header": "Cookies used on the website!",
         "message": "This website uses cookies to ensure you get the best experience on our website.",

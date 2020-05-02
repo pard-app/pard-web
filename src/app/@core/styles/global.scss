@@ -37,9 +37,15 @@ h6 {
         border: none;
         padding: var(--card-padding);
         margin: 0;
+        border-radius: 0;
     }
+    &__vendor {
+    }
+
     &__product {
         padding: 0;
+    }
+    &__landing {
     }
 }
 
@@ -57,11 +63,11 @@ h6 {
         margin: 15px 0;
     }
     @media only screen and (max-width: 640px) {
-        font-size: 0.9em;
+        font-size: 1.2em;
         margin: 8px 0;
     }
-    @media only screen and (max-width: 400px) {
-        font-size: 0.8em;
+    @media only screen and (max-width: 455px) {
+        font-size: 1em;
         margin: 8px 0;
     }
 
@@ -83,7 +89,6 @@ h6 {
 }
 
 .clickable-card {
-    // box-shadow: nb-theme(color-basic-transparent-400) 0px 1px 10px;
     transition: 0.1s cubic-bezier(0.42, 0.95, 0.72, 0.32);
     overflow: hidden;
     cursor: pointer;
@@ -103,12 +108,6 @@ h1,
 h2,
 h3 {
     font-weight: 100;
-}
-
-.layout {
-    // @media only screen and (max-width: 640px) {
-    //     background-color: white !important;
-    // }
 }
 
 .flexible-card {

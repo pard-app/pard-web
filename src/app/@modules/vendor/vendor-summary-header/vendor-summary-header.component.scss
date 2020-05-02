@@ -43,6 +43,18 @@
         margin: 0;
         max-width: 500px;
     }
+
+    &__vendorTitle {
+        @media only screen and (max-width: 640px) {
+            font-size: 1.6em;
+        }
+    }
+    &__vendorLocation {
+        @media only screen and (max-width: 640px) {
+            font-size: 1em;
+        }
+    }
+
     &__description {
         padding-top: auto;
     }
