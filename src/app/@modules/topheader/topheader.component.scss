@@ -93,3 +93,14 @@
         text-align: center;
     }
 }
+
+// @TODO - this selector should be more specific
+::ng-deep nb-context-menu {
+    .menu-icon {
+        border-radius: 50%;
+        margin: 0 !important;
+    }
+    .menu-title {
+        display: none;
+    }
+}
