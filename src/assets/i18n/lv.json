@@ -109,5 +109,15 @@
     "NOTHING_FOUND": "Nekas netika atrasts.",
     "HOME": "HOME",
     "CONTACTS": "Contacts",
-    "SHARE": "Share"
+    "SHARE": "Share",
+    "cookie": {
+        "header": "Cookies used on the website!",
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "allow": "Allow cookies",
+        "deny": "Decline",
+        "link": "Learn more",
+        "policy": "Cookie Policy"
+    },
+    "ORDER_RECEIVED_TEXT": "Jūsu pasūtījums ir saņemts. Lūdzu pārbaudiet e-pastu un gaidiet apstiprinājumu no pārdevēja."
 }

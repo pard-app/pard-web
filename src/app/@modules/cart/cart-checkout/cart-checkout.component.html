@@ -191,10 +191,10 @@
         </nb-card>
     </nb-step>
 
-    <nb-step [label]="'PAYMENT' | translate">
+    <nb-step [label]="'CONFIRMATION' | translate">
         <nb-card [nbSpinner]="loading" nbSpinnerStatus="primary">
             <nb-card-header>
-                <h4>{{ "PAYMENT" | translate }}</h4>
+                <h4>{{ "CONFIRMATION" | translate }}</h4>
             </nb-card-header>
             <nb-card-body *ngIf="loading"> {{ "PLEASE_WAIT" | translate }} </nb-card-body>
 
@@ -224,16 +224,10 @@
                             ></nb-user>
                         </div>
                     </nb-card-body>
-
-                    <nb-card-footer>
-                        <h5 *ngIf="order.seller.bank">
-                            {{ "PLEASE_PAY" | translate }} {{ order.sum | currency }} {{ "TO" | translate }} {{ order.seller.bank }}
-                            {{ "SPECIFYING" | translate }} {{ order.orderId }} {{ "AS_PAYMENT_ID" | translate }}
-                        </h5>
-                    </nb-card-footer>
                 </nb-card>
             </nb-card-body>
             <nb-card-footer>
+                <h1 *ngIf="!loading">{{ "ORDER_RECEIVED_TEXT" | translate }}</h1>
                 <!-- <button nbButton nbStepperNext hero status="primary" (click)="formProgress = 100" fullWidth>{{ "SAVE"}}</button> -->
             </nb-card-footer>
         </nb-card>

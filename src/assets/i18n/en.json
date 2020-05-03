@@ -155,5 +155,6 @@
         "deny": "Decline",
         "link": "Learn more",
         "policy": "Cookie Policy"
-    }
+    },
+    "ORDER_RECEIVED_TEXT": "Your order has been received. Please check your e-mail and wait for confirmation from vendor."
 }

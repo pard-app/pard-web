@@ -111,5 +111,15 @@
     "NOTHING_FOUND": "Nieko nerasta.",
     "HOME": "Pagrindinis",
     "CONTACTS": "Kontaktai",
-    "SHARE": "Dalintis"
+    "SHARE": "Dalintis",
+    "cookie": {
+        "header": "Cookies used on the website!",
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "allow": "Allow cookies",
+        "deny": "Decline",
+        "link": "Learn more",
+        "policy": "Cookie Policy"
+    },
+    "ORDER_RECEIVED_TEXT": "Jūsų užsakymas priimtas. Patikrinkite savo el. paštą ir luktelkite, kol užsakymas bus patvirtintas."
 }
