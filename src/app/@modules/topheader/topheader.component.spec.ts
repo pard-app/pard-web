@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { TopheaderComponent } from "./topheader.component";
+import { Router } from "@angular/router";
+import { RouterTestingModule } from "@angular/router/testing";
+import { TranslateModule } from "@ngx-translate/core";
 
 describe("TopheaderComponent", () => {
     let component: TopheaderComponent;
@@ -9,6 +12,8 @@ describe("TopheaderComponent", () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [TopheaderComponent],
+            imports: [RouterTestingModule, TranslateModule.forRoot()],
+            providers: [],
         }).compileComponents();
     }));
 

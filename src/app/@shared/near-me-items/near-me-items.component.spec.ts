@@ -1,25 +1,27 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { NearMeItemsComponent } from './near-me-items.component';
+import { NearMeItemsComponent } from "./near-me-items.component";
+import { HttpClientModule } from "@angular/common/http";
+import { TranslateModule } from "@ngx-translate/core";
 
-describe('NearMeItemsComponent', () => {
-  let component: NearMeItemsComponent;
-  let fixture: ComponentFixture<NearMeItemsComponent>;
+describe("NearMeItemsComponent", () => {
+    let component: NearMeItemsComponent;
+    let fixture: ComponentFixture<NearMeItemsComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ NearMeItemsComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [NearMeItemsComponent],
+            imports: [TranslateModule.forRoot(), HttpClientModule],
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(NearMeItemsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(NearMeItemsComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it("should create", () => {
+        expect(component).toBeTruthy();
+    });
 });

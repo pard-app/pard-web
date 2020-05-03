@@ -180,9 +180,10 @@
                 </div>
             </nb-card-body>
             <nb-card-footer>
+                <div class="captcha"><re-captcha (resolved)="resolved($event)" siteKey="6LfmFPAUAAAAAAZ-eQOCKCfyToqVGDyX-HQ6BVg-"></re-captcha></div>
                 <div class="actions">
                     <button nbButton nbStepperPrevious>{{ "PREVIOUS" | translate }}</button>
-                    <button nbButton nbStepperNext hero status="success" (click)="submitOrder(); formProgress = 100" fullWidth>
+                    <button nbButton nbStepperNext hero status="success" (click)="submitOrder(); formProgress = 100" fullWidth [disabled]="!captcha">
                         {{ "PLACE_ORDER" | translate }}
                     </button>
                 </div>

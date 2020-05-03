@@ -3,86 +3,60 @@ import { ListingService } from "@services/listing/listing.service";
 import { VendorService } from "@services/vendor/vendor.service";
 import { ListingStore } from "@core/stores/listing/listing.store";
 import { throttleTime } from "rxjs/operators";
-import { Subscription, BehaviorSubject, Observable } from "rxjs";
-import { ListingItem } from "@models/listingitem.interface";
-import { IVendor } from "@models/vendor.interface";
-import { noPagesLeft, geoLocStr } from "@utils/index";
+import { Subscription } from "rxjs";
+import { noPagesLeft } from "@utils/index";
+import { ScenariosStore } from "@core/stores/scenarios/scenarios.store";
 
-const paginationDefaultValue = (pp = 6) => ({
-    page: 0,
-    hitsPerPage: pp,
-});
 @Component({
     selector: "scenario-only-listing",
     templateUrl: "./only-listing.component.html",
     styleUrls: ["./only-listing.component.scss"],
 })
 export class OnlyListingComponent implements OnInit, OnDestroy {
-    // subjects (set only)
-    private _listings$: BehaviorSubject<ListingItem[]> = new BehaviorSubject([]);
-    private _vendors$: BehaviorSubject<IVendor[]> = new BehaviorSubject([]);
-    // observables
-    public readonly listings$: Observable<ListingItem[]> = this._listings$.asObservable();
-    public readonly vendors$: Observable<IVendor[]> = this._vendors$.asObservable();
-    // pagination handlers
-    private _paginationVendors$ = new BehaviorSubject(paginationDefaultValue());
-    private _paginationListings$ = new BehaviorSubject(paginationDefaultValue(12));
-    // sub
-    private subscriptions = new Subscription();
-    private vendorsSubscription = new Subscription();
-    private listingsSubscription = new Subscription();
-    // pagination
-    public allListingsLoaded: boolean = false;
-    public allVendorsLoaded: boolean = false;
-    // template data
-    public currentListingOrVendor: string;
+    private subscribeToGlobalListingOrVendor = new Subscription();
 
-    constructor(private listingService: ListingService, private vendorService: VendorService, private listingStore: ListingStore) {}
+    constructor(
+        private listingService: ListingService,
+        private vendorService: VendorService,
+        private listingStore: ListingStore,
+        public scenariosStore: ScenariosStore
+    ) {}
 
-    ngOnInit(): void {
-        const subscribeToGlobalListingOrVendor = this.listingStore.currentListingOrVendor$.pipe(throttleTime(1000)).subscribe(async (listingOrVendorText) => {
-            this.currentListingOrVendor = listingOrVendorText;
-            this.resetNecessaryValues();
-            this.vendorsSubscription = this.createVendorsSubscription(listingOrVendorText);
-            this.listingsSubscription = this.createListingsSubscription(listingOrVendorText);
+    public ngOnInit(): void {
+        this.subscribeToGlobalListingOrVendor = this.listingStore.currentListingOrVendor$.pipe(throttleTime(1000)).subscribe(async (listingOrVendorText) => {
+            this.scenariosStore.resetNecessaryValues();
+            this.scenariosStore.currentListingOrVendor = listingOrVendorText;
+            this.scenariosStore.vendorsSubscription = this.createVendorsSubscription(listingOrVendorText);
+            this.scenariosStore.listingsSubscription = this.createListingsSubscription(listingOrVendorText);
         });
+    }
 
-        this.subscriptions.add(subscribeToGlobalListingOrVendor);
+    ngOnDestroy() {
+        this.subscribeToGlobalListingOrVendor.unsubscribe();
     }
 
     private createVendorsSubscription(listingOrVendorText): Subscription {
-        return this._paginationVendors$.subscribe(async (pagination) => {
+        return this.scenariosStore.paginationVendors$.subscribe(async (pagination) => {
+            this.scenariosStore.isLoadingVendors = true;
             const { hits, page, nbPages } = await this.vendorService
                 .searchVendor({ query: listingOrVendorText, hitsPerPage: pagination.hitsPerPage, page: pagination.page })
                 .toPromise();
             const vendors = await this.listingService.fillVendorWithItsListings(hits);
-            this._vendors$.next([...this._vendors$.getValue(), ...vendors]);
-            if (noPagesLeft(page, nbPages)) this.allVendorsLoaded = true;
+            this.scenariosStore.pushToVendors(vendors);
+            this.scenariosStore.allVendorsLoaded = noPagesLeft(page, nbPages);
+            this.scenariosStore.isLoadingVendors = false;
         });
     }
 
     private createListingsSubscription(listingOrVendorText): Subscription {
-        return this._paginationListings$.subscribe(async (pagination) => {
+        return this.scenariosStore.paginationListings$.subscribe(async (pagination) => {
+            this.scenariosStore.isLoadingListings = true;
             const { hits, page, nbPages } = await this.listingService
                 .searchListing({ query: listingOrVendorText, hitsPerPage: pagination.hitsPerPage, page: pagination.page })
                 .toPromise();
-            this._listings$.next([...this._listings$.getValue(), ...hits]);
-            if (noPagesLeft(page, nbPages)) this.allListingsLoaded = true;
+            this.scenariosStore.pushToListings(hits);
+            this.scenariosStore.allListingsLoaded = noPagesLeft(page, nbPages);
+            this.scenariosStore.isLoadingListings = false;
         });
-    }
-
-    private resetNecessaryValues(): void {
-        this.listingsSubscription.unsubscribe();
-        this.vendorsSubscription.unsubscribe();
-        this._listings$.next([]);
-        this.allListingsLoaded = false;
-        this.allVendorsLoaded = false;
-        this._vendors$.next([]);
-        this._paginationVendors$.next(paginationDefaultValue());
-        this._paginationListings$.next(paginationDefaultValue(12));
-    }
-
-    ngOnDestroy(): void {
-        this.subscriptions.unsubscribe();
     }
 }

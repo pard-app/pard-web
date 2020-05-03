@@ -9,6 +9,7 @@ import { Observable } from "rxjs";
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListListingsComponent implements OnInit {
+    @Input() isLoading: boolean;
     @Input() listingsList$: Observable<Array<ListingItem>>;
     @Input() title: string = "Mysterious listings";
 

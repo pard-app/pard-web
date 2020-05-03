@@ -1,0 +1,11 @@
+@import "~src/app/@core/styles/themes";
+
+:host {
+    display: block;
+    margin: 10px 0;
+}
+
+.loading-box {
+    border: none;
+    margin: 10px 0;
+}

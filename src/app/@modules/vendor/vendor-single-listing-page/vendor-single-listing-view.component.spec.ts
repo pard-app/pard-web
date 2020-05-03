@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { VendorSingleListingViewComponent } from "./vendor-single-listing-view.component";
+import { RouterTestingModule } from "@angular/router/testing";
+import { TranslateModule } from "@ngx-translate/core";
 
 describe("VendorSingleListingViewComponent", () => {
     let component: VendorSingleListingViewComponent;
@@ -9,6 +11,7 @@ describe("VendorSingleListingViewComponent", () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [VendorSingleListingViewComponent],
+            imports: [RouterTestingModule, TranslateModule.forRoot()],
         }).compileComponents();
     }));
 

@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { SearchLocationComponent } from "./search-location.component";
+import { RouterTestingModule } from "@angular/router/testing";
+import { TranslateModule } from "@ngx-translate/core";
 
 describe("SearchLocationComponent", () => {
     let component: SearchLocationComponent;
@@ -9,6 +11,7 @@ describe("SearchLocationComponent", () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [SearchLocationComponent],
+            imports: [RouterTestingModule, TranslateModule.forRoot()],
         }).compileComponents();
     }));
 

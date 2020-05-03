@@ -1,5 +1,13 @@
-<app-list-vendors [vendorsWithListings$]="vendors$" [title]="'Top vendors in <a>' + currentLocationName + '</a>'"></app-list-vendors>
-<app-button-load-more *ngIf="!allVendorsLoaded" (click)="loadMore('LOAD_VENDORS')"></app-button-load-more>
+<app-list-vendors
+    [vendorsWithListings$]="scenariosStore.vendors$"
+    [title]="'Top vendors in <a>' + scenariosStore.currentLocation + '</a>'"
+    [isLoading]="scenariosStore.isLoadingVendors"
+></app-list-vendors>
+<app-button-load-more *ngIf="!scenariosStore.allVendorsLoaded" (click)="scenariosStore.loadMore('LOAD_VENDORS')"></app-button-load-more>
 
-<app-list-listings [listingsList$]="listings$" [title]="'Top listings in <a>' + currentLocationName + '</a>'"></app-list-listings>
-<app-button-load-more *ngIf="!allListingsLoaded" (click)="loadMore('LOAD_LISTINGS')"></app-button-load-more>
+<app-list-listings
+    [listingsList$]="scenariosStore.listings$"
+    [title]="'Top listings in <a>' + scenariosStore.currentLocation + '</a>'"
+    [isLoading]="scenariosStore.isLoadingListings"
+></app-list-listings>
+<app-button-load-more *ngIf="!scenariosStore.allListingsLoaded" (click)="scenariosStore.loadMore('LOAD_LISTINGS')"></app-button-load-more>

@@ -1,10 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable, BehaviorSubject, timer, of, Subject } from "rxjs";
-import { ListingItem } from "@models/listingitem.interface";
 import { VendorService } from "@services/vendor/vendor.service";
 import { ListingService } from "@services/listing/listing.service";
 import { HttpClient } from "@angular/common/http";
-import { map, delay, tap, mergeMap, finalize, filter, defaultIfEmpty, startWith } from "rxjs/operators";
+import { mergeMap, finalize, startWith } from "rxjs/operators";
 import { IVendor } from "@models/vendor.interface";
 
 @Component({

@@ -1,13 +1,19 @@
 import { TestBed } from "@angular/core/testing";
 
-import { DbServiceService } from "./db-service.service";
+import { DbService } from "./db-service.service";
+import { AngularFireFunctionsModule } from "@angular/fire/functions";
+import { AngularFireModule } from "@angular/fire";
+import { environment } from "src/environments/environment";
 
-describe("DbServiceService", () => {
-    let service: DbServiceService;
+describe("DbService", () => {
+    let service: DbService;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({});
-        service = TestBed.inject(DbServiceService);
+        TestBed.configureTestingModule({
+            imports: [AngularFireModule.initializeApp(environment.firebaseConfig), AngularFireFunctionsModule],
+            providers: [],
+        });
+        service = TestBed.inject(DbService);
     });
 
     it("should be created", () => {

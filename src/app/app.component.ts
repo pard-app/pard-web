@@ -1,8 +1,7 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { CartStoreService } from "src/app/@core/stores/cart/cart.store.service";
 import { NgcCookieConsentService, NgcInitializeEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from "ngx-cookieconsent";
-import { Subscription } from "rxjs";
 
 @Component({
     selector: "app-root",
