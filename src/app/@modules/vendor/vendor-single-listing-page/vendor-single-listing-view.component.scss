@@ -1,7 +1,10 @@
+@import "~src/app/@core/styles/themes";
+
 .listing {
     display: flex;
     flex-direction: row;
     height: 700px;
+
     @media only screen and (max-width: 1260px) {
         border-radius: 0;
     }
@@ -17,8 +20,9 @@
     &__imageWrapper {
         flex-grow: 3;
         width: 0;
+
         @media only screen and (max-width: 950px) {
-            flex-grow: 1;
+            flex-grow: 2;
         }
         @media only screen and (max-width: 640px) {
             width: auto;
@@ -39,11 +43,10 @@
         display: flex;
         width: 0;
         padding: var(--card-padding);
-        @media only screen and (max-width: 950px) {
-            flex-grow: 1;
-        }
+
         @media only screen and (max-width: 640px) {
             width: auto;
+            padding: 0;
         }
     }
 
@@ -61,6 +64,7 @@
         cursor: pointer;
         @media only screen and (max-width: 640px) {
             height: auto;
+            margin-bottom: 10px;
         }
     }
     &__shareIcon {
@@ -109,4 +113,8 @@
         font-weight: 100;
         margin: 0;
     }
+}
+
+.vendor-listings {
+    background-color: nb-theme(layout-background-color);
 }

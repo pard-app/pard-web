@@ -1,44 +1,120 @@
 .vendor-card {
     height: 100%;
+    min-width: 230px;
+    min-height: 207px;
     margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     &__header {
         width: 100%;
-        height: 150px;
+        padding: 15px;
+        padding-bottom: 10px;
+        // min-height: 160px;
+        // max-height: 200px;
         display: flex;
+
+        border-bottom: 0;
+        flex-direction: row;
+    }
+    &__headerPresentation {
+        display: flex;
+        justify-content: row;
     }
 
     &__image {
-        max-width: 100px;
-        max-height: 100px;
         height: 100%;
         width: 100%;
-        object-fit: contain;
-        object-position: center;
-        margin-right: 15px;
-    }
 
+        object-position: center;
+        object-fit: contain;
+        border-radius: var(--card-border-radius);
+    }
+    &__imageWrapper {
+        overflow: hidden;
+        max-width: 50px;
+        max-height: 50px;
+        height: 100%;
+        width: 100%;
+        margin-right: 15px;
+        border-radius: var(--card-border-radius);
+        @media (max-width: 1200px) {
+            max-width: 38px;
+            max-height: 38px;
+        }
+        @media (max-width: 600px) {
+            max-width: 50px;
+            max-height: 50px;
+        }
+    }
     &__body {
+        padding: 15px;
+        padding-top: 0;
+    }
+    &__footer {
         display: flex;
         flex-direction: row;
         padding: 0;
+        align-items: flex-end;
+        justify-content: flex-end;
     }
 
     &__small-image {
         width: 25%;
-        height: 90px;
+        height: 100px;
+        min-width: 100px;
+        flex-grow: 1;
         object-fit: cover;
         object-position: center;
+        // border: 1px solid white;
+
+        @media (max-width: 1300px) {
+            min-width: 80px;
+            height: 80px;
+        }
+        @media (max-width: 1050px) {
+            min-width: auto;
+
+            width: 33.33%;
+        }
+        @media (max-width: 600px) {
+            height: 100px;
+            width: 25%;
+        }
+        @media (max-width: 420px) {
+            width: 33.33%;
+        }
     }
 
     .vendor-info {
+        @media (max-width: 1200px) {
+        }
         &__title {
             margin-bottom: 10px;
+
             line-height: 1;
+            @media (max-width: 1200px) {
+                font-size: 1.2em;
+                margin-bottom: 5px;
+            }
+            @media (max-width: 600px) {
+                font-size: 1.5em;
+                margin-bottom: 10px;
+            }
         }
         &__location {
             font-weight: 400;
             margin-bottom: 10px;
             line-height: 1;
+            @media (max-width: 1200px) {
+                font-size: 1em;
+                margin-bottom: 5px;
+            }
+            @media (max-width: 600px) {
+                font-size: auto;
+                margin-bottom: 10px;
+            }
         }
 
         &__description {
@@ -48,6 +124,129 @@
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
+            line-height: 1.3em;
+            max-height: 2.7em;
+            @media (max-width: 1200px) {
+                font-size: 1em;
+            }
+            @media (max-width: 600px) {
+                font-size: 1em;
+            }
         }
     }
 }
+
+// .vendor-card {
+//     height: 100%;
+//     min-width: 230px;
+//     margin-bottom: 0;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+
+//     &__header {
+//         width: 100%;
+
+//         // min-height: 160px;
+//         // max-height: 200px;
+//         display: flex;
+//         padding: 14px;
+//         border-bottom: 0;
+//         flex-direction: row;
+//     }
+//     &__headerPresentation {
+//         display: flex;
+//         justify-content: row;
+//     }
+
+//     &__image {
+//         height: 100%;
+//         width: 100%;
+
+//         object-position: center;
+//         object-fit: contain;
+//         border-radius: var(--card-border-radius);
+//     }
+//     &__imageWrapper {
+//         overflow: hidden;
+//         max-width: 70px;
+//         max-height: 70px;
+//         height: 100%;
+//         width: 100%;
+//         margin-right: 15px;
+//         border-radius: var(--card-border-radius);
+//         @media (max-width: 1200px) {
+//             max-width: 70px;
+//             max-height: 70px;
+//         }
+//     }
+
+//     &__body {
+//         display: flex;
+//         flex-direction: row;
+//         padding: 0;
+//         align-items: flex-end;
+//         justify-content: flex-end;
+//     }
+
+//     &__small-image {
+//         width: 25%;
+//         height: 100px;
+//         min-width: 100px;
+//         flex-grow: 1;
+//         object-fit: cover;
+//         object-position: center;
+//         // border: 1px solid white;
+
+//         @media (max-width: 1300px) {
+//             min-width: 80px;
+//             height: 80px;
+//         }
+//         @media (max-width: 1050px) {
+//             min-width: auto;
+
+//             width: 33.33%;
+//         }
+//         @media (max-width: 600px) {
+//             height: 100px;
+//             width: 25%;
+//         }
+//         @media (max-width: 440px) {
+//             min-width: 20px;
+//         }
+//     }
+
+//     .vendor-info {
+//         @media (max-width: 1200px) {
+//         }
+//         &__title {
+//             margin-bottom: 10px;
+//             line-height: 1;
+//             @media (max-width: 1200px) {
+//                 font-size: 1.2em;
+//                 margin-bottom: 5px;
+//             }
+//         }
+//         &__location {
+//             font-weight: 400;
+//             margin-bottom: 10px;
+//             line-height: 1;
+//             @media (max-width: 1200px) {
+//                 font-size: 1em;
+//                 margin-bottom: 5px;
+//             }
+//         }
+
+//         &__description {
+//             font-size: 0.9rem;
+//             text-overflow: ellipsis;
+//             overflow: hidden;
+//             display: -webkit-box;
+//             -webkit-line-clamp: 3;
+//             -webkit-box-orient: vertical;
+//             @media (max-width: 1200px) {
+//                 font-size: 0.9em;
+//             }
+//         }
+//     }
+// }

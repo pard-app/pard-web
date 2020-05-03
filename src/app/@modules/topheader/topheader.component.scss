@@ -6,7 +6,7 @@
     top: 0;
     z-index: 999;
     padding: 0 50px;
-    box-shadow: nb-theme(color-primary-500) 0px -5px 20px;
+    box-shadow: nb-theme(color-primary-500) 0px -5px 10px;
 
     @media only screen and (max-width: 1000px) {
         padding: 0;
@@ -23,7 +23,7 @@
         align-items: center;
     }
     &__button {
-        width: 70px;
+        width: 50px;
         margin: 0 10px;
         cursor: pointer;
         &:focus {
@@ -37,14 +37,15 @@
         .cart-display-count {
             position: absolute;
             bottom: 20px;
-            right: 0;
+            right: 10px;
             background-color: nb-theme(color-info-500);
             border-radius: 50%;
             width: 20px;
             height: 20px;
+            font-weight: bold;
             color: nb-theme(color-primary-100);
             font-size: nb-theme(text-button-small-font-size);
-            box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px;
+            // box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px;
             text-align: center;
         }
     }
@@ -55,8 +56,9 @@
 
     &__language {
         cursor: pointer;
-        width: 25px;
+        width: 18px;
         margin: 0 5px;
+        padding-bottom: 4px;
 
         @media (max-width: 640px) {
             width: 20px;

@@ -8,22 +8,20 @@
 
     @media (max-width: 1150px) {
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        grid-gap: 10px 3%;
+        grid-gap: 6px 3%;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1000px) {
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-gap: 10px 3%;
+        // grid-gap: 10px 3%;
     }
-
-    @media (max-width: 700px) {
+    @media (max-width: 780px) {
         grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 10px 3%;
+        // grid-gap: 10px 3%;
     }
-
-    @media (max-width: 550px) {
+    @media (max-width: 640px) {
         grid-template-columns: 1fr 1fr;
-        grid-gap: 10px 3%;
+        // grid-gap: 10px 3%;
     }
 }
 

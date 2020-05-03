@@ -73,6 +73,7 @@
     "EDIT_LISTING": "Rediģēt sludinājumu",
     "MY_ORDERS": "Pasūtījumi",
     "I_OFFER_DELIVERY": "Es nodrošinu piegādes",
+    "HOME_DELIVERY": "Home Delivery",
     "DELIVERY_COSTS": "Piegādes izmaksas",
     "DELIVERY_NOTE": "Piegādes piezīmes",
     "DELIVERY_COSTS_PLACEHOLDER": "(Piegādes izmaksas, eiro)",
@@ -87,9 +88,9 @@
     "CONFIRM": "Apstiprināt",
     "REJECT": "Noraidīt",
     "CREATE": "Izveidot",
-    "FILTER_BY_LISTING_OR_VENDOR": "Filter by product or business",
-
+    "FILTER_BY_LISTING_OR_VENDOR": "Product or business",
     "SELECT_LOCATION": "Izvēlies pilsētu",
+    "LOCATION": "Location",
     "CHANGE_LOCATION": "Change location",
     "MARKETPLACE": "Tirgus placis",
     "WELCOME_TO": "Pilsēta: ",
@@ -109,5 +110,7 @@
     "NOTHING_FOUND": "Nekas netika atrasts.",
     "HOME": "HOME",
     "CONTACTS": "Contacts",
-    "SHARE": "Share"
+    "SHARE": "Share",
+    "VENDORS_NEAR_LOCATION": "Vendors near your location",
+    "NO_VENDORS_NEAR": "Unfortunately, there is no vendor nearby"
 }

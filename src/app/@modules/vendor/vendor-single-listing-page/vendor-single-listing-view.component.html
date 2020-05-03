@@ -1,5 +1,5 @@
-<div class="content-section" *ngIf="_listing$ | async as listing">
-    <nb-card class="flexible-card listing">
+<nb-card class="content-section content-section__product" *ngIf="_listing$ | async as listing">
+    <nb-card-header class="listing responsive-padding">
         <div class="listing__imageWrapper">
             <img class="listing__image" [src]="listing.image" />
         </div>
@@ -10,7 +10,7 @@
             </a>
             <div class="listing__descriptionSection">
                 <div class="listing__descriptionWrapper">
-                    <h1 class="listing__listingTitle">{{ listing.title }}</h1>
+                    <h2 class="listing__listingTitle">{{ listing.title }}</h2>
                     <h3 class="listing__price">{{ listing.price | currency }}</h3>
                     <p class="listing__description">{{ listing.description }}</p>
                     <a href="" class="listing__deliveryInformation">{{ "DELIVERY_INFORMATION" | translate }}</a>
@@ -21,26 +21,15 @@
                 </div>
             </div>
         </div>
-    </nb-card>
-    <app-vendor-summary-header [vendor$]="_vendor$" [noMargin]="true"></app-vendor-summary-header>
-    <div class="cartlist">
-        <app-list-listings [listingsList$]="_listingsList$"></app-list-listings>
-    </div>
-</div>
+    </nb-card-header>
+    <nb-card-body class="responsive-padding"> <app-vendor-summary-header [vendor$]="_vendor$" [noMargin]="true"></app-vendor-summary-header></nb-card-body>
 
-<!-- <nb-card-header class="listing__header">
-    <h1>{{ listing.title }}</h1>
-    
-    <h3>{{ listing.price | currency }}</h3>
-    <button nbButton status="primary">{{ "ADD_TO_CART" | translate }}</button>
-</nb-card-header>
-<nb-card-body class="listing-details__wrapper" *ngIf="_listing$ | async as listing">
-    <nb-card class="listing-details__card">
-        <nb-card-header>
-            <h5>{{ "DESCRIPTION" | translate }}</h5>
-        </nb-card-header>
-        <nb-card-body>
-            {{ listing.description }}
-        </nb-card-body>
-    </nb-card>
-</nb-card-body> -->
+    <!-- NEED TO IMPLEMENT -->
+    <!-- <nb-card-body>
+        <app-vendor-listings-search (onChange)="inputTextWritten($event)"></app-vendor-listings-search>
+    </nb-card-body> -->
+
+    <nb-card-footer class="responsive-padding vendor-listings">
+        <app-list-listings [listingsList$]="_listingsList$" [title]="'LISTINGS' | translate"></app-list-listings
+    ></nb-card-footer>
+</nb-card>

@@ -13,7 +13,7 @@
         </h4>
         <!-- NO VENDORS FOUND -->
         <ng-template #elseBlock>
-            <h4 *ngIf="!topVendorsNearMe.length && waitLocalVendors.waiting === false">{{ "NO_VENDORS_NEAR" | translate }}</h4>
+            <h4 *ngIf="!topVendorsNearMe.length && waitLocalVendors.waiting === false">😞 {{ "NO_VENDORS_NEAR" | translate }}</h4>
         </ng-template>
         <!-- VENDORS FOUND IMMEDIATELY -->
         <app-list-vendors

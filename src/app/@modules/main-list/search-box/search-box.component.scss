@@ -1,10 +1,14 @@
 .search-box {
     padding: 5px;
     margin: 0 auto;
-    width: 100%;
+    width: 90%;
     max-width: 1000px;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 20px -2px;
+    @media only screen and (max-width: 600px) {
+        margin: 0 10px;
+        width: calc(100% - 20px);
+    }
     &__body {
         overflow: unset;
         display: grid;
@@ -15,8 +19,7 @@
             grid-template-columns: 1fr;
         }
     }
-}
-
-.title {
-    font-weight: 400;
+    &__homeDelivery {
+        white-space: nowrap;
+    }
 }

@@ -33,6 +33,32 @@ h6 {
 .content-section {
     margin: 30px auto 100px auto;
     max-width: 1260px;
+    @media only screen and (max-width: 1260px) {
+        border: none;
+        padding: var(--card-padding);
+        margin: 0;
+        border-radius: 0;
+    }
+    @media only screen and (max-width: 600px) {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+    &__vendor {
+        padding: 0;
+    }
+
+    &__product {
+        padding: 0;
+    }
+    &__landing {
+    }
+}
+
+.responsive-padding {
+    padding: var(--card-padding);
+    @media only screen and (max-width: 600px) {
+        padding: 10px;
+    }
 }
 
 .ap-icon-pin {
@@ -40,11 +66,30 @@ h6 {
 }
 
 .title {
+    font-weight: 400;
+    white-space: nowrap;
     margin: 30px 0;
     text-align: center;
+    @media only screen and (max-width: 950px) {
+        font-size: 1.5em;
+        margin: 15px 0;
+    }
+    @media only screen and (max-width: 640px) {
+        font-size: 1.2em;
+        margin: 8px 0;
+    }
+    @media only screen and (max-width: 455px) {
+        font-size: 1em;
+        margin: 8px 0;
+    }
+    @media only screen and (max-width: 390px) {
+        font-size: 0.9em;
+        margin: 8px 0;
+        white-space: auto;
+    }
 
     &--large {
-        font-size: 2em;
+        font-size: 1.5em;
     }
 
     &--bold {
@@ -61,7 +106,6 @@ h6 {
 }
 
 .clickable-card {
-    // box-shadow: nb-theme(color-basic-transparent-400) 0px 1px 10px;
     transition: 0.1s cubic-bezier(0.42, 0.95, 0.72, 0.32);
     overflow: hidden;
     cursor: pointer;
@@ -77,10 +121,10 @@ p {
     font-family: "Roboto", sans-serif;
 }
 
-.layout {
-    @media only screen and (max-width: 640px) {
-        background-color: white !important;
-    }
+h1,
+h2,
+h3 {
+    font-weight: 100;
 }
 
 .flexible-card {
