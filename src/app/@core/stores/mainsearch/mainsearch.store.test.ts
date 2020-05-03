@@ -1,13 +1,13 @@
 import { TestBed } from "@angular/core/testing";
 
-import { GlobalStoreService } from "./mainsearch.store";
+import { MainSearchStore } from "./mainsearch.store";
 
 describe("Global.StoreService", () => {
-    let service: GlobalStoreService;
+    let service: MainSearchStore;
 
     beforeEach(() => {
         TestBed.configureTestingModule({});
-        service = TestBed.inject(GlobalStoreService);
+        service = TestBed.inject(MainSearchStore);
     });
 
     it("should be created", () => {

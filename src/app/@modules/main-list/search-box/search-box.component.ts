@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { LocationStore } from "@core/stores/location/location.store";
 import { interval, BehaviorSubject, Subject, Subscription, combineLatest } from "rxjs";
 import { AlgoliaService } from "@services/algolia/algolia.service";
@@ -8,11 +8,7 @@ import { Router } from "@angular/router";
 import { geoLocStr } from "@utils/index";
 import { ROUTING_CONSTANTS, locationQueryParams, QUERY_PARAMS } from "src/app/@core/constants/routing.constants";
 import { ILocation } from "@models/location.interface";
-
-export class SearchRequest {
-    location: ILocation | null = null;
-    listingOrVendor: string | null = null;
-}
+import { MainSearchStore, SearchRequest } from "@core/stores/mainsearch/mainsearch.store";
 
 @Component({
     selector: "app-search-box",
@@ -20,15 +16,18 @@ export class SearchRequest {
     styleUrls: ["./search-box.component.scss"],
 })
 export class SearchBoxComponent implements OnInit, OnDestroy {
-    @Output() searchOnChange = new EventEmitter<SearchRequest>();
-    private searchRequest: SearchRequest = new SearchRequest();
     private _groupedItems$ = new BehaviorSubject<SearchVendorOrListingGroup[]>([]);
     public groupedItems$ = this._groupedItems$.asObservable();
     private currentVendorAndListingText$ = new Subject<string>();
     private sub = new Subscription();
     public currentLocationName: string = "";
 
-    constructor(private locationStore: LocationStore, private algoliaService: AlgoliaService, private router: Router) {}
+    constructor(
+        private locationStore: LocationStore,
+        private algoliaService: AlgoliaService,
+        private router: Router,
+        private mainSearchStore: MainSearchStore
+    ) {}
 
     ngOnInit(): void {
         this.filterOnListingOrVendorWrite();
@@ -44,32 +43,28 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         // Clear store
         this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({ [QUERY_PARAMS.LOCATION]: null }));
         // Clear component
-        this.searchRequest.location = null;
-        this.searchOnChange.emit(this.searchRequest);
+        this.mainSearchStore.searchChange({ location: null });
     }
 
     public onClearListingOrVendor(): void {
         // Clear store
         this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({ [QUERY_PARAMS.VENDORORLISTING]: null }));
         // Clear component
-        this.searchRequest.listingOrVendor = null;
-        this.searchOnChange.emit(this.searchRequest);
+        this.mainSearchStore.searchChange({ listingOrVendor: null });
     }
 
     public currentLocationOnChange(location: ILocation): void {
         // Set in store
         this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({ [QUERY_PARAMS.LOCATION]: location.objectID }));
         // Set in current component
-        this.searchRequest.location = location;
-        this.searchOnChange.emit(this.searchRequest);
+        this.mainSearchStore.searchChange({ location });
     }
 
     public onClickSearchVendorOrListingButton(text): void {
         // Set in store
         this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({ [QUERY_PARAMS.VENDORORLISTING]: text }));
         // Set in current component
-        this.searchRequest.listingOrVendor = text;
-        this.searchOnChange.emit(this.searchRequest);
+        this.mainSearchStore.searchChange({ listingOrVendor: text });
     }
 
     public onWriteListingOrVendor(query: string) {

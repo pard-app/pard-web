@@ -1,4 +1,4 @@
-<app-search-box (searchOnChange)="searchOnChange($event)"></app-search-box>
+<app-search-box></app-search-box>
 
 <section class="content-section" *ngIf="searchRequest$ | async as searchRequest">
     <scenario-nothing *ngIf="!searchRequest.location && !searchRequest.listingOrVendor"></scenario-nothing>

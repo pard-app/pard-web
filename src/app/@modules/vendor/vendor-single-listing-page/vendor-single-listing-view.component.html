@@ -30,6 +30,6 @@
     </nb-card-body> -->
 
     <nb-card-footer class="responsive-padding vendor-listings">
-        <app-list-listings [listingsList$]="_listingsList$" [title]="'LISTINGS' | translate"></app-list-listings
+        <app-list-listings [isLoading]="false" [listingsList$]="_listingsList$" [title]="'LISTINGS' | translate"></app-list-listings
     ></nb-card-footer>
 </nb-card>

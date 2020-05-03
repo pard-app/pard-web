@@ -27,16 +27,29 @@ export class SearchLocationComponent implements OnInit, OnDestroy {
     constructor(private algolia: AlgoliaService, private locationStore: LocationStore) {}
 
     async ngOnInit() {
-        this.locationStore.currentLocation$.pipe(filter((x) => !!x)).subscribe((x) => this.onPick(x));
+        this.sub.add(
+            this.locationStore.currentLocation$
+                .pipe(
+                    filter((x) => {
+                        const hasValue = !!x;
+                        !hasValue && this.clearInput();
+                        !hasValue && this.inputRef && this.inputRef.nativeElement.blur();
+                        return hasValue;
+                    })
+                )
+                .subscribe((x) => this.onPick(x))
+        );
         const { hits } = await this.algolia.places("");
         this._places$.next(mapHitsToLocations(hits));
 
-        this.sub = this.input.valueChanges.subscribe(async (str) => {
-            if (str === undefined || typeof str === "object") return;
-            !str && this.onClear.emit();
-            const { hits } = await this.algolia.places(str);
-            this._places$.next(mapHitsToLocations(hits));
-        });
+        this.sub.add(
+            this.input.valueChanges.subscribe(async (str) => {
+                if (str === undefined || typeof str === "object") return;
+                !str && this.onClear.emit();
+                const { hits } = await this.algolia.places(str);
+                this._places$.next(mapHitsToLocations(hits));
+            })
+        );
     }
 
     public clearInput() {

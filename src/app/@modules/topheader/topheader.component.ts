@@ -6,6 +6,7 @@ import { ListingItem } from "src/app/@core/models/listingitem.interface";
 import { TranslateService } from "@ngx-translate/core";
 import { ROUTING_CONSTANTS } from "src/app/@core/constants/routing.constants";
 import { Router } from "@angular/router";
+import { MainSearchStore } from "@core/stores/mainsearch/mainsearch.store";
 
 interface IRoute {
     title: string;
@@ -35,7 +36,12 @@ export class TopheaderComponent implements OnInit, OnDestroy {
 
     @ViewChild(NbPopoverDirective) addedNotificationPopover: NbPopoverDirective;
 
-    constructor(private router: Router, private cartStoreService: CartStoreService, private translate: TranslateService) {}
+    constructor(
+        private router: Router,
+        private cartStoreService: CartStoreService,
+        private translate: TranslateService,
+        private mainSearchStore: MainSearchStore
+    ) {}
 
     ngOnInit(): void {
         this.lastItemAddedToCartSubscribtion = this.cartStoreService._lastAddedItem$.subscribe((item) => {
@@ -63,6 +69,11 @@ export class TopheaderComponent implements OnInit, OnDestroy {
         this.timer = setTimeout(() => {
             this.addedNotificationPopover.hide();
         }, TIME_TO_CLOSE);
+    }
+
+    navigateToMainPage() {
+        this.router.navigate([ROUTING_CONSTANTS.ROOT]);
+        this.mainSearchStore.searchChange({ listingOrVendor: null, location: null });
     }
 
     setLanguage(lang: string) {
