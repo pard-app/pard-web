@@ -18,6 +18,7 @@ import { RouterModule } from "@angular/router";
         NbPopoverModule,
         NbCardModule,
         NbIconModule,
+        NbContextMenuModule,
     ],
     exports: [TopheaderComponent],
 })

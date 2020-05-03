@@ -19,7 +19,7 @@
         <app-list-vendors
             *ngIf="waitLocalVendors.waiting === false && waitLocalVendors.waitedForTooLong === false && topVendorsNearMe.length"
             [vendorsWithListings$]="topVendorsNearMe$"
-            [title]="'VENRODS_NEAR_YOU' | translate"
+            [title]="'VENDORS_NEAR_YOU' | translate"
         ></app-list-vendors>
     </nb-alert>
 </ng-container>
