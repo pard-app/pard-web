@@ -1,3 +1,5 @@
+@import "~src/app/@core/styles/themes";
+
 .listing {
     display: flex;
     flex-direction: row;
@@ -111,4 +113,8 @@
         font-weight: 100;
         margin: 0;
     }
+}
+
+.vendor-listings {
+    background-color: nb-theme(layout-background-color);
 }

@@ -6,8 +6,8 @@
         <nb-card-body class="responsive-padding">
             <app-vendor-listings-search (onChange)="inputTextWritten($event)"></app-vendor-listings-search>
         </nb-card-body>
-        <nb-card-footer class="responsive-padding">
-            <app-list-listings [listingsList$]="_listingsList$"></app-list-listings>
+        <nb-card-footer class="responsive-padding vendor-listings">
+            <app-list-listings [listingsList$]="_listingsList$" [title]="'LISTINGS' | translate"></app-list-listings>
         </nb-card-footer>
     </nb-card>
 </section>
