@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
 import { CartStoreService } from "@core/stores/cart/cart.store.service";
 import { Subscription } from "rxjs";
-import { NbPopoverDirective } from "@nebular/theme";
+import { NbPopoverDirective, NbMenuService } from "@nebular/theme";
 import { ListingItem } from "src/app/@core/models/listingitem.interface";
 import { TranslateService } from "@ngx-translate/core";
 import { ROUTING_CONSTANTS } from "src/app/@core/constants/routing.constants";
 import { Router } from "@angular/router";
 import { MainSearchStore } from "@core/stores/mainsearch/mainsearch.store";
+import { filter, map } from "rxjs/operators";
+import { NbIconLibraries } from "@nebular/theme";
 
 interface IRoute {
     title: string;
@@ -33,6 +35,8 @@ export class TopheaderComponent implements OnInit, OnDestroy {
     public lastItemAddedToCart: ListingItem = null;
     private timer: ReturnType<typeof setTimeout>;
     public isMobileLayout = false;
+    public languages: Array<Object>;
+    public language: string;
 
     @ViewChild(NbPopoverDirective) addedNotificationPopover: NbPopoverDirective;
 
@@ -40,8 +44,12 @@ export class TopheaderComponent implements OnInit, OnDestroy {
         private router: Router,
         private cartStoreService: CartStoreService,
         private translate: TranslateService,
-        private mainSearchStore: MainSearchStore
-    ) {}
+        private mainSearchStore: MainSearchStore,
+        private nbMenuService: NbMenuService,
+        private iconLibraries: NbIconLibraries
+    ) {
+        this.iconLibraries.registerFontPack("flag-icon", { iconClassPrefix: "flag-icon" });
+    }
 
     ngOnInit(): void {
         this.lastItemAddedToCartSubscribtion = this.cartStoreService._lastAddedItem$.subscribe((item) => {
@@ -49,6 +57,23 @@ export class TopheaderComponent implements OnInit, OnDestroy {
             this.addedNotificationPopover && this.handleNewItemNotification(item);
         });
         this.checkForMobileSize();
+        this.languages = [
+            { title: "en", icon: { icon: "gb", pack: "flag-icon" } },
+            { title: "lt", icon: { icon: "lt", pack: "flag-icon" } },
+            { title: "lv", icon: { icon: "lv", pack: "flag-icon" } },
+        ];
+        this.nbMenuService
+            .onItemClick()
+            .pipe(
+                filter(({ tag }) => tag === "languages-menu"),
+                map(({ item: { title } }) => title)
+            )
+            .subscribe((title) => {
+                console.log(title);
+                this.setLanguage(title);
+            });
+
+        this.language = this.translate.currentLang;
     }
 
     private checkForMobileSize() {
@@ -77,6 +102,7 @@ export class TopheaderComponent implements OnInit, OnDestroy {
     }
 
     setLanguage(lang: string) {
+        this.language = lang;
         this.translate.use(lang);
     }
 

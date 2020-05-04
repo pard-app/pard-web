@@ -1,11 +1,11 @@
 <footer class="footer">
     <div class="footer__social-icons">
-        <a href="" class="footer__icon">
+        <a href="https://facebook.com/appPard" class="footer__icon" target="_blank">
             <button nbButton size="medium">
                 <nb-icon icon="facebook"></nb-icon>
             </button>
         </a>
-        <a href="https://www.linkedin.com/company/42282596" class="icon">
+        <a href="https://www.linkedin.com/company/42282596" class="icon" target="_blank">
             <button nbButton size="medium">
                 <nb-icon icon="linkedin"></nb-icon>
             </button>
@@ -14,11 +14,11 @@
     <div class="footer__links">
         <a class="footer__link" [routerLink]="['/privacy_policy']">{{ "PRIVACY_POLICY" | translate }}</a>
         <a class="footer__link" [routerLink]="['/terms_and_conditions']">{{ "TERMS_AND_CONDITIONS" | translate }}</a>
-        <a class="footer__link">{{ "SPONSORS" | translate }}</a>
-        <a class="footer__link">{{ "CAREERS" | translate }}</a>
+        <!-- <a class="footer__link">{{ "SPONSORS" | translate }}</a>
+        <a class="footer__link">{{ "CAREERS" | translate }}</a> -->
     </div>
     <div class="footer__trademark">
-        <p class="footer__link">pard@pard.app</p>
-        <p class="footer__link">&copy; pard.app 2020</p>
+        <p class="footer__link"><a href="mailto:pard@pard.app">pard@pard.app</a></p>
+        <p class="footer__link">&copy; MB "Pard.app" 2020</p>
     </div>
 </footer>
