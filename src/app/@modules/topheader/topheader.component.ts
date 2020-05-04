@@ -6,6 +6,7 @@ import { ListingItem } from "src/app/@core/models/listingitem.interface";
 import { TranslateService } from "@ngx-translate/core";
 import { ROUTING_CONSTANTS } from "src/app/@core/constants/routing.constants";
 import { Router } from "@angular/router";
+import { MainSearchStore } from "@core/stores/mainsearch/mainsearch.store";
 import { filter, map } from "rxjs/operators";
 import { NbIconLibraries } from "@nebular/theme";
 
@@ -43,6 +44,7 @@ export class TopheaderComponent implements OnInit, OnDestroy {
         private router: Router,
         private cartStoreService: CartStoreService,
         private translate: TranslateService,
+        private mainSearchStore: MainSearchStore,
         private nbMenuService: NbMenuService,
         private iconLibraries: NbIconLibraries
     ) {
@@ -92,6 +94,11 @@ export class TopheaderComponent implements OnInit, OnDestroy {
         this.timer = setTimeout(() => {
             this.addedNotificationPopover.hide();
         }, TIME_TO_CLOSE);
+    }
+
+    navigateToMainPage() {
+        this.router.navigate([ROUTING_CONSTANTS.ROOT]);
+        this.mainSearchStore.searchChange({ listingOrVendor: null, location: null });
     }
 
     setLanguage(lang: string) {
