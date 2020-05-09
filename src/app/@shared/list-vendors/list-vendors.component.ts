@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Observable } from "rxjs";
 
 @Component({
@@ -11,6 +11,8 @@ export class ListVendorsComponent implements OnInit {
     @Input() vendorsWithListings$: Observable<any>;
     @Input() vendorsWithListings: Array<any>;
     @Input() title: string = "Mysterious city";
+    @Input() secondaryTitle: string;
+    @Output() secondaryTitleOnClick: EventEmitter<void | string> = new EventEmitter();
 
     constructor() {}
 
