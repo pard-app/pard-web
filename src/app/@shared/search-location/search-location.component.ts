@@ -1,10 +1,9 @@
 import { Component, Output, EventEmitter, ChangeDetectionStrategy, OnDestroy, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { PlacesInstance, ChangeEvent, SearchClientOptions, Hit } from "places.js";
 import { LocationStore } from "@core/stores/location/location.store";
 import { AlgoliaService } from "@services/algolia/algolia.service";
-import { Observable, of, Subscription, Subject, BehaviorSubject } from "rxjs";
+import { Observable, Subscription, Subject, BehaviorSubject } from "rxjs";
 import { FormControl } from "@angular/forms";
-import { mapHitToLocation, mapHitsToLocations } from "@core/mappers/location.mappers";
+import { mapHitsToLocations } from "@core/mappers/location.mappers";
 import { ILocation } from "@models/location.interface";
 import { filter } from "rxjs/operators";
 

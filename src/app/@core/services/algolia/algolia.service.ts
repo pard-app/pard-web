@@ -40,6 +40,7 @@ export class AlgoliaService {
                 shuffle([{ url: "places-1.algolia.net" }, { url: "places-2.algolia.net" }, { url: "places-3.algolia.net" }])
             ),
         });
+        // https://community.algolia.com/places/api-clients.html#rest-api
         return (query, requestOptions) => {
             if (type === "search")
                 return placesClient.transporter.read(
@@ -55,6 +56,7 @@ export class AlgoliaService {
                         type: "city",
                         countries: ["lt"],
                         hitsPerPage: 6,
+                        ...requestOptions,
                     }
                 );
             if (type === "getById")
@@ -67,6 +69,7 @@ export class AlgoliaService {
                     {
                         type: "city",
                         countries: ["lt"],
+                        ...requestOptions,
                     }
                 );
         };
