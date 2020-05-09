@@ -9,7 +9,6 @@ describe("CartListingCardComponent", () => {
     let fixture: ComponentFixture<CartListingCardComponent>;
     const cartItem: CartItem = {
         item: {
-            categories: [],
             description: "some value here",
             image: "some value here",
             price: 123,

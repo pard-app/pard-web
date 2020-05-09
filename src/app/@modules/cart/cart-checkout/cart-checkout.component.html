@@ -226,9 +226,9 @@
                     </nb-card-body>
                 </nb-card>
             </nb-card-body>
-            <nb-card-footer>
-                <h1 *ngIf="!loading">{{ "ORDER_RECEIVED_TEXT" | translate }}</h1>
-                <!-- <button nbButton nbStepperNext hero status="primary" (click)="formProgress = 100" fullWidth>{{ "SAVE"}}</button> -->
+            <nb-card-footer *ngIf="!loading">
+                <h1>{{ "ORDER_RECEIVED_TEXT" | translate }}</h1>
+                <button [routerLink]="globalRoutes.ROOT" nbButton nbStepperNext outline status="primary">{{ "BACK_TO_MAIN_PAGE" | translate }}</button>
             </nb-card-footer>
         </nb-card>
     </nb-step>

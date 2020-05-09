@@ -1,5 +1,4 @@
 export interface ListingItem extends AdditionalCartViewLogic {
-    categories: [];
     description: string;
     image: string;
     price: number;

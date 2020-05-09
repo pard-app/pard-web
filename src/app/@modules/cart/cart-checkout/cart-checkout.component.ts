@@ -26,6 +26,7 @@ export class CartCheckoutComponent implements OnInit {
     public confirmedOrder: any;
     public ROUTES: { [name: string]: string };
     public captcha: string;
+    public globalRoutes = ROUTING_CONSTANTS;
 
     @Output() deliveryChanged: EventEmitter<any> = new EventEmitter();
     @Input() vendors: any;
@@ -135,6 +136,7 @@ export class CartCheckoutComponent implements OnInit {
         const response = await this.dbService.placeOrder(this.orders, this.buyer, this.delivery, false, this.captcha);
         this.loading = false;
         this.confirmedOrder = response ? response : this.translate.instant("ERROR_WHILE_PLACING_ORDER");
+        this.cartStoreService.resetCart();
     }
 
     openTerms() {
