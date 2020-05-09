@@ -4,6 +4,7 @@ import { TopheaderComponent } from "./topheader.component";
 import { Router } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
 import { TranslateModule } from "@ngx-translate/core";
+import { NbMenuModule, NbMenuService } from "@nebular/theme";
 
 describe("TopheaderComponent", () => {
     let component: TopheaderComponent;
@@ -12,8 +13,8 @@ describe("TopheaderComponent", () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [TopheaderComponent],
-            imports: [RouterTestingModule, TranslateModule.forRoot()],
-            providers: [],
+            imports: [RouterTestingModule, TranslateModule.forRoot(), NbMenuModule],
+            providers: [NbMenuService],
         }).compileComponents();
     }));
 
