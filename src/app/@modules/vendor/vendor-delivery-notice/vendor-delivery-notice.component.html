@@ -1,0 +1,18 @@
+<div *ngIf="vendor$ | async as vendor" class="deliveryInformation">
+    <strong>{{ "DELIVERY_INFORMATION" | translate }}</strong
+    >:
+    <nb-alert *ngIf="vendor.delivery" accent="success">
+        <p>{{ "VENDOR_OFFERS_DELIVERY" | translate }}</p>
+        <p *ngIf="vendor.delivery_note">
+            <strong>{{ "DELIVERY_NOTE" | translate }}</strong
+            >: {{ vendor.delivery_note }}
+        </p>
+    </nb-alert>
+    <nb-alert *ngIf="!vendor.delivery" accent="warning">
+        <p>{{ "VENDOR_DOES_NOT_OFFER_DELIVERY" | translate }}. {{ "SELF_PICKUP" | translate }}.</p>
+        <p *ngIf="vendor.delivery_note">
+            <strong>{{ "DELIVERY_NOTE" | translate }}</strong
+            >: {{ vendor.delivery_note }}
+        </p>
+    </nb-alert>
+</div>
