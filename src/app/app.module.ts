@@ -25,9 +25,11 @@ import { PrivacyPolicyModule } from "@modules/privacy-policy/privacy-policy.modu
 import { TermsAndConditionsModule } from "@modules/terms-and-conditions/terms-and-conditions.module";
 import { GlobalInterceptor } from "@services/interceptor/interceptor.interceptor";
 
+const domain = window.location.hostname;
+
 export const cookieConfig: NgcCookieConsentConfig = {
     cookie: {
-        domain: "localhost", // @TODO need a way to set this programmatically depending on the website // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
+        domain: domain, // It is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
     },
     palette: {
         popup: {
