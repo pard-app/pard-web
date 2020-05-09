@@ -1,4 +1,4 @@
-<nb-card class="content-section content-section__product" *ngIf="_listing$ | async as listing">
+<nb-card class="content-section content-section__product" *ngIf="listing$ | async as listing">
     <nb-card-header class="listing responsive-padding">
         <div class="listing__imageWrapper">
             <img class="listing__image" [src]="listing.image" />
@@ -13,7 +13,7 @@
                     <h2 class="listing__listingTitle">{{ listing.title }}</h2>
                     <h3 class="listing__price">{{ listing.price | currency }}</h3>
                     <p class="listing__description">{{ listing.description }}</p>
-                    <a href="" class="listing__deliveryInformation">{{ "DELIVERY_INFORMATION" | translate }}</a>
+                    <app-vendor-delivery-notice [vendor$]="vendor$"></app-vendor-delivery-notice>
                     <button class="listing__addToCardButton" nbButton status="info" (click)="addToCart()">
                         <nb-icon icon="shopping-bag-outline"></nb-icon>
                         {{ "ADD_TO_CART" | translate }}
@@ -22,7 +22,7 @@
             </div>
         </div>
     </nb-card-header>
-    <nb-card-body class="responsive-padding"> <app-vendor-summary-header [vendor$]="_vendor$" [noMargin]="true"></app-vendor-summary-header></nb-card-body>
+    <nb-card-body class="responsive-padding"> <app-vendor-summary-header [vendor$]="vendor$" [noMargin]="true"></app-vendor-summary-header></nb-card-body>
 
     <!-- NEED TO IMPLEMENT -->
     <!-- <nb-card-body>

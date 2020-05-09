@@ -5,6 +5,7 @@ import { CartStoreService } from "@core/stores/cart/cart.store.service";
 import { ListingService } from "@services/listing/listing.service";
 import { VendorService } from "@services/vendor/vendor.service";
 import { ListingItem } from "src/app/@core/models/listingitem.interface";
+import { IVendor } from "@models/vendor.interface";
 
 @Component({
     selector: "app-vendor-single-listing-view",
@@ -18,8 +19,11 @@ export class VendorSingleListingViewComponent implements OnInit {
         private route: ActivatedRoute,
         private cartStoreService: CartStoreService
     ) {}
-    public _listing$ = new BehaviorSubject({} as any);
-    public _vendor$ = new BehaviorSubject({} as any);
+    private _listing$ = new BehaviorSubject<ListingItem>({} as ListingItem);
+    private _vendor$ = new BehaviorSubject<IVendor>({} as IVendor);
+    public readonly listing$ = this._listing$.asObservable();
+    public readonly vendor$ = this._vendor$.asObservable();
+
     public _listingsList$ = new BehaviorSubject<Array<ListingItem> | any>([]);
 
     addToCart() {
@@ -29,9 +33,9 @@ export class VendorSingleListingViewComponent implements OnInit {
     ngOnInit() {
         this.route.params.subscribe(async ({ listingId, vendorId }) => {
             const listingData = await this.listingService.getListingById(listingId);
-            this._listing$.next(listingData);
+            this._listing$.next(listingData as ListingItem);
             const vendorData = await this.vendorService.getVendorById(vendorId);
-            this._vendor$.next(vendorData);
+            this._vendor$.next(vendorData as IVendor);
             const { hits } = await this.listingService.searchVendorListings("", vendorId);
             this._listingsList$.next(hits);
         });
