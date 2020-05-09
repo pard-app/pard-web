@@ -3,7 +3,7 @@ import { TestBed } from "@angular/core/testing";
 import { MainSearchStore, SearchRequest } from "./mainsearch.store";
 import { ILocation } from "@models/location.interface";
 
-describe("Global.StoreService", () => {
+describe("Main Search Store", () => {
     let service: MainSearchStore;
 
     beforeEach(() => {
