@@ -1,9 +1,9 @@
 import { TestBed } from "@angular/core/testing";
-import { ILocation } from "@models/location.interface";
 import { CartStoreService } from "./cart.store.service";
+import { ListingItem } from "@models/listingitem.interface";
 
 describe("Cart.StoreService", () => {
-    const mockItem = {
+    const mockItem: ListingItem = {
         sold: false,
         date: 1587799019962,
         description: "Tradicinės lino kelnės, siuvamos pagal užsakymą.",
@@ -37,7 +37,7 @@ describe("Cart.StoreService", () => {
     });
 
     describe("Cart Items Manipulation", () => {
-        it("ResetCart() Should reset cart items correctly", (done: DoneFn) => {
+        it("ResetCart() Should reset cart items correctly and leave {} (empty object)", (done: DoneFn) => {
             service.addItemToCart(mockItem);
             expect(service.cartItemsLength).toBe(1);
             service.resetCart();
