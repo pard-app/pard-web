@@ -10,6 +10,16 @@ nb-stepper {
     font-size: 1.1em;
 }
 
+.vendor-delivery {
+    &__body {
+        display: flex;
+        flex-direction: column;
+    }
+    &__image {
+        width: 70px;
+    }
+}
+
 .actions {
     display: flex;
     button:first-child {

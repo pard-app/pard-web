@@ -9,10 +9,9 @@ import { SharedModule } from "@shared/shared.module";
 import { NbCardModule, NbSpinnerModule, NbInputModule, NbBadgeModule, NbIconModule, NbButtonModule, NbAlertModule } from "@nebular/theme";
 import { VendorListingsSearchComponent } from "./vendor-listings-page/vendor-listings-search/vendor-listings-search.component";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
-import { VendorDeliveryNoticeComponent } from './vendor-delivery-notice/vendor-delivery-notice.component';
 
 @NgModule({
-    declarations: [VendorListingsComponent, VendorSingleListingViewComponent, VendorSummaryHeaderComponent, VendorListingsSearchComponent, VendorDeliveryNoticeComponent],
+    declarations: [VendorListingsComponent, VendorSingleListingViewComponent, VendorSummaryHeaderComponent, VendorListingsSearchComponent],
     imports: [
         CommonModule,
         SharedModule,

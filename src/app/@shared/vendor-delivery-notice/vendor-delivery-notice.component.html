@@ -2,10 +2,14 @@
     <strong>{{ "DELIVERY_INFORMATION" | translate }}</strong
     >:
     <nb-alert *ngIf="vendor.delivery" accent="success">
-        <p>{{ "VENDOR_OFFERS_DELIVERY" | translate }}</p>
+        <p>{{ "VENDOR_OFFERS_DELIVERY" | translate }} <nb-icon icon="checkmark" status="success"></nb-icon></p>
         <p *ngIf="vendor.delivery_note">
             <strong>{{ "DELIVERY_NOTE" | translate }}</strong
             >: {{ vendor.delivery_note }}
+        </p>
+        <p *ngIf="vendor.delivery_costs">
+            <strong>{{ "DELIVERY_COSTS" | translate }}</strong
+            >: {{ vendor.delivery_costs | currency }}
         </p>
     </nb-alert>
     <nb-alert *ngIf="!vendor.delivery" accent="warning">
