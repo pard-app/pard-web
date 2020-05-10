@@ -8,6 +8,8 @@ import { TranslateService } from "@ngx-translate/core";
 import { ROUTING_CONSTANTS } from "src/app/@core/constants/routing.constants";
 import { NbDialogService } from "@nebular/theme";
 import { TermsAndConditionsModalComponent } from "src/app/@modules/terms-and-conditions/terms-and-conditions-page/terms-and-conditions-modal.component";
+import { Observable, of } from "rxjs";
+import { IVendor } from "@models/vendor.interface";
 
 @Component({
     selector: "app-cart-checkout",
@@ -157,5 +159,9 @@ export class CartCheckoutComponent implements OnInit {
 
     resolved(captchaResponse: string) {
         this.captcha = captchaResponse;
+    }
+
+    convertVendorToObservable(vendor): Observable<IVendor> {
+        return of(vendor);
     }
 }

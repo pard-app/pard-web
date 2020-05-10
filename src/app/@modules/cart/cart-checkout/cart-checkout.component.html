@@ -55,24 +55,13 @@
                 <h4>{{ "DELIVERY_INFORMATION" | translate }}</h4>
             </nb-card-header>
             <nb-card-body>
-                <div class="vendor-delivery">
-                    <div *ngFor="let vendor of vendors">
-                        <nb-card>
-                            <nb-card-body>
-                                <nb-user
-                                    shape="rectangle"
-                                    [badgeStatus]="vendor.delivery ? 'success' : 'danger'"
-                                    [badgeText]="vendor.delivery ? ('DELIVERY' | translate) : ('NO_DELIVERY' | translate)"
-                                    [name]="vendor.title"
-                                    badgePosition="bottom start"
-                                    size="giant"
-                                    [picture]="vendor.image"
-                                    [title]="vendor.delivery ? (vendor.delivery_costs | currency) + ', ' + vendor.delivery_note : ''"
-                                ></nb-user>
-                            </nb-card-body>
-                        </nb-card>
-                    </div>
-                </div>
+                <nb-card class="vendor-delivery" *ngFor="let vendor of vendors">
+                    <nb-card-body class="vendor-delivery__body">
+                        <h4>{{ vendor.title }}</h4>
+                        <img class="vendor-delivery__image" [src]="vendor.image" />
+                        <app-vendor-delivery-notice [vendor$]="convertVendorToObservable(vendor)"></app-vendor-delivery-notice>
+                    </nb-card-body>
+                </nb-card>
 
                 <div class="delivery-checkbox">
                     <nb-checkbox formControlName="delivery" (click)="toggleDelivery()"

@@ -30,6 +30,7 @@ import { ListVendorsComponent } from "./list-vendors/list-vendors.component";
 import { ButtonLoadMoreComponent } from "./button-load-more/button-load-more.component";
 import { NearMeItemsComponent } from "./near-me-items/near-me-items.component";
 import { LoadingBoxComponent } from "./loading-box/loading-box.component";
+import { VendorDeliveryNoticeComponent } from "./vendor-delivery-notice/vendor-delivery-notice.component";
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import { LoadingBoxComponent } from "./loading-box/loading-box.component";
         ButtonLoadMoreComponent,
         NearMeItemsComponent,
         LoadingBoxComponent,
+        VendorDeliveryNoticeComponent,
     ],
     imports: [
         CommonModule,
@@ -73,6 +75,7 @@ import { LoadingBoxComponent } from "./loading-box/loading-box.component";
         ListVendorsComponent,
         ButtonLoadMoreComponent,
         NearMeItemsComponent,
+        VendorDeliveryNoticeComponent,
     ],
 })
 export class SharedModule {}
