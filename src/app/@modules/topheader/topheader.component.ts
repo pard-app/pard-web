@@ -69,7 +69,6 @@ export class TopheaderComponent implements OnInit, OnDestroy {
                 map(({ item: { title } }) => title)
             )
             .subscribe((title) => {
-                console.log(title);
                 this.setLanguage(title);
             });
 

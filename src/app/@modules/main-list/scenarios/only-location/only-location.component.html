@@ -1,6 +1,6 @@
 <app-list-vendors
     [vendorsWithListings$]="scenariosStore.vendors$"
-    [title]="'Top vendors in <a>' + scenariosStore.currentLocation + '</a>'"
+    [title]="('VENDORS_IN' | translate) + '<a>' + scenariosStore.currentLocation + '</a>'"
     [isLoading]="scenariosStore.isLoadingVendors"
 ></app-list-vendors>
 <app-button-load-more *ngIf="!scenariosStore.allVendorsLoaded" (click)="scenariosStore.loadMore('LOAD_VENDORS')"></app-button-load-more>

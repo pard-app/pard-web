@@ -107,5 +107,6 @@
         "policy": "Sīkdatņu politika"
     },
     "ORDER_RECEIVED_TEXT": "Jūsu pasūtījums ir saņemts. Lūdzu pārbaudiet e-pastu un gaidiet apstiprinājumu no pārdevēja.",
-    "BACK_TO_MAIN_PAGE": "Atgriezties sākumlapā"
+    "BACK_TO_MAIN_PAGE": "Atgriezties sākumlapā",
+    "CLOSE": "Aizvērt"
 }
