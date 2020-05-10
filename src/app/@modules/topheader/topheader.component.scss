@@ -94,11 +94,15 @@
     }
 }
 
-// @TODO - this selector should be more specific
-::ng-deep nb-context-menu {
+// @TODO - find a way to make this selector cleaner still
+::ng-deep .context-menu a[title="en"],
+::ng-deep .context-menu a[title="lv"],
+::ng-deep .context-menu a[title="lt"] {
     .menu-icon {
-        border-radius: 50%;
         margin: 0 !important;
+        background-size: contain;
+        background-position: 50%;
+        background-repeat: no-repeat;
     }
     .menu-title {
         display: none;
