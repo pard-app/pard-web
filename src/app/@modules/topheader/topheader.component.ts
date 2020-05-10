@@ -27,7 +27,7 @@ export class TopheaderComponent implements OnInit, OnDestroy {
     public TOP_HEADER_NAVIGATION_ROUTES: IRoutes = [
         { title: this.translate.instant("SHOP"), link: "/" },
         { title: this.translate.instant("APP"), url: "https://pard.app" },
-        { title: this.translate.instant("ABOUT"), url: "https://pard.lt/" },
+        { title: this.translate.instant("ABOUT"), url: "https://about.pard.app/" },
     ];
 
     public globalRoutes = ROUTING_CONSTANTS;
