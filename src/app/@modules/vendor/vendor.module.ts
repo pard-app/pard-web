@@ -6,7 +6,7 @@ import { VendorListingsComponent } from "./vendor-listings-page/vendor-listings.
 import { VendorSingleListingViewComponent } from "./vendor-single-listing-page/vendor-single-listing-view.component";
 import { VendorSummaryHeaderComponent } from "./vendor-summary-header/vendor-summary-header.component";
 import { SharedModule } from "@shared/shared.module";
-import { NbCardModule, NbSpinnerModule, NbInputModule, NbBadgeModule, NbIconModule, NbButtonModule } from "@nebular/theme";
+import { NbCardModule, NbSpinnerModule, NbInputModule, NbBadgeModule, NbIconModule, NbButtonModule, NbAlertModule } from "@nebular/theme";
 import { VendorListingsSearchComponent } from "./vendor-listings-page/vendor-listings-search/vendor-listings-search.component";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 
@@ -24,6 +24,7 @@ import { NbEvaIconsModule } from "@nebular/eva-icons";
         NbEvaIconsModule,
         NbIconModule,
         NbButtonModule,
+        NbAlertModule,
     ],
     exports: [VendorListingsComponent],
 })

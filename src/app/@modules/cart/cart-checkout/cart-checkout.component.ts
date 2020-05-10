@@ -8,6 +8,8 @@ import { TranslateService } from "@ngx-translate/core";
 import { ROUTING_CONSTANTS } from "src/app/@core/constants/routing.constants";
 import { NbDialogService } from "@nebular/theme";
 import { TermsAndConditionsModalComponent } from "src/app/@modules/terms-and-conditions/terms-and-conditions-page/terms-and-conditions-modal.component";
+import { Observable, of } from "rxjs";
+import { IVendor } from "@models/vendor.interface";
 
 @Component({
     selector: "app-cart-checkout",
@@ -26,6 +28,7 @@ export class CartCheckoutComponent implements OnInit {
     public confirmedOrder: any;
     public ROUTES: { [name: string]: string };
     public captcha: string;
+    public globalRoutes = ROUTING_CONSTANTS;
 
     @Output() deliveryChanged: EventEmitter<any> = new EventEmitter();
     @Input() vendors: any;
@@ -135,6 +138,7 @@ export class CartCheckoutComponent implements OnInit {
         const response = await this.dbService.placeOrder(this.orders, this.buyer, this.delivery, false, this.captcha);
         this.loading = false;
         this.confirmedOrder = response ? response : this.translate.instant("ERROR_WHILE_PLACING_ORDER");
+        this.cartStoreService.resetCart();
     }
 
     openTerms() {
@@ -155,5 +159,9 @@ export class CartCheckoutComponent implements OnInit {
 
     resolved(captchaResponse: string) {
         this.captcha = captchaResponse;
+    }
+
+    convertVendorToObservable(vendor): Observable<IVendor> {
+        return of(vendor);
     }
 }

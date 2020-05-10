@@ -1,5 +1,11 @@
 <ng-container *ngIf="vendorsWithListings$ | async as vendorsWithListings">
-    <h3 class="vendors-title" [innerHTML]="title"></h3>
+    <div class="vendors-title">
+        <h3 class="vendors-title__item" [innerHTML]="title"></h3>
+
+        <h3 *ngIf="secondaryTitle" class="vendors-title__item">
+            &nbsp;<a (click)="secondaryTitleOnClick.emit(secondaryTitle)">{{ secondaryTitle }}</a>
+        </h3>
+    </div>
 
     <section class="grid-parent">
         <app-card-vendor class="grid-child" *ngFor="let item of vendorsWithListings" [item]="item"></app-card-vendor>

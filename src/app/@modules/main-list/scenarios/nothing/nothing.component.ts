@@ -2,9 +2,10 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { VendorService } from "@services/vendor/vendor.service";
 import { ListingService } from "@services/listing/listing.service";
 import { of, Observable } from "rxjs";
-import { mergeMap, flatMap, toArray, catchError } from "rxjs/operators";
-import { IVendor } from "@models/vendor.interface";
-import { HttpClient } from "@angular/common/http";
+import { mergeMap, flatMap, toArray } from "rxjs/operators";
+import { ROUTING_CONSTANTS, locationQueryParams, QUERY_PARAMS } from "@constants/routing.constants";
+import { Router } from "@angular/router";
+import { AlgoliaService } from "@services/algolia/algolia.service";
 
 @Component({
     selector: "scenario-nothing",
@@ -14,8 +15,9 @@ import { HttpClient } from "@angular/common/http";
 export class NothingComponent implements OnInit, OnDestroy {
     public topVendorsInLocations$: Observable<any> = of([{}]);
     public isLoadingVendorsInLocations: boolean = true;
+    public globalRoutes = ROUTING_CONSTANTS;
 
-    constructor(private vendorService: VendorService, private listingService: ListingService, private http: HttpClient) {}
+    constructor(private vendorService: VendorService, private listingService: ListingService, private router: Router, private algolia: AlgoliaService) {}
 
     async ngOnInit() {
         this.handleTopVendorsInLocations();
@@ -35,6 +37,13 @@ export class NothingComponent implements OnInit, OnDestroy {
             }),
             toArray()
         );
+    }
+
+    public async routeToLocation(locationName: string) {
+        const { hits } = await this.algolia.places(locationName);
+        if (!hits.length) return;
+        const firstHitId = hits[0].objectID;
+        if (firstHitId) this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({ [QUERY_PARAMS.LOCATION]: firstHitId }));
     }
 
     ngOnDestroy(): void {}

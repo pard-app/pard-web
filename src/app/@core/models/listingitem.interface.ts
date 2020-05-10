@@ -1,5 +1,4 @@
 export interface ListingItem extends AdditionalCartViewLogic {
-    categories: [];
     description: string;
     image: string;
     price: number;
@@ -11,6 +10,8 @@ export interface ListingItem extends AdditionalCartViewLogic {
     published: boolean;
     date: number;
     quantity?: number;
+    _geoloc?: { lat: 54.69235029999999; lng: 25.281753 };
+    _highlightResult?: any;
 }
 
 interface AdditionalCartViewLogic {}

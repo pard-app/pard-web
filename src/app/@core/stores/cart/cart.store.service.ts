@@ -95,6 +95,7 @@ export class CartStoreService {
 
     public resetCart(): void {
         this._cartItems$.next({});
+        localStorage.removeItem(CART_CONSTANTS.CART_ITEMS_IN_COOKIE);
     }
 
     public removeCartItem(id: string): void {

@@ -4,7 +4,7 @@
     "VENDORS_NEAR_YOU": "Pardavėjai netoliese",
     "SHOW_VENDORS": "Rodyti pardavėjus",
     "TERMS_AND_CONDITIONS": "Naudojimosi sąlygos",
-    "SPONSORS": "Remėjai",
+    "SPONSORS": "Rėmėjai",
     "CAREERS": "Karjera",
     "NO_VENDORS": "Pardavėjų nerasta.",
     "FIRST_NAME": "Vardas",
@@ -29,7 +29,7 @@
     "GO_BACK_TO_CART": "Grįžti į krepšelį",
     "CONFIRMATION": "Patvirtinimas",
     "ERROR_WHILE_PLACING_ORDER": "Upsi pupsi, įvyko nenumatyta klaida",
-    "HEADING_TITLE": "Raskite <strong>vietinę produkciją</strong>, gaukite jas į <strong>namus</strong>.",
+    "HEADING_TITLE": "Raskite <strong>vietinę produkciją</strong>, gaukite ją į <strong>namus</strong>.",
     "VIEW": "Peržiūra",
     "ABOUT": "Apie",
     "OK": "Gerai",
@@ -64,6 +64,9 @@
     "DELIVERY_NOTE": "Pristatymo pastabos",
     "DELIVERY": "Pristatymas",
     "DELIVERY_INFORMATION": "Informacija apie pristatymą",
+    "VENDOR_OFFERS_DELIVERY": "Pardavėjas tiekia pristatymo paslaugas",
+    "VENDOR_DOES_NOT_OFFER_DELIVERY": "Pardavėjas netiekia pristatymo paslaugų",
+    "SELF_PICKUP": "Užsakymą galima atsiimti parduotuvėje",
     "NEW": "Naujas",
     "HIDE": "Slėpti",
     "CONFIRM": "Patvirtinti",
@@ -103,5 +106,7 @@
         "link": "Sužinoti daugiau",
         "policy": "Sausainiukų politika"
     },
-    "ORDER_RECEIVED_TEXT": "Jūsų užsakymas priimtas. Patikrinkite savo el. paštą ir luktelkite, kol užsakymas bus patvirtintas."
+    "ORDER_RECEIVED_TEXT": "Jūsų užsakymas priimtas. Patikrinkite savo el. paštą ir luktelkite, kol užsakymas bus patvirtintas.",
+    "BACK_TO_SHOP": "Back to shop",
+    "BACK_TO_MAIN_PAGE": "Grįžti į pagrindinį puslapį"
 }
