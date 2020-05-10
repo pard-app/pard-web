@@ -7,7 +7,7 @@
 
 <app-list-listings
     [listingsList$]="scenariosStore.listings$"
-    [title]="'Top listings in <a>' + scenariosStore.currentLocation + '</a>'"
+    [title]="('LISTINGS_IN' | translate) + '<a>' + scenariosStore.currentLocation + '</a>'"
     [isLoading]="scenariosStore.isLoadingListings"
 ></app-list-listings>
 <app-button-load-more *ngIf="!scenariosStore.allListingsLoaded" (click)="scenariosStore.loadMore('LOAD_LISTINGS')"></app-button-load-more>

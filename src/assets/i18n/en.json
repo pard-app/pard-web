@@ -108,5 +108,6 @@
     },
     "ORDER_RECEIVED_TEXT": "Your order has been received. Please check your e-mail and wait for confirmation from vendor.",
     "BACK_TO_MAIN_PAGE": "Back to main page",
-    "CLOSE": "Close"
+    "CLOSE": "Close",
+    "LISTINGS_IN": "Listings in"
 }

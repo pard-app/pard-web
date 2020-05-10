@@ -1,8 +1,17 @@
 @import "~src/app/@core/styles/themes";
 
 nb-stepper {
-    padding: 20px;
     display: block;
+    padding: 0 5px;
+    @media (min-width: 1000px) {
+        padding: 20px;
+    }
+}
+
+::ng-deep .step-content {
+    @media (max-width: 1000px) {
+        padding: 0 !important;
+    }
 }
 
 .delivery-checkbox {
