@@ -36,8 +36,8 @@ import { RouterModule } from "@angular/router";
         NbSpinnerModule,
         SharedModule,
         NbDialogModule.forChild(),
-        RecaptchaModule,
-        RecaptchaFormsModule,
+        // RecaptchaModule,
+        // RecaptchaFormsModule,
     ],
     exports: [CartCheckoutComponent],
 })

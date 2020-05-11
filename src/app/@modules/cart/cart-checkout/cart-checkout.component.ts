@@ -27,7 +27,7 @@ export class CartCheckoutComponent implements OnInit {
     public loading: boolean = true;
     public confirmedOrder: any;
     public ROUTES: { [name: string]: string };
-    public captcha: string;
+    public captcha: string = null;
     public globalRoutes = ROUTING_CONSTANTS;
 
     @Output() deliveryChanged: EventEmitter<any> = new EventEmitter();
