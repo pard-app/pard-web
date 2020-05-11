@@ -1,3 +1,37 @@
 .deliveryInformation {
-    margin: 20px 0;
+    &__alertSucess {
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    &__alertFailure {
+        margin: 0;
+    }
+    &__alertTextSection {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    &__successText {
+        color: var(--icon-success-color);
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: row;
+
+        font-weight: bold;
+    }
+    &__failureText {
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: row;
+        opacity: 0.7;
+        font-weight: bold;
+    }
+    &__icon {
+        font-size: 22px;
+        margin-right: 10px;
+    }
 }

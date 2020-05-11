@@ -86,7 +86,6 @@
         }
     }
     &__descriptionWrapper {
-        margin-top: -15px;
         display: flex;
         flex-direction: column;
         max-width: 400px;
@@ -98,8 +97,10 @@
     &__listingTitle {
         margin: 0;
     }
+
     &__addToCardButton {
         max-width: 250px;
+        margin-top: 1.5rem;
         @media only screen and (max-width: 950px) {
             max-width: 100%;
         }

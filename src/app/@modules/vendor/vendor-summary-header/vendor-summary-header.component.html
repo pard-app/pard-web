@@ -1,33 +1,37 @@
 <div *ngIf="vendor$ | async as vendorAfterAsync" [nbSpinner]="!(vendor$ | async)" nbSpinnerStatus="success" class="vendor">
-    <div class="vendor__containerX">
-        <div class="vendor__imageWrapper">
-            <img [src]="vendorAfterAsync.image" class="vendor__image" />
-        </div>
-
-        <div class="vendor__presentation">
-            <div class="vendor__presentationHeader">
-                <div class="vendor__imageWrapperMobile">
-                    <img [src]="vendorAfterAsync.image" class="vendor__imageMobile" />
-                </div>
-                <div class="vendor__description">
-                    <h1 class="vendor__vendorTitle">{{ vendorAfterAsync.title }}</h1>
-                    <h4 class="vendor__vendorLocation">{{ vendorAfterAsync.city + ", " + vendorAfterAsync.country }}</h4>
-                    <h6 class="vendor__vendorLocation">{{ vendorAfterAsync.address }}</h6>
-                    <app-vendor-delivery-notice [vendor$]="vendor$"></app-vendor-delivery-notice>
-                </div>
+    <div class="vendor__containerDesktop">
+        <div class="vendor__vendorInformationWrapperDesktop">
+            <div class="vendor__imageWrapper">
+                <img [src]="vendorAfterAsync.image" class="vendor__image" />
             </div>
 
-            <p class="vendor__description">
-                {{ vendorAfterAsync.description }}
-            </p>
+            <div class="vendor__presentation">
+                <div class="vendor__presentationHeader">
+                    <div class="vendor__imageWrapperMobile">
+                        <img [src]="vendorAfterAsync.image" class="vendor__imageMobile" />
+                    </div>
+                    <div>
+                        <h1 class="vendor__vendorTitle">
+                            <b>{{ vendorAfterAsync.title }}</b>
+                        </h1>
+                        <h5 class="vendor__vendorLocation">{{ vendorAfterAsync.city + ", " + vendorAfterAsync.country }}</h5>
+                    </div>
+                </div>
+                <p class="vendor__description">{{ vendorAfterAsync.description }}</p>
+            </div>
+            <div class="vendor__contactsAndDelivery">
+                <div class="vendor__delivery"></div>
+                <div class="vendor__contacts">
+                    <p class="vendor__contactsSectionTitle">{{ "CONTACTS" | translate }} :</p>
+                    <a class="vendor__contactsLink" [href]="'tel:' + vendorAfterAsync.phone">📱{{ vendorAfterAsync.phone }}</a>
+                    <a class="vendor__contactsLink" [href]="'mailto:' + vendorAfterAsync.email" vendorAfterAsync.email>📧{{ vendorAfterAsync.email }}</a>
+                    <p class="vendor__contactsAdress">🏠{{ vendorAfterAsync.address }}</p>
+                </div>
+            </div>
         </div>
-        <div class="vendor__contacts">
-            <p class="vendor__contactsSectionTitle">{{ "CONTACTS" | translate }} :</p>
-            <a class="vendor__contactsLink" [href]="'tel:' + vendorAfterAsync.phone">📱{{ vendorAfterAsync.phone }}</a>
-            <a class="vendor__contactsLink" [href]="'mailto:' + vendorAfterAsync.email" vendorAfterAsync.email>📧{{ vendorAfterAsync.email }}</a>
-        </div>
-        <!-- </nb-card> -->
+        <div class="vendor__deliveryInformationContainer"><app-vendor-delivery-notice [vendor$]="vendor$"></app-vendor-delivery-notice></div>
     </div>
+
     <nb-card class="vendor__containerMobile flexible-card">
         <div class="vendor__presentationMobile">
             <div class="vendor__presentation">
@@ -42,7 +46,17 @@
                     </div>
                 </div>
             </div>
-            <div class="vendor__smContacts">
+
+            <div class="vendor__contacts">
+                <p class="vendor__contactsSectionTitle">{{ "CONTACTS" | translate }} :</p>
+                <a class="vendor__contactsLink" [href]="'tel:' + vendorAfterAsync.phone">📱{{ vendorAfterAsync.phone }}</a>
+                <a class="vendor__contactsLink" [href]="'mailto:' + vendorAfterAsync.email" vendorAfterAsync.email>📧{{ vendorAfterAsync.email }}</a>
+                <p class="vendor__contactsAdress">🏠{{ vendorAfterAsync.address }}</p>
+            </div>
+        </div>
+        <!-- <div class="vendor__smContacts">
+            <p class="vendor__smAdress">{{ vendorAfterAsync.address }}</p>
+            <div>
                 <a class="vendor__smContactsButtonLink" [href]="'tel:' + vendorAfterAsync.phone">
                     <button class="vendor__smContactsButton" nbButton ghost status="info">
                         <nb-icon icon="phone-outline"></nb-icon>
@@ -54,16 +68,17 @@
                     </button>
                 </a>
             </div>
-            <div class="vendor__contacts">
-                <p class="vendor__contactsSectionTitle">{{ "CONTACTS" | translate }} :</p>
-                <a class="vendor__contactsLink" [href]="'tel:' + vendorAfterAsync.phone">📱{{ vendorAfterAsync.phone }}</a>
-                <a class="vendor__contactsLink" [href]="'mailto:' + vendorAfterAsync.email" vendorAfterAsync.email>📧{{ vendorAfterAsync.email }}</a>
-            </div>
-        </div>
+        </div> -->
+
         <p class="vendor__descriptionMobile">
             {{ vendorAfterAsync.description }}
-            <app-vendor-delivery-notice [vendor$]="vendor$"></app-vendor-delivery-notice>
-            <span>{{ vendorAfterAsync.address }}</span>
         </p>
+        <div class="vendor__contactsMobile">
+            <p class="vendor__contactsSectionTitle">{{ "CONTACTS" | translate }} :</p>
+            <a class="vendor__contactsLink" [href]="'tel:' + vendorAfterAsync.phone">📱{{ vendorAfterAsync.phone }}</a>
+            <a class="vendor__contactsLink" [href]="'mailto:' + vendorAfterAsync.email" vendorAfterAsync.email>📧{{ vendorAfterAsync.email }}</a>
+            <p class="vendor__contactsAdress">🏠{{ vendorAfterAsync.address }}</p>
+        </div>
+        <div class="vendor__deliveryInformationContainer"><app-vendor-delivery-notice [vendor$]="vendor$"></app-vendor-delivery-notice></div>
     </nb-card>
 </div>

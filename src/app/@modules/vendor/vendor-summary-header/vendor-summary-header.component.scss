@@ -9,15 +9,17 @@
             display: none;
         }
     }
-    &__containerX {
-        display: flex;
-        flex-direction: row;
-
+    &__containerDesktop {
         flex-basis: 0;
         @media only screen and (max-width: 950px) {
             display: none;
         }
     }
+    &__vendorInformationWrapperDesktop {
+        display: flex;
+        flex-direction: row;
+    }
+
     &__containerMobile {
         display: flex;
         flex-direction: column;
@@ -46,15 +48,23 @@
         @media only screen and (max-width: 640px) {
             font-size: 1.6em;
         }
+        @media only screen and (max-width: 345px) {
+            font-size: 1.2em;
+            margin-top: -12px;
+        }
     }
     &__vendorLocation {
+        font-weight: 100;
         @media only screen and (max-width: 640px) {
             font-size: 1em;
+        }
+        @media only screen and (max-width: 345px) {
+            font-size: 0.9em;
         }
     }
 
     &__description {
-        padding-top: auto;
+        padding-top: 5px;
     }
 
     &__presentationMobile {
@@ -72,17 +82,6 @@
         flex-direction: row;
     }
 
-    &__smContacts {
-        margin-right: 1rem;
-        display: flex;
-        margin: 0;
-        flex-direction: column;
-        justify-content: space-around;
-        @media only screen and (min-width: 640px) {
-            display: none;
-        }
-    }
-
     &__smContactsButton {
         width: 50px;
         cursor: pointer;
@@ -92,7 +91,7 @@
     }
 
     &__descriptionMobile {
-        padding-top: 1.5rem;
+        padding-top: 1rem;
         @media only screen and (min-width: 950px) {
             display: none;
         }
@@ -100,19 +99,23 @@
 
     &__image {
         object-fit: contain;
+        height: 100%;
+        width: auto;
         max-width: 100%;
-        height: 200px;
+        max-height: 100%;
     }
 
     &__imageWrapper {
         margin-right: 1.5rem;
-        height: 100%;
+        height: 150px;
+        width: 150px;
         border-radius: var(--card-border-radius);
         overflow: hidden;
         @media only screen and (max-width: 950px) {
             display: none;
         }
     }
+
     &__imageMobile {
         object-fit: contain;
         max-width: 100%;
@@ -128,6 +131,19 @@
             display: none;
         }
     }
+
+    &__contactsAndDelivery {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &__delivery {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+    }
+
     &__contacts {
         display: flex;
         flex-direction: column;
@@ -141,11 +157,25 @@
         }
     }
 
+    &__contactsMobile {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 1rem;
+        @media only screen and (min-width: 640px) {
+            display: none;
+        }
+    }
+
     &__contactsSectionTitle {
         text-transform: uppercase;
         opacity: 0.8;
         font-size: 12px;
+        @media only screen and (max-width: 950px) {
+            display: none;
+        }
     }
+
     &__contactsLink {
         margin-top: 8px;
         color: var(--color-info-default);
@@ -155,5 +185,16 @@
             font-size: 14px;
             margin-top: 4px;
         }
+    }
+
+    &__contactsAdress {
+        margin-top: 8px;
+        @media only screen and (max-width: 950px) {
+            font-size: 14px;
+            margin-top: 4px;
+        }
+    }
+    &__deliveryInformationContainer {
+        padding-top: 1.5rem;
     }
 }
