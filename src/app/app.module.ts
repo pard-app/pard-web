@@ -11,6 +11,8 @@ import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from "ngx-cookieconsent";
 
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from "ng-recaptcha";
+
 // NEBULAR MODULES
 import { NbAutocompleteDirective, NbLayoutModule, NbThemeModule, NbMenuModule, NbToastrModule } from "@nebular/theme";
 
@@ -75,6 +77,7 @@ export const cookieConfig: NgcCookieConsentConfig = {
         TopheaderModule,
         PrivacyPolicyModule,
         TermsAndConditionsModule,
+        RecaptchaV3Module,
     ],
     providers: [
         DbService,
@@ -86,6 +89,7 @@ export const cookieConfig: NgcCookieConsentConfig = {
             useClass: GlobalInterceptor,
             multi: true,
         },
+        { provide: RECAPTCHA_V3_SITE_KEY, useValue: "6Lcb1fUUAAAAANlc1wBGeVcvyRvUTFUUGlrP3T7k" },
     ],
     bootstrap: [AppComponent],
 })

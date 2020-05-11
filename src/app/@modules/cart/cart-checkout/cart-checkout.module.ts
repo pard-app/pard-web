@@ -15,8 +15,8 @@ import {
 } from "@nebular/theme";
 import { SharedModule } from "../../../@shared/shared.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { RecaptchaModule, RecaptchaFormsModule } from "ng-recaptcha";
 import { RouterModule } from "@angular/router";
+import { ReCaptchaV3Service } from "ng-recaptcha";
 
 @NgModule({
     declarations: [CartCheckoutComponent],
@@ -36,8 +36,6 @@ import { RouterModule } from "@angular/router";
         NbSpinnerModule,
         SharedModule,
         NbDialogModule.forChild(),
-        RecaptchaModule,
-        RecaptchaFormsModule,
     ],
     exports: [CartCheckoutComponent],
 })

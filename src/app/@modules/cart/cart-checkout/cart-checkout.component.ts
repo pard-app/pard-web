@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CartStoreService } from "src/app/@core/stores/cart/cart.store.service";
 import { CartItem, CartItemObject } from "src/app/@core/models/listingitem.interface";
@@ -8,15 +8,16 @@ import { TranslateService } from "@ngx-translate/core";
 import { ROUTING_CONSTANTS } from "src/app/@core/constants/routing.constants";
 import { NbDialogService } from "@nebular/theme";
 import { TermsAndConditionsModalComponent } from "src/app/@modules/terms-and-conditions/terms-and-conditions-page/terms-and-conditions-modal.component";
-import { Observable, of } from "rxjs";
+import { Observable, of, Subscription } from "rxjs";
 import { IVendor } from "@models/vendor.interface";
+import { ReCaptchaV3Service } from "ng-recaptcha";
 
 @Component({
     selector: "app-cart-checkout",
     templateUrl: "./cart-checkout.component.html",
     styleUrls: ["./cart-checkout.component.scss"],
 })
-export class CartCheckoutComponent implements OnInit {
+export class CartCheckoutComponent implements OnInit, OnDestroy {
     public formBasic: FormGroup;
     public formDelivery: FormGroup;
     public formProgress: number = 0;
@@ -29,6 +30,7 @@ export class CartCheckoutComponent implements OnInit {
     public ROUTES: { [name: string]: string };
     public captcha: string;
     public globalRoutes = ROUTING_CONSTANTS;
+    private captchaSubscription: Subscription;
 
     @Output() deliveryChanged: EventEmitter<any> = new EventEmitter();
     @Input() vendors: any;
@@ -40,7 +42,8 @@ export class CartCheckoutComponent implements OnInit {
         private vendorService: VendorService,
         private dbService: DbService,
         private translate: TranslateService,
-        private dialogService: NbDialogService
+        private dialogService: NbDialogService,
+        private recaptchaV3Service: ReCaptchaV3Service
     ) {}
 
     ngOnInit(): void {
@@ -135,10 +138,12 @@ export class CartCheckoutComponent implements OnInit {
     }
 
     public async submitOrder() {
-        const response = await this.dbService.placeOrder(this.orders, this.buyer, this.delivery, false, this.captcha);
-        this.loading = false;
-        this.confirmedOrder = response ? response : this.translate.instant("ERROR_WHILE_PLACING_ORDER");
-        this.cartStoreService.resetCart();
+        this.recaptchaV3Service.execute("importantAction").subscribe(async (token) => {
+            const response = await this.dbService.placeOrder(this.orders, this.buyer, this.delivery, false, token);
+            this.loading = false;
+            this.confirmedOrder = response ? response : this.translate.instant("ERROR_WHILE_PLACING_ORDER");
+            this.cartStoreService.resetCart();
+        });
     }
 
     openTerms() {
@@ -163,5 +168,9 @@ export class CartCheckoutComponent implements OnInit {
 
     convertVendorToObservable(vendor): Observable<IVendor> {
         return of(vendor);
+    }
+
+    ngOnDestroy() {
+        this.captchaSubscription.unsubscribe();
     }
 }
