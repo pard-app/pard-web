@@ -24,6 +24,7 @@ import { TopheaderModule } from "@modules/topheader/topheader.module";
 import { PrivacyPolicyModule } from "@modules/privacy-policy/privacy-policy.module";
 import { TermsAndConditionsModule } from "@modules/terms-and-conditions/terms-and-conditions.module";
 import { GlobalInterceptor } from "@services/interceptor/interceptor.interceptor";
+import { AboutModule } from "@modules/about/about.module";
 
 const domain = window.location.hostname;
 
@@ -73,6 +74,7 @@ export const cookieConfig: NgcCookieConsentConfig = {
         FooterModule,
         SharedModule,
         TopheaderModule,
+        AboutModule,
         PrivacyPolicyModule,
         TermsAndConditionsModule,
     ],
