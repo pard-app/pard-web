@@ -57,9 +57,8 @@ export class SearchLocationComponent implements OnInit, OnDestroy {
     }
 
     public clearInput() {
-        this.input.reset();
-        this.input.setValue("");
         this.onClear.emit();
+        this.input.setValue("");
     }
 
     public onPick(location: ILocation): void {
