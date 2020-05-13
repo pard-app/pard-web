@@ -49,6 +49,7 @@ export class SearchLocationComponent implements OnInit, OnDestroy {
                 this._places$.next(mapHitsToLocations(hits));
             })
         );
+        this.inputRef.nativeElement.blur();
     }
 
     public clearInput() {
