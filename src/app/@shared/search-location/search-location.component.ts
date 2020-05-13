@@ -31,16 +31,15 @@ export class SearchLocationComponent implements OnInit, OnDestroy {
                 .pipe(
                     filter((x) => {
                         const hasValue = !!x;
-                        !hasValue && this.clearInput();
-                        !hasValue && this.inputRef && this.inputRef.nativeElement.blur();
+                        // !hasValue && this.clearInput();
+                        // !hasValue && this.inputRef && this.inputRef.nativeElement.blur();
                         return hasValue;
                     })
                 )
-                .subscribe((x) => this.onPick(x))
+                .subscribe((x) => {
+                    this.onPick(x);
+                })
         );
-        const { hits } = await this.algolia.places("");
-        this._places$.next(mapHitsToLocations(hits));
-
         this.sub.add(
             this.input.valueChanges.subscribe(async (str) => {
                 if (str === undefined || typeof str === "object") return;
@@ -49,10 +48,16 @@ export class SearchLocationComponent implements OnInit, OnDestroy {
                 this._places$.next(mapHitsToLocations(hits));
             })
         );
-        this.inputRef.nativeElement.blur();
+    }
+
+    public async tryInit() {
+        if (this._places$.getValue().length) return;
+        const { hits } = await this.algolia.places("");
+        this._places$.next(mapHitsToLocations(hits));
     }
 
     public clearInput() {
+        this.input.reset();
         this.input.setValue("");
         this.onClear.emit();
     }

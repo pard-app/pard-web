@@ -3,7 +3,7 @@
     <div *ngIf="input.value" nbSuffix class="remove-icon" (click)="clearInput()">
         <nb-icon fullWidth status="primary" icon="close-outline" pack="eva"></nb-icon>
     </div>
-    <input [formControl]="input" fullWidth #autoInput nbInput type="address" [placeholder]="'LOCATION' | translate" [nbAutocomplete]="auto" />
+    <input (click)="tryInit()" fullWidth [formControl]="input" #autoInput nbInput type="text" [placeholder]="'LOCATION' | translate" [nbAutocomplete]="auto" />
     <nb-autocomplete #auto (selectedChange)="onPick($event)">
         <nb-option class="item-wrapper" *ngFor="let option of places$ | async" [value]="option">
             <span class="item-val" [innerHTML]="option.highlightedName"></span>
