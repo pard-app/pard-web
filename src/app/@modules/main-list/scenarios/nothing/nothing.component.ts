@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { VendorService } from "@services/vendor/vendor.service";
 import { ListingService } from "@services/listing/listing.service";
 import { of, Observable } from "rxjs";
-import { mergeMap, flatMap, toArray } from "rxjs/operators";
+import { mergeMap, flatMap, toArray, concatMap } from "rxjs/operators";
 import { ROUTING_CONSTANTS, locationQueryParams, QUERY_PARAMS } from "@constants/routing.constants";
 import { Router } from "@angular/router";
 import { AlgoliaService } from "@services/algolia/algolia.service";
@@ -28,7 +28,7 @@ export class NothingComponent implements OnInit, OnDestroy {
         const vendorsInLocations$ = await this.vendorService.getVendorsInPopularLocations();
         this.topVendorsInLocations$ = vendorsInLocations$.pipe(
             flatMap((results) => results),
-            mergeMap(async (locationWithVendors: any) => {
+            concatMap(async (locationWithVendors: any) => {
                 // Fulfill vendors with their listings
                 const vendors = await this.listingService.fillVendorWithItsListings(locationWithVendors.hits);
                 this.isLoadingVendorsInLocations = false;

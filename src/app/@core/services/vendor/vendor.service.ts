@@ -43,11 +43,7 @@ export class VendorService {
             restrictSearchableAttributes: ["city", "address"],
         }));
 
-        // Sort by highest
         const { results } = await this.algoliaService.searchClient.multipleQueries(queries);
-        (results as []).sort((a, b) => {
-            return citiesToQuery.indexOf(a) - citiesToQuery.indexOf(b);
-        });
 
         return of(results);
     }
