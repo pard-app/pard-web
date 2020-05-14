@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AlgoliaService } from "@services/algolia/algolia.service";
 import { IVendor } from "src/app/@core/models/vendor.interface";
-import { Observable, from } from "rxjs";
+import { Observable, from, of } from "rxjs";
 
 @Injectable({
     providedIn: "root",
@@ -43,6 +43,12 @@ export class VendorService {
             restrictSearchableAttributes: ["city", "address"],
         }));
 
-        return from(this.algoliaService.searchClient.multipleQueries(queries));
+        // Sort by highest
+        const { results } = await this.algoliaService.searchClient.multipleQueries(queries);
+        (results as []).sort((a, b) => {
+            return citiesToQuery.indexOf(a) - citiesToQuery.indexOf(b);
+        });
+
+        return of(results);
     }
 }

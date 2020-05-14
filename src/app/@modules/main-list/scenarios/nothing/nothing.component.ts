@@ -27,7 +27,7 @@ export class NothingComponent implements OnInit, OnDestroy {
         this.isLoadingVendorsInLocations = true;
         const vendorsInLocations$ = await this.vendorService.getVendorsInPopularLocations();
         this.topVendorsInLocations$ = vendorsInLocations$.pipe(
-            flatMap(({ results }) => results),
+            flatMap((results) => results),
             mergeMap(async (locationWithVendors: any) => {
                 // Fulfill vendors with their listings
                 const vendors = await this.listingService.fillVendorWithItsListings(locationWithVendors.hits);
