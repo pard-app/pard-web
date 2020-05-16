@@ -2,16 +2,20 @@
     <nb-card-header class="vendor-card__header">
         <div *ngIf="item.image" class="vendor-card__imageWrapper"><img class="vendor-card__image" [src]="item.image" [alt]="item.title" /></div>
         <div class="vendor-info">
-            <h3 class="vendor-info__title">{{ item.title }}</h3>
-            <h5 class="vendor-info__location">{{ item.city }}, {{ item.country }}</h5>
+            <h6 class="vendor-info__title">{{ item.title }}</h6>
+            <p class="vendor-info__location">{{ item.city }}, {{ item.country }}</p>
         </div>
     </nb-card-header>
-    <nb-card-body class="vendor-card__body" *ngIf="item.description">
+
+    <nb-card-body class="vendor-info__descriptionWrapper" *ngIf="item.description">
         <p class="vendor-info__description">
             {{ item.description }}
         </p></nb-card-body
     >
-    <nb-card-footer *ngIf="item.image" class="vendor-card__footer">
-        <img class="vendor-card__small-image" *ngFor="let listing of item.listings" [src]="listing.image" />
-    </nb-card-footer>
+
+    <div *ngIf="item.listings" class="vendor-card__footerWrapper">
+        <nb-card-footer *ngIf="item.listings" class="vendor-card__footer">
+            <img class="vendor-card__small-image" *ngFor="let listing of item.listings" [src]="listing.image" />
+        </nb-card-footer>
+    </div>
 </nb-card>
