@@ -31,8 +31,10 @@ export class SearchLocationComponent implements OnInit, OnDestroy {
                 .pipe(
                     filter((x) => {
                         const hasValue = !!x;
-                        // !hasValue && this.clearInput();
-                        // !hasValue && this.inputRef && this.inputRef.nativeElement.blur();
+                        if (!hasValue) {
+                            this.clearInput();
+                            this.inputRef && this.inputRef.nativeElement.blur();
+                        }
                         return hasValue;
                     })
                 )
