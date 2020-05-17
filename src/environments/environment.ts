@@ -22,6 +22,9 @@ export const environment = {
         appId: "plE162XX1EVN",
         apiKey: "4a4c3cf361db92d120cd34df02428008",
     },
+    stripeConfig: {
+        clientId: "ca_HILhZG81aT4uMmUH1AulxZh5wmmP7jGF",
+    },
 };
 
 /*
