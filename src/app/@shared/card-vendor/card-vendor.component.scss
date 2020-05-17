@@ -9,6 +9,31 @@
         display: flex;
         padding: 12px;
         height: 75px;
+        border-bottom: 0;
+    }
+
+    &__description-and-listings {
+        display: flex;
+        height: 165px;
+        flex-direction: column;
+    }
+    &__images-section {
+        flex-grow: 1;
+        border-top: 12px solid white;
+        display: grid;
+        min-height: 105px;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+    &__images-section-no-description {
+        flex-grow: 1;
+        display: grid;
+        min-height: 105px;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+    &__body-section {
+        padding: 0 12px;
+
+        overflow: hidden;
     }
 
     &__image {
@@ -31,44 +56,16 @@
         height: 100%;
     }
 
-    &__footerWrapper {
-        padding: 0;
-        height: 109px;
-        border-top: 12px solid white;
-    }
-    &__footerWrapperOnlyListings {
-        padding: 0;
-    }
-
-    &__footer {
-        border-top: 0;
-        padding: 0;
-        height: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: flex-end;
-        justify-content: flex-end;
-    }
-
     &__small-image {
-        width: 25%;
         height: 100%;
+        width: 100%;
 
-        flex-grow: 1;
         object-fit: cover;
         object-position: center;
-
-        @media (max-width: 1050px) {
-            min-width: auto;
-
-            width: 33.33%;
-        }
-        @media (max-width: 600px) {
-            width: 25%;
-        }
-        @media (max-width: 420px) {
-            width: 33.33%;
-        }
+    }
+    &__seperator {
+        min-height: 21px;
+        flex-grow: 1;
     }
 
     .vendor-info {
@@ -77,26 +74,6 @@
             height: 1.5em;
             overflow: hidden;
             text-overflow: ellipsis;
-        }
-
-        &__descriptionWrapper {
-            padding: 12px;
-        }
-        &__description {
-            // padding: 12px;
-            // display: -webkit-box;
-            // -webkit-line-clamp: 3;
-            // -webkit-box-orient: vertical;
-            // overflow: hidden;
-            // text-overflow: ellipsis;
-        }
-        &__descriptionWithListings {
-            padding: 12px;
-            height: 55px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
         }
     }
 }

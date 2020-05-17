@@ -7,44 +7,22 @@
         </div>
     </nb-card-header>
 
-    <!-- DESCRIPTION AND LISTINGS AVAILABLE -->
-    <div class="vendor-card__descriptionAndListingsWrapper" *ngIf="item.description && item.listings.length">
-        <p class="vendor-info__descriptionWithListings">{{ item.description }}</p>
-        <div *ngIf="item.listings" class="vendor-card__footerWrapper">
-            <nb-card-footer *ngIf="item.listings" class="vendor-card__footer">
-                <img class="vendor-card__small-image" *ngFor="let listing of item.listings" [src]="listing.image" />
-            </nb-card-footer>
+    <div class="vendor-card__description-and-listings">
+        <!-- DESCRIPTION AND LISTINGS -->
+        <div *ngIf="item.description" class="vendor-card__body-section">
+            <p>{{ item.description }}</p>
         </div>
-    </div>
 
-    <!-- ONLY DESCRIPTION AVAILABLE  I DOES NOT WORK-->
-    <div class="vendor-card__descriptionAndListingsWrapper" *ngIf="item.description && !item.listings.length">
-        <p class="vendor-info__descriptionWithListings">{{ item.description }}</p>
-        <div class="vendor-card__footerWrapper">
-            <nb-card-footer *ngIf="item.listings" class="vendor-card__footer">
-                XXX
-            </nb-card-footer>
-        </div>
-    </div>
-
-    <!-- ONLY LISTINGS AVAILABLE -->
-    <div *ngIf="!item.description && item.listings.length">
-        <div *ngIf="item.listings" class="vendor-card__footerWrapperOnlyListings">
-            <nb-card-footer *ngIf="item.listings" class="vendor-card__footer">
-                <img class="vendor-card__small-image" *ngFor="let listing of item.listings" [src]="listing.image" />
-            </nb-card-footer>
-        </div>
-    </div>
-
-    <!-- <div *ngIf="item.description">
-        <p class="vendor-info__description">
-      
-        </p>
-    </div>
-
-    <div *ngIf="item.listings" class="vendor-card__footerWrapper">
-        <nb-card-footer *ngIf="item.listings" class="vendor-card__footer">
+        <div *ngIf="item.description && item.listings.length" class="vendor-card__images-section">
             <img class="vendor-card__small-image" *ngFor="let listing of item.listings" [src]="listing.image" />
-        </nb-card-footer>
-    </div> -->
+        </div>
+
+        <!-- NO LISTINGS -->
+        <div *ngIf="!item.listings.length" class="vendor-card__seperator"></div>
+
+        <!-- LISTINGS BUT NO DESCRIPTION -->
+        <div *ngIf="!item.description && item.listings.length" class="vendor-card__images-section-no-description">
+            <img class="vendor-card__small-image" *ngFor="let listing of item.listings" [src]="listing.image" />
+        </div>
+    </div>
 </nb-card>
