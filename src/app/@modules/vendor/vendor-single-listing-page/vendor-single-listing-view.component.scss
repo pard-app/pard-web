@@ -34,6 +34,7 @@
 
     &__description {
         overflow: scroll;
+        overflow-x: hidden;
         max-height: 300px;
         @media only screen and (max-width: 640px) {
             max-width: 95%;
