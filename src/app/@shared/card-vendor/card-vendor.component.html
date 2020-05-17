@@ -8,7 +8,7 @@
     </nb-card-header>
 
     <!-- DESCRIPTION AND LISTINGS AVAILABLE -->
-    <div class="vendor-card__descriptionAndListingsWrapper" *ngIf="item.description && item.listings">
+    <div class="vendor-card__descriptionAndListingsWrapper" *ngIf="item.description && item.listings.length">
         <p class="vendor-info__descriptionWithListings">{{ item.description }}</p>
         <div *ngIf="item.listings" class="vendor-card__footerWrapper">
             <nb-card-footer *ngIf="item.listings" class="vendor-card__footer">
@@ -16,10 +16,19 @@
             </nb-card-footer>
         </div>
     </div>
+
     <!-- ONLY DESCRIPTION AVAILABLE  I DOES NOT WORK-->
-    <p *ngIf="item.description && !item.listings">XXX</p>
+    <div class="vendor-card__descriptionAndListingsWrapper" *ngIf="item.description && !item.listings.length">
+        <p class="vendor-info__descriptionWithListings">{{ item.description }}</p>
+        <div class="vendor-card__footerWrapper">
+            <nb-card-footer *ngIf="item.listings" class="vendor-card__footer">
+                XXX
+            </nb-card-footer>
+        </div>
+    </div>
+
     <!-- ONLY LISTINGS AVAILABLE -->
-    <div *ngIf="!item.description && item.listings">
+    <div *ngIf="!item.description && item.listings.length">
         <div *ngIf="item.listings" class="vendor-card__footerWrapperOnlyListings">
             <nb-card-footer *ngIf="item.listings" class="vendor-card__footer">
                 <img class="vendor-card__small-image" *ngFor="let listing of item.listings" [src]="listing.image" />
