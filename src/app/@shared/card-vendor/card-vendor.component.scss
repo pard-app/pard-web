@@ -7,6 +7,7 @@
         padding: 12px;
         height: 75px;
     }
+
     &__image {
         height: 100%;
         width: 100%;
@@ -71,17 +72,21 @@
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
     }
+    &__location {
+        opacity: 0.8;
+    }
     &__descriptionSM {
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
+        color: rgba(68, 68, 79, 0.8);
     }
     &__descriptionMD {
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 7;
-
+        color: rgba(68, 68, 79, 0.8);
         -webkit-box-orient: vertical;
     }
 }
