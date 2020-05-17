@@ -113,6 +113,10 @@
         </nb-card>
     </nb-step>
 
+    <nb-step [label]="'PAYMENT' | translate">
+        <checkout-payment *ngIf="stepper.selectedIndex === 2" [stepper]="stepper"></checkout-payment>
+    </nb-step>
+
     <nb-step [label]="'REVIEW' | translate">
         <nb-card>
             <nb-card-header>

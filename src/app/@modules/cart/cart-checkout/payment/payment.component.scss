@@ -1,0 +1,42 @@
+@import "~src/app/@core/styles/themes";
+
+// STRIPE
+.StripeElement {
+    box-sizing: border-box;
+    height: 48px;
+    padding: 14px 12px;
+    margin: 10px 0;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: white;
+
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+    border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+}
+
+.card-errors {
+    height: 30px;
+    color: nb-theme(color-danger-500);
+    line-height: 30px;
+    font-size: 0.9em;
+}
+
+.actions {
+    display: flex;
+    button:first-child {
+        margin-right: 10px;
+    }
+}

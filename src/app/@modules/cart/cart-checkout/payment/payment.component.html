@@ -1,0 +1,29 @@
+<nb-card>
+    <nb-card-header>
+        <h4>{{ "PAYMENT" | translate }}</h4>
+    </nb-card-header>
+    <nb-card-body>
+        <form #paymentCardForm action="/charge" method="post" #paymentForm id="payment-form">
+            <div class="form-row">
+                <label for="card-element">
+                    Credit or debit card
+                </label>
+                <div id="card-element">
+                    <!-- A Stripe Element will be inserted here. -->
+                </div>
+
+                <!-- Used to display form errors. -->
+                <div id="card-errors" class="card-errors" role="alert">
+                    {{ cardError }}
+                </div>
+            </div>
+        </form>
+    </nb-card-body>
+    <nb-card-footer>
+        <!-- <div class="captcha"><re-captcha (resolved)="resolved($event)" siteKey="6LfmFPAUAAAAAAZ-eQOCKCfyToqVGDyX-HQ6BVg-"></re-captcha></div> -->
+        <div class="actions">
+            <button nbButton nbStepperPrevious>{{ "PREVIOUS" | translate }}</button>
+            <button nbButton submit (click)="submitPayment()" outline status="success">Submit payment</button>
+        </div>
+    </nb-card-footer>
+</nb-card>

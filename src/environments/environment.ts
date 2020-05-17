@@ -24,6 +24,7 @@ export const environment = {
     },
     stripeConfig: {
         clientId: "ca_HILhZG81aT4uMmUH1AulxZh5wmmP7jGF",
+        publishableKey: "pk_test_vqUmVCOAR4507T1aqY6BCYZV00Is2EbhfU",
     },
 };
 

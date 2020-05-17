@@ -17,9 +17,10 @@ import { SharedModule } from "../../../@shared/shared.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RecaptchaModule, RecaptchaFormsModule } from "ng-recaptcha";
 import { RouterModule } from "@angular/router";
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
-    declarations: [CartCheckoutComponent],
+    declarations: [CartCheckoutComponent, PaymentComponent],
     imports: [
         CommonModule,
         FormsModule,
