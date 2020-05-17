@@ -6,23 +6,25 @@
             <p class="vendor-info__location">{{ item.city }}, {{ item.country }}</p>
         </div>
     </nb-card-header>
-
-    <div class="vendor-card__description-and-listings">
-        <!-- DESCRIPTION AND LISTINGS -->
-        <div *ngIf="item.description" class="vendor-card__body-section">
-            <p>{{ item.description }}</p>
+    <!-- DESCRIPTION AND LISTINGS -->
+    <div *ngIf="item.description && item.listings.length">
+        <div class="vendor-card__body-sectionSM">
+            <p class="vendor-info__descriptionSM">{{ item.description }}</p>
         </div>
-
-        <div *ngIf="item.description && item.listings.length" class="vendor-card__images-section">
-            <img class="vendor-card__small-image" *ngFor="let listing of item.listings" [src]="listing.image" />
+        <nb-card-footer class="vendor-card__images-sectionSM">
+            <div *ngFor="let listing of item.listings"><img class="vendor-card__small-image" [src]="listing.image" /></div>
+        </nb-card-footer>
+    </div>
+    <!-- DESCRIPTION ONLY -->
+    <div *ngIf="item.description && !item.listings.length">
+        <div class="vendor-card__body-sectionMD">
+            <p class="vendor-info__descriptionMD">{{ item.description }}</p>
         </div>
-
-        <!-- NO LISTINGS -->
-        <div *ngIf="!item.listings.length" class="vendor-card__seperator"></div>
-
-        <!-- LISTINGS BUT NO DESCRIPTION -->
-        <div *ngIf="!item.description && item.listings.length" class="vendor-card__images-section-no-description">
-            <img class="vendor-card__small-image" *ngFor="let listing of item.listings" [src]="listing.image" />
-        </div>
+    </div>
+    <!-- LISTINGS ONLY -->
+    <div *ngIf="!item.description && item.listings.length">
+        <nb-card-footer class="vendor-card__images-sectionMD">
+            <div *ngFor="let listing of item.listings"><img class="vendor-card__small-image" [src]="listing.image" /></div>
+        </nb-card-footer>
     </div>
 </nb-card>

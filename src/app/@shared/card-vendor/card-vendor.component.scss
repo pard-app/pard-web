@@ -1,41 +1,12 @@
 .vendor-card {
-    height: 100%;
     min-width: 230px;
     height: 240px;
-
     margin-bottom: 0;
-
     &__header {
         display: flex;
         padding: 12px;
         height: 75px;
-        border-bottom: 0;
     }
-
-    &__description-and-listings {
-        display: flex;
-        height: 165px;
-        flex-direction: column;
-    }
-    &__images-section {
-        flex-grow: 1;
-        border-top: 12px solid white;
-        display: grid;
-        min-height: 105px;
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    }
-    &__images-section-no-description {
-        flex-grow: 1;
-        display: grid;
-        min-height: 105px;
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    }
-    &__body-section {
-        padding: 0 12px;
-
-        overflow: hidden;
-    }
-
     &__image {
         height: 100%;
         width: 100%;
@@ -51,29 +22,66 @@
         margin-right: 15px;
         border-radius: var(--card-border-radius);
     }
-
-    &__descriptionAndListingsWrapper {
-        height: 100%;
+    &__body-sectionSM {
+        height: 60px;
+        padding: 10px;
+        padding-left: 12px;
+        padding-right: 12px;
+        display: flex;
+        align-items: center;
+    }
+    &__body-sectionMD {
+        height: 165px;
+        padding: 10px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    &__images-sectionSM {
+        border-top: 0;
+        display: grid;
+        padding: 0;
+        height: 105px;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+    &__images-sectionMD {
+        border-top: 0;
+        display: grid;
+        padding: 0;
+        height: 165px;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     }
 
+    &__small-imageContainer {
+    }
     &__small-image {
-        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
         width: 100%;
+        height: 100%;
 
         object-fit: cover;
         object-position: center;
     }
-    &__seperator {
-        min-height: 21px;
-        flex-grow: 1;
-    }
+}
 
-    .vendor-info {
-        &__title {
-            line-height: 1.5em;
-            height: 1.5em;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+.vendor-info {
+    &__title {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+    &__descriptionSM {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    &__descriptionMD {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 7;
+
+        -webkit-box-orient: vertical;
     }
 }
