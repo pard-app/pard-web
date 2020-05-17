@@ -2,16 +2,29 @@
     <nb-card-header class="vendor-card__header">
         <div *ngIf="item.image" class="vendor-card__imageWrapper"><img class="vendor-card__image" [src]="item.image" [alt]="item.title" /></div>
         <div class="vendor-info">
-            <h3 class="vendor-info__title">{{ item.title }}</h3>
-            <h5 class="vendor-info__location">{{ item.city }}, {{ item.country }}</h5>
+            <h6 class="vendor-info__title">{{ item.title }}</h6>
+            <p class="vendor-info__location">{{ item.city }}, {{ item.country }}</p>
         </div>
     </nb-card-header>
-    <nb-card-body class="vendor-card__body" *ngIf="item.description">
-        <p class="vendor-info__description">
-            {{ item.description }}
-        </p></nb-card-body
-    >
-    <nb-card-footer *ngIf="item.image" class="vendor-card__footer">
-        <img class="vendor-card__small-image" *ngFor="let listing of item.listings" [src]="listing.image" />
-    </nb-card-footer>
+    <!-- DESCRIPTION AND LISTINGS -->
+    <div *ngIf="item.description && item.listings.length">
+        <div class="vendor-card__body-sectionSM">
+            <p class="vendor-info__descriptionSM">{{ item.description }}</p>
+        </div>
+        <nb-card-footer class="vendor-card__images-sectionSM">
+            <div *ngFor="let listing of item.listings"><img class="vendor-card__small-image" [src]="listing.image" /></div>
+        </nb-card-footer>
+    </div>
+    <!-- DESCRIPTION ONLY -->
+    <div *ngIf="item.description && !item.listings.length">
+        <div class="vendor-card__body-sectionMD">
+            <p class="vendor-info__descriptionMD">{{ item.description }}</p>
+        </div>
+    </div>
+    <!-- LISTINGS ONLY -->
+    <div *ngIf="!item.description && item.listings.length">
+        <nb-card-footer class="vendor-card__images-sectionMD">
+            <div *ngFor="let listing of item.listings"><img class="vendor-card__small-image" [src]="listing.image" /></div>
+        </nb-card-footer>
+    </div>
 </nb-card>

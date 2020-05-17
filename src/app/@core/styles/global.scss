@@ -37,9 +37,12 @@ h6 {
     @media only screen and (max-width: 1260px) {
         border: none;
         padding: var(--card-padding);
+        padding-right: 15px;
+        padding-left: 15px;
         margin: 0;
         border-radius: 0;
     }
+
     @media only screen and (max-width: 600px) {
         padding-right: 10px;
         padding-left: 10px;
@@ -83,11 +86,6 @@ h6 {
     @media only screen and (max-width: 455px) {
         font-size: 1em;
         margin: 8px 0;
-    }
-    @media only screen and (max-width: 390px) {
-        font-size: 0.82em;
-        margin: 8px 0;
-        white-space: auto;
     }
 
     &--large {
@@ -140,6 +138,11 @@ h3 {
     @media only screen and (max-width: 640px) {
         border: none;
     }
+}
+
+.noSidePadding {
+    padding-right: 0;
+    padding-left: 0;
 }
 
 .cartlist {

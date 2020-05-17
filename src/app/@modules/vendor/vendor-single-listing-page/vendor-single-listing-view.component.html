@@ -3,18 +3,18 @@
         <div class="listing__imageWrapper">
             <img class="listing__image" [src]="listing.image" />
         </div>
-        <div class="listing__shareAndDescription">
-            <div class="listing__descriptionSection">
-                <div class="listing__descriptionWrapper">
-                    <h2 class="listing__listingTitle">{{ listing.title }}</h2>
-                    <h3 class="listing__price">{{ listing.price | currency }}</h3>
-                    <p class="listing__description">{{ listing.description }}</p>
 
-                    <button class="listing__addToCardButton" nbButton status="info" (click)="addToCart()">
-                        <nb-icon icon="shopping-bag-outline"></nb-icon>
-                        {{ "ADD_TO_CART" | translate }}
-                    </button>
-                </div>
+        <div class="listing__descriptionSection">
+            <div class="listing__descriptionWrapper">
+                <h4 class="listing__listingTitle">{{ listing.title }}</h4>
+                <h3 class="listing__price">{{ listing.price | currency }}</h3>
+
+                <p class="listing__description">{{ listing.description }}</p>
+
+                <button class="listing__addToCardButton" nbButton status="info" (click)="addToCart()">
+                    <nb-icon icon="shopping-bag-outline"></nb-icon>
+                    {{ "ADD_TO_CART" | translate }}
+                </button>
             </div>
         </div>
     </nb-card-header>
