@@ -4,18 +4,11 @@
     height: 240px;
 
     margin-bottom: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
     &__header {
         display: flex;
         padding: 12px;
-        flex-direction: row;
-    }
-    &__headerPresentation {
-        display: flex;
-        justify-content: row;
+        height: 75px;
     }
 
     &__image {
@@ -34,11 +27,21 @@
         border-radius: var(--card-border-radius);
     }
 
+    &__descriptionAndListingsWrapper {
+        height: 100%;
+    }
+
     &__footerWrapper {
+        padding: 0;
+        height: 109px;
+        border-top: 12px solid white;
+    }
+    &__footerWrapperOnlyListings {
         padding: 0;
     }
 
     &__footer {
+        border-top: 0;
         padding: 0;
         height: 100%;
         display: flex;
@@ -69,12 +72,31 @@
     }
 
     .vendor-info {
+        &__title {
+            line-height: 1.5em;
+            height: 1.5em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
         &__descriptionWrapper {
             padding: 12px;
-            overflow: initial;
-            flex-grow: 1;
         }
         &__description {
+            // padding: 12px;
+            // display: -webkit-box;
+            // -webkit-line-clamp: 3;
+            // -webkit-box-orient: vertical;
+            // overflow: hidden;
+            // text-overflow: ellipsis;
+        }
+        &__descriptionWithListings {
+            padding: 12px;
+            height: 55px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
     }
 }

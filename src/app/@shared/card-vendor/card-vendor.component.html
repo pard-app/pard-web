@@ -7,15 +7,35 @@
         </div>
     </nb-card-header>
 
-    <nb-card-body class="vendor-info__descriptionWrapper" *ngIf="item.description">
+    <!-- DESCRIPTION AND LISTINGS AVAILABLE -->
+    <div class="vendor-card__descriptionAndListingsWrapper" *ngIf="item.description && item.listings">
+        <p class="vendor-info__descriptionWithListings">{{ item.description }}</p>
+        <div *ngIf="item.listings" class="vendor-card__footerWrapper">
+            <nb-card-footer *ngIf="item.listings" class="vendor-card__footer">
+                <img class="vendor-card__small-image" *ngFor="let listing of item.listings" [src]="listing.image" />
+            </nb-card-footer>
+        </div>
+    </div>
+    <!-- ONLY DESCRIPTION AVAILABLE  I DOES NOT WORK-->
+    <p *ngIf="item.description && !item.listings">XXX</p>
+    <!-- ONLY LISTINGS AVAILABLE -->
+    <div *ngIf="!item.description && item.listings">
+        <div *ngIf="item.listings" class="vendor-card__footerWrapperOnlyListings">
+            <nb-card-footer *ngIf="item.listings" class="vendor-card__footer">
+                <img class="vendor-card__small-image" *ngFor="let listing of item.listings" [src]="listing.image" />
+            </nb-card-footer>
+        </div>
+    </div>
+
+    <!-- <div *ngIf="item.description">
         <p class="vendor-info__description">
-            {{ item.description }}
-        </p></nb-card-body
-    >
+      
+        </p>
+    </div>
 
     <div *ngIf="item.listings" class="vendor-card__footerWrapper">
         <nb-card-footer *ngIf="item.listings" class="vendor-card__footer">
             <img class="vendor-card__small-image" *ngFor="let listing of item.listings" [src]="listing.image" />
         </nb-card-footer>
-    </div>
+    </div> -->
 </nb-card>
