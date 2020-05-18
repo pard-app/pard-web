@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, Input, ViewChild, ElementRef } from "@angular/core";
 import { loadStripe, Stripe, StripeCardElement } from "@stripe/stripe-js";
 import { environment } from "src/environments/environment";
+import { CartStoreService } from "@core/stores/cart/cart.store.service";
 
 @Component({
     selector: "checkout-payment",
@@ -13,8 +14,11 @@ export class PaymentComponent implements AfterViewInit {
     public stripe: Stripe;
     public cardError: string;
     public card: StripeCardElement;
+    public totalAmount: number;
 
-    constructor() {}
+    constructor(private cartStore: CartStoreService) {
+        this.totalAmount = this.cartStore.totalPriceWithDelivery;
+    }
 
     async ngAfterViewInit() {
         this.stripe = await loadStripe(environment.stripeConfig.publishableKey);
@@ -24,6 +28,7 @@ export class PaymentComponent implements AfterViewInit {
                 base: {
                     color: "#32325d",
                     fontSmoothing: "antialiased",
+                    fontFamily: "Comfortaa, sans-serif",
                     fontSize: "16px",
                     "::placeholder": {
                         color: "#768fa7",

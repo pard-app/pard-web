@@ -2,19 +2,21 @@
     <nb-card-header>
         <h4>{{ "PAYMENT" | translate }}</h4>
     </nb-card-header>
-    <nb-card-body>
+    <nb-card-body class="payment-body">
+        <h5 class="StripeElement">
+            {{ "TOTAL" | translate }}: <strong>{{ totalAmount | currency }}</strong>
+            <p>{{ "CREDIT_OR_DEBIT" | translate }}</p>
+        </h5>
+
         <form #paymentCardForm action="/charge" method="post" #paymentForm id="payment-form">
             <div class="form-row">
-                <label for="card-element">
-                    Credit or debit card
-                </label>
                 <div id="card-element">
                     <!-- A Stripe Element will be inserted here. -->
                 </div>
 
                 <!-- Used to display form errors. -->
                 <div id="card-errors" class="card-errors" role="alert">
-                    {{ cardError }}
+                    <p *ngIf="cardError" class="card-errors__text">{{ cardError }}</p>
                 </div>
             </div>
         </form>
@@ -23,7 +25,9 @@
         <!-- <div class="captcha"><re-captcha (resolved)="resolved($event)" siteKey="6LfmFPAUAAAAAAZ-eQOCKCfyToqVGDyX-HQ6BVg-"></re-captcha></div> -->
         <div class="actions">
             <button nbButton nbStepperPrevious>{{ "PREVIOUS" | translate }}</button>
-            <button nbButton submit (click)="submitPayment()" outline status="success">Submit payment</button>
+            <button nbButton submit (click)="submitPayment()" hero status="info" class="submit-payment-button">
+                {{ "SUBMIT_PAYMENT" | translate }} <nb-icon icon="credit-card-outline"></nb-icon>
+            </button>
         </div>
     </nb-card-footer>
 </nb-card>

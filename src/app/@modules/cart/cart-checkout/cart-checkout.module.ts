@@ -12,12 +12,12 @@ import {
     NbProgressBarModule,
     NbSpinnerModule,
     NbDialogModule,
+    NbIconModule,
 } from "@nebular/theme";
 import { SharedModule } from "../../../@shared/shared.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { RecaptchaModule, RecaptchaFormsModule } from "ng-recaptcha";
 import { RouterModule } from "@angular/router";
-import { PaymentComponent } from './payment/payment.component';
+import { PaymentComponent } from "./payment/payment.component";
 
 @NgModule({
     declarations: [CartCheckoutComponent, PaymentComponent],
@@ -36,6 +36,7 @@ import { PaymentComponent } from './payment/payment.component';
         NbUserModule,
         NbSpinnerModule,
         SharedModule,
+        NbIconModule,
         NbDialogModule.forChild(),
         // RecaptchaModule,
         // RecaptchaFormsModule,

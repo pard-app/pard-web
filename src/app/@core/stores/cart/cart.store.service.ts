@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from "@angular/core";
 import { ListingItem, CartItem, CartItemObject } from "src/app/@core/models/listingitem.interface";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, Observable, Subject } from "rxjs";
 import { CART_CONSTANTS } from "src/app/@core/constants/cart.constants";
 import { ListingService } from "@services/listing/listing.service";
 import { IVendor } from "src/app/@core/models/vendor.interface";
@@ -16,11 +16,20 @@ export class CartStoreService {
     private readonly cartItems$: Observable<CartItemObject> = this._cartItems$.asObservable();
     private readonly cartItemLimit: number = 99;
     public _lastAddedItem$ = new BehaviorSubject<ListingItem>(null);
+    private _delivery$ = new BehaviorSubject<boolean>(false);
 
     // Vendors
     private readonly _vendorsOfCartItems$ = new BehaviorSubject<Array<IVendor> | any>([]);
 
     constructor(private listingService: ListingService, private vendorService: VendorService) {}
+
+    public get getDelivery(): boolean {
+        return this._delivery$.getValue();
+    }
+
+    public setDelivery(val: boolean) {
+        this._delivery$.next(val);
+    }
 
     public get cartItemsLength(): number {
         return Object.keys(this.cartItems).length;
@@ -28,6 +37,25 @@ export class CartStoreService {
 
     public get isCartFull(): boolean {
         return this.cartItemsLength >= this.cartItemLimit;
+    }
+
+    public get totalListingCosts() {
+        return Object.values(this.cartItems).reduce((acc, currItem: CartItem) => acc + currItem.item.price * currItem.quantity, 0);
+    }
+
+    public get totalDeliveryCosts() {
+        if (!this._delivery$.getValue()) return 0;
+        return this.vendorsOfCartItems.reduce((acc, currItem) => {
+            if (currItem.delivery) {
+                return acc + currItem.delivery_costs;
+            } else {
+                return acc;
+            }
+        }, 0);
+    }
+
+    public get totalPriceWithDelivery() {
+        return this.totalListingCosts + this.totalDeliveryCosts;
     }
 
     // lastest emitted value

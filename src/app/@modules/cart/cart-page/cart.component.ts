@@ -14,8 +14,12 @@ export class CartComponent implements OnInit {
     public globalRoutes = ROUTING_CONSTANTS;
     public view: string = ROUTING_CONSTANTS.CART_LISTINGS_PAGE_ROOT;
     public delivery: boolean;
+    public totalPriceWithDelivery: number = 0;
 
-    constructor(private cartStoreService: CartStoreService, private route: ActivatedRoute) {}
+    constructor(private cartStoreService: CartStoreService, private route: ActivatedRoute) {
+        this.delivery = this.cartStoreService.getDelivery;
+        this.totalPriceWithDelivery = this.cartStoreService.totalPriceWithDelivery;
+    }
 
     async ngOnInit() {
         this.route.url.subscribe((x) => {
@@ -36,25 +40,6 @@ export class CartComponent implements OnInit {
         return this.cartStoreService.get("vendorsOfCartItems");
     }
 
-    get totalListingCosts() {
-        return Object.values(this.cartItems).reduce((acc, currItem: CartItem) => acc + currItem.item.price * currItem.quantity, 0);
-    }
-
-    get totalDeliveryCosts() {
-        if (!this.delivery) return 0;
-        return this.vendorsOfCartItems.reduce((acc, currItem) => {
-            if (currItem.delivery) {
-                return acc + currItem.delivery_costs;
-            } else {
-                return acc;
-            }
-        }, 0);
-    }
-
-    get totalPriceWithDelivery() {
-        return this.totalListingCosts + this.totalDeliveryCosts;
-    }
-
     removeItem(id): void {
         this.cartStoreService.removeCartItem(id);
     }
@@ -64,7 +49,7 @@ export class CartComponent implements OnInit {
     }
 
     toggleDelivery(delivery: boolean) {
-        this.delivery = delivery;
+        this.cartStoreService.setDelivery(delivery);
     }
 
     ngOnDestroy(): void {}
