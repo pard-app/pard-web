@@ -1,5 +1,8 @@
 @import "~src/app/@core/styles/themes";
 
+:host {
+    display: block;
+}
 .payment-body {
     background-color: nb-theme(color-basic-300);
 }

@@ -114,40 +114,43 @@
     </nb-step>
 
     <nb-step [label]="'REVIEW_AND_PAY' | translate">
-        <nb-card>
+        <nb-card class="review-card">
             <nb-card-header>
-                <h4>{{ "REVIEW_AND_PAY" | translate }}</h4>
+                <h4>{{ "BUYER" | translate }}</h4>
+            </nb-card-header>
+            <nb-card-body class="buyer">
+                <strong>{{ "NAME" | translate }}</strong
+                >: {{ formBasic.value.firstName + " " + formBasic.value.lastName }}
+                <br />
+                <strong>{{ "EMAIL" | translate }}</strong
+                >: {{ formBasic.value.email }}
+                <br />
+                <strong>{{ "PHONE" | translate }}</strong
+                >: {{ formBasic.value.phone }}
+
+                <div *ngIf="this.formDelivery.value.delivery">
+                    <strong>{{ "ADDRESS" | translate }}</strong
+                    >: {{ formDelivery.value.address }} <br />
+                    <strong>{{ "CITY" | translate }}</strong
+                    >: {{ formDelivery.value.city }} <br />
+                    <strong>{{ "COUNTY" | translate }}</strong
+                    >: {{ formDelivery.value.county }} <br />
+                    <strong>{{ "COUNTRY" | translate }}</strong
+                    >: {{ formDelivery.value.country }} <br />
+                    <strong>{{ "POSTCODE" | translate }}</strong
+                    >: {{ formDelivery.value.postCode }} <br />
+                    <strong>{{ "COMMENTS" | translate }}</strong
+                    >:<em> {{ formDelivery.value.comments }}</em>
+                </div>
+            </nb-card-body>
+        </nb-card>
+
+        <nb-card class="review-card">
+            <nb-card-header>
+                <h4>{{ "ITEMS" | translate }}</h4>
             </nb-card-header>
             <nb-card-body>
-                <div class="buyer">
-                    <h1>{{ "BUYER" | translate }}</h1>
-                    <strong>{{ "NAME" | translate }}</strong
-                    >: {{ formBasic.value.firstName + " " + formBasic.value.lastName }}
-                    <br />
-                    <strong>{{ "EMAIL" | translate }}</strong
-                    >: {{ formBasic.value.email }}
-                    <br />
-                    <strong>{{ "PHONE" | translate }}</strong
-                    >: {{ formBasic.value.phone }}
-
-                    <div *ngIf="this.formDelivery.value.delivery">
-                        <strong>{{ "ADDRESS" | translate }}</strong
-                        >: {{ formDelivery.value.address }} <br />
-                        <strong>{{ "CITY" | translate }}</strong
-                        >: {{ formDelivery.value.city }} <br />
-                        <strong>{{ "COUNTY" | translate }}</strong
-                        >: {{ formDelivery.value.county }} <br />
-                        <strong>{{ "COUNTRY" | translate }}</strong
-                        >: {{ formDelivery.value.country }} <br />
-                        <strong>{{ "POSTCODE" | translate }}</strong
-                        >: {{ formDelivery.value.postCode }} <br />
-                        <strong>{{ "COMMENTS" | translate }}</strong
-                        >:<em> {{ formDelivery.value.comments }}</em>
-                    </div>
-                </div>
                 <div class="items">
-                    <h1>{{ "ITEMS" | translate }}</h1>
-
                     <nb-card *ngFor="let entry of review" class="card-review">
                         <nb-card-header>
                             <nb-user
@@ -168,17 +171,17 @@
                     </nb-card>
                 </div>
             </nb-card-body>
-            <nb-card-footer>
-                <!-- <div class="captcha"><re-captcha (resolved)="resolved($event)" siteKey="6LfmFPAUAAAAAAZ-eQOCKCfyToqVGDyX-HQ6BVg-"></re-captcha></div> -->
+            <!-- <div class="captcha"><re-captcha (resolved)="resolved($event)" siteKey="6LfmFPAUAAAAAAZ-eQOCKCfyToqVGDyX-HQ6BVg-"></re-captcha></div> -->
+            <!-- <nb-card-footer>
                 <div class="actions">
                     <button nbButton nbStepperPrevious>{{ "PREVIOUS" | translate }}</button>
                     <button nbButton nbStepperNext hero status="success" (click)="submitOrder(); formProgress = 100" fullWidth>
                         {{ "PLACE_ORDER" | translate }}
                     </button>
                 </div>
-            </nb-card-footer>
+            </nb-card-footer> -->
         </nb-card>
-        <checkout-payment *ngIf="stepper.selectedIndex === 2" [stepper]="stepper"></checkout-payment>
+        <checkout-payment class="review-card" *ngIf="stepper.selectedIndex === 2" [stepper]="stepper"></checkout-payment>
     </nb-step>
 
     <nb-step [label]="'CONFIRMATION' | translate">
