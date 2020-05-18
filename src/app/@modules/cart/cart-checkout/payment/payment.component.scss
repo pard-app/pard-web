@@ -45,6 +45,7 @@
 
 .actions {
     display: flex;
+    flex-wrap: wrap-reverse;
     button:first-child {
         margin-right: 10px;
     }

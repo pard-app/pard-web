@@ -11,6 +11,12 @@
     }
 }
 
+.checkout-body {
+    @media only screen and (max-width: 600px) {
+        padding: 10px;
+    }
+}
+
 .summary {
     grid-area: summary;
     &__body {
