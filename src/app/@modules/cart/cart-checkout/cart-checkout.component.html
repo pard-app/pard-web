@@ -181,7 +181,12 @@
                 </div>
             </nb-card-footer> -->
         </nb-card>
-        <checkout-payment class="review-card" *ngIf="stepper.selectedIndex === 2" [stepper]="stepper"></checkout-payment>
+        <checkout-payment
+            (onSubmitPayment)="submitPayment($event)"
+            class="review-card"
+            *ngIf="stepper.selectedIndex === 2"
+            [stepper]="stepper"
+        ></checkout-payment>
     </nb-step>
 
     <nb-step [label]="'CONFIRMATION' | translate">

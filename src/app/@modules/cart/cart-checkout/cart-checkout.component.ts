@@ -10,7 +10,7 @@ import { NbDialogService } from "@nebular/theme";
 import { TermsAndConditionsModalComponent } from "src/app/@modules/terms-and-conditions/terms-and-conditions-page/terms-and-conditions-modal.component";
 import { Observable, of } from "rxjs";
 import { IVendor } from "@models/vendor.interface";
-
+import stripe from "stripe";
 @Component({
     selector: "app-cart-checkout",
     templateUrl: "./cart-checkout.component.html",
@@ -139,6 +139,18 @@ export class CartCheckoutComponent implements OnInit {
         this.loading = false;
         this.confirmedOrder = response ? response : this.translate.instant("ERROR_WHILE_PLACING_ORDER");
         this.cartStoreService.resetCart();
+    }
+
+    public async submitPayment({ token, confirmCardPayment, card }) {
+        const orders = await this.dbService.placeOrder(this.orders, this.buyer, this.delivery, false, this.captcha);
+        console.log(orders);
+        for (const order of orders) {
+            confirmCardPayment(order.paymentIntent.client_secret, { payment_method: { card } }).then((x) => {
+                console.log(x);
+            });
+        }
+        this.loading = false;
+        // this.confirmedOrder = response ? response : this.translate.instant("ERROR_WHILE_PLACING_ORDER");
     }
 
     openTerms() {

@@ -1,5 +1,5 @@
-import { Component, OnInit, AfterViewInit, Input, ViewChild, ElementRef } from "@angular/core";
-import { loadStripe, Stripe, StripeCardElement } from "@stripe/stripe-js";
+import { Component, OnInit, AfterViewInit, Input, ViewChild, ElementRef, Output, EventEmitter } from "@angular/core";
+import { loadStripe, Stripe, StripeCardElement, Token } from "@stripe/stripe-js";
 import { environment } from "src/environments/environment";
 import { CartStoreService } from "@core/stores/cart/cart.store.service";
 
@@ -9,6 +9,7 @@ import { CartStoreService } from "@core/stores/cart/cart.store.service";
     styleUrls: ["./payment.component.scss"],
 })
 export class PaymentComponent implements AfterViewInit {
+    @Output() onSubmitPayment = new EventEmitter<{ token: Token; confirmCardPayment: Function; card: StripeCardElement }>();
     @Input() stepper;
     @ViewChild("paymentForm") paymentForm: ElementRef<HTMLFormElement>;
     public stripe: Stripe;
@@ -58,8 +59,8 @@ export class PaymentComponent implements AfterViewInit {
             // Inform the user if there was an error.
             this.cardError = error.message;
         } else {
-            console.log(token);
-
+            const card = this.card;
+            this.onSubmitPayment.emit({ token, confirmCardPayment: this.stripe.confirmCardPayment, card });
             // Send the token to your server.
             // this.stripeTokenHandler(result.token);
         }
