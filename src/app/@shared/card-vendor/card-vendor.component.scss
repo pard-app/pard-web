@@ -80,13 +80,13 @@
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
-        color: rgba(68, 68, 79, 0.8);
+        opacity: 0.88;
     }
     &__descriptionMD {
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 7;
-        color: rgba(68, 68, 79, 0.8);
+        opacity: 0.88;
         -webkit-box-orient: vertical;
     }
 }
