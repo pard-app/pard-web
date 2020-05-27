@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CartStoreService } from "src/app/@core/stores/cart/cart.store.service";
 import { CartItem, CartItemObject } from "src/app/@core/models/listingitem.interface";
@@ -6,11 +6,11 @@ import { VendorService } from "src/app/@core/services/vendor/vendor.service";
 import { DbService } from "src/app/@core/services/db-service/db-service.service";
 import { TranslateService } from "@ngx-translate/core";
 import { ROUTING_CONSTANTS } from "src/app/@core/constants/routing.constants";
-import { NbDialogService } from "@nebular/theme";
+import { NbDialogService, NbStepperComponent } from "@nebular/theme";
 import { TermsAndConditionsModalComponent } from "src/app/@modules/terms-and-conditions/terms-and-conditions-page/terms-and-conditions-modal.component";
 import { Observable, of } from "rxjs";
 import { IVendor } from "@models/vendor.interface";
-import stripe from "stripe";
+
 @Component({
     selector: "app-cart-checkout",
     templateUrl: "./cart-checkout.component.html",
@@ -24,7 +24,7 @@ export class CartCheckoutComponent implements OnInit {
     public review: any;
     public buyer: any;
     public delivery: any;
-    public loading: boolean = true;
+    public loading: boolean = false;
     public confirmedOrder: any;
     public ROUTES: { [name: string]: string };
     public captcha: string = null;
@@ -33,6 +33,7 @@ export class CartCheckoutComponent implements OnInit {
     @Output() deliveryChanged: EventEmitter<any> = new EventEmitter();
     @Input() vendors: any;
     @Input() cartItems: CartItemObject;
+    @ViewChild("stepper") stepper: NbStepperComponent;
 
     constructor(
         private fb: FormBuilder,
@@ -142,12 +143,12 @@ export class CartCheckoutComponent implements OnInit {
     }
 
     public async submitPayment({ token, confirmCardPayment, card }) {
+        this.loading = true;
         const orders = await this.dbService.placeOrder(this.orders, this.buyer, this.delivery, false, this.captcha);
-        console.log(orders);
+
         for (const order of orders) {
-            confirmCardPayment(order.paymentIntent.client_secret, { payment_method: { card } }).then((x) => {
-                console.log(x);
-            });
+            const paymentRes = await confirmCardPayment(order.paymentIntent.client_secret, { payment_method: { card } });
+            console.log(paymentRes);
         }
         this.loading = false;
         // this.confirmedOrder = response ? response : this.translate.instant("ERROR_WHILE_PLACING_ORDER");

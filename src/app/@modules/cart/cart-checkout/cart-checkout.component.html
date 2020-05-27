@@ -182,10 +182,10 @@
             </nb-card-footer> -->
         </nb-card>
         <checkout-payment
+            [loading]="loading"
             (onSubmitPayment)="submitPayment($event)"
             class="review-card"
             *ngIf="stepper.selectedIndex === 2"
-            [stepper]="stepper"
         ></checkout-payment>
     </nb-step>
 

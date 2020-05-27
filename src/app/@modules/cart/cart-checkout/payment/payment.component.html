@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="primary">
     <nb-card-header>
         <h4>{{ "PAYMENT" | translate }}</h4>
     </nb-card-header>
@@ -25,7 +25,7 @@
         <!-- <div class="captcha"><re-captcha (resolved)="resolved($event)" siteKey="6LfmFPAUAAAAAAZ-eQOCKCfyToqVGDyX-HQ6BVg-"></re-captcha></div> -->
         <div class="actions">
             <button nbButton nbStepperPrevious>{{ "PREVIOUS" | translate }}</button>
-            <button nbButton submit (click)="submitPayment()" hero status="info" class="submit-payment-button">
+            <button [disabled]="loading" nbButton submit (click)="submitPayment()" hero status="info" class="submit-payment-button">
                 {{ "SUBMIT_PAYMENT" | translate }} <nb-icon icon="credit-card-outline"></nb-icon>
             </button>
         </div>

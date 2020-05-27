@@ -11,6 +11,7 @@ import { CartStoreService } from "@core/stores/cart/cart.store.service";
 export class PaymentComponent implements AfterViewInit {
     @Output() onSubmitPayment = new EventEmitter<{ token: Token; confirmCardPayment: Function; card: StripeCardElement }>();
     @Input() stepper;
+    @Input() loading: boolean;
     @ViewChild("paymentForm") paymentForm: ElementRef<HTMLFormElement>;
     public stripe: Stripe;
     public cardError: string;
