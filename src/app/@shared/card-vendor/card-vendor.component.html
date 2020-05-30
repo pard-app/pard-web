@@ -1,30 +1,34 @@
 <nb-card class="vendor-card clickable-card" [routerLink]="globalRoutes.VENDOR_PAGE_ROOT + '/' + item.objectID">
     <nb-card-header class="vendor-card__header">
-        <div *ngIf="item.image" class="vendor-card__imageWrapper"><img class="vendor-card__image" [src]="item.image" [alt]="item.title" /></div>
-        <div class="vendor-info">
-            <h6 class="vendor-info__title">{{ item.title }}</h6>
-            <p class="vendor-info__location">{{ item.city }}, {{ item.country }}</p>
+        <div class="vendor-card__headerWrapper">
+            <div *ngIf="item.image" class="vendor-card__imageWrapper"><img class="vendor-card__image" [src]="item.image" [alt]="item.title" /></div>
+            <div class="vendor-info">
+                <h6 class="vendor-info__title">{{ item.title }}</h6>
+                <p class="vendor-info__location">{{ item.city }}, {{ item.country }}</p>
+            </div>
+        </div>
+        <div class="vendor-card__listingsNumberSection">
+            <div *ngIf="item.listings.length" class="vendor-card__listingsNumber">
+                <nb-icon *ngIf="item.delivery" icon="credit-card-outline" class="vendor-card__icon successTextColor" pack="eva"></nb-icon>
+            </div>
         </div>
     </nb-card-header>
-    <!-- DESCRIPTION AND LISTINGS -->
-    <div *ngIf="item.description && item.listings.length">
-        <div class="vendor-card__body-sectionSM">
-            <p class="vendor-info__descriptionSM">{{ item.description }}</p>
+    <nb-card-body class="vendor-card__body-sectionSM">
+        <p *ngIf="item.description" class="vendor-info__description darkGrayTextColor">{{ item.description }}</p>
+        <p *ngIf="!item.description" class="vendor-info__description grayTextColor">{{ "VENDOR_HAS_NO_DESCRIPTION" | translate }}...</p>
+
+        <p *ngIf="item.delivery" class="vendor-info__deliveryStatus successTextColor">
+            <b> {{ "VENDOR_OFFERS_DELIVERY" | translate }}</b>
+        </p>
+        <p *ngIf="!item.delivery" class="vendor-info__deliveryStatus grayTextColor">
+            {{ "VENDOR_DOES_NOT_OFFER_DELIVERY" | translate }}
+        </p>
+    </nb-card-body>
+    <nb-card-footer *ngIf="item.listings.length" class="vendor-card__footerSection">
+        <div class="vendor-card__gallery">
+            <div *ngFor="let listing of item.listings" class="vendor-card__galleryItem">
+                <img class="vendor-card__smallImage" [src]="listing.image" />
+            </div>
         </div>
-        <nb-card-footer class="vendor-card__images-sectionSM">
-            <div *ngFor="let listing of item.listings"><img class="vendor-card__small-image" [src]="listing.image" /></div>
-        </nb-card-footer>
-    </div>
-    <!-- DESCRIPTION ONLY -->
-    <div *ngIf="item.description && !item.listings.length">
-        <div class="vendor-card__body-sectionMD">
-            <p class="vendor-info__descriptionMD">{{ item.description }}</p>
-        </div>
-    </div>
-    <!-- LISTINGS ONLY -->
-    <div *ngIf="!item.description && item.listings.length">
-        <nb-card-footer class="vendor-card__images-sectionMD">
-            <div *ngFor="let listing of item.listings"><img class="vendor-card__small-image" [src]="listing.image" /></div>
-        </nb-card-footer>
-    </div>
+    </nb-card-footer>
 </nb-card>

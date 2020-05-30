@@ -110,5 +110,6 @@
     "BACK_TO_MAIN_PAGE": "Back to main page",
     "CLOSE": "Close",
     "LISTINGS_IN": "Listings in",
-    "LOAD_MORE": "Load more"
+    "LOAD_MORE": "Load more",
+    "VENDOR_HAS_NO_DESCRIPTION": "Vendor has no description"
 }

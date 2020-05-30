@@ -164,3 +164,20 @@ nb-dialog-container {
 
 .input {
 }
+
+.successTextColor {
+    color: var(--icon-success-color);
+}
+
+.infoTextColor {
+    color: var(--icon-info-color);
+}
+
+.grayTextColor {
+    opacity: 0.4;
+    color: black;
+}
+.darkGrayTextColor {
+    opacity: 0.88;
+    color: black;
+}
