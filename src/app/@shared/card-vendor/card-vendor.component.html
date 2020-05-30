@@ -6,25 +6,68 @@
             <p class="vendor-info__location">{{ item.city }}, {{ item.country }}</p>
         </div>
     </nb-card-header>
-    <!-- DESCRIPTION AND LISTINGS -->
-    <div *ngIf="item.description && item.listings.length">
-        <div class="vendor-card__body-sectionSM">
+    <nb-card-body class="vendor-card__body-sectionSM">
+        <!-- <div class="vendor-card__descriptionWrapper">
+            <h4 class="vendor-card__descriptionIcon"><nb-icon nbPrefix icon="message-circle-outline" pack="eva"></nb-icon></h4>
             <p class="vendor-info__descriptionSM">{{ item.description }}</p>
+        </div> -->
+
+        <p *ngIf="item.description" class="vendor-info__description darkGrayTextColor">{{ item.description }}</p>
+        <p *ngIf="!item.description" class="vendor-info__description grayTextColor">Parduotuvė nepatiekė informacijos apie apie save...</p>
+
+        <p>
+            <span *ngIf="item.description?.length > 105" class="vendor-info__showMore">Skaityti daugiau...</span>
+        </p>
+    </nb-card-body>
+    <nb-card-footer class="vendor-card__footerSection">
+        <div class="vendor-card__gallery">
+            <div *ngFor="let listing of item.listings" class="vendor-card__galleryItem">
+                <img class="vendor-card__smallImage" [src]="listing.image" />
+            </div>
         </div>
-        <nb-card-footer class="vendor-card__images-sectionSM">
-            <div *ngFor="let listing of item.listings"><img class="vendor-card__small-image" [src]="listing.image" /></div>
-        </nb-card-footer>
-    </div>
-    <!-- DESCRIPTION ONLY -->
-    <div *ngIf="item.description && !item.listings.length">
-        <div class="vendor-card__body-sectionMD">
-            <p class="vendor-info__descriptionMD">{{ item.description }}</p>
+        <div class="vendor-card__listingsNumberSection">
+            <div *ngIf="!item.listings.length" class="vendor-card__listingsNumber grayTextColor">
+                <nb-icon icon="shopping-cart-outline" pack="eva"></nb-icon>
+                <h4 class="vendor-card__listingsNumberValue">{{ item.listings.length }}</h4>
+            </div>
+            <div *ngIf="item.listings.length" class="vendor-card__listingsNumber">
+                <nb-icon *ngIf="item.delivery" icon="car-outline" class="successTextColor" pack="eva"></nb-icon>
+                <nb-icon *ngIf="!item.delivery" #noListings class="infoTextColor" icon="shopping-cart-outline" pack="eva"></nb-icon>
+                <h4 class="vendor-card__listingsNumberValue">{{ item.listings.length }}</h4>
+            </div>
         </div>
-    </div>
-    <!-- LISTINGS ONLY -->
-    <div *ngIf="!item.description && item.listings.length">
-        <nb-card-footer class="vendor-card__images-sectionMD">
-            <div *ngFor="let listing of item.listings"><img class="vendor-card__small-image" [src]="listing.image" /></div>
-        </nb-card-footer>
-    </div>
+    </nb-card-footer>
 </nb-card>
+<!-- 
+<span class="successTextColor" *ngIf="!item.delivery"><nb-icon nbPrefix icon="car-outline" pack="eva"></nb-icon> </span>
+<span class="grayTextColor" *ngIf="item.delivery"> <nb-icon nbPrefix icon="car-outline" pack="eva"></nb-icon> </span> -->
+
+<!-- <div class="vendor-card__imagesGallery">
+            <div *ngFor="let listing of item.listings" class="vendor-card__itemGalleryContainer">
+                <img class="vendor-card__smallImage" [src]="listing.image" />
+            </div>
+        </div> -->
+
+<!-- 
+<nb-icon  nbPrefix icon="message-square-outline" pack="eva" ></nb-icon> -->
+
+<!-- <div *ngIf="item.description && item.listings.length">
+    <div class="vendor-card__body-sectionSM">
+        <p class="vendor-info__descriptionSM">{{ item.description }}</p>
+    </div>
+    <nb-card-footer class="vendor-card__images-sectionSM">
+        <div *ngFor="let listing of item.listings"><img class="vendor-card__small-image" [src]="listing.image" /></div>
+    </nb-card-footer>
+</div>
+
+<div *ngIf="item.description && !item.listings.length">
+    <div class="vendor-card__body-sectionMD">
+        <p class="vendor-info__descriptionMD">{{ item.description }}</p>
+    </div>
+</div>
+
+<div *ngIf="!item.description && item.listings.length">
+    <nb-card-footer class="vendor-card__images-sectionMD">
+        <div *ngFor="let listing of item.listings"><img class="vendor-card__small-image" [src]="listing.image" /></div>
+    </nb-card-footer>
+</div> -->
