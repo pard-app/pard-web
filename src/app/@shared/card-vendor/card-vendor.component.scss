@@ -3,9 +3,21 @@
     height: 240px;
     margin-bottom: 0;
     &__header {
-        display: flex;
-        padding: 12px;
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        padding: 0;
         height: 75px;
+    }
+    &__headerWrapper {
+        display: flex;
+        flex-direction: row;
+        padding: 12px;
+    }
+    &__paymentIcon {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     &__image {

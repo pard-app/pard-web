@@ -1,9 +1,18 @@
 <nb-card class="vendor-card clickable-card" [routerLink]="globalRoutes.VENDOR_PAGE_ROOT + '/' + item.objectID">
     <nb-card-header class="vendor-card__header">
-        <div *ngIf="item.image" class="vendor-card__imageWrapper"><img class="vendor-card__image" [src]="item.image" [alt]="item.title" /></div>
-        <div class="vendor-info">
-            <h6 class="vendor-info__title">{{ item.title }}</h6>
-            <p class="vendor-info__location">{{ item.city }}, {{ item.country }}</p>
+        <div class="vendor-card__headerWrapper">
+            <div *ngIf="item.image" class="vendor-card__imageWrapper"><img class="vendor-card__image" [src]="item.image" [alt]="item.title" /></div>
+            <div class="vendor-info">
+                <h6 class="vendor-info__title">{{ item.title }}</h6>
+                <p class="vendor-info__location">{{ item.city }}, {{ item.country }}</p>
+            </div>
+        </div>
+        <div class="vendor-card__paymentIcon">
+            <img *ngIf="item.delivery" src="https://img.icons8.com/ios-glyphs/30/00d68f/stripe.png" />
+            <!-- <img *ngIf="!item.delivery" src="https://img.icons8.com/color/48/00d68f/stripe.png" /> -->
+
+            <!-- <nb-icon *ngIf="item.delivery" icon="credit-card-outline" class="successTextColor" pack="eva"></nb-icon>
+            <nb-icon *ngIf="!item.delivery" icon="credit-card-outline" class="grayTextColor" pack="eva"></nb-icon> -->
         </div>
     </nb-card-header>
     <nb-card-body class="vendor-card__body-sectionSM">
