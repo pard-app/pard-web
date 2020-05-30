@@ -13,6 +13,9 @@
         flex-direction: row;
         padding: 12px;
     }
+    &__icon {
+        margin-left: 5px;
+    }
     &__paymentIcon {
         height: 100%;
         display: flex;
@@ -23,7 +26,6 @@
     &__image {
         height: 100%;
         width: 100%;
-
         object-fit: contain;
         border-radius: var(--card-border-radius);
     }
@@ -54,21 +56,11 @@
         margin-top: 0;
     }
 
-    &__images-sectionSM {
-        border-top: 0;
-        display: grid;
-        padding: 0;
-        height: 105px;
-        grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
-    }
     &__footerSection {
-        display: grid;
         padding: 0px;
         overflow: hidden;
         // grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
-        grid-template-columns: 3fr 1fr;
         height: 75px;
-        overflow: hidden;
     }
     &__gallery {
         display: grid;
@@ -91,12 +83,6 @@
     &__listingsNumberValue {
         margin: 4px;
         padding-bottom: 1px;
-    }
-
-    &__imagesGallery {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
     }
 
     &__smallImage {
@@ -124,8 +110,10 @@
         -webkit-box-orient: vertical;
     }
 
-    &__showMore {
-        opacity: 0.8;
-        color: var(--link-text-color);
+    &__deliveryStatus {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
     }
 }

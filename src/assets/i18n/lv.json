@@ -110,5 +110,6 @@
     "BACK_TO_MAIN_PAGE": "Atgriezties sākumlapā",
     "CLOSE": "Aizvērt",
     "LISTINGS_IN": "Sludinājumi",
-    "LOAD_MORE": "Ielādēt vairāk"
+    "LOAD_MORE": "Ielādēt vairāk",
+    "VENDOR_HAS_NO_DESCRIPTION": "Vendor has no description"
 }

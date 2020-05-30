@@ -14,6 +14,7 @@
         display: grid;
         grid-template-columns: 0.7fr 1fr;
         grid-gap: 20px;
+        padding: 12px;
         align-items: center;
         @media only screen and (max-width: 768px) {
             grid-template-columns: 1fr;
