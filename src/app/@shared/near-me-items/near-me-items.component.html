@@ -1,19 +1,19 @@
 <ng-container *ngIf="topVendorsNearMe$ | async as topVendorsNearMe">
-    <nb-alert *ngIf="waitLocalVendors$ | async as waitLocalVendors" status="basic">
+    <nb-alert *ngIf="waitLocalVendors$ | async as waitLocalVendors" status="basic" class="near-me-alert">
         <!-- LOADING -->
-        <h4 [nbSpinner]="true" nbSpinnerStatus="control" size="medium" *ngIf="waitLocalVendors.waiting == true">
+        <p [nbSpinner]="true" nbSpinnerStatus="control" size="medium" *ngIf="waitLocalVendors.waiting == true">
             {{ "LOOKING_FOR_NEAR_VENDORS" | translate }} <nb-icon icon="pin" status="info"></nb-icon>
-        </h4>
+        </p>
         <!-- VENDORS FOUND AFTER TAKING TOO LONG -->
-        <h4 *ngIf="waitLocalVendors.waiting == false && waitLocalVendors.waitedForTooLong == true && topVendorsNearMe.length; else elseBlock">
+        <p *ngIf="waitLocalVendors.waiting == false && waitLocalVendors.waitedForTooLong == true && topVendorsNearMe.length; else elseBlock">
             {{ "FOUND_VENDORS_NEAR" | translate }}
             <button (click)="displayVendorsOnClick()" nbButton ghost status="info" size="small">
                 <nb-icon icon="arrowhead-down-outline"></nb-icon>{{ "SHOW_VENDORS" | translate }}
             </button>
-        </h4>
+        </p>
         <!-- NO VENDORS FOUND -->
         <ng-template #elseBlock>
-            <h4 *ngIf="!topVendorsNearMe.length && waitLocalVendors.waiting === false">😞 {{ "NO_VENDORS_NEAR" | translate }}</h4>
+            <p *ngIf="!topVendorsNearMe.length && waitLocalVendors.waiting === false">😞 {{ "NO_VENDORS_NEAR" | translate }}</p>
         </ng-template>
         <!-- VENDORS FOUND IMMEDIATELY -->
         <app-list-vendors

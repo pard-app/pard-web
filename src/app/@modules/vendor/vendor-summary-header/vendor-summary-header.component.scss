@@ -1,93 +1,19 @@
 .vendor {
     &__container {
         display: flex;
-        flex-direction: row;
-        padding: var(--card-padding);
-
-        flex-basis: 0;
-        @media only screen and (max-width: 950px) {
-            display: none;
-        }
-    }
-    &__containerDesktop {
-        flex-basis: 0;
-        @media only screen and (max-width: 950px) {
-            display: none;
-        }
-    }
-    &__vendorInformationWrapperDesktop {
-        display: flex;
-        flex-direction: row;
-    }
-
-    &__containerMobile {
-        display: flex;
         flex-direction: column;
-
-        @media only screen and (min-width: 950px) {
-            display: none;
-        }
     }
     &__presentation {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-
+        padding-top: 0;
         flex-grow: 1;
-    }
-
-    &__vendorTitle,
-    &__vendorLocation,
-    &__description {
-        margin: 0;
-        max-width: 500px;
-        width: 100%;
-    }
-
-    &__vendorTitle {
-        @media only screen and (max-width: 640px) {
-            font-size: 1.6em;
-        }
-        @media only screen and (max-width: 345px) {
-            font-size: 1.2em;
-            margin-top: -12px;
-        }
-    }
-    &__vendorLocation {
-        font-weight: 100;
-        @media only screen and (max-width: 640px) {
-            font-size: 1em;
-        }
-        @media only screen and (max-width: 345px) {
-            font-size: 0.9em;
-        }
-    }
-
-    &__description {
-        padding-top: 5px;
-    }
-
-    &__presentationMobile {
-        display: flex;
-        flex-direction: row;
     }
 
     &__presentationHeader {
         display: flex;
         flex-direction: row;
-    }
-
-    &__smPresentationAndContacts {
-        display: flex;
-        flex-direction: row;
-    }
-
-    &__smContactsButton {
-        width: 50px;
-        cursor: pointer;
-        &:focus {
-            outline: none;
-        }
     }
 
     &__descriptionMobile {
@@ -97,104 +23,37 @@
         }
     }
 
-    &__image {
-        object-fit: contain;
-        height: 100%;
-        width: auto;
-        max-width: 100%;
-        max-height: 100%;
-    }
-
     &__imageWrapper {
-        margin-right: 1.5rem;
-        height: 150px;
-        width: 150px;
-        border-radius: var(--card-border-radius);
-        overflow: hidden;
-        @media only screen and (max-width: 950px) {
-            display: none;
-        }
-    }
-
-    &__imageMobile {
-        object-fit: contain;
-        max-width: 100%;
-        max-height: 100%;
-    }
-
-    &__imageWrapperMobile {
-        height: 75px;
+        height: 60px;
+        min-width: 60px;
+        width: 60px;
         margin-right: 1rem;
         border-radius: var(--card-border-radius);
         overflow: hidden;
-        @media only screen and (min-width: 950px) {
-            display: none;
-        }
     }
 
-    &__contactsAndDelivery {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-    &__delivery {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-end;
+    &__image {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
     }
 
     &__contacts {
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
         text-align: right;
         @media only screen and (max-width: 950px) {
-            justify-content: flex-start;
         }
         @media only screen and (max-width: 640px) {
             display: none;
         }
     }
 
-    &__contactsMobile {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        padding-top: 1rem;
-        @media only screen and (min-width: 640px) {
-            display: none;
-        }
-    }
-
-    &__contactsSectionTitle {
-        text-transform: uppercase;
-        opacity: 0.8;
-        font-size: 12px;
-        @media only screen and (max-width: 950px) {
-            display: none;
-        }
-    }
-
-    &__contactsLink {
-        margin-top: 8px;
+    &__smContactsLink {
+        margin-right: 10px;
         color: var(--color-info-default);
-        cursor: pointer;
-        text-decoration: underline;
-        @media only screen and (max-width: 950px) {
-            font-size: 14px;
-            margin-top: 4px;
-        }
-    }
-
-    &__contactsAdress {
-        margin-top: 8px;
-        @media only screen and (max-width: 950px) {
-            font-size: 14px;
-            margin-top: 4px;
-        }
     }
     &__deliveryInformationContainer {
-        padding-top: 1.5rem;
+        padding-bottom: 0;
     }
 }

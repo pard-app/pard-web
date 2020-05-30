@@ -1,7 +1,8 @@
 <nb-form-field>
-    <nb-icon nbPrefix status="primary" icon="home-outline" pack="eva" class="home-icon"></nb-icon>
-    <div *ngIf="input.value" nbSuffix class="remove-icon" (click)="clearInput()">
-        <nb-icon fullWidth status="primary" icon="close-outline" pack="eva"></nb-icon>
+    <nb-icon *ngIf="input.value" nbPrefix status="primary" icon="home-outline" pack="eva" class="home-icon"></nb-icon>
+    <nb-icon *ngIf="!input.value" nbPrefix icon="home-outline" pack="eva" class="home-icon"></nb-icon>
+    <div *ngIf="input.value" nbSuffix (click)="clearInput()">
+        <nb-icon fullWidth status="basic" class="remove-icon" icon="close-outline" pack="eva"></nb-icon>
     </div>
     <input (click)="tryInit()" fullWidth [formControl]="input" #autoInput nbInput type="text" [placeholder]="'LOCATION' | translate" [nbAutocomplete]="auto" />
     <nb-autocomplete #auto (selectedChange)="onPick($event)">

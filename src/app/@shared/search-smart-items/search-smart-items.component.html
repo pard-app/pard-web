@@ -1,7 +1,8 @@
 <nb-form-field class="input-box">
-    <nb-icon nbPrefix status="primary" icon="shopping-cart-outline" pack="eva" class="home-icon"></nb-icon>
-    <div *ngIf="input.value" nbSuffix class="remove-icon" (click)="clearInput()">
-        <nb-icon fullWidth status="primary" icon="close-outline" pack="eva"></nb-icon>
+    <nb-icon *ngIf="input.value" nbPrefix status="primary" icon="shopping-cart-outline" pack="eva" class="home-icon"></nb-icon>
+    <nb-icon *ngIf="!input.value" nbPrefix icon="shopping-cart-outline" pack="eva" class="home-icon"></nb-icon>
+    <div *ngIf="input.value" nbSuffix (click)="clearInput()">
+        <nb-icon fullWidth status="basic" class="remove-icon" icon="close-outline" pack="eva"></nb-icon>
     </div>
     <input
         fullWidth
@@ -12,6 +13,7 @@
         type="text"
         [placeholder]="placeholder"
         [nbAutocomplete]="auto"
+        class="input"
     />
     <nb-autocomplete #auto (selectedChange)="onPick($event)">
         <nb-option-group class="option-group" *ngFor="let group of groupedItems$ | async" [title]="group.name | uppercase">
@@ -26,6 +28,7 @@
         </nb-option-group>
     </nb-autocomplete>
 </nb-form-field>
-<button (click)="vendorOrListingSearch()" class="search-button" [disabled]="!input.value" nbButton size="medium" status="info">
+
+<button nbButton *ngIf="input.value" ghost status="primary" (click)="vendorOrListingSearch()" class="search-button">
     <nb-icon icon="search-outline"></nb-icon>
 </button>

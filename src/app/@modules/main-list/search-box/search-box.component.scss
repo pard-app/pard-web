@@ -3,8 +3,8 @@
     margin: 0 auto;
     width: 90%;
     max-width: 1000px;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 20px -2px;
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-shadow);
     @media only screen and (max-width: 600px) {
         margin: 0 10px;
         width: calc(100% - 20px);
@@ -22,4 +22,8 @@
     &__homeDelivery {
         white-space: nowrap;
     }
+}
+
+nb-icon.status-basic {
+    opacity: 0.7;
 }
