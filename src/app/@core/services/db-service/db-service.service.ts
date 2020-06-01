@@ -12,4 +12,9 @@ export class DbService {
         const callable = this.functions.httpsCallable("placeOrder");
         return callable({ orders, buyer, delivery, invoice, captcha }).toPromise();
     }
+
+    updateOrderPaymentStatus({ id, paymentStatus }) {
+        const callable = this.functions.httpsCallable("updateOrderPaymentStatus");
+        return callable({ id, paymentStatus }).toPromise();
+    }
 }
