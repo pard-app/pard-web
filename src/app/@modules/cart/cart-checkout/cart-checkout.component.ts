@@ -6,10 +6,11 @@ import { VendorService } from "src/app/@core/services/vendor/vendor.service";
 import { DbService } from "src/app/@core/services/db-service/db-service.service";
 import { TranslateService } from "@ngx-translate/core";
 import { ROUTING_CONSTANTS } from "src/app/@core/constants/routing.constants";
-import { NbDialogService, NbStepperComponent } from "@nebular/theme";
+import { NbDialogService, NbStepperComponent, NbToastrService } from "@nebular/theme";
 import { TermsAndConditionsModalComponent } from "src/app/@modules/terms-and-conditions/terms-and-conditions-page/terms-and-conditions-modal.component";
 import { Observable, of } from "rxjs";
 import { IVendor } from "@models/vendor.interface";
+import { PaymentErrorMessage } from "@models/payments.interface";
 
 @Component({
     selector: "app-cart-checkout",
@@ -28,6 +29,7 @@ export class CartCheckoutComponent implements OnInit {
     public confirmedOrder: any;
     public ROUTES: { [name: string]: string };
     public captcha: string = null;
+    public paymentError: PaymentErrorMessage = null;
     public globalRoutes = ROUTING_CONSTANTS;
 
     @Output() deliveryChanged: EventEmitter<any> = new EventEmitter();
@@ -38,7 +40,7 @@ export class CartCheckoutComponent implements OnInit {
     constructor(
         private fb: FormBuilder,
         private cartStoreService: CartStoreService,
-        private vendorService: VendorService,
+        private toastrService: NbToastrService,
         private dbService: DbService,
         private translate: TranslateService,
         private dialogService: NbDialogService
@@ -145,11 +147,26 @@ export class CartCheckoutComponent implements OnInit {
     public async submitPayment({ token, confirmCardPayment, card }) {
         this.loading = true;
         const orders = await this.dbService.placeOrder(this.orders, this.buyer, this.delivery, false, this.captcha);
-
-        for (const order of orders) {
-            const paymentRes = await confirmCardPayment(order.paymentIntent.client_secret, { payment_method: { card } });
-            console.log(paymentRes);
+        if (orders.error) {
+            return this.toastrService.show("There was a problem with a payment", `An error`, { status: "danger" });
         }
+
+        const orderThatCannotBePayed = orders.find((order) => order.paymentIntent && order.paymentIntent.status !== "requires_payment_method");
+
+        if (orderThatCannotBePayed) {
+            this.paymentError = {
+                introMessage: this.translate.instant("CHECKOUT.PAYMENT_ERROR.INTRO"),
+                vendorName: orderThatCannotBePayed.seller.company,
+                bodyMessage: this.translate.instant("CHECKOUT.PAYMENT_ERROR.BODY"),
+            };
+        } else {
+            for (const order of orders) {
+                const { paymentIntent } = await confirmCardPayment(order.paymentIntent.client_secret, { payment_method: { card } });
+                this.dbService.updateOrderPaymentStatus({ id: order.id, paymentStatus: paymentIntent.status });
+            }
+            this.stepper.next();
+        }
+
         this.loading = false;
         // this.confirmedOrder = response ? response : this.translate.instant("ERROR_WHILE_PLACING_ORDER");
     }

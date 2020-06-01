@@ -13,6 +13,7 @@ import {
     NbSpinnerModule,
     NbDialogModule,
     NbIconModule,
+    NbAlertModule,
 } from "@nebular/theme";
 import { SharedModule } from "../../../@shared/shared.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -38,6 +39,7 @@ import { PaymentComponent } from "./payment/payment.component";
         SharedModule,
         NbIconModule,
         NbDialogModule.forChild(),
+        NbAlertModule,
         // RecaptchaModule,
         // RecaptchaFormsModule,
     ],

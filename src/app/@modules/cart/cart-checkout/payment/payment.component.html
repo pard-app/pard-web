@@ -18,6 +18,13 @@
                 <div id="card-errors" class="card-errors" role="alert">
                     <p *ngIf="cardError" class="card-errors__text">{{ cardError }}</p>
                 </div>
+                <nb-alert *ngIf="paymentError" status="danger">
+                    <p>
+                        {{ paymentError.introMessage }} <b>{{ paymentError.vendorName }}</b
+                        >.
+                    </p>
+                    <p>{{ paymentError.bodyMessage }}</p>
+                </nb-alert>
             </div>
         </form>
     </nb-card-body>
