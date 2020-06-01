@@ -112,5 +112,7 @@
     "BACK_TO_MAIN_PAGE": "Back to main page",
     "CLOSE": "Close",
     "LISTINGS_IN": "Listings in",
-    "LOAD_MORE": "Load more"
+    "LOAD_MORE": "Load more",
+    "CHECKOUT.PAYMENT_ERROR.INTRO": "The transaction has been stopped. The payment could not be sent to: ",
+    "CHECKOUT.PAYMENT_ERROR.BODY": "You can try removing their products from cart or try again later"
 }

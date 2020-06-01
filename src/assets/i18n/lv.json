@@ -112,5 +112,7 @@
     "BACK_TO_MAIN_PAGE": "Atgriezties sākumlapā",
     "CLOSE": "Aizvērt",
     "LISTINGS_IN": "Sludinājumi",
-    "LOAD_MORE": "Ielādēt vairāk"
+    "LOAD_MORE": "Ielādēt vairāk",
+    "CHECKOUT.PAYMENT_ERROR.INTRO": "Neizdevās nosūtīt maksājumu pārdevējam: ",
+    "CHECKOUT.PAYMENT_ERROR.BODY": "Jūs varat mēģināt izņemt attiecīgā pārdevēja preces no groza vai atkārtot darbību nedaudz vēlāk."
 }
