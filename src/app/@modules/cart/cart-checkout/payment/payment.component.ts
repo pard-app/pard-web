@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit, Input, ViewChild, ElementRef, Output,
 import { loadStripe, Stripe, StripeCardElement, Token } from "@stripe/stripe-js";
 import { environment } from "src/environments/environment";
 import { CartStoreService } from "@core/stores/cart/cart.store.service";
+import PaymentCardStyle from "./payment-card.style";
+import { PaymentErrorMessage } from "@models/payments.interface";
 
 @Component({
     selector: "checkout-payment",
@@ -12,6 +14,7 @@ export class PaymentComponent implements AfterViewInit {
     @Output() onSubmitPayment = new EventEmitter<{ token: Token; confirmCardPayment: Function; card: StripeCardElement }>();
     @Input() stepper;
     @Input() loading: boolean;
+    @Input() paymentError: PaymentErrorMessage;
     @ViewChild("paymentForm") paymentForm: ElementRef<HTMLFormElement>;
     public stripe: Stripe;
     public cardError: string;
@@ -25,23 +28,7 @@ export class PaymentComponent implements AfterViewInit {
     async ngAfterViewInit() {
         this.stripe = await loadStripe(environment.stripeConfig.publishableKey);
         const elements = this.stripe.elements();
-        this.card = elements.create("card", {
-            style: {
-                base: {
-                    color: "#32325d",
-                    fontSmoothing: "antialiased",
-                    fontFamily: "Comfortaa, sans-serif",
-                    fontSize: "16px",
-                    "::placeholder": {
-                        color: "#768fa7",
-                    },
-                },
-                invalid: {
-                    color: "#fa755a",
-                    iconColor: "#fa755a",
-                },
-            },
-        });
+        this.card = elements.create("card", PaymentCardStyle);
 
         this.card.mount("#card-element");
 
