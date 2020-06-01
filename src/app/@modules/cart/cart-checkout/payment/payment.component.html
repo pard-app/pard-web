@@ -31,7 +31,7 @@
     <nb-card-footer>
         <!-- <div class="captcha"><re-captcha (resolved)="resolved($event)" siteKey="6LfmFPAUAAAAAAZ-eQOCKCfyToqVGDyX-HQ6BVg-"></re-captcha></div> -->
         <div class="actions">
-            <button nbButton nbStepperPrevious>{{ "PREVIOUS" | translate }}</button>
+            <button nbButton nbStepperPrevious (click)="previousPressed.emit()">{{ "PREVIOUS" | translate }}</button>
             <button [disabled]="loading" nbButton submit (click)="submitPayment()" hero status="info" class="submit-payment-button">
                 {{ "SUBMIT_PAYMENT" | translate }} <nb-icon icon="credit-card-outline"></nb-icon>
             </button>

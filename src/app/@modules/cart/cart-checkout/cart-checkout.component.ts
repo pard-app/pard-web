@@ -1,8 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild, ElementRef, ComponentRef } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CartStoreService } from "src/app/@core/stores/cart/cart.store.service";
 import { CartItem, CartItemObject } from "src/app/@core/models/listingitem.interface";
-import { VendorService } from "src/app/@core/services/vendor/vendor.service";
 import { DbService } from "src/app/@core/services/db-service/db-service.service";
 import { TranslateService } from "@ngx-translate/core";
 import { ROUTING_CONSTANTS } from "src/app/@core/constants/routing.constants";
@@ -75,7 +74,10 @@ export class CartCheckoutComponent implements OnInit {
     get formDeliveryField() {
         return (fieldName) => this.formDelivery.get(fieldName);
     }
-
+    public animateStepAndPercentage(percentage: number) {
+        this.formProgress = percentage;
+        document.getElementById("js-checkout-header").scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+    }
     public async generateOrder() {
         this.buyer = {
             firstName: this.formBasic.value.firstName,
@@ -160,14 +162,19 @@ export class CartCheckoutComponent implements OnInit {
                 bodyMessage: this.translate.instant("CHECKOUT.PAYMENT_ERROR.BODY"),
             };
         } else {
-            for (const order of orders) {
-                const { paymentIntent } = await confirmCardPayment(order.paymentIntent.client_secret, { payment_method: { card } });
-                this.dbService.updateOrderPaymentStatus({ id: order.id, paymentStatus: paymentIntent.status });
+            try {
+                for (const order of orders) {
+                    const { paymentIntent } = await confirmCardPayment(order.paymentIntent.client_secret, { payment_method: { card } });
+                    this.dbService.updateOrderPaymentStatus({ id: order.id, paymentStatus: paymentIntent.status });
+                }
+                this.loading = false;
+                this.animateStepAndPercentage(100);
+                this.stepper.next();
+            } catch (err) {
+                this.loading = false;
             }
-            this.stepper.next();
         }
 
-        this.loading = false;
         // this.confirmedOrder = response ? response : this.translate.instant("ERROR_WHILE_PLACING_ORDER");
     }
 

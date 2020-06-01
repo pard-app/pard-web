@@ -12,6 +12,7 @@ import { PaymentErrorMessage } from "@models/payments.interface";
 })
 export class PaymentComponent implements AfterViewInit {
     @Output() onSubmitPayment = new EventEmitter<{ token: Token; confirmCardPayment: Function; card: StripeCardElement }>();
+    @Output() previousPressed = new EventEmitter();
     @Input() stepper;
     @Input() loading: boolean;
     @Input() paymentError: PaymentErrorMessage;
@@ -42,8 +43,10 @@ export class PaymentComponent implements AfterViewInit {
     }
 
     async submitPayment() {
+        this.loading = true;
         const { token, error } = await this.stripe.createToken(this.card);
         if (error) {
+            this.loading = false;
             // Inform the user if there was an error.
             this.cardError = error.message;
         } else {

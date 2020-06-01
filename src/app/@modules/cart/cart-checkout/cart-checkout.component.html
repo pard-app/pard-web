@@ -37,7 +37,7 @@
                     <button
                         nbButton
                         nbStepperNext
-                        (click)="formProgress = 30"
+                        (click)="animateStepAndPercentage(30)"
                         [disabled]="formBasic.invalid || !formBasic.value.terms"
                         outline
                         status="success"
@@ -97,11 +97,11 @@
             </nb-card-body>
             <nb-card-footer>
                 <div class="actions">
-                    <button nbButton nbStepperPrevious>{{ "PREVIOUS" | translate }}</button>
+                    <button nbButton nbStepperPrevious (click)="animateStepAndPercentage(30)">{{ "PREVIOUS" | translate }}</button>
                     <button
                         nbButton
                         nbStepperNext
-                        (click)="generateOrder(); formProgress = 60"
+                        (click)="generateOrder(); animateStepAndPercentage(65)"
                         [disabled]="formDeliveryField('delivery').value && formDelivery.invalid"
                         outline
                         status="success"
@@ -183,6 +183,7 @@
         </nb-card>
         <checkout-payment
             [loading]="loading"
+            (previousPressed)="animateStepAndPercentage(65)"
             (onSubmitPayment)="submitPayment($event)"
             class="review-card"
             *ngIf="stepper.selectedIndex === 2"
@@ -190,44 +191,14 @@
     </nb-step>
 
     <nb-step [label]="'CONFIRMATION' | translate">
-        <nb-card [nbSpinner]="loading" nbSpinnerStatus="primary">
+        <nb-card nbSpinnerStatus="primary">
             <nb-card-header>
                 <h4>{{ "CONFIRMATION" | translate }}</h4>
             </nb-card-header>
-            <nb-card-body *ngIf="loading"> {{ "PLEASE_WAIT" | translate }} </nb-card-body>
-
-            <nb-card-body *ngIf="!loading">
-                <nb-card *ngFor="let order of confirmedOrder" class="order">
-                    <nb-card-header>
-                        <h1>{{ order.orderId }}</h1>
-                        <h2>{{ order.sum | currency }}</h2>
-                    </nb-card-header>
-                    <nb-card-body>
-                        <nb-user
-                            shape="rectangle"
-                            [name]="order.seller.title"
-                            size="giant"
-                            [picture]="order.seller.image"
-                            [title]="order.seller.description"
-                        ></nb-user>
-
-                        <div *ngFor="let listing of order.listings">
-                            <nb-user
-                                [name]="listing.title"
-                                size="large"
-                                badgeStatus="primary"
-                                [badgeText]="(listing.price | currency) + ' (×' + listing.quantity + ')'"
-                                [picture]="listing.image"
-                                [title]="listing.description"
-                            ></nb-user>
-                        </div>
-                    </nb-card-body>
-                </nb-card>
-            </nb-card-body>
-            <nb-card-footer *ngIf="!loading">
+            <nb-card-body>
                 <h1>{{ "ORDER_RECEIVED_TEXT" | translate }}</h1>
                 <button [routerLink]="globalRoutes.ROOT" nbButton nbStepperNext outline status="primary">{{ "BACK_TO_MAIN_PAGE" | translate }}</button>
-            </nb-card-footer>
+            </nb-card-body>
         </nb-card>
     </nb-step>
 </nb-stepper>
