@@ -18,7 +18,7 @@
     </section>
 
     <section class="top-header__section">
-        <div *ngIf="count" class="top-header__cart">
+        <div class="top-header__cart">
             <button
                 ghost
                 nbButton
@@ -31,7 +31,7 @@
             >
                 <nb-icon icon="shopping-cart-outline"></nb-icon>
             </button>
-            <div class="cart-display-count">{{ count }}</div>
+            <div *ngIf="count" class="cart-display-count">{{ count }}</div>
         </div>
 
         <button *ngIf="isMobileLayout" ghost nbButton status="primary" [nbContextMenu]="TOP_HEADER_NAVIGATION_ROUTES" class="top-header__button">
