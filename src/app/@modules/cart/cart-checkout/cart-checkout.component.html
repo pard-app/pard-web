@@ -34,14 +34,7 @@
             </nb-card-body>
             <nb-card-footer>
                 <div class="actions">
-                    <button
-                        nbButton
-                        nbStepperNext
-                        (click)="formProgress = 30"
-                        [disabled]="formBasic.invalid || !formBasic.value.terms"
-                        outline
-                        status="success"
-                    >
+                    <button nbButton nbStepperNext (click)="formProgress = 30" [disabled]="formBasic.invalid || !formBasic.value.terms" basic status="success">
                         {{ "NEXT" | translate }}
                     </button>
                 </div>
@@ -56,9 +49,23 @@
             </nb-card-header>
             <nb-card-body>
                 <nb-card class="vendor-delivery" *ngFor="let vendor of vendors">
+                    <nb-card-header class="vendor-delivery__presentation">
+                        <div class="vendor-delivery__presentationHeader">
+                            <div class="vendor-delivery__imageWrapper">
+                                <img [src]="vendor.image" class="vendor-delivery__image" />
+                            </div>
+
+                            <div>
+                                <h6>{{ vendor.title }}</h6>
+                                <p>
+                                    {{ vendor.city + ", " + vendor.country }}
+                                </p>
+                                <p>{{ vendor.address }}</p>
+                            </div>
+                        </div>
+                    </nb-card-header>
+
                     <nb-card-body class="vendor-delivery__body">
-                        <h4>{{ vendor.title }}</h4>
-                        <img class="vendor-delivery__image" [src]="vendor.image" />
                         <app-vendor-delivery-notice [vendor$]="convertVendorToObservable(vendor)"></app-vendor-delivery-notice>
                     </nb-card-body>
                 </nb-card>
@@ -103,7 +110,7 @@
                         nbStepperNext
                         (click)="generateOrder(); formProgress = 60"
                         [disabled]="formDeliveryField('delivery').value && formDelivery.invalid"
-                        outline
+                        basic
                         status="success"
                     >
                         {{ "NEXT" | translate }}
@@ -149,15 +156,22 @@
                     <h1>{{ "ITEMS" | translate }}</h1>
 
                     <nb-card *ngFor="let entry of review" class="card-review">
-                        <nb-card-header>
-                            <nb-user
-                                shape="rectangle"
-                                [name]="entry.vendor.title"
-                                size="giant"
-                                [picture]="entry.vendor.image"
-                                [title]="entry.vendor.description"
-                            ></nb-user>
+                        <nb-card-header class="vendor-delivery__presentation">
+                            <div class="vendor-delivery__presentationHeader">
+                                <div class="vendor-delivery__imageWrapper">
+                                    <img [src]="entry.vendor.image" class="vendor-delivery__image" />
+                                </div>
+
+                                <div>
+                                    <h6>{{ entry.vendor.title }}</h6>
+                                    <p>
+                                        {{ entry.vendor.city + ", " + entry.vendor.country }}
+                                    </p>
+                                    <p>{{ entry.vendor.address }}</p>
+                                </div>
+                            </div>
                         </nb-card-header>
+
                         <nb-card-body>
                             <div class="products">
                                 <div *ngFor="let item of entry.listings">
@@ -215,9 +229,9 @@
                     </nb-card-body>
                 </nb-card>
             </nb-card-body>
-            <nb-card-footer *ngIf="!loading">
+            <nb-card-footer *ngIf="!loading" class="vendor-delivery__confirmation">
                 <h1>{{ "ORDER_RECEIVED_TEXT" | translate }}</h1>
-                <button [routerLink]="globalRoutes.ROOT" nbButton nbStepperNext outline status="primary">{{ "BACK_TO_MAIN_PAGE" | translate }}</button>
+                <button [routerLink]="globalRoutes.ROOT" nbButton nbStepperNext ghost status="primary">{{ "BACK_TO_MAIN_PAGE" | translate }}</button>
             </nb-card-footer>
         </nb-card>
     </nb-step>

@@ -1,10 +1,11 @@
 <nb-card class="cart-item__card">
     <nb-card-header class="cart-item__header">
-        <img class="cart-item__image" [src]="cartItem.value.item?.image" />
+        <div class="cart-item__imageWrapper"><img class="cart-item__image" [src]="cartItem.value.item?.image" /></div>
+
         <div class="cart-item__content">
             <h5 class="cart-item__title">{{ cartItem.value.item?.title }}</h5>
             <h4 class="cart-item__price">{{ cartItem.value.item?.price | currency }}</h4>
-            <p>{{ cartItem.value.item?.description }}</p>
+            <p class="cart-item__description">{{ cartItem.value.item?.description }}</p>
         </div>
     </nb-card-header>
     <nb-card-body class="cart-item__body">
@@ -20,6 +21,6 @@
             (change)="changeQuantity.emit({ key: cartItem.key, value: quantity })"
             class="cart-item__quantity"
         />
-        <button nbButton basic status="danger" (click)="removeItem.emit(cartItem.key)">{{ "REMOVE" | translate }}</button>
+        <button nbButton ghost status="danger" (click)="removeItem.emit(cartItem.key)">{{ "REMOVE" | translate }}</button>
     </nb-card-footer>
 </nb-card>

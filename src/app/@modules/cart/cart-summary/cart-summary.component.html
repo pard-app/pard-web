@@ -1,7 +1,14 @@
 <h4>{{ "ITEMS" | translate }}</h4>
-<p *ngFor="let item of cartItems | keyvalue">
-    {{ item.value.item?.title }}: <strong>{{ item.value.item?.price | currency }}</strong> (×{{ item.value.quantity }})
-</p>
+<nb-list class="cart-summary__list">
+    <nb-list-item *ngFor="let item of cartItems | keyvalue">
+        <div>
+            <p>{{ item.value.item?.title }}</p>
+            <p>
+                <strong>{{ item.value.item?.price | currency }}</strong> (×{{ item.value.quantity }})
+            </p>
+        </div>
+    </nb-list-item>
+</nb-list>
 
 <div *ngIf="delivery">
     <h4>{{ "DELIVERY_COSTS" | translate }}</h4>
@@ -10,7 +17,7 @@
     </p>
 </div>
 
-<h5>
+<h5 class="cart-summary__total">
     {{ "TOTAL" | translate }}: <strong>{{ totalAmount | currency }}</strong>
 </h5>
 
@@ -18,13 +25,13 @@
     *ngIf="view === globalRoutes.CART_LISTINGS_PAGE_ROOT"
     [routerLink]="'/' + globalRoutes.CART_PAGE_ROOT + '/' + globalRoutes.CART_CHECKOUT_PAGE_ROOT"
     nbButton
-    outline
+    ghost
     status="info"
     fullWidth
     [disabled]="!cartItemsLength"
 >
     {{ "CHECKOUT" | translate }}
 </button>
-<button *ngIf="view === globalRoutes.CART_CHECKOUT_PAGE_ROOT" [routerLink]="'/' + globalRoutes.CART_PAGE_ROOT" nbButton outline status="warning" fullWidth>
+<button *ngIf="view === globalRoutes.CART_CHECKOUT_PAGE_ROOT" [routerLink]="'/' + globalRoutes.CART_PAGE_ROOT" nbButton ghost status="warning" fullWidth>
     {{ "BACK_TO_CART" | translate }}
 </button>

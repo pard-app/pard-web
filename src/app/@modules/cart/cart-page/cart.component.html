@@ -27,6 +27,7 @@
                 [cartItem]="item"
             ></app-cart-listing-card>
         </nb-card-body>
+
         <nb-card-body *ngIf="view === globalRoutes.CART_CHECKOUT_PAGE_ROOT">
             <app-cart-checkout [cartItems]="cartItems" [vendors]="vendorsOfCartItems" (deliveryChanged)="toggleDelivery($event)"></app-cart-checkout>
         </nb-card-body>

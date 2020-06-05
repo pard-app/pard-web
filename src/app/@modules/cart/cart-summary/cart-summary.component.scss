@@ -1,0 +1,11 @@
+.cart-summary {
+    &__list {
+        min-width: 20rem;
+        max-width: 20rem;
+        max-height: 540px;
+        margin: 0 auto 2rem;
+    }
+    &__total {
+        text-align: center;
+    }
+}

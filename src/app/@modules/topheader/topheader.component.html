@@ -18,7 +18,7 @@
     </section>
 
     <section class="top-header__section">
-        <div class="top-header__cart">
+        <div *ngIf="count" class="top-header__cart">
             <button
                 ghost
                 nbButton
@@ -31,7 +31,7 @@
             >
                 <nb-icon icon="shopping-cart-outline"></nb-icon>
             </button>
-            <div *ngIf="count" class="cart-display-count">{{ count }}</div>
+            <div class="cart-display-count">{{ count }}</div>
         </div>
 
         <button *ngIf="isMobileLayout" ghost nbButton status="primary" [nbContextMenu]="TOP_HEADER_NAVIGATION_ROUTES" class="top-header__button">
@@ -42,17 +42,18 @@
 
 <!-- Notificatiopn template -->
 <ng-template #templateRef>
-    <nb-card size="tiny" class="notification">
+    <nb-card size="small" class="notification">
         <nb-card-header class="notification__header">
             <img class="notification__image" [src]="lastItemAddedToCart.image ? lastItemAddedToCart.image : ''" alt="item.name" />
         </nb-card-header>
         <nb-card-body class="notification__body">
-            <button [routerLink]="globalRoutes.CART_PAGE_ROOT" nbButton fullWidth outline size="small">
+            <button [routerLink]="globalRoutes.CART_PAGE_ROOT" nbButton fullWidth ghost status="info" size="small">
                 {{ "VIEW_CART" | translate }}
             </button>
-            <h6 class="notification__title">
-                {{ lastItemAddedToCart.title }} (×{{ getQuantity(lastItemAddedToCart.objectID) }}) {{ "ADDED_TO_CART" | translate }}
-            </h6>
+            <p class="notification__title">{{ lastItemAddedToCart.title }} (×{{ getQuantity(lastItemAddedToCart.objectID) }})</p>
+            <p class="notification__title">
+                <b> {{ "ADDED_TO_CART" | translate }}</b>
+            </p>
         </nb-card-body>
     </nb-card>
 </ng-template>
