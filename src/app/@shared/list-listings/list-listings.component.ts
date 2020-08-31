@@ -11,7 +11,7 @@ import { Observable } from "rxjs";
 export class ListListingsComponent implements OnInit {
     @Input() isLoading: boolean = true;
     @Input() listingsList$: Observable<Array<ListingItem>>;
-    @Input() title: string = "Mysterious listings";
+    @Input() title: string = "Listings";
 
     constructor() {}
 

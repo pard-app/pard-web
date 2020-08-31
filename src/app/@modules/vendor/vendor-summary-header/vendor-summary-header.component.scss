@@ -52,6 +52,9 @@
     &__smContactsLink {
         margin-right: 10px;
         color: var(--color-info-default);
+        @media only screen and (max-width: 640px) {
+            display: block;
+        }
     }
     &__deliveryInformationContainer {
         padding-bottom: 0;

@@ -9,16 +9,16 @@
         </div>
         <div class="vendor-card__listingsNumberSection">
             <div *ngIf="item.listings.length" class="vendor-card__listingsNumber">
-                <nb-icon *ngIf="item.delivery" icon="credit-card-outline" class="vendor-card__icon successTextColor" pack="eva"></nb-icon>
+                <nb-icon icon="shopping-bag-outline" class="vendor-card__icon" pack="eva"></nb-icon>
             </div>
         </div>
     </nb-card-header>
     <nb-card-body class="vendor-card__body-sectionSM">
         <p *ngIf="item.description" class="vendor-info__description darkGrayTextColor">{{ item.description }}</p>
-        <p *ngIf="!item.description" class="vendor-info__description grayTextColor">{{ "VENDOR_HAS_NO_DESCRIPTION" | translate }}...</p>
+        <!-- <p *ngIf="!item.description" class="vendor-info__description grayTextColor">{{ "VENDOR_HAS_NO_DESCRIPTION" | translate }}...</p> -->
 
         <p *ngIf="item.delivery" class="vendor-info__deliveryStatus successTextColor">
-            <b> {{ "VENDOR_OFFERS_DELIVERY" | translate }}</b>
+            <b> {{ "VENDOR_OFFERS_DELIVERY" | translate }}</b> <nb-icon icon="car-outline" class="vendor-card__icon successTextColor" pack="eva"></nb-icon>
         </p>
         <p *ngIf="!item.delivery" class="vendor-info__deliveryStatus grayTextColor">
             {{ "VENDOR_DOES_NOT_OFFER_DELIVERY" | translate }}

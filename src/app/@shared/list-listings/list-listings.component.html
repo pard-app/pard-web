@@ -1,5 +1,5 @@
 <ng-container *ngIf="listingsList$ | async as listingsList">
-    <h3 class="listings-title" [innerHTML]="title"></h3>
+    <h3 class="listings-title" [innerHTML]="title + ' (' + listingsList.length + ')'"></h3>
 
     <section class="grid-parent">
         <app-card-listing *ngFor="let item of listingsList" [item]="item"></app-card-listing>

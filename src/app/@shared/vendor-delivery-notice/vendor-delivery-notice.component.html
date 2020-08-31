@@ -14,9 +14,6 @@
     <nb-alert *ngIf="!vendor.delivery" accent="warning" class="deliveryInformation__alertFailure">
         <div class="deliveryInformation__alertTextSection">
             <p class="deliveryInformation__failureText">{{ "VENDOR_DOES_NOT_OFFER_DELIVERY" | translate }}. {{ "SELF_PICKUP" | translate }}.</p>
-            <p *ngIf="vendor.delivery_note">
-                {{ vendor.delivery_note }}
-            </p>
         </div>
     </nb-alert>
 </div>

@@ -1,6 +1,6 @@
-<nb-card [style.visibility]="formProgress === 0 ? 'hidden' : 'visible'">
+<!-- <nb-card [style.visibility]="formProgress === 0 ? 'hidden' : 'visible'">
     <nb-progress-bar [value]="formProgress" [status]="status" [displayValue]="true" [size]="'giant'"></nb-progress-bar>
-</nb-card>
+</nb-card> -->
 
 <nb-stepper #stepper [linear]="true" orientation="horizontal" disableStepNavigation="true">
     <nb-step [label]="'INFORMATION' | translate" [formGroup]="formBasic">
@@ -34,7 +34,7 @@
             </nb-card-body>
             <nb-card-footer>
                 <div class="actions">
-                    <button nbButton nbStepperNext (click)="formProgress = 30" [disabled]="formBasic.invalid || !formBasic.value.terms" basic status="success">
+                    <button nbButton nbStepperNext (click)="formProgress = 25" [disabled]="formBasic.invalid || !formBasic.value.terms" basic status="success">
                         {{ "NEXT" | translate }}
                     </button>
                 </div>
@@ -108,7 +108,7 @@
                     <button
                         nbButton
                         nbStepperNext
-                        (click)="generateOrder(); formProgress = 60"
+                        (click)="generateOrder(); formProgress = 50"
                         [disabled]="formDeliveryField('delivery').value && formDelivery.invalid"
                         basic
                         status="success"
@@ -207,7 +207,7 @@
                         <h1>{{ order.orderId }}</h1>
                         <h2>{{ order.sum | currency }}</h2>
                     </nb-card-header>
-                    <nb-card-body>
+                    <!-- <nb-card-body>
                         <nb-user
                             shape="rectangle"
                             [name]="order.seller.title"
@@ -226,7 +226,7 @@
                                 [title]="listing.description"
                             ></nb-user>
                         </div>
-                    </nb-card-body>
+                    </nb-card-body> -->
                 </nb-card>
             </nb-card-body>
             <nb-card-footer *ngIf="!loading" class="vendor-delivery__confirmation">
