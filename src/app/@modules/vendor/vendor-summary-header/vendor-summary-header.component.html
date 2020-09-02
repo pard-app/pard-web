@@ -22,9 +22,7 @@
             <br />
             <div class="vendor__smContacts">
                 {{ "PHONE" | translate }}:<a class="vendor__smContactsLink" [href]="'tel:' + vendorAfterAsync.phone"> {{ vendorAfterAsync.phone }}</a>
-                {{ "EMAIL" | translate }}:<a class="vendor__smContactsLink" [href]="'mailto:' + vendorAfterAsync.email" vendorAfterAsync.email>
-                    {{ vendorAfterAsync.email }}</a
-                >
+                {{ "EMAIL" | translate }}:<a class="vendor__smContactsLink" [href]="'mailto:' + vendorAfterAsync.email"> {{ vendorAfterAsync.email }}</a>
             </div>
         </nb-card-body>
         <nb-card-footer class="vendor__deliveryInformationContainer noSidePadding"

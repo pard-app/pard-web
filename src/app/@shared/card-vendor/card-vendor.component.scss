@@ -1,10 +1,13 @@
 .vendor-card {
     min-width: 230px;
-    height: 240px;
+    min-height: 240px;
+    max-height: 240px;
     margin-bottom: 0;
+    max-width: calc(100vw - 25px);
+
     &__header {
         display: grid;
-        grid-template-columns: 3fr 1fr;
+        grid-template-columns: 5fr 1fr;
         padding: 0;
         height: 75px;
     }
@@ -71,34 +74,38 @@
         background-size: cover;
         height: 75px;
     }
-    &__listingsNumberSection {
+    &__vendorOptionsSection {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: flex-end;
         padding: 12px;
     }
-    &__listingsNumber {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-    }
-    &__listingsNumberValue {
-        margin: 4px;
-        padding-bottom: 1px;
-    }
-
     &__smallImage {
         height: 100%;
         width: 100%;
         object-fit: cover;
         object-position: center;
     }
+
+    &:hover {
+        max-height: 360px;
+
+        .vendor-info {
+            &__description {
+                -webkit-line-clamp: unset;
+            }
+        }
+    }
 }
 
 .vendor-info {
     &__title {
         overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 245px;
+        max-width: calc(100vw - 200px);
     }
     &__location {
         opacity: 0.8;
@@ -106,14 +113,7 @@
     &__description {
         overflow: hidden;
         display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-    }
-
-    &__deliveryStatus {
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
+        -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
     }
 }

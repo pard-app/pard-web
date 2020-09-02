@@ -8,5 +8,9 @@
 }
 
 .near-me-vendors {
-    margin-top: -15px;
+    margin-top: -20px;
+
+    ::ng-deep .vendor-card {
+        max-width: calc(100vw - 55px);
+    }
 }

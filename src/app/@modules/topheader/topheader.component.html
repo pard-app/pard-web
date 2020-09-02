@@ -1,4 +1,7 @@
 <nb-layout-header class="top-header">
+    <button *ngIf="isMobileLayout" ghost nbButton status="primary" [nbContextMenu]="TOP_HEADER_NAVIGATION_ROUTES" class="top-header__button">
+        <nb-icon icon="menu-outline"></nb-icon>
+    </button>
     <section class="top-header__section">
         <svg (click)="navigateToMainPage()" class="top-header__button" height="50">
             <use xlink:href="assets/icons/pard-text.svg#Layer_1"></use>
@@ -33,10 +36,6 @@
             </button>
             <div *ngIf="count" class="cart-display-count">{{ count }}</div>
         </div>
-
-        <button *ngIf="isMobileLayout" ghost nbButton status="primary" [nbContextMenu]="TOP_HEADER_NAVIGATION_ROUTES" class="top-header__button">
-            <nb-icon icon="menu-outline"></nb-icon>
-        </button>
     </section>
 </nb-layout-header>
 
