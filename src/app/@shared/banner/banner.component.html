@@ -1,0 +1,10 @@
+<swiper [config]="config" *ngIf="algoliaService.configuration && algoliaService.configuration.banners">
+    <div *ngFor="let banner of algoliaService.configuration.banners | active">
+        <div [style]="'background-image: url(' + banner.image + ');'" class="banner">
+            <h2 [style]="'color:' + banner.color + ';'">{{ banner.title }}</h2>
+            <p [style]="'color:' + banner.color + ';'">{{ banner.subtitle }}</p>
+
+            <button nbButton [routerLink]="banner.url">{{ banner.button }}</button>
+        </div>
+    </div>
+</swiper>

@@ -31,6 +31,9 @@ import { ButtonLoadMoreComponent } from "./button-load-more/button-load-more.com
 import { NearMeItemsComponent } from "./near-me-items/near-me-items.component";
 import { LoadingBoxComponent } from "./loading-box/loading-box.component";
 import { VendorDeliveryNoticeComponent } from "./vendor-delivery-notice/vendor-delivery-notice.component";
+import { BannerComponent } from "./banner/banner.component";
+import { SwiperModule } from "ngx-swiper-wrapper";
+import { ActivePipe } from "@core/pipes/active.pipe";
 
 @NgModule({
     declarations: [
@@ -45,6 +48,8 @@ import { VendorDeliveryNoticeComponent } from "./vendor-delivery-notice/vendor-d
         NearMeItemsComponent,
         LoadingBoxComponent,
         VendorDeliveryNoticeComponent,
+        BannerComponent,
+        ActivePipe,
     ],
     imports: [
         CommonModule,
@@ -63,6 +68,7 @@ import { VendorDeliveryNoticeComponent } from "./vendor-delivery-notice/vendor-d
         NbBadgeModule,
         NbSpinnerModule,
         NbAlertModule,
+        SwiperModule,
     ],
     providers: [NbAutocompleteDirective, NbMenuService],
     exports: [
@@ -75,6 +81,7 @@ import { VendorDeliveryNoticeComponent } from "./vendor-delivery-notice/vendor-d
         ListVendorsComponent,
         ButtonLoadMoreComponent,
         NearMeItemsComponent,
+        BannerComponent,
         VendorDeliveryNoticeComponent,
     ],
 })

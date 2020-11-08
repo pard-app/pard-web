@@ -23,6 +23,8 @@ export const environment = {
         apiKey: "4a4c3cf361db92d120cd34df02428008",
     },
     languages: ["en", "lt", "lv"],
+    hosts: ["pard.lt", "pard.lv", "pardshop.com", "localhost"],
+    demo: "nrTLldOZ6tV9ogQvl1AzPZDJlcm1",
 };
 
 /*

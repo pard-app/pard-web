@@ -4,6 +4,8 @@ import { ActivatedRoute } from "@angular/router";
 import { ListingItem } from "src/app/@core/models/listingitem.interface";
 import { ListingService } from "@services/listing/listing.service";
 import { VendorService } from "@services/vendor/vendor.service";
+import { AlgoliaService } from "@services/algolia/algolia.service";
+import { environment } from "src/environments/environment";
 
 @Component({
     selector: "app-vendor-listings",
@@ -15,7 +17,12 @@ export class VendorListingsComponent implements OnInit {
     public _vendor$ = new BehaviorSubject({});
     private vendorId: string;
 
-    constructor(private vendorService: VendorService, private listingService: ListingService, private route: ActivatedRoute) {}
+    constructor(
+        private vendorService: VendorService,
+        private listingService: ListingService,
+        private route: ActivatedRoute,
+        private algoliaService: AlgoliaService
+    ) {}
 
     ngOnInit(): void {
         this.route.params.subscribe(async (params) => {
@@ -31,7 +38,17 @@ export class VendorListingsComponent implements OnInit {
     }
 
     private async getVendor() {
+        if (this.vendorId.length < 28) {
+            const vendorLookup = this.algoliaService.configuration.vendors.find((vendors) => vendors.id == this.vendorId);
+            if (vendorLookup) {
+                this.vendorId = vendorLookup.vendor;
+            } else {
+                this.vendorId = environment.demo;
+            }
+        }
+
         const data = await this.vendorService.getVendorById(this.vendorId);
+
         this._vendor$.next(data);
     }
 

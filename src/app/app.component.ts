@@ -3,13 +3,20 @@ import { TranslateService } from "@ngx-translate/core";
 import { CartStoreService } from "src/app/@core/stores/cart/cart.store.service";
 import { NgcCookieConsentService, NgcInitializeEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from "ngx-cookieconsent";
 import { environment } from "src/environments/environment";
+import { AngularFirestore } from "@angular/fire/firestore";
+import { DbService } from "@services/db-service/db-service.service";
 
 @Component({
     selector: "app-root",
     templateUrl: "./app.component.html",
 })
 export class AppComponent implements OnInit {
-    constructor(private translate: TranslateService, private cartStoreService: CartStoreService, private ccService: NgcCookieConsentService) {
+    constructor(
+        private translate: TranslateService,
+        private cartStoreService: CartStoreService,
+        private ccService: NgcCookieConsentService,
+        private dbService: DbService
+    ) {
         this.translate.setDefaultLang("en");
         let language = this.translate.getBrowserLang();
         if (!environment.languages.find((supportedLanguage) => supportedLanguage == language)) {
@@ -20,6 +27,8 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
+        //this.dbService.configuration;
+
         // Needed for translations
         this.translate
             .get(["cookie.header", "cookie.message", "cookie.dismiss", "cookie.allow", "cookie.deny", "cookie.link", "cookie.policy"])

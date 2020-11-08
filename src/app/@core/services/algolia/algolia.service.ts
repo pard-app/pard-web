@@ -4,7 +4,6 @@ import { shuffle } from "@algolia/client-common";
 import { environment } from "src/environments/environment";
 import { Observable, from } from "rxjs";
 import { Suggestion, RawAnswer } from "places.js";
-
 @Injectable({
     providedIn: "root",
 })
@@ -12,10 +11,36 @@ export class AlgoliaService {
     public searchClient: SearchClient = algolia(environment.algoliaConfig.appId, environment.algoliaConfig.apiKey);
     public listingsIndex: SearchIndex = this.searchClient.initIndex("listings");
     public vendorsIndex: SearchIndex = this.searchClient.initIndex("vendors");
+    public configurationsIndex: SearchIndex = this.searchClient.initIndex("configurations");
+
     public places = this.placesInit();
     public placeById = this.placesInit("getById");
 
+    public configuration: any;
+
     constructor() {}
+
+    public getConfiguration() {
+        console.log("get configuration called");
+        if (this.configuration) {
+            console.log("returned cache");
+            return this.configuration;
+        } else {
+            console.log("loading data");
+
+            let host = environment.hosts.find((supportedHosts) => supportedHosts == window.location.hostname);
+
+            if (!host) {
+                host == "localhost";
+            }
+
+            return this.configurationsIndex.getObject(host).then((configuration) => {
+                this.configuration = configuration;
+                console.log(this.configuration);
+                return this.configuration;
+            });
+        }
+    }
 
     public searchVendorsAndListings(query: string, options = {}): Observable<any> {
         const settings = [

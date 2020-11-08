@@ -1,5 +1,8 @@
 @import "~src/app/@core/styles/themes";
 
+:host {
+    height: 55px;
+}
 .top-header {
     position: fixed;
     width: 100%;

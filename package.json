@@ -33,8 +33,10 @@
     "flag-icon-css": "^3.5.0",
     "husky": "^4.3.0",
     "ngx-cookieconsent": "^2.2.3",
+    "ngx-swiper-wrapper": "^10.0.0",
     "places.js": "^1.19.0",
     "rxjs": "^6.6.3",
+    "swiper": "^6.3.5",
     "tslib": "^1.14.1",
     "zone.js": "~0.10.2"
   },

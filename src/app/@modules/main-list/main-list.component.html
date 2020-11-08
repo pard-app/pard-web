@@ -1,7 +1,7 @@
 <app-search-box></app-search-box>
 
 <section class="content-section" *ngIf="searchRequest$ | async as searchRequest">
-    <scenario-nothing *ngIf="!searchRequest.location && !searchRequest.listingOrVendor"></scenario-nothing>
+    <scenario-landing *ngIf="!searchRequest.location && !searchRequest.listingOrVendor"></scenario-landing>
     <scenario-only-location *ngIf="searchRequest.location && !searchRequest.listingOrVendor"></scenario-only-location>
     <scenario-only-listing *ngIf="!searchRequest.location && searchRequest.listingOrVendor"></scenario-only-listing>
     <scenario-location-and-listing *ngIf="searchRequest.location && searchRequest.listingOrVendor"></scenario-location-and-listing>

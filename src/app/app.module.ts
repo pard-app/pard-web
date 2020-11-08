@@ -12,7 +12,7 @@ import { environment } from "../environments/environment";
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from "ngx-cookieconsent";
 
 // NEBULAR MODULES
-import { NbAutocompleteDirective, NbLayoutModule, NbThemeModule, NbMenuModule, NbToastrModule } from "@nebular/theme";
+import { NbAutocompleteDirective, NbLayoutModule, NbThemeModule, NbMenuModule, NbToastrModule, NbAlertModule } from "@nebular/theme";
 
 import { VendorModule } from "@modules/vendor/vendor.module";
 import { AngularFireFunctionsModule, REGION } from "@angular/fire/functions";
@@ -25,6 +25,7 @@ import { PrivacyPolicyModule } from "@modules/privacy-policy/privacy-policy.modu
 import { TermsAndConditionsModule } from "@modules/terms-and-conditions/terms-and-conditions.module";
 import { GlobalInterceptor } from "@services/interceptor/interceptor.interceptor";
 import { AboutModule } from "@modules/about/about.module";
+//import { AngularFirestoreModule } from "@angular/fire/firestore";
 
 const domain = window.location.hostname;
 
@@ -54,10 +55,12 @@ export const cookieConfig: NgcCookieConsentConfig = {
         AppRoutingModule,
         BrowserAnimationsModule,
         NbLayoutModule,
+        NbAlertModule,
         NbThemeModule.forRoot({ name: "corporate" }),
         NbMenuModule.forRoot(),
         NbToastrModule.forRoot(),
         AngularFireModule.initializeApp(environment.firebaseConfig),
+        //AngularFirestoreModule,
         AngularFireFunctionsModule,
         NgcCookieConsentModule.forRoot(cookieConfig),
         TranslateModule.forRoot({
