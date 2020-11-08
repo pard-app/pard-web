@@ -14,7 +14,7 @@
         <img src="assets/images/flags/latvia.svg" (click)="setLanguage('lv')" /> -->
     </section>
 
-    <section class="top-header__section" *ngIf="!isMobileLayout">
+    <section class="top-header__section top-header__menu" *ngIf="!isMobileLayout">
         <button *ngFor="let item of TOP_HEADER_NAVIGATION_ROUTES" (click)="handleRedirect(item)" ghost nbButton status="black" class="top-header__button">
             {{ item.title }}
         </button>

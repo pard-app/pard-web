@@ -9,7 +9,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { NbDialogModule, NbDialogService } from "@nebular/theme";
 import { InjectionToken } from "@angular/core";
 
-describe("CartCheckoutComponent", () => {
-    let component: CartCheckoutComponent;
-    let fixture: ComponentFixture<CartCheckoutComponent>;
-});
+// describe("CartCheckoutComponent", () => {
+//     let component: CartCheckoutComponent;
+//     let fixture: ComponentFixture<CartCheckoutComponent>;
+// });

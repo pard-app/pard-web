@@ -30,6 +30,12 @@
         }
     }
 
+    &__menu {
+        .top-header__button {
+            width: auto;
+        }
+    }
+
     &__cart {
         position: relative;
 

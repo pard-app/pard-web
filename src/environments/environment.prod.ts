@@ -18,4 +18,5 @@ export const environment = {
         appId: "plE162XX1EVN",
         apiKey: "4a4c3cf361db92d120cd34df02428008",
     },
+    languages: ["en", "lt", "lv"],
 };

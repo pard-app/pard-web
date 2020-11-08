@@ -26,6 +26,7 @@
     "BACK": "Atpakaļ",
     "PLEASE_WAIT": "Lūdzu, uzgaidiet..",
     "APP": "App",
+    "FOR_SELLERS": "Pārdevējiem",
     "NO_LISTINGS": "Sludinājumi netika atrasti.",
     "NO_VENDORS": "Pārdevēji netika atrasti.",
     "COUNTRY": "Valsts",
@@ -111,5 +112,5 @@
     "CLOSE": "Aizvērt",
     "LISTINGS_IN": "Sludinājumi",
     "LOAD_MORE": "Ielādēt vairāk",
-    "VENDOR_HAS_NO_DESCRIPTION": "Vendor has no description"
+    "VENDOR_HAS_NO_DESCRIPTION": "Pārdevējam nav apraksta"
 }

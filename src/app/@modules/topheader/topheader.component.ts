@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
+import { Component, OnInit, ViewChild, OnDestroy, ChangeDetectorRef } from "@angular/core";
 import { CartStoreService } from "@core/stores/cart/cart.store.service";
 import { Subscription } from "rxjs";
 import { NbPopoverDirective, NbMenuService } from "@nebular/theme";
 import { ListingItem } from "src/app/@core/models/listingitem.interface";
-import { TranslateService } from "@ngx-translate/core";
+import { LangChangeEvent, TranslateService } from "@ngx-translate/core";
 import { ROUTING_CONSTANTS } from "src/app/@core/constants/routing.constants";
 import { Router } from "@angular/router";
 import { MainSearchStore } from "@core/stores/mainsearch/mainsearch.store";
@@ -24,11 +24,7 @@ type IRoutes = IRoute[];
     styleUrls: ["./topheader.component.scss"],
 })
 export class TopheaderComponent implements OnInit, OnDestroy {
-    public TOP_HEADER_NAVIGATION_ROUTES: IRoutes = [
-        { title: this.translate.instant("SHOP"), link: "/" + ROUTING_CONSTANTS.ROOT },
-        { title: this.translate.instant("APP"), url: "https://pard.app" },
-        { title: this.translate.instant("ABOUT"), url: "https://about.pard.app/" },
-    ];
+    public TOP_HEADER_NAVIGATION_ROUTES: IRoutes = [];
 
     public globalRoutes = ROUTING_CONSTANTS;
     public lastItemAddedToCartSubscribtion: Subscription;
@@ -46,9 +42,14 @@ export class TopheaderComponent implements OnInit, OnDestroy {
         private translate: TranslateService,
         private mainSearchStore: MainSearchStore,
         private nbMenuService: NbMenuService,
-        private iconLibraries: NbIconLibraries
+        private iconLibraries: NbIconLibraries,
+        private _changeDetectorRef: ChangeDetectorRef
     ) {
         this.iconLibraries.registerFontPack("flag-icon", { iconClassPrefix: "flag-icon" });
+
+        translate.onLangChange.subscribe((event: LangChangeEvent) => {
+            this.setTopMenu();
+        });
     }
 
     ngOnInit(): void {
@@ -73,6 +74,14 @@ export class TopheaderComponent implements OnInit, OnDestroy {
             });
 
         this.language = this.translate.currentLang;
+    }
+
+    private setTopMenu() {
+        this.TOP_HEADER_NAVIGATION_ROUTES = [
+            { title: this.translate.instant("HOME"), link: "/" + ROUTING_CONSTANTS.ROOT },
+            { title: this.translate.instant("FOR_SELLERS"), url: "https://pard.app" },
+            { title: this.translate.instant("ABOUT"), url: "https://about.pard.app/" },
+        ];
     }
 
     private checkForMobileSize() {

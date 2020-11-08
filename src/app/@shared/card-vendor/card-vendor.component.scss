@@ -88,15 +88,15 @@
         object-position: center;
     }
 
-    &:hover {
-        max-height: 360px;
+    // &:hover {
+    //     max-height: 360px;
 
-        .vendor-info {
-            &__description {
-                -webkit-line-clamp: unset;
-            }
-        }
-    }
+    //     .vendor-info {
+    //         &__description {
+    //             -webkit-line-clamp: unset;
+    //         }
+    //     }
+    // }
 }
 
 .vendor-info {

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { CartStoreService } from "src/app/@core/stores/cart/cart.store.service";
 import { NgcCookieConsentService, NgcInitializeEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from "ngx-cookieconsent";
+import { environment } from "src/environments/environment";
 
 @Component({
     selector: "app-root",
@@ -10,7 +11,11 @@ import { NgcCookieConsentService, NgcInitializeEvent, NgcStatusChangeEvent, NgcN
 export class AppComponent implements OnInit {
     constructor(private translate: TranslateService, private cartStoreService: CartStoreService, private ccService: NgcCookieConsentService) {
         this.translate.setDefaultLang("en");
-        this.translate.use(this.translate.getBrowserLang());
+        let language = this.translate.getBrowserLang();
+        if (!environment.languages.find((supportedLanguage) => supportedLanguage == language)) {
+            language = "en";
+        }
+        this.translate.use(language);
         this.cartStoreService.syncLocalStorageToListings();
     }
 

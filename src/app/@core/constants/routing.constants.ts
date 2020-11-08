@@ -9,8 +9,8 @@ enum ROUTING_CONSTANTS {
     ABOUT_PAGE_ROOT = "about",
     CART_CHECKOUT_PAGE_ROOT = "checkout",
     CART_LISTINGS_PAGE_ROOT = "listings",
-    TERMS_AND_CONDITIONS = "terms_and_conditions",
-    PRIVACY_POLICY = "privacy_policy",
+    // TERMS_AND_CONDITIONS = "terms",
+    // PRIVACY_POLICY = "privacy-policy",
 }
 
 enum QUERY_PARAMS {
