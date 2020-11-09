@@ -7,6 +7,7 @@ import { ROUTING_CONSTANTS, locationQueryParams, QUERY_PARAMS } from "@constants
 import { Router } from "@angular/router";
 import { AlgoliaService } from "@services/algolia/algolia.service";
 import { DbService } from "@services/db-service/db-service.service";
+import { IVendor } from "@models/vendor.interface";
 
 @Component({
     selector: "scenario-landing",
@@ -17,17 +18,25 @@ export class LandingComponent implements OnInit, OnDestroy {
     public topVendorsInLocations$: Observable<any> = of([{}]);
     public isLoadingVendorsInLocations: boolean = true;
     public globalRoutes = ROUTING_CONSTANTS;
+    public mainPromotedVendor: any;
 
-    constructor(
-        private vendorService: VendorService,
-        private listingService: ListingService,
-        private router: Router,
-        private algolia: AlgoliaService,
-        public dbService: DbService
-    ) {}
+    constructor(private vendorService: VendorService, private listingService: ListingService, private router: Router, public algolia: AlgoliaService) {}
 
     async ngOnInit() {
-        this.handleTopVendorsInLocations();
+        //this.handleTopVendorsInLocations();
+        this.getPromotedVendors();
+    }
+
+    private async getPromotedVendors() {
+        if (this.algolia.configuration.main_promotion && this.algolia.configuration.main_promotion.active) {
+            this.vendorService.getVendorById(this.algolia.configuration.main_promotion.vendor).then((vendor) => {
+                this.listingService.getListingsByIds(this.algolia.configuration.main_promotion.listings).then((listings) => {
+                    this.mainPromotedVendor = vendor;
+                    this.mainPromotedVendor.listings = listings.results;
+                    this.mainPromotedVendor.config = this.algolia.configuration.vendors.find((vendors) => vendors.vendor == this.mainPromotedVendor.objectID);
+                });
+            });
+        }
     }
 
     private async handleTopVendorsInLocations() {

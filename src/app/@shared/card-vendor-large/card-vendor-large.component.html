@@ -1,9 +1,18 @@
-<nb-card
-    *ngIf="item"
-    class="vendor-card clickable-card"
-    [routerLink]="globalRoutes.VENDOR_PAGE_ROOT + '/' + (item.config.slug ? item.config.slug : item.objectID)"
->
-    <nb-card-header class="vendor-card__header">
+<nb-card *ngIf="item" class="vendor-card clickable-card" [routerLink]="globalRoutes.VENDOR_PAGE_ROOT + '/' + (item.config.id ? item.config.id : item.objectID)">
+    <div class="vendor-card__wrapper">
+        <div class="vendor-card__main">
+            <div class="vendor-card__header"><img [src]="item.config.header" /></div>
+            <div class="vendor-card__information">
+                {{ item.company }}
+            </div>
+        </div>
+
+        <div *ngFor="let listing of item.listings; index as i" [class]="'vendor-card__listing listing-' + (i + 1) + ''">
+            <img [src]="listing.image" />
+            <div class="listing-details">{{ listing.title }}</div>
+        </div>
+    </div>
+    <!-- <nb-card-header class="vendor-card__header">
         <div class="vendor-card__headerWrapper">
             <div *ngIf="item.image" class="vendor-card__imageWrapper"><img class="vendor-card__image" [src]="item.image" [alt]="item.title" /></div>
             <div class="vendor-info">
@@ -22,14 +31,7 @@
     </nb-card-header>
     <nb-card-body class="vendor-card__body-sectionSM">
         <p *ngIf="item.description" class="vendor-info__description darkGrayTextColor">{{ item.description }}</p>
-        <!-- <p *ngIf="!item.description" class="vendor-info__description grayTextColor">{{ "VENDOR_HAS_NO_DESCRIPTION" | translate }}...</p> -->
 
-        <!-- <p *ngIf="item.delivery" class="vendor-info__deliveryStatus successTextColor">
-            <b> {{ "VENDOR_OFFERS_DELIVERY" | translate }}</b>
-        </p>
-        <p *ngIf="!item.delivery" class="vendor-info__deliveryStatus grayTextColor">
-            {{ "VENDOR_DOES_NOT_OFFER_DELIVERY" | translate }}
-        </p> -->
     </nb-card-body>
     <nb-card-footer *ngIf="item.listings && item.listings.length" class="vendor-card__footerSection">
         <div class="vendor-card__gallery">
@@ -37,5 +39,5 @@
                 <img class="vendor-card__smallImage" [src]="listing.image" />
             </div>
         </div>
-    </nb-card-footer>
+    </nb-card-footer> -->
 </nb-card>

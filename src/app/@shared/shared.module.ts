@@ -34,11 +34,13 @@ import { VendorDeliveryNoticeComponent } from "./vendor-delivery-notice/vendor-d
 import { BannerComponent } from "./banner/banner.component";
 import { SwiperModule } from "ngx-swiper-wrapper";
 import { ActivePipe } from "@core/pipes/active.pipe";
+import { CardVendorLargeComponent } from "./card-vendor-large/card-vendor-large.component";
 
 @NgModule({
     declarations: [
         CardListingComponent,
         CardVendorComponent,
+        CardVendorLargeComponent,
         InputValidateWrapperComponent,
         ListListingsComponent,
         SearchLocationComponent,
@@ -74,6 +76,7 @@ import { ActivePipe } from "@core/pipes/active.pipe";
     exports: [
         CardListingComponent,
         CardVendorComponent,
+        CardVendorLargeComponent,
         InputValidateWrapperComponent,
         ListListingsComponent,
         SearchLocationComponent,
