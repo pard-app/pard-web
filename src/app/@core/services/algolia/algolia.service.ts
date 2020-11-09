@@ -34,8 +34,9 @@ export class AlgoliaService {
                 host == "localhost";
             }
 
-            return this.configurationsIndex.getObject(host).then((configuration) => {
-                this.configuration = configuration;
+            return this.configurationsIndex.getObjects([host, "global"]).then((res) => {
+                this.configuration = { ...res.results[1], ...res.results[0] };
+
                 console.log(this.configuration);
                 return this.configuration;
             });
