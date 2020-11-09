@@ -1,9 +1,14 @@
-<nb-card *ngIf="item" class="vendor-card clickable-card" [routerLink]="globalRoutes.VENDOR_PAGE_ROOT + '/' + (item.config.id ? item.config.id : item.objectID)">
+<nb-card
+    *ngIf="item"
+    class="vendor-card clickable-card"
+    [routerLink]="globalRoutes.VENDOR_PAGE_ROOT + '/' + (item._extras.slug ? item._extras.slug : item.objectID)"
+>
     <div class="vendor-card__wrapper">
         <div class="vendor-card__main">
-            <div class="vendor-card__header"><img [src]="item.config.header" /></div>
+            <div class="vendor-card__header"><img [src]="item._extras.header ? item._extras.header : ''" /></div>
             <div class="vendor-card__information">
                 {{ item.company }}
+                {{ item._extras.verified }}
             </div>
         </div>
 

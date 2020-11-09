@@ -33,7 +33,7 @@ export class LandingComponent implements OnInit, OnDestroy {
                 this.listingService.getListingsByIds(this.algolia.configuration.main_promotion.listings).then((listings) => {
                     this.mainPromotedVendor = vendor;
                     this.mainPromotedVendor.listings = listings.results;
-                    this.mainPromotedVendor.config = this.algolia.configuration.vendors.find((vendors) => vendors.vendor == this.mainPromotedVendor.objectID);
+                    //this.mainPromotedVendor.config = this.algolia.configuration.vendors.find((vendors) => vendors.vendor == this.mainPromotedVendor.objectID);
                 });
             });
         }

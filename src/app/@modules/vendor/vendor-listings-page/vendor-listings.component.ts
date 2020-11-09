@@ -39,7 +39,7 @@ export class VendorListingsComponent implements OnInit {
 
     private async getVendor() {
         if (this.vendorId.length < 28) {
-            const vendorLookup = this.algoliaService.configuration.vendors.find((vendors) => vendors.id == this.vendorId);
+            const vendorLookup = this.algoliaService.configuration.mappings.find((mapping) => mapping.vendor == this.vendorId);
             if (vendorLookup) {
                 this.vendorId = vendorLookup.vendor;
             } else {

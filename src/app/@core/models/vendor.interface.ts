@@ -20,5 +20,5 @@ export interface IVendor {
         lng: number;
     };
     listings: Array<any>;
-    config?: any;
+    _extras?: any;
 }

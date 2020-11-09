@@ -1,7 +1,7 @@
 <nb-card
     *ngIf="item"
     class="vendor-card clickable-card"
-    [routerLink]="globalRoutes.VENDOR_PAGE_ROOT + '/' + (item.config.slug ? item.config.slug : item.objectID)"
+    [routerLink]="globalRoutes.VENDOR_PAGE_ROOT + '/' + (item._extras.slug ? item._extras.slug : item.objectID)"
 >
     <nb-card-header class="vendor-card__header">
         <div class="vendor-card__headerWrapper">
