@@ -19,6 +19,10 @@ export class ListingService {
         );
     }
 
+    public getNewestListings(query = "", hitsPerPage = 6, page = 0) {
+        return this.algoliaService.listingsIndex.search(query, { hitsPerPage, page });
+    }
+
     public searchVendorListings(query = "", vendorId: string, pagination = {}) {
         return this.algoliaService.listingsIndex.search(query, { filters: "vendor:" + vendorId, ...pagination });
     }
@@ -40,7 +44,7 @@ export class ListingService {
     }
 
     public async fillVendorWithItsListings(vendors: Array<IVendor>): Promise<Array<IVendor>> {
-        // For every vendor, find his item and place into object
+        // For every vendor, find their listings and place into object
         return Promise.all(
             vendors.map(async (vendor: IVendor) => {
                 const { hits: listingsOfVendor } = await this.searchVendorListings("", vendor.objectID, { hitsPerPage: 4 });

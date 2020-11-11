@@ -1,5 +1,18 @@
 <app-banner></app-banner>
-<app-card-vendor-large [item]="mainPromotedVendor"></app-card-vendor-large>
+<div class="promoted" *ngIf="promotedVendors">
+    <div class="promoted__main">
+        <app-card-vendor-large [item]="promotedVendors[0]"></app-card-vendor-large>
+    </div>
+    <div class="promoted__secondary">
+        <app-card-vendor [item]="promotedVendors[1]"></app-card-vendor>
+        <app-card-vendor [item]="promotedVendors[2]"></app-card-vendor>
+        <app-card-vendor [item]="promotedVendors[3]"></app-card-vendor>
+    </div>
+</div>
+<div class="newest-listings">
+    <app-card-listing-slider [listings]="newestListings"></app-card-listing-slider>
+</div>
+
 <!-- <app-near-me-items></app-near-me-items> -->
 <!-- Top In Cities Vendors -->
 <!-- <app-list-vendors

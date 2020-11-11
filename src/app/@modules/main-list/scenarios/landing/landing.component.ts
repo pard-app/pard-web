@@ -18,25 +18,29 @@ export class LandingComponent implements OnInit, OnDestroy {
     public topVendorsInLocations$: Observable<any> = of([{}]);
     public isLoadingVendorsInLocations: boolean = true;
     public globalRoutes = ROUTING_CONSTANTS;
-    public mainPromotedVendor: any;
+    public promotedVendors: any;
+    public newestListings: any;
 
     constructor(private vendorService: VendorService, private listingService: ListingService, private router: Router, public algolia: AlgoliaService) {}
 
     async ngOnInit() {
         //this.handleTopVendorsInLocations();
         this.getPromotedVendors();
+        this.getNewestListings();
     }
 
     private async getPromotedVendors() {
-        if (this.algolia.configuration.main_promotion && this.algolia.configuration.main_promotion.active) {
-            this.vendorService.getVendorById(this.algolia.configuration.main_promotion.vendor).then((vendor) => {
-                this.listingService.getListingsByIds(this.algolia.configuration.main_promotion.listings).then((listings) => {
-                    this.mainPromotedVendor = vendor;
-                    this.mainPromotedVendor.listings = listings.results;
-                    //this.mainPromotedVendor.config = this.algolia.configuration.vendors.find((vendors) => vendors.vendor == this.mainPromotedVendor.objectID);
-                });
+        if (this.algolia.configuration.promotions) {
+            this.vendorService.getMultipleVendors(this.algolia.configuration.promotions).then(async (response: any) => {
+                this.promotedVendors = await this.listingService.fillVendorWithItsListings(response.results);
             });
         }
+    }
+
+    private async getNewestListings() {
+        this.listingService.getNewestListings().then(async (response: any) => {
+            this.newestListings = response.hits;
+        });
     }
 
     private async handleTopVendorsInLocations() {

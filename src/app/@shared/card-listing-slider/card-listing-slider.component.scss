@@ -1,0 +1,15 @@
+:host {
+    display: block;
+    margin-top: 20px;
+}
+
+.listing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 30vh;
+    text-align: center;
+    background-size: cover;
+}

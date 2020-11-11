@@ -21,13 +21,9 @@ export class AlgoliaService {
     constructor() {}
 
     public getConfiguration() {
-        console.log("get configuration called");
         if (this.configuration) {
-            console.log("returned cache");
             return this.configuration;
         } else {
-            console.log("loading data");
-
             let host = environment.hosts.find((supportedHosts) => supportedHosts == window.location.hostname);
 
             if (!host) {
@@ -36,8 +32,6 @@ export class AlgoliaService {
 
             return this.configurationsIndex.getObjects([host, "global"]).then((res) => {
                 this.configuration = { ...res.results[1], ...res.results[0] };
-
-                console.log(this.configuration);
                 return this.configuration;
             });
         }

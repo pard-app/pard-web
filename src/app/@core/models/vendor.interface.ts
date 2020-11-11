@@ -21,4 +21,5 @@ export interface IVendor {
     };
     listings: Array<any>;
     _extras?: any;
+    slug?: string;
 }
