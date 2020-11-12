@@ -13,45 +13,56 @@ import { IVendor } from "@models/vendor.interface";
 })
 export class NearMeItemsComponent implements OnInit {
     private _topVendorsNearMe$ = new BehaviorSubject<Array<IVendor | any>>([{}]);
-    private _waitLocalVendors$ = new BehaviorSubject({
-        waiting: true,
-        waitedForTooLong: false,
-    });
-
     public readonly topVendorsNearMe$: Observable<Array<IVendor | any>> = this._topVendorsNearMe$.asObservable();
-    public readonly waitLocalVendors$: Observable<any> = this._waitLocalVendors$.asObservable();
+
+    public position: any;
+    public locationDenied: Boolean = false;
+    public askForLocation: Boolean = false;
 
     constructor(private vendorService: VendorService, private listingService: ListingService, private http: HttpClient) {}
 
     async ngOnInit() {
-        this.handleTopNearMe();
+        this.checkIfCanAccessLocation();
     }
 
     private async handleTopNearMe() {
-        timer(1000)
-            .toPromise()
-            .then(() => {
-                if (this._waitLocalVendors$.getValue().waiting) {
-                    this._waitLocalVendors$.next({ waiting: true, waitedForTooLong: true });
-                }
-            });
-
-        const { cityLatLong } = (await this.http.get("https://europe-west1-pard-app.cloudfunctions.net/geolocation").toPromise()) as { cityLatLong: string };
+        const locationAsString = `${this.position.coords.latitude},${this.position.coords.longitude}`;
+        //const locationAsString = "54.7008017,25.1126097";
         const data = await this.vendorService
-            .searchVendor({ query: "", aroundLatLng: cityLatLong, hitsPerPage: 6 })
+            .searchVendor({ query: "", aroundLatLng: locationAsString, hitsPerPage: 6 })
             .pipe(
                 mergeMap(async ({ hits }: any) => await this.listingService.fillVendorWithItsListings(hits)),
-                finalize(() => {
-                    const currentVal = this._waitLocalVendors$.getValue();
-                    currentVal.waiting && this._waitLocalVendors$.next({ ...currentVal, waiting: false });
-                }),
                 startWith([{}])
             )
             .toPromise();
         this._topVendorsNearMe$.next(data);
     }
 
-    public displayVendorsOnClick(): void {
-        this._waitLocalVendors$.next({ waiting: false, waitedForTooLong: false });
+    getBrowserGeolocation(options?: PositionOptions): Promise<Position> {
+        return new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject, options));
+    }
+
+    private checkIfCanAccessLocation() {
+        navigator.permissions.query({ name: "geolocation" }).then((status) => {
+            if (status.state == "granted") {
+                this.getLocation();
+            } else if (status.state == "prompt") {
+                this.askForLocation = true;
+            } else {
+                this.locationDenied = true;
+            }
+        });
+    }
+
+    public async getLocation() {
+        this.getBrowserGeolocation()
+            .then((position) => {
+                this.askForLocation = false;
+                this.position = position;
+                this.handleTopNearMe();
+            })
+            .catch((err) => {
+                this.locationDenied = true;
+            });
     }
 }

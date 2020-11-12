@@ -2,13 +2,12 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { VendorService } from "@services/vendor/vendor.service";
 import { ListingService } from "@services/listing/listing.service";
 import { of, Observable } from "rxjs";
-import { mergeMap, flatMap, toArray, concatMap } from "rxjs/operators";
+import { mergeMap, flatMap, toArray, concatMap, take } from "rxjs/operators";
 import { ROUTING_CONSTANTS, locationQueryParams, QUERY_PARAMS } from "@constants/routing.constants";
 import { Router } from "@angular/router";
 import { AlgoliaService } from "@services/algolia/algolia.service";
 import { DbService } from "@services/db-service/db-service.service";
 import { IVendor } from "@models/vendor.interface";
-
 @Component({
     selector: "scenario-landing",
     templateUrl: "./landing.component.html",
@@ -20,6 +19,7 @@ export class LandingComponent implements OnInit, OnDestroy {
     public globalRoutes = ROUTING_CONSTANTS;
     public promotedVendors: any;
     public newestListings: any;
+    public position: any;
 
     constructor(private vendorService: VendorService, private listingService: ListingService, private router: Router, public algolia: AlgoliaService) {}
 

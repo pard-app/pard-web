@@ -1,4 +1,7 @@
 <app-banner></app-banner>
+<div class="near-me">
+    <app-near-me-items></app-near-me-items>
+</div>
 <div class="promoted" *ngIf="promotedVendors">
     <div class="promoted__main">
         <app-card-vendor-large [item]="promotedVendors[0]"></app-card-vendor-large>
@@ -13,7 +16,7 @@
     <app-card-listing-slider [listings]="newestListings"></app-card-listing-slider>
 </div>
 
-<!-- <app-near-me-items></app-near-me-items> -->
+<!--  -->
 <!-- Top In Cities Vendors -->
 <!-- <app-list-vendors
     [isLoading]="isLoadingVendorsInLocations"

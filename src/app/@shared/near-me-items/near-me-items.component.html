@@ -1,27 +1,19 @@
-<ng-container *ngIf="topVendorsNearMe$ | async as topVendorsNearMe">
-    <nb-alert *ngIf="waitLocalVendors$ | async as waitLocalVendors" status="basic" class="near-me-alert">
-        <!-- LOADING -->
-        <p [nbSpinner]="true" nbSpinnerStatus="control" size="medium" *ngIf="waitLocalVendors.waiting == true">
-            {{ "LOOKING_FOR_NEAR_VENDORS" | translate }} <nb-icon icon="pin" status="info"></nb-icon>
-        </p>
-        <!-- VENDORS FOUND AFTER TAKING TOO LONG -->
-        <p *ngIf="waitLocalVendors.waiting == false && waitLocalVendors.waitedForTooLong == true && topVendorsNearMe.length; else elseBlock">
-            {{ "FOUND_VENDORS_NEAR" | translate }}
-            <button (click)="displayVendorsOnClick()" nbButton ghost status="info" size="small">
-                <nb-icon icon="arrowhead-down-outline"></nb-icon>{{ "SHOW_VENDORS" | translate }}
-            </button>
-        </p>
-        <!-- NO VENDORS FOUND -->
-        <ng-template #elseBlock>
-            <p *ngIf="!topVendorsNearMe.length && waitLocalVendors.waiting === false">😞 {{ "NO_VENDORS_NEAR" | translate }}</p>
-        </ng-template>
-        <!-- VENDORS FOUND IMMEDIATELY -->
-        <app-list-vendors
-            *ngIf="waitLocalVendors.waiting === false && waitLocalVendors.waitedForTooLong === false && topVendorsNearMe.length"
-            [vendorsWithListings$]="topVendorsNearMe$"
-            [title]="'VENDORS_NEAR_YOU' | translate"
-            [isLoading]="false"
-            class="near-me-vendors"
-        ></app-list-vendors>
-    </nb-alert>
+<ng-container *ngIf="askForLocation && !locationDenied">
+    <p>We would like to know your location to provide you with closest vendors, please click 'Allow' ...</p>
+    <button nbButton (click)="getLocation()">Get position</button>
+</ng-container>
+
+<ng-container *ngIf="locationDenied">
+    <p>You denied location.. If you change your mind, do this... (explain how to give permissions)</p>
+</ng-container>
+
+<ng-container *ngIf="position && topVendorsNearMe$ | async as topVendorsNearMe">
+    <p *ngIf="!topVendorsNearMe.length">😞 {{ "NO_VENDORS_NEAR" | translate }}</p>
+    <app-list-vendors
+        *ngIf="topVendorsNearMe.length"
+        [vendorsWithListings$]="topVendorsNearMe$"
+        [title]="'VENDORS_NEAR_YOU' | translate"
+        [isLoading]="false"
+        class="near-me-vendors"
+    ></app-list-vendors>
 </ng-container>
