@@ -5,7 +5,7 @@ import { removeUndefinedObjectValues } from "@utils/index";
 export const mapHitToLocation = ({
     country: { en, default: defaultCountry },
     importance,
-    county: { default: defaultCounty },
+    // county: { default: defaultCounty },
     population,
     country_code,
     administrative,
@@ -14,7 +14,7 @@ export const mapHitToLocation = ({
     objectID,
     _highlightResult: {
         country: { en: highlightedCountryEn = {}, default: highlightedDefaultCountry = {} } = {},
-        county: { default: highlightedCounty = {} } = {},
+        // county: { default: highlightedCounty = {} } = {},
         administrative: highlightedAdministrative = {},
         locale_names: { en: highlightedLocaleNamesEn = {}, default: highlightedLocaleNamesDefault = {} } = {},
     } = {},
@@ -23,10 +23,10 @@ export const mapHitToLocation = ({
         objectID,
         _geoloc: Array.isArray(_geoloc) ? _geoloc[0] : _geoloc,
         name: defaultLocaleNames[0],
-        county: defaultCounty[0],
+        // county: defaultCounty[0],
         administrative: administrative[0],
         highlightedName: highlightedLocaleNamesDefault[0]?.value,
-        highlightedCounty: highlightedCounty[0]?.value,
+        // highlightedCounty: highlightedCounty[0]?.value,
         highlightedAdministrative: highlightedAdministrative[0]?.value,
     });
 

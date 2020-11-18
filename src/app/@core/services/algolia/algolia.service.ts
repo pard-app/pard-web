@@ -74,7 +74,7 @@ export class AlgoliaService {
                     },
                     {
                         type: "city",
-                        countries: ["lt"],
+                        countries: ["lt", "lv"],
                         hitsPerPage: 6,
                         ...requestOptions,
                     }

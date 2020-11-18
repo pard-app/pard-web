@@ -47,6 +47,7 @@ export class SearchLocationComponent implements OnInit, OnDestroy {
                 if (str === undefined || typeof str === "object") return;
                 !str && this.onClear.emit();
                 const { hits } = await this.algolia.places(str);
+                console.log(hits);
                 this._places$.next(mapHitsToLocations(hits));
             })
         );

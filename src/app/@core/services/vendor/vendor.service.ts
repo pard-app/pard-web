@@ -8,7 +8,7 @@ import { Observable, from, of } from "rxjs";
 })
 export class VendorService {
     private get aroundRadiusMeters(): number {
-        return 100000; /* 100km radius */
+        return 50000; /* 50km radius */
     }
 
     constructor(private algoliaService: AlgoliaService) {}

@@ -48,7 +48,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
 
     public onClearListingOrVendor(): void {
         // Clear store
-        this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({ [QUERY_PARAMS.VENDORORLISTING]: null }));
+        this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({ [QUERY_PARAMS.SEARCH]: null }));
         // Clear component
         this.mainSearchStore.searchChange({ listingOrVendor: null });
     }
@@ -62,7 +62,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
 
     public onClickSearchVendorOrListingButton(text): void {
         // Set in store
-        this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({ [QUERY_PARAMS.VENDORORLISTING]: text }));
+        this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({ [QUERY_PARAMS.SEARCH]: text }));
         // Set in current component
         this.mainSearchStore.searchChange({ listingOrVendor: text });
     }

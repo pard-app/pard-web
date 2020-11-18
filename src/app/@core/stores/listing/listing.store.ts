@@ -17,11 +17,11 @@ export class ListingStore {
     constructor(private route: ActivatedRoute) {
         this.route.queryParams
             .pipe(
-                tap((x) => !x[QUERY_PARAMS.VENDORORLISTING] && (this.currentListingOrVendor = null)),
-                filter((x) => x[QUERY_PARAMS.VENDORORLISTING] && x[QUERY_PARAMS.VENDORORLISTING] !== this._currentListingOrVendor$.getValue())
+                tap((x) => !x[QUERY_PARAMS.SEARCH] && (this.currentListingOrVendor = null)),
+                filter((x) => x[QUERY_PARAMS.SEARCH] && x[QUERY_PARAMS.SEARCH] !== this._currentListingOrVendor$.getValue())
             )
             .subscribe(async (x) => {
-                this.currentListingOrVendor = x[QUERY_PARAMS.VENDORORLISTING];
+                this.currentListingOrVendor = x[QUERY_PARAMS.SEARCH];
             });
     }
 

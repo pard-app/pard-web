@@ -13,6 +13,8 @@ import { ScenariosStore } from "@core/stores/scenarios/scenarios.store";
 })
 export class OnlyLocationComponent implements OnInit, OnDestroy {
     private subscribeToGlobalLocationChanges = new Subscription();
+    private hitsPerPage = 100;
+
     constructor(
         private locationStore: LocationStore,
         private listingService: ListingService,
@@ -30,7 +32,7 @@ export class OnlyLocationComponent implements OnInit, OnDestroy {
                 this.scenariosStore.resetNecessaryValues();
                 this.scenariosStore.currentLocation = name;
                 this.scenariosStore.vendorsSubscription = this.createVendorsSubscription(_geoloc);
-                this.scenariosStore.listingsSubscription = this.createListingsSubscription(_geoloc);
+                //this.scenariosStore.listingsSubscription = this.createListingsSubscription(_geoloc);
             });
     }
 
@@ -42,10 +44,19 @@ export class OnlyLocationComponent implements OnInit, OnDestroy {
         return this.scenariosStore.paginationVendors$.subscribe(async (pagination) => {
             this.scenariosStore.isLoadingVendors = true;
             const { hits, page, nbPages } = await this.vendorService
-                .searchVendor({ query: "", hitsPerPage: pagination.hitsPerPage, page: pagination.page, aroundLatLng: geoLocStr(_geoloc) })
+                .searchVendor({ query: "", hitsPerPage: this.hitsPerPage, page: pagination.page, aroundLatLng: geoLocStr(_geoloc) })
                 .toPromise();
             const vendors = await this.listingService.fillVendorWithItsListings(hits);
-            this.scenariosStore.pushToVendors(vendors);
+
+            const vendorsWithListings = vendors.filter((e) => e != null);
+
+            // vendors.forEach((vendor) => {
+            //     console.log(vendor)
+            //     if (vendor.listings.length) {
+            //     }
+            // });
+            this.scenariosStore.pushToVendors(vendorsWithListings);
+
             this.scenariosStore.allVendorsLoaded = noPagesLeft(page, nbPages);
             this.scenariosStore.isLoadingVendors = false;
         });
