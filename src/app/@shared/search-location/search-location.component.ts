@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, ChangeDetectionStrategy, OnDestroy, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { Component, Output, EventEmitter, ChangeDetectionStrategy, OnDestroy, OnInit, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
 import { LocationStore } from "@core/stores/location/location.store";
 import { AlgoliaService } from "@services/algolia/algolia.service";
 import { Observable, Subscription, Subject, BehaviorSubject } from "rxjs";
@@ -14,7 +14,7 @@ import { filter } from "rxjs/operators";
     styleUrls: ["./search-location.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchLocationComponent implements OnInit, OnDestroy {
+export class SearchLocationComponent implements OnInit, OnDestroy, AfterViewInit {
     @Output() locationChanged? = new EventEmitter<ILocation>();
     @Output() onClear? = new EventEmitter();
     @ViewChild("autoInput") inputRef: ElementRef;
@@ -47,10 +47,11 @@ export class SearchLocationComponent implements OnInit, OnDestroy {
                 if (str === undefined || typeof str === "object") return;
                 !str && this.onClear.emit();
                 const { hits } = await this.algolia.places(str);
-                console.log(hits);
                 this._places$.next(mapHitsToLocations(hits));
             })
         );
+
+        this.inputRef && this.inputRef.nativeElement.blur();
     }
 
     public async tryInit() {
@@ -62,14 +63,19 @@ export class SearchLocationComponent implements OnInit, OnDestroy {
     public clearInput() {
         this.onClear.emit();
         this.input.setValue("");
+        this.inputRef && this.inputRef.nativeElement.blur();
     }
 
     public onPick(location: ILocation): void {
         if (typeof location === "object") {
             this.input.setValue(location.name);
-            this.inputRef.nativeElement.blur();
+            this.inputRef && this.inputRef.nativeElement.blur();
             this.locationChanged.emit(location);
         }
+    }
+
+    ngAfterViewInit(): void {
+        this.inputRef && this.inputRef.nativeElement.blur();
     }
 
     ngOnDestroy() {

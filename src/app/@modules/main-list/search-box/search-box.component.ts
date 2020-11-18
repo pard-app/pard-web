@@ -89,13 +89,14 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
                         mergeMap((results) =>
                             results.map(({ hits, index }) => ({
                                 name: index,
-                                children: hits.map(({ title, image, description, objectID, vendor }) => ({
+                                children: hits.map(({ title, image, description, objectID, vendor, price }) => ({
                                     title,
                                     image,
                                     description,
                                     objectID,
                                     type: index,
                                     vendor,
+                                    price,
                                 })),
                             }))
                         ),

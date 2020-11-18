@@ -1,15 +1,17 @@
-<h1 class="title" [innerHtml]="'HEADING_TITLE' | translate"></h1>
+<div class="header">
+    <h1 class="title" [innerHtml]="'HEADING_TITLE' | translate"></h1>
 
-<nb-card class="search-box">
-    <nb-card-body class="search-box__body responsive-padding">
-        <app-search-location #searchLocation (onClear)="onClearCity()" (locationChanged)="currentLocationOnChange($event)"></app-search-location>
-        <app-search-smart-items
-            [groupedItems$]="groupedItems$"
-            [placeholder]="currentLocationName + ' ' + ('FILTER_BY_LISTING_OR_VENDOR' | translate)"
-            (onClear)="onClearListingOrVendor()"
-            (onWrite)="onWriteListingOrVendor($event)"
-            (listingOrVendorClicked)="listingOrVendorClicked($event)"
-            (onClickSearchVendorOrListingButton)="onClickSearchVendorOrListingButton($event)"
-        ></app-search-smart-items>
-    </nb-card-body>
-</nb-card>
+    <nb-card class="search-box">
+        <nb-card-body class="search-box__body responsive-padding">
+            <app-search-location #searchLocation (onClear)="onClearCity()" (locationChanged)="currentLocationOnChange($event)"></app-search-location>
+            <app-search-smart-items
+                [groupedItems$]="groupedItems$"
+                [placeholder]="currentLocationName + ' ' + ('FILTER_BY_LISTING_OR_VENDOR' | translate)"
+                (onClear)="onClearListingOrVendor()"
+                (onWrite)="onWriteListingOrVendor($event)"
+                (listingOrVendorClicked)="listingOrVendorClicked($event)"
+                (onClickSearchVendorOrListingButton)="onClickSearchVendorOrListingButton($event)"
+            ></app-search-smart-items>
+        </nb-card-body>
+    </nb-card>
+</div>

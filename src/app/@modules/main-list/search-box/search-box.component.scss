@@ -1,8 +1,27 @@
+.header {
+    display: flex;
+    margin: 20px auto 30px auto;
+    max-width: 1260px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @media (max-width: 1260px) {
+        padding: 0 15px;
+    }
+}
+
+.title {
+    margin: auto 15px;
+    @media (min-width: 1260px) {
+        margin-right: auto;
+    }
+}
+
 .search-box {
     padding: 5px;
-    margin: 0 auto;
-    width: 90%;
-    max-width: 1000px;
+    margin: 0;
+    width: 100%;
+    max-width: 600px;
     border-radius: var(--card-border-radius);
     box-shadow: var(--card-shadow);
     @media only screen and (max-width: 600px) {

@@ -4,6 +4,7 @@ interface Child {
     title: string;
     description: string;
     type: string;
+    price: number;
 }
 export interface SearchVendorOrListingGroup {
     name: string;
