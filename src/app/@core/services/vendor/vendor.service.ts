@@ -28,13 +28,23 @@ export class VendorService {
         return this.algoliaService.vendorsIndex.getObjects(ids);
     }
 
-    public async getVendorsInPopularLocations(sortBy = null): Promise<Observable<any>> {
+    public async getVendorsInPopularLocations(sortBy = null) {
         const { facets } = await this.algoliaService.vendorsIndex.search("", {
             facets: ["city"],
             hitsPerPage: 0,
         });
 
-        const citiesToQuery = Object.keys(facets.city).slice(0, 5);
+        //const topCities = facets.city.sort()
+
+        //console.log(facets);
+
+        // return facets;
+
+        // console.log(facets);
+
+        const citiesToQuery = Object.keys(facets.city).slice(0, 3);
+
+        //console.log(citiesToQuery);
 
         const queries = citiesToQuery.map((cityName) => ({
             indexName: "vendors",

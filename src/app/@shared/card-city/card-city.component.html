@@ -1,0 +1,4 @@
+<div *ngFor="let city of algoliaService.configuration.cities" class="city" (click)="routeToLocation(city)">
+    <img [src]="'./assets/images/' + city + '.jpg'" />
+    <h3>{{ city }}</h3>
+</div>

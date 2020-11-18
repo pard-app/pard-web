@@ -5,9 +5,9 @@
 ></app-list-vendors>
 <app-button-load-more *ngIf="!scenariosStore.allVendorsLoaded" (onClick)="scenariosStore.loadMore('LOAD_VENDORS')"></app-button-load-more>
 
-<app-list-listings
+<!-- <app-list-listings
     [listingsList$]="scenariosStore.listings$"
     [title]="('LISTINGS_IN' | translate) + ' <a>' + scenariosStore.currentLocation + '</a>'"
     [isLoading]="scenariosStore.isLoadingListings"
 ></app-list-listings>
-<app-button-load-more *ngIf="!scenariosStore.allListingsLoaded" (onClick)="scenariosStore.loadMore('LOAD_LISTINGS')"></app-button-load-more>
+<app-button-load-more *ngIf="!scenariosStore.allListingsLoaded" (onClick)="scenariosStore.loadMore('LOAD_LISTINGS')"></app-button-load-more> -->

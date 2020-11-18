@@ -36,6 +36,7 @@ import { SwiperModule } from "ngx-swiper-wrapper";
 import { ActivePipe } from "@core/pipes/active.pipe";
 import { CardVendorLargeComponent } from "./card-vendor-large/card-vendor-large.component";
 import { CardListingSliderComponent } from "./card-listing-slider/card-listing-slider.component";
+import { CardCityComponent } from "./card-city/card-city.component";
 
 @NgModule({
     declarations: [
@@ -54,6 +55,7 @@ import { CardListingSliderComponent } from "./card-listing-slider/card-listing-s
         BannerComponent,
         ActivePipe,
         CardListingSliderComponent,
+        CardCityComponent,
     ],
     imports: [
         CommonModule,
@@ -89,6 +91,7 @@ import { CardListingSliderComponent } from "./card-listing-slider/card-listing-s
         BannerComponent,
         VendorDeliveryNoticeComponent,
         CardListingSliderComponent,
+        CardCityComponent,
     ],
 })
 export class SharedModule {}

@@ -24,9 +24,9 @@ export class LandingComponent implements OnInit, OnDestroy {
     constructor(private vendorService: VendorService, private listingService: ListingService, private router: Router, public algolia: AlgoliaService) {}
 
     async ngOnInit() {
-        //this.handleTopVendorsInLocations();
         this.getPromotedVendors();
         this.getNewestListings();
+        //this.handleTopVendorsInLocations();
     }
 
     private async getPromotedVendors() {
@@ -46,25 +46,26 @@ export class LandingComponent implements OnInit, OnDestroy {
     private async handleTopVendorsInLocations() {
         this.isLoadingVendorsInLocations = true;
         const vendorsInLocations$ = await this.vendorService.getVendorsInPopularLocations();
-        this.topVendorsInLocations$ = vendorsInLocations$.pipe(
-            flatMap((results) => results),
-            concatMap(async (locationWithVendors: any) => {
-                // Fulfill vendors with their listings
-                const vendors = await this.listingService.fillVendorWithItsListings(locationWithVendors.hits);
-                this.isLoadingVendorsInLocations = false;
-                // Here we're turning vendors[] to observable because main-list-vendors expects an observable
-                return { location: locationWithVendors.query, vendors: of(vendors) };
-            }),
-            toArray()
-        );
+
+        // this.topVendorsInLocations$ = vendorsInLocations$.pipe(
+        //     flatMap((results) => results),
+        //     concatMap(async (locationWithVendors: any) => {
+        //         // Fulfill vendors with their listings
+        //         const vendors = await this.listingService.fillVendorWithItsListings(locationWithVendors.hits);
+        //         this.isLoadingVendorsInLocations = false;
+        //         // Here we're turning vendors[] to observable because main-list-vendors expects an observable
+        //         return { location: locationWithVendors.query, vendors: of(vendors) };
+        //     }),
+        //     toArray()
+        // );
     }
 
-    public async routeToLocation(locationName: string) {
-        const { hits } = await this.algolia.places(locationName);
-        if (!hits.length) return;
-        const firstHitId = hits[0].objectID;
-        if (firstHitId) this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({ [QUERY_PARAMS.LOCATION]: firstHitId }));
-    }
+    // public async routeToLocation(locationName: string) {
+    //     const { hits } = await this.algolia.places(locationName);
+    //     if (!hits.length) return;
+    //     const firstHitId = hits[0].objectID;
+    //     if (firstHitId) this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({ [QUERY_PARAMS.LOCATION]: firstHitId }));
+    // }
 
     ngOnDestroy(): void {}
 }
