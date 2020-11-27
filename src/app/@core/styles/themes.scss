@@ -7,7 +7,7 @@ $nb-themes: nb-register-theme(
     (
         font-family-primary: unquote("Comfortaa, sans-serif"),
         // add your variables here like:
-            color-primary-100: #f2f6ff,
+        color-primary-100: #f2f6ff,
         color-primary-200: #d9e4ff,
         color-primary-300: #a6c1ff,
         color-primary-400: #0095ff,
@@ -16,6 +16,7 @@ $nb-themes: nb-register-theme(
         color-primary-700: #284086,
         color-primary-800: #2e4998,
         color-primary-900: #2e4998,
+        color-secondary-900: #9672fb,
         color-primary-transparent-100: rgba(51, 102, 255, 0.08),
         color-primary-transparent-200: rgba(51, 102, 255, 0.16),
         color-primary-transparent-300: rgba(51, 102, 255, 0.24),
@@ -41,7 +42,7 @@ $nb-themes: nb-register-theme(
         color-info-200: #c7e2ff,
         color-info-300: #94cbff,
         color-info-400: #42aaff,
-        color-info-500: #0095ff,
+        color-info-500: #32a9ff,
         color-info-600: #006fd6,
         color-info-700: #0057c2,
         color-info-800: #0041a8,
@@ -125,6 +126,9 @@ $nb-themes: nb-register-theme(
         link-text-decoration: none,
         context-menu-min-width: 40px,
         input-medium-text-font-size: 1rem,
+        background-basic-color-1: white,
+        background-basic-color-2: none,
+        background-basic-color-3: none,
     ),
     corporate,
     corporate

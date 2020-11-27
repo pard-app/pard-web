@@ -112,5 +112,7 @@
     "CLOSE": "Aizvērt",
     "LISTINGS_IN": "Sludinājumi",
     "LOAD_MORE": "Ielādēt vairāk",
-    "VENDOR_HAS_NO_DESCRIPTION": "Pārdevējam nav apraksta"
+    "VENDOR_HAS_NO_DESCRIPTION": "Pārdevējam nav apraksta",
+    "CREATE_YOUR_SHOP": "Sukurti parduotuvę",
+    "BLOG": "Blogas"
 }

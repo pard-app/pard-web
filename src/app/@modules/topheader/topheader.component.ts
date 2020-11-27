@@ -14,6 +14,7 @@ interface IRoute {
     title: string;
     link?: string;
     url?: string;
+    createShop?: boolean;
 }
 
 type IRoutes = IRoute[];
@@ -78,9 +79,10 @@ export class TopheaderComponent implements OnInit, OnDestroy {
 
     private setTopMenu() {
         this.TOP_HEADER_NAVIGATION_ROUTES = [
-            { title: this.translate.instant("HOME"), link: "/" + ROUTING_CONSTANTS.ROOT },
-            { title: this.translate.instant("FOR_SELLERS"), url: "https://pard.app" },
+            // { title: this.translate.instant("HOME"), link: "/" + ROUTING_CONSTANTS.ROOT },
+            { title: this.translate.instant("CREATE_YOUR_SHOP"), url: "https://pard.app", createShop: true },
             { title: this.translate.instant("ABOUT"), url: "https://about.pard.app/" },
+            { title: this.translate.instant("BLOG"), url: "https://about.pard.app/" },
         ];
     }
 
