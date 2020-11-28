@@ -11,6 +11,13 @@
     margin-top: -20px;
 
     ::ng-deep .vendor-card {
-        max-width: calc(100vw - 55px);
+        max-width: 410px;
+    }
+}
+
+.ask {
+    text-align: center;
+    button {
+        margin-top: 10px;
     }
 }

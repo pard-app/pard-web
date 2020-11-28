@@ -26,21 +26,46 @@
         img {
             object-fit: cover;
             max-height: 100%;
+            width: 100%;
         }
+    }
+
+    .vendor-card__logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .vendor-card__information {
         grid-area: vendor-information;
+        padding: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 200px;
         background: white;
+        img {
+            width: 100px;
+            margin-right: 20px;
+        }
     }
 
     .vendor-card__listing {
         position: relative;
-
         height: 250px;
+        display: flex;
+        justify-content: flex-end;
+
         img {
             object-fit: cover;
-            min-height: 250px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .listing-details {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.5);
+            border-top-left-radius: 15px;
+            padding: 15px;
         }
     }
     .listing-1 {
@@ -54,10 +79,6 @@
     }
     .listing-4 {
         grid-area: listing-4;
-    }
-
-    img {
-        width: 100%;
     }
 
     .listing-details {

@@ -2,7 +2,7 @@
     "LOOKING_FOR_NEAR_VENDORS": "Searching for vendors near you...",
     "FOUND_VENDORS_NEAR": "We found vendors near you",
     "NO_VENDORS_NEAR": "Unfortunately, we could not find any vendors near your location",
-    "VENDORS_NEAR_YOU": "Vendors near your location",
+    "VENDORS_NEAR_YOU": "🏠 Vendors near you",
     "SHOW_VENDORS": "Show vendors",
     "EMAIL": "E-mail",
     "PRIVACY_POLICY": "Privacy policy",
@@ -114,5 +114,11 @@
     "LOAD_MORE": "Load more",
     "VENDOR_HAS_NO_DESCRIPTION": "Vendor has no description",
     "CREATE_YOUR_SHOP": "Create your shop",
-    "BLOG": "Blog"
+    "BLOG": "Blog",
+    "ASK_FOR_LOCATION": "We would like to know your location to show you vendors near you, please click the button and allow access to your location.",
+    "GET_POSITION": "Find vendors near me",
+    "LOCATION_DENIED": "You denied our geo-location request. If you change your mind, click on the 🛈 icon near the website address bar and give us permission to access your location.",
+    "RECOMMENDED_VENDORS": "⭐ Our favorite vendors",
+    "NEWEST_LISTINGS": "🆕 Newest listings",
+    "TOP_CITIES": "Top cities"
 }

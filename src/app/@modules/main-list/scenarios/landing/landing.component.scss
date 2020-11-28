@@ -1,3 +1,27 @@
 .promoted__secondary {
     display: flex;
 }
+
+.promoted {
+    margin-top: 20px;
+}
+
+.card-title {
+    margin: 15px 0 5px 0;
+}
+
+.newest-listings {
+    margin-top: 20px;
+}
+
+.promoted__secondary app-card-vendor {
+    margin: 0 10px;
+
+    &:first-child {
+        margin-left: 0;
+    }
+
+    &:last-child {
+        margin-right: 0;
+    }
+}

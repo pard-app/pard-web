@@ -3,6 +3,25 @@
     justify-content: space-between;
 
     img {
-        max-width: 100%;
+        width: 400px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 15px;
     }
+}
+
+.city {
+    margin: 0 10px;
+
+    &:first-child {
+        margin-left: 0;
+    }
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.city__item {
+    border-radius: 15px;
 }

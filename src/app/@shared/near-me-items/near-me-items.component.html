@@ -1,10 +1,14 @@
 <ng-container *ngIf="askForLocation && !locationDenied">
-    <p>We would like to know your location to provide you with closest vendors, please click 'Allow' ...</p>
-    <button nbButton (click)="getLocation()">Get position</button>
+    <div class="ask">
+        <p>{{ "ASK_FOR_LOCATION" | translate }}</p>
+        <button nbButton (click)="getLocation()">{{ "GET_POSITION" | translate }}</button>
+    </div>
 </ng-container>
 
 <ng-container *ngIf="locationDenied">
-    <p>You denied location.. If you change your mind, do this... (explain how to give permissions)</p>
+    <div class="ask">
+        <p>{{ "LOCATION_DENIED" | translate }}</p>
+    </div>
 </ng-container>
 
 <ng-container *ngIf="position && topVendorsNearMe$ | async as topVendorsNearMe">

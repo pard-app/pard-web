@@ -113,6 +113,12 @@
     "LISTINGS_IN": "Sludinājumi",
     "LOAD_MORE": "Ielādēt vairāk",
     "VENDOR_HAS_NO_DESCRIPTION": "Pārdevējam nav apraksta",
-    "CREATE_YOUR_SHOP": "Sukurti parduotuvę",
-    "BLOG": "Blogas"
+    "CREATE_YOUR_SHOP": "Izveido savu veikalu",
+    "BLOG": "Blogs",
+    "ASK_FOR_LOCATION": "Mēs vēlētos izmantot jūsu atrašanās vietu, lai parādītu tuvumā esošos pārdevējus. Lūdzu, noklikšķiniet uz pogas un piešķiriet atļauju piekļūt atrašanās vietai.",
+    "GET_POSITION": "Atrast pārdevējus man tuvumā",
+    "LOCATION_DENIED": "Jūs noraidījāt atrašanās vietas pieprasījumu. Ja pārdomājat, noklikšķiniet uz 🛈 ikonas, kas atrodas netālu no mājaslapas adreses un piešķiriet atļauju piekļūt atrašanās vietai.",
+    "RECOMMENDED_VENDORS": "⭐ Mūsu mīļākie pārdevēji",
+    "NEWEST_LISTINGS": "🆕 Jaunākie sludinājumi",
+    "TOP_CITIES": "Top pilsētas"
 }

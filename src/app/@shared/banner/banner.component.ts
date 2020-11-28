@@ -15,9 +15,9 @@ export class BannerComponent implements OnInit {
         mousewheel: false,
         scrollbar: false,
         watchSlidesProgress: true,
-        navigation: true,
+        // navigation: true,
         keyboard: false,
-        pagination: true,
+        //pagination: true,
         centeredSlides: true,
         loop: false,
     };

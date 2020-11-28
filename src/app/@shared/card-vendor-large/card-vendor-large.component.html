@@ -1,14 +1,23 @@
 <nb-card
     *ngIf="item"
     class="vendor-card clickable-card"
-    [routerLink]="globalRoutes.VENDOR_PAGE_ROOT + '/' + (item._extras.slug ? item._extras.slug : item.objectID)"
+    [routerLink]="globalRoutes.VENDOR_PAGE_ROOT + '/' + (item._extras && item._extras.slug ? item._extras.slug : item.objectID)"
 >
     <div class="vendor-card__wrapper">
         <div class="vendor-card__main">
-            <div class="vendor-card__header"><img [src]="item._extras.header ? item._extras.header : ''" /></div>
+            <div class="vendor-card__header">
+                <!-- <img [src]="item._extras && item._extras.header ? item._extras.header : ''" /> -->
+                <img src="./assets/images/banners/eco.jpg" />
+            </div>
             <div class="vendor-card__information">
-                {{ item.company }}
-                {{ item._extras.verified }}
+                <div class="vendor-card__logo">
+                    <img [src]="item.image" class="logo" />
+                </div>
+                <div class="vendor-card__details">
+                    <h2>{{ item.title }}</h2>
+                    <span>{{ item.city }}, {{ item.country }}</span>
+                    <p>{{ item.description }}</p>
+                </div>
             </div>
         </div>
 
