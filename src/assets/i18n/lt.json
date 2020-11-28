@@ -113,5 +113,7 @@
     "CLOSE": "Uždaryti",
     "LISTINGS_IN": "Prekės mieste",
     "LOAD_MORE": "Rodyti daugiau",
-    "VENDOR_HAS_NO_DESCRIPTION": "Parduotuvė neturi aprašymo"
+    "VENDOR_HAS_NO_DESCRIPTION": "Parduotuvė neturi aprašymo",
+    "CREATE_YOUR_SHOP": "Sukurti parduotuvę",
+    "BLOG": "Blogas"
 }

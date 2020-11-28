@@ -67,7 +67,7 @@
     "QUANTITY": "Quantity",
     "REMOVE": "Remove",
     "NOTHING_FOUND": "Nothing found.",
-    "HOME": "HOME",
+    "HOME": "Home",
     "SEARCH_VENDOR_LISTINGS": "Search in listings",
     "FILTER_BY_LISTING_OR_VENDOR": "Product or business",
     "FIRST_NAME": "First name",
@@ -112,5 +112,7 @@
     "CLOSE": "Close",
     "LISTINGS_IN": "Listings in",
     "LOAD_MORE": "Load more",
-    "VENDOR_HAS_NO_DESCRIPTION": "Vendor has no description"
+    "VENDOR_HAS_NO_DESCRIPTION": "Vendor has no description",
+    "CREATE_YOUR_SHOP": "Create your shop",
+    "BLOG": "Blog"
 }
