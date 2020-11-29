@@ -4,6 +4,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { NbLayoutModule, NbButtonModule, NbCardModule, NbIconModule, NbContextMenuModule, NbPopoverModule, NbMenuModule, NbAlertModule } from "@nebular/theme";
 import { TopheaderComponent } from "./topheader.component";
 import { RouterModule } from "@angular/router";
+import { SearchBoxModule } from "../../@modules/main-list/search-box/search-box.module";
 
 @NgModule({
     declarations: [TopheaderComponent],
@@ -20,6 +21,7 @@ import { RouterModule } from "@angular/router";
         NbIconModule,
         NbAlertModule,
         NbContextMenuModule,
+        SearchBoxModule,
     ],
     exports: [TopheaderComponent],
 })

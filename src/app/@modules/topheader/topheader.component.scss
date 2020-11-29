@@ -11,10 +11,16 @@
     &__button {
         font-weight: 100;
         color: black;
+        &:hover {
+            color: nb-theme(color-primary-400);
+        }
     }
     &__buttonShop {
         font-weight: bold;
         color: nb-theme(color-secondary-900);
+        &:hover {
+            color: nb-theme(color-secondary-800);
+        }
     }
     &__list {
         display: flex;
@@ -43,6 +49,7 @@
     align-items: center;
     &__logo {
         width: 70px;
+        cursor: pointer;
     }
     &__menu {
         display: flex;
@@ -53,6 +60,21 @@
         display: flex;
         flex-direction: row;
         padding: 0;
+    }
+    &__buttonCloseToMe {
+        color: nb-theme(color-success-500);
+        font-weight: bold;
+
+        &:hover {
+            color: nb-theme(color-success-400);
+        }
+    }
+    &__buttonNew {
+        color: nb-theme(color-primary-400);
+        font-weight: bold;
+        &:hover {
+            color: nb-theme(color-primary-300);
+        }
     }
     &__item {
         display: flex;
@@ -67,6 +89,9 @@
     }
     &__buttonShop {
         color: black;
+        &:hover {
+            color: nb-theme(color-primary-400);
+        }
     }
     &__cart {
         position: relative;
@@ -74,13 +99,14 @@
         .cart-display-count {
             position: absolute;
             bottom: 20px;
-            right: -4px;
+            right: -10px;
 
             border-radius: 50%;
             width: 20px;
             height: 20px;
             font-weight: bold;
             color: nb-theme(color-info-500);
+
             // font-size: nb-theme(text-button-small-font-size);
             // box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px;
             text-align: center;
