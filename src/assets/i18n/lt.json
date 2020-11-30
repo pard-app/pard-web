@@ -116,10 +116,10 @@
     "VENDOR_HAS_NO_DESCRIPTION": "Parduotuvė neturi aprašymo",
     "CREATE_YOUR_SHOP": "Sukurti parduotuvę",
     "BLOG": "Blogas",
-    "ASK_FOR_LOCATION": "We would like to know your location to show you vendors near you, please click the button and allow access to your location.",
-    "GET_POSITION": "Find vendors near me",
-    "LOCATION_DENIED": "You denied our geo-location request. If you change your mind, click on the 🛈 icon near the website address bar and give us permission to access your location.",
-    "RECOMMENDED_VENDORS": "⭐ Our favorite vendors",
-    "NEWEST_LISTINGS": "🆕 Newest listings",
-    "TOP_CITIES": "Top cities"
+    "ASK_FOR_LOCATION": "Mes norime rodyti pardavėjus netoli jūsų, tam mums reikia žinoti jūsų lokaciją. Paspauskite mygtuką žemiau ir suteikite mums prieigą prie jūsų vietovės.",
+    "GET_POSITION": "Raskite šalia esančius pardavėjus",
+    "LOCATION_DENIED": "Atmetėte mūsų prašyma gauti jūsų lokaciją. Jei apsigalvojote, paspauskite ant šios ikonos 🛈 šalia svetainės nuorodos ir suteikite mums leidimą gauti jūsų lokaciją.",
+    "RECOMMENDED_VENDORS": "⭐ Mūsų rekomenduojami pardavėjai",
+    "NEWEST_LISTINGS": "🆕 Naujausios prekės",
+    "TOP_CITIES": "Top miestai"
 }
