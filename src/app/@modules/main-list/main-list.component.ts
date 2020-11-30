@@ -10,7 +10,7 @@ import { MainSearchStore, SearchRequest } from "@core/stores/mainsearch/mainsear
 export class MainListComponent implements OnDestroy {
     public searchRequest$: Observable<SearchRequest>;
 
-    constructor(private changeDetector: ChangeDetectorRef, private mainSearchStore: MainSearchStore) {
+    constructor(private changeDetector: ChangeDetectorRef, public mainSearchStore: MainSearchStore) {
         this.searchRequest$ = mainSearchStore.searchRequest$;
     }
 

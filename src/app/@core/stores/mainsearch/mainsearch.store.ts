@@ -17,4 +17,8 @@ export class MainSearchStore {
     public searchChange(srqObj: { location?: ILocation; listingOrVendor?: string }) {
         this._searchRequest$.next({ ...this._searchRequest$.getValue(), ...srqObj });
     }
+    // public searchChange(obj) {
+    //     console.log({ obj });
+    //     console.log("called");
+    // }
 }

@@ -13,7 +13,7 @@ import { ScenariosStore } from "@core/stores/scenarios/scenarios.store";
 })
 export class OnlyLocationComponent implements OnInit, OnDestroy {
     private subscribeToGlobalLocationChanges = new Subscription();
-    private hitsPerPage = 100;
+    private hitsPerPage = 12;
 
     constructor(
         private locationStore: LocationStore,

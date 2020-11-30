@@ -6,11 +6,11 @@ import { VendorSingleListingViewComponent } from "./vendor-single-listing-page/v
 
 export const VENDOR_ROUTES: Routes = [
     { path: ":vendorId", component: VendorListingsComponent },
-    { path: ":vendorId/:listingId", component: VendorSingleListingViewComponent }
+    { path: ":vendorId/:listingId", component: VendorSingleListingViewComponent },
 ];
 
 @NgModule({
     imports: [RouterModule.forChild(VENDOR_ROUTES)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class VendorRoutingModule {}

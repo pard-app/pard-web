@@ -1,13 +1,13 @@
 <app-list-listings
     [listingsList$]="scenariosStore.listings$"
-    [title]="'Listings found for: <i>' + scenariosStore.currentListingOrVendor + '</i>'"
+    [title]="('LISTINGS' | translate) + ': <i>' + scenariosStore.currentListingOrVendor + '</i>'"
     [isLoading]="scenariosStore.isLoadingListings"
 ></app-list-listings>
 <app-button-load-more *ngIf="!scenariosStore.allListingsLoaded" (onClick)="scenariosStore.loadMore('LOAD_LISTINGS')"></app-button-load-more>
 
 <app-list-vendors
     [vendorsWithListings$]="scenariosStore.vendors$"
-    [title]="'Vendors found for: <i>' + scenariosStore.currentListingOrVendor + '</i>'"
+    [title]="('VENDORS' | translate) + ': <i>' + scenariosStore.currentListingOrVendor + '</i>'"
     [isLoading]="scenariosStore.isLoadingVendors"
 ></app-list-vendors>
 <app-button-load-more *ngIf="!scenariosStore.allVendorsLoaded" (onClick)="scenariosStore.loadMore('LOAD_VENDORS')"></app-button-load-more>

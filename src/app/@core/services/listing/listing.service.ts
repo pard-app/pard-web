@@ -48,11 +48,12 @@ export class ListingService {
         return Promise.all(
             vendors.map(async (vendor: IVendor) => {
                 const { hits: listingsOfVendor } = await this.searchVendorListings("", vendor.objectID, { hitsPerPage: 4 });
-                if (listingsOfVendor.length > 2) {
-                    return { ...vendor, listings: listingsOfVendor } as IVendor;
-                } else {
-                    return null;
-                }
+                return { ...vendor, listings: listingsOfVendor } as IVendor;
+                // if (listingsOfVendor.length > 2) {
+                //     return { ...vendor, listings: listingsOfVendor } as IVendor;
+                // } else {
+                //     return null;
+                // }
             })
         );
     }

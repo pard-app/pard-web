@@ -5,7 +5,8 @@
 // x
 .grid-parent {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(410px, 1fr));
+    //grid-template-columns: repeat(auto-fit, minmax(390px, 1fr));
+    grid-template-columns: 390px 390px 390px;
     grid-gap: 15px;
     // @media (max-width: 1200px) {
     //     grid-template-columns: 1fr 1fr;

@@ -47,7 +47,8 @@ export class LocationAndListingComponent implements OnInit, OnDestroy {
                 .searchVendor({ query: listingOrVendorText, hitsPerPage: pagination.hitsPerPage, page: pagination.page, aroundLatLng: geoLocStr(geoloc) })
                 .toPromise();
             const vendors = await this.listingService.fillVendorWithItsListings(hits);
-            this.scenariosStore.pushToVendors(vendors);
+            const vendorsWithListings = vendors.filter((e) => e != null);
+            this.scenariosStore.pushToVendors(vendorsWithListings);
             this.scenariosStore.isLoadingVendors = false;
             this.scenariosStore.allVendorsLoaded = noPagesLeft(page, nbPages);
         });

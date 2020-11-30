@@ -27,7 +27,7 @@ export class VendorListingsComponent implements OnInit {
     ngOnInit(): void {
         this.route.params.subscribe(async (params) => {
             this.vendorId = params.vendorId;
-            this.getVendor();
+            await this.getVendor();
             const { hits } = await this.requestSearchResults();
             this._listingsList$.next(hits);
         });

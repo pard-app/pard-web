@@ -2,6 +2,7 @@
     *ngIf="item"
     class="vendor-card clickable-card"
     [routerLink]="globalRoutes.VENDOR_PAGE_ROOT + '/' + (item._extras && item._extras.slug ? item._extras.slug : item.objectID)"
+    queryParamsHandling="preserve"
 >
     <div class="vendor-card__wrapper">
         <div class="vendor-card__main">

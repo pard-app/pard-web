@@ -42,7 +42,9 @@ export class OnlyListingComponent implements OnInit, OnDestroy {
                 .searchVendor({ query: listingOrVendorText, hitsPerPage: pagination.hitsPerPage, page: pagination.page })
                 .toPromise();
             const vendors = await this.listingService.fillVendorWithItsListings(hits);
-            this.scenariosStore.pushToVendors(vendors);
+            const vendorsWithListings = vendors.filter((e) => e != null);
+
+            this.scenariosStore.pushToVendors(vendorsWithListings);
             this.scenariosStore.allVendorsLoaded = noPagesLeft(page, nbPages);
             this.scenariosStore.isLoadingVendors = false;
         });

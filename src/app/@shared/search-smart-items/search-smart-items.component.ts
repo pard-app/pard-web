@@ -37,6 +37,8 @@ export class SearchSmartItemsComponent implements OnInit, OnDestroy {
             } else {
                 this.onWrite.emit(str);
             }
+
+            // this.onWrite.emit(str);
         });
     }
 
