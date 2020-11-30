@@ -1,6 +1,7 @@
 <!-- <app-search-box></app-search-box> -->
 
 <section class="content-section" *ngIf="searchRequest$ | async as searchRequest">
+    <h1 class="title" [innerHtml]="'HEADING_TITLE' | translate"></h1>
     <scenario-landing *ngIf="!searchRequest.location && !searchRequest.listingOrVendor"></scenario-landing>
     <scenario-only-location *ngIf="searchRequest.location && !searchRequest.listingOrVendor"></scenario-only-location>
     <scenario-only-listing *ngIf="!searchRequest.location && searchRequest.listingOrVendor"></scenario-only-listing>
