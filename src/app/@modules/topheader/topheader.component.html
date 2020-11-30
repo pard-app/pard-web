@@ -1,3 +1,4 @@
+<!-- Menu -->
 <section class="top-bar" *ngIf="!isMobileLayout">
     <nav role="sub" class="sub">
         <ul class="sub__list">
@@ -71,6 +72,7 @@
     </nav>
 </section>
 
+<!-- Mobile Menu -->
 <section class="top-bar-mobile" *ngIf="isMobileLayout">
     <section style="display: flex">
         <svg (click)="navigateToMainPage()" class="shop__logo gradient-svg" height="50">
