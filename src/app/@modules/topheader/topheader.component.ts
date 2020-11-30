@@ -82,7 +82,7 @@ export class TopheaderComponent implements OnInit, OnDestroy {
             // { title: this.translate.instant("HOME"), link: "/" + ROUTING_CONSTANTS.ROOT },
             { title: this.translate.instant("CREATE_YOUR_SHOP"), url: "https://pard.app", createShop: true },
             { title: this.translate.instant("ABOUT"), url: "https://about.pard.app/" },
-            { title: this.translate.instant("BLOG"), url: "https://about.pard.app/" },
+            { title: this.translate.instant("BLOG"), url: "https://blog.pard.app/" },
         ];
     }
 

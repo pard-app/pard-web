@@ -32,7 +32,11 @@ export class SearchSmartItemsComponent implements OnInit, OnDestroy {
 
         this.sub = this.input.valueChanges.subscribe((str) => {
             !str && this.onClear.emit();
-            this.onWrite.emit(str);
+            if (typeof str == "object") {
+                this.input.setValue(str.title);
+            } else {
+                this.onWrite.emit(str);
+            }
         });
     }
 
@@ -41,6 +45,7 @@ export class SearchSmartItemsComponent implements OnInit, OnDestroy {
     }
 
     public onPick(ev): void {
+        // this.input.setValue(ev.title);
         this.listingOrVendorClicked.emit(ev);
     }
 

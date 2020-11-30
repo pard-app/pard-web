@@ -94,7 +94,7 @@
         font-size: 14px;
     }
     &__searchDesktop {
-        width: 300px;
+        width: 600px;
         margin-right: 25px;
     }
     &__categoryItem {
@@ -132,6 +132,8 @@
     justify-content: space-between;
     margin: auto;
     padding: 15px 30px 0 30px;
+    flex-wrap: wrap;
+
     @media only screen and (max-width: 1260px) {
         padding-right: 15px;
         padding-left: 15px;
@@ -150,8 +152,9 @@
         padding-left: 25px;
     }
     &__searchMobile {
-        width: 60%;
-        margin-right: 25px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
     }
 }
 

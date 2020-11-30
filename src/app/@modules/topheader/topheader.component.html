@@ -26,7 +26,7 @@
         </div>
         <section class="shop__menu">
             <ul class="shop__list">
-                <li class="shop__item">
+                <!-- <li class="shop__item">
                     <a class="shop__buttonCloseToMe"> <nb-icon icon="pin-outline"></nb-icon> Close to me </a>
 
                     <div class="vertical-seperator">&nbsp;</div>
@@ -44,7 +44,7 @@
                 </li>
                 <li class="shop__categoryItem">
                     <a class="shop__buttonShop"> Food </a>
-                </li>
+                </li> -->
             </ul>
 
             <section class="shop__cartContainer">
@@ -86,9 +86,6 @@
         </svg>
     </section>
     <section class="top-bar-mobile__menu">
-        <div class="top-bar-mobile__searchMobile">
-            <app-search-box></app-search-box>
-        </div>
         <button *ngIf="isMobileLayout" ghost nbButton status="primary" [nbContextMenu]="TOP_HEADER_NAVIGATION_ROUTES" class="top-header__button">
             <nb-icon icon="menu-outline"></nb-icon>
         </button>
@@ -108,6 +105,9 @@
             <div *ngIf="count" class="cart-display-count">{{ count }}</div>
         </div>
     </section>
+    <div class="top-bar-mobile__searchMobile">
+        <app-search-box></app-search-box>
+    </div>
 </section>
 
 <!-- Notificatiopn template -->
