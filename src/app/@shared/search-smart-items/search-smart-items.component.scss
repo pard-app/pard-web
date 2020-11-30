@@ -8,6 +8,10 @@
     flex: 1;
 }
 
+.input {
+    border: none;
+}
+
 @keyframes slideInFromLeft {
     0% {
         transform: translateX(20%);

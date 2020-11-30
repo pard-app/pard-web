@@ -1,4 +1,5 @@
-<section class="top-bar">
+<!-- Menu -->
+<section class="top-bar" *ngIf="!isMobileLayout">
     <nav role="sub" class="sub">
         <ul class="sub__list">
             <li *ngFor="let item of TOP_HEADER_NAVIGATION_ROUTES" class="sub__item">
@@ -10,6 +11,70 @@
         </ul>
     </nav>
     <nav role="shop" class="shop">
+        <div class="shop__logoContainer">
+            <svg (click)="navigateToMainPage()" class="shop__logo gradient-svg" height="50">
+                <defs>
+                    <linearGradient spreadMethod="pad" id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color: rgb(50, 169, 255); stop-opacity: 1" />
+                        <stop offset="100%" style="stop-color: rgb(50, 111, 255); stop-opacity: 1" />
+                    </linearGradient>
+                </defs>
+                <use xlink:href="assets/icons/pard-text.svg#Layer_1"></use>
+            </svg>
+
+            <div class="vertical-seperator">&nbsp;</div>
+        </div>
+        <section class="shop__menu">
+            <ul class="shop__list">
+                <li class="shop__item">
+                    <a class="shop__buttonCloseToMe"> <nb-icon icon="pin-outline"></nb-icon> Close to me </a>
+
+                    <div class="vertical-seperator">&nbsp;</div>
+                </li>
+                <li class="shop__item">
+                    <a class="shop__buttonNew"> NEW </a>
+
+                    <div class="vertical-seperator">&nbsp;</div>
+                </li>
+                <li class="shop__categoryItem">
+                    <a class="shop__buttonShop"> Healthcare </a>
+                </li>
+                <li class="shop__categoryItem">
+                    <a class="shop__buttonShop"> Clothing </a>
+                </li>
+                <li class="shop__categoryItem">
+                    <a class="shop__buttonShop"> Food </a>
+                </li>
+            </ul>
+
+            <section class="shop__cartContainer">
+                <div class="shop__searchDesktop">
+                    <app-search-box></app-search-box>
+                </div>
+
+                <div class="shop__cart">
+                    <button
+                        ghost
+                        nbButton
+                        status="black"
+                        [nbPopover]="templateRef"
+                        [routerLink]="globalRoutes.CART_PAGE_ROOT"
+                        nbPopoverPlacement="bottom"
+                        nbPopoverTrigger="noop"
+                        class="shop__button"
+                    >
+                        <nb-icon icon="shopping-cart-outline" class="gradient-svg"></nb-icon>
+                    </button>
+                    <div *ngIf="count" class="cart-display-count">{{ count }}</div>
+                </div>
+            </section>
+        </section>
+    </nav>
+</section>
+
+<!-- Mobile Menu -->
+<section class="top-bar-mobile" *ngIf="isMobileLayout">
+    <section style="display: flex">
         <svg (click)="navigateToMainPage()" class="shop__logo gradient-svg" height="50">
             <defs>
                 <linearGradient spreadMethod="pad" id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -19,31 +84,30 @@
             </defs>
             <use xlink:href="assets/icons/pard-text.svg#Layer_1"></use>
         </svg>
-        <section>
-            <!-- <ul class="shop__list">
-                <li class="shop__item">
-                    <a class="shop__buttonShop"> Home </a>
-
-                    <div class="vertical-seperator">&nbsp;</div>
-                </li>
-            </ul> -->
-            <div class="shop__cart">
-                <button
-                    ghost
-                    nbButton
-                    status="black"
-                    [nbPopover]="templateRef"
-                    [routerLink]="globalRoutes.CART_PAGE_ROOT"
-                    nbPopoverPlacement="bottom"
-                    nbPopoverTrigger="noop"
-                    class="shop__button"
-                >
-                    <nb-icon icon="shopping-cart-outline" class="gradient-svg"></nb-icon>
-                </button>
-                <div *ngIf="count" class="cart-display-count">{{ count }}</div>
-            </div>
-        </section>
-    </nav>
+    </section>
+    <section class="top-bar-mobile__menu">
+        <div class="top-bar-mobile__searchMobile">
+            <app-search-box></app-search-box>
+        </div>
+        <button *ngIf="isMobileLayout" ghost nbButton status="primary" [nbContextMenu]="TOP_HEADER_NAVIGATION_ROUTES" class="top-header__button">
+            <nb-icon icon="menu-outline"></nb-icon>
+        </button>
+        <div class="shop__cart">
+            <button
+                ghost
+                nbButton
+                status="black"
+                [nbPopover]="templateRef"
+                [routerLink]="globalRoutes.CART_PAGE_ROOT"
+                nbPopoverPlacement="bottom"
+                nbPopoverTrigger="noop"
+                class="shop__button"
+            >
+                <nb-icon icon="shopping-cart-outline" class="gradient-svg"></nb-icon>
+            </button>
+            <div *ngIf="count" class="cart-display-count">{{ count }}</div>
+        </div>
+    </section>
 </section>
 
 <!-- Notificatiopn template -->

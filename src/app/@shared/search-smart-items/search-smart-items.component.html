@@ -1,6 +1,13 @@
 <nb-form-field class="input-box">
-    <nb-icon *ngIf="input.value" nbPrefix status="primary" icon="shopping-cart-outline" pack="eva" class="home-icon"></nb-icon>
-    <nb-icon *ngIf="!input.value" nbPrefix icon="shopping-cart-outline" pack="eva" class="home-icon"></nb-icon>
+    <!--     
+    <button nbButton ghost status="primary" (click)="vendorOrListingSearch()" class="search-button">
+        <nb-icon icon="search-outline"></nb-icon>
+    </button> -->
+
+    <nb-icon *ngIf="input.value" nbPrefix status="primary" icon="search-outline" (click)="vendorOrListingSearch()" pack="eva" class="home-icon"></nb-icon>
+
+    <nb-icon *ngIf="!input.value" nbPrefix icon="search-outline" (click)="vendorOrListingSearch()" pack="eva" class="home-icon"></nb-icon>
+
     <div *ngIf="input.value" nbSuffix (click)="clearInput()">
         <nb-icon fullWidth status="basic" class="remove-icon" icon="close-outline" pack="eva"></nb-icon>
     </div>
@@ -28,6 +35,6 @@
     </nb-autocomplete>
 </nb-form-field>
 
-<button nbButton ghost status="primary" (click)="vendorOrListingSearch()" class="search-button">
+<!-- <button nbButton ghost status="primary" (click)="vendorOrListingSearch()" class="search-button">
     <nb-icon icon="search-outline"></nb-icon>
-</button>
+</button> -->
