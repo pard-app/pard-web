@@ -6,8 +6,8 @@ $nb-enable-css-custom-properties: true; // <-- enable css custom properties
 $nb-themes: nb-register-theme(
     (
         font-family-primary: unquote("Comfortaa, sans-serif"),
-        // add your variables here like:
-        color-primary-100: #f2f6ff,
+        font-family-secondary: unquote("Roboto, serif"),
+        color-primary-100: #f8fafc,
         color-primary-200: #d9e4ff,
         color-primary-300: #a6c1ff,
         color-primary-400: #0095ff,
@@ -16,6 +16,8 @@ $nb-themes: nb-register-theme(
         color-primary-700: #284086,
         color-primary-800: #2e4998,
         color-primary-900: #2e4998,
+        color-secondary-700: #bea7ff,
+        color-secondary-800: #aa8cfc,
         color-secondary-900: #9672fb,
         color-primary-transparent-100: rgba(51, 102, 255, 0.08),
         color-primary-transparent-200: rgba(51, 102, 255, 0.16),
@@ -127,8 +129,10 @@ $nb-themes: nb-register-theme(
         context-menu-min-width: 40px,
         input-medium-text-font-size: 1rem,
         background-basic-color-1: white,
-        background-basic-color-2: none,
+        background-basic-color-2: #f8fafc,
         background-basic-color-3: none,
+        text-subtitle-font-family: font-family-secondary,
+        input-rectangle-border-radius: "0.65rem",
     ),
     corporate,
     corporate

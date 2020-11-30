@@ -1,49 +1,54 @@
-.header {
-    display: flex;
-    margin: 20px auto 30px auto;
-    max-width: 1260px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    @media (max-width: 1260px) {
-        padding: 0 15px;
-    }
+.container {
+    max-width: 300px;
+    margin-right: 25px;
 }
 
-.title {
-    margin: auto 15px;
-    @media (min-width: 1260px) {
-        margin-right: auto;
-    }
-}
+// .header {
+//     display: flex;
+//     margin: 20px auto 30px auto;
+//     max-width: 1260px;
+//     flex-wrap: wrap;
+//     justify-content: center;
 
-.search-box {
-    padding: 5px;
-    margin: 0;
-    width: 100%;
-    max-width: 630px;
-    border-radius: var(--card-border-radius);
-    box-shadow: var(--card-shadow);
-    @media only screen and (max-width: 600px) {
-        margin: 0 10px;
-        width: calc(100% - 20px);
-    }
-    &__body {
-        overflow: unset;
-        display: grid;
-        grid-template-columns: 0.7fr 1fr;
-        grid-gap: 20px;
-        padding: 12px;
-        align-items: center;
-        @media only screen and (max-width: 768px) {
-            grid-template-columns: 1fr;
-        }
-    }
-    &__homeDelivery {
-        white-space: nowrap;
-    }
-}
+//     @media (max-width: 1260px) {
+//         padding: 0 15px;
+//     }
+// }
 
-nb-icon.status-basic {
-    opacity: 0.7;
-}
+// .title {
+//     margin: auto 15px;
+//     @media (min-width: 1260px) {
+//         margin-right: auto;
+//     }
+// }
+
+// .search-box {
+//     padding: 5px;
+//     margin: 0;
+//     width: 100%;
+//     max-width: 630px;
+//     border-radius: var(--card-border-radius);
+//     box-shadow: var(--card-shadow);
+//     @media only screen and (max-width: 600px) {
+//         margin: 0 10px;
+//         width: calc(100% - 20px);
+//     }
+//     &__body {
+//         overflow: unset;
+//         display: grid;
+//         grid-template-columns: 0.7fr 1fr;
+//         grid-gap: 20px;
+//         padding: 12px;
+//         align-items: center;
+//         @media only screen and (max-width: 768px) {
+//             grid-template-columns: 1fr;
+//         }
+//     }
+//     &__homeDelivery {
+//         white-space: nowrap;
+//     }
+// }
+
+// nb-icon.status-basic {
+//     opacity: 0.7;
+// }
