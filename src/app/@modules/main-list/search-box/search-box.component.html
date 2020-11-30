@@ -1,10 +1,8 @@
-<div class="container">
-    <app-search-smart-items
-        [groupedItems$]="groupedItems$"
-        [placeholder]="currentLocationName + ' ' + ('FILTER_BY_LISTING_OR_VENDOR' | translate)"
-        (onClear)="onClearListingOrVendor()"
-        (onWrite)="onWriteListingOrVendor($event)"
-        (listingOrVendorClicked)="listingOrVendorClicked($event)"
-        (onClickSearchVendorOrListingButton)="onClickSearchVendorOrListingButton($event)"
-    ></app-search-smart-items>
-</div>
+<app-search-smart-items
+    [groupedItems$]="groupedItems$"
+    [placeholder]="currentLocationName + ' ' + ('FILTER_BY_LISTING_OR_VENDOR' | translate)"
+    (onClear)="onClearListingOrVendor()"
+    (onWrite)="onWriteListingOrVendor($event)"
+    (listingOrVendorClicked)="listingOrVendorClicked($event)"
+    (onClickSearchVendorOrListingButton)="onClickSearchVendorOrListingButton($event)"
+></app-search-smart-items>
