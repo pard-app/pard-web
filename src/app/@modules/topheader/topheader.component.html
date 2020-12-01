@@ -1,15 +1,15 @@
 <!-- Menu -->
 <section class="top-bar" *ngIf="!isMobileLayout">
-    <nav role="sub" class="sub">
-        <ul class="sub__list">
+    <!-- <nav role="sub" class="sub"> -->
+    <!-- <ul class="sub__list">
             <li *ngFor="let item of TOP_HEADER_NAVIGATION_ROUTES" class="sub__item">
                 <a *ngIf="item.createShop" (click)="handleRedirect(item)" class="sub__buttonShop"> {{ item.title }} </a>
                 <a *ngIf="!item.createShop" (click)="handleRedirect(item)" class="sub__button"> {{ item.title }} </a>
                 <div class="vertical-seperator">&nbsp;</div>
             </li>
             <img class="sub__language" [nbContextMenu]="languages" [src]="'assets/images/flags/' + language + '.svg'" nbContextMenuTag="languages-menu" />
-        </ul>
-    </nav>
+        </ul> -->
+    <!-- </nav> -->
     <nav role="shop" class="shop">
         <div class="shop__logoContainer">
             <svg (click)="navigateToMainPage()" class="shop__logo gradient-svg" height="50">
@@ -25,8 +25,8 @@
             <div class="vertical-seperator">&nbsp;</div>
         </div>
         <section class="shop__menu">
-            <ul class="shop__list">
-                <!-- <li class="shop__item">
+            <!-- <ul class="shop__list">
+                <li class="shop__item">
                     <a class="shop__buttonCloseToMe"> <nb-icon icon="pin-outline"></nb-icon> Close to me </a>
 
                     <div class="vertical-seperator">&nbsp;</div>
@@ -44,7 +44,17 @@
                 </li>
                 <li class="shop__categoryItem">
                     <a class="shop__buttonShop"> Food </a>
-                </li> -->
+                </li>
+                
+            </ul> -->
+
+            <ul class="shop__list">
+                <li *ngFor="let item of TOP_HEADER_NAVIGATION_ROUTES" class="sub__item">
+                    <a *ngIf="item.createShop" (click)="handleRedirect(item)" class="sub__buttonShop"> {{ item.title }} </a>
+                    <a *ngIf="!item.createShop" (click)="handleRedirect(item)" class="sub__button"> {{ item.title }} </a>
+                    <div class="vertical-seperator">&nbsp;</div>
+                </li>
+                <img class="sub__language" [nbContextMenu]="languages" [src]="'assets/images/flags/' + language + '.svg'" nbContextMenuTag="languages-menu" />
             </ul>
 
             <section class="shop__cartContainer">
