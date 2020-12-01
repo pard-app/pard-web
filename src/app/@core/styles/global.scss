@@ -118,10 +118,10 @@ h6 {
     transition: all 0.1s cubic-bezier(0.42, 0.95, 0.72, 0.32), max-height 0.2s linear, height 0.2s linear;
     overflow: hidden;
     cursor: pointer;
-
+    box-shadow: nb-theme(color-basic-transparent-500) 0px 0px 8px;
     &:hover,
     &:focus {
-        box-shadow: nb-theme(color-basic-transparent-500) 0px 0px 8px;
+        box-shadow: nb-theme(color-basic-transparent-500) 0px 0px 20px;
         outline: none;
     }
 }
