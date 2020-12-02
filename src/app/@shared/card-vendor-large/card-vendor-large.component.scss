@@ -32,21 +32,21 @@
 
     .vendor-card__logo {
         display: flex;
-        justify-content: center;
         align-items: center;
     }
     .vendor-card__information {
         grid-area: vendor-information;
-        padding: 15px;
+
         display: flex;
-        justify-content: center;
-        align-items: center;
         height: 200px;
         background: white;
         img {
-            width: 100px;
-            margin-right: 20px;
+            height: 200px;
+            width: 200px;
         }
+    }
+    .vendor-card__details {
+        padding: 12px;
     }
 
     .vendor-card__listing {
@@ -85,6 +85,7 @@
         position: absolute;
         bottom: 0;
         z-index: 1;
+        padding: 12px;
     }
 }
 

@@ -1,12 +1,12 @@
 <ng-container *ngIf="askForLocation && !locationDenied">
-    <div class="ask">
+    <div class="ask near-me-container">
         <p>{{ "ASK_FOR_LOCATION" | translate }}</p>
         <button nbButton (click)="getLocation()">{{ "GET_POSITION" | translate }}</button>
     </div>
 </ng-container>
 
 <ng-container *ngIf="locationDenied">
-    <div class="ask">
+    <div class="ask near-me-container">
         <p>{{ "LOCATION_DENIED" | translate }}</p>
     </div>
 </ng-container>

@@ -1,6 +1,5 @@
 :host {
     display: block;
-    padding: 8px 0;
 }
 // x
 .grid-parent {
@@ -29,7 +28,7 @@
 }
 .vendors-title {
     display: flex;
-    margin: 15px 0 5px 0;
+    margin: 0 0 15px 0;
     white-space: nowrap;
     @media only screen and (max-width: 500px) {
         font-size: 1.1em;

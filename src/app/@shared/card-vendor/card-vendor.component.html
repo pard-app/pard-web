@@ -12,14 +12,14 @@
                 <p class="vendor-info__location">{{ item.city }}, {{ item.country }}</p>
             </div>
         </div>
-        <div class="vendor-card__vendorOptionsSection">
+        <!-- <div class="vendor-card__vendorOptionsSection">
             <div *ngIf="item.delivery" class="vendor-card__vendorOption">
                 <nb-icon icon="car-outline" class="vendor-card__icon" pack="eva"></nb-icon>
             </div>
             <div *ngIf="item.listings && item.listings.length" class="vendor-card__vendorOption">
                 <nb-icon icon="shopping-bag-outline" class="vendor-card__icon" pack="eva"></nb-icon>
             </div>
-        </div>
+        </div> -->
     </nb-card-header>
     <nb-card-body class="vendor-card__body-sectionSM">
         <p *ngIf="item.description" class="vendor-info__description darkGrayTextColor">{{ item.description }}</p>
