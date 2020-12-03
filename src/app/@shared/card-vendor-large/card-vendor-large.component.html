@@ -6,25 +6,33 @@
 >
     <div class="vendor-card__wrapper">
         <div class="vendor-card__main">
-            <div class="vendor-card__header">
+            <div
+                class="vendor-card__banner"
+                style="background: url(./assets/images/banners/eco.jpg); background-size: cover; background-position: center center"
+            >
                 <!-- <img [src]="item._extras && item._extras.header ? item._extras.header : ''" /> -->
-                <img src="./assets/images/banners/eco.jpg" />
+                <!-- <img src="./assets/images/banners/eco.jpg" /> -->
             </div>
             <div class="vendor-card__information">
                 <div class="vendor-card__logo">
                     <img [src]="item.image" class="logo" />
                 </div>
-                <div class="vendor-card__details">
-                    <h2>{{ item.title }}</h2>
-                    <span>{{ item.city }}, {{ item.country }}</span>
-                    <p>{{ item.description }}</p>
-                </div>
+                <nb-card class="vendor-card__details">
+                    <nb-card-header>
+                        <h2>{{ item.title }}</h2>
+                        <span>{{ item.city }}, {{ item.country }}</span></nb-card-header
+                    >
+                    <nb-card-body>
+                        <p>{{ item.description }}</p></nb-card-body
+                    >
+                </nb-card>
             </div>
         </div>
-
-        <div *ngFor="let listing of item.listings; index as i" [class]="'vendor-card__listing listing-' + (i + 1) + ''">
-            <img [src]="listing.image" />
-            <div class="listing-details">{{ listing.title }}</div>
+        <div class="vendor-card__secondary">
+            <div *ngFor="let listing of item.listings; index as i" [class]="'vendor-card__listing listing-' + (i + 1) + ''">
+                <img [src]="listing.image" />
+                <div class="listing-details">{{ listing.title }}</div>
+            </div>
         </div>
     </div>
     <!-- <nb-card-header class="vendor-card__header">
