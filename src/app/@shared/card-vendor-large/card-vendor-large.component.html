@@ -5,62 +5,49 @@
     queryParamsHandling="preserve"
 >
     <div class="vendor-card__wrapper">
-        <div class="vendor-card__main">
-            <div
-                class="vendor-card__banner"
-                style="background: url(./assets/images/banners/eco.jpg); background-size: cover; background-position: center center"
-            >
-                <!-- <img [src]="item._extras && item._extras.header ? item._extras.header : ''" /> -->
-                <!-- <img src="./assets/images/banners/eco.jpg" /> -->
-            </div>
-            <div class="vendor-card__information">
-                <div class="vendor-card__logo">
-                    <img [src]="item.image" class="logo" />
-                </div>
-                <nb-card class="vendor-card__details">
-                    <nb-card-header>
-                        <h2>{{ item.title }}</h2>
-                        <span>{{ item.city }}, {{ item.country }}</span></nb-card-header
-                    >
-                    <nb-card-body>
-                        <p>{{ item.description }}</p></nb-card-body
-                    >
-                </nb-card>
-            </div>
-        </div>
-        <div class="vendor-card__secondary">
+        <section
+            class="vendor-card__main"
+            style="background: url(./assets/images/banners/eco-min.jpg); background-size: cover; background-position: center center"
+        >
+            <nb-card class="vendor-card">
+                <nb-card-header class="vendor-card__header">
+                    <img class="vendor-card__smImage" src="./assets/images/banners/eco-min.jpg" />
+                    <div class="vendor-card__information">
+                        <div class="vendor-card__logo">
+                            <img [src]="item.image" class="logo" />
+                        </div>
+                        <div class="vendor-card__info">
+                            <h2>{{ item.title }}</h2>
+                            <p>{{ item.city }}, {{ item.country }}</p>
+                            <section class="vendor-card__rating">
+                                <nb-icon icon="star-outline" style="margin-right: 6px"></nb-icon> <b>No ratings yet</b>
+                            </section>
+                        </div>
+                    </div>
+                </nb-card-header>
+                <nb-card-body class="vendor-card__body">
+                    <p>{{ item.description }}</p>
+                </nb-card-body>
+                <nb-card-footer class="vendor-card__footer">
+                    <div *ngFor="let listing of item.listings; index as i" [class]="'vendor-card__listing listing-' + (i + 1) + ''">
+                        <img [src]="listing.image" />
+
+                        <section class="listing-details">
+                            <p>{{ listing.title }}</p>
+                            <p style="font-weight: bold">{{ listing.price }} £</p>
+                        </section>
+                    </div>
+                </nb-card-footer>
+            </nb-card>
+        </section>
+        <section class="vendor-card__secondary">
             <div *ngFor="let listing of item.listings; index as i" [class]="'vendor-card__listing listing-' + (i + 1) + ''">
                 <img [src]="listing.image" />
-                <div class="listing-details">{{ listing.title }}</div>
+                <section class="listing-details">
+                    <p class="listing-details__title">{{ listing.title }}</p>
+                    <p style="font-weight: bold; padding-top: 6px">{{ listing.price }} £</p>
+                </section>
             </div>
-        </div>
+        </section>
     </div>
-    <!-- <nb-card-header class="vendor-card__header">
-        <div class="vendor-card__headerWrapper">
-            <div *ngIf="item.image" class="vendor-card__imageWrapper"><img class="vendor-card__image" [src]="item.image" [alt]="item.title" /></div>
-            <div class="vendor-info">
-                <h6 class="vendor-info__title">{{ item.title }}</h6>
-                <p class="vendor-info__location">{{ item.city }}, {{ item.country }}</p>
-            </div>
-        </div>
-        <div class="vendor-card__vendorOptionsSection">
-            <div *ngIf="item.delivery" class="vendor-card__vendorOption">
-                <nb-icon icon="car-outline" class="vendor-card__icon" pack="eva"></nb-icon>
-            </div>
-            <div *ngIf="item.listings && item.listings.length" class="vendor-card__vendorOption">
-                <nb-icon icon="shopping-bag-outline" class="vendor-card__icon" pack="eva"></nb-icon>
-            </div>
-        </div>
-    </nb-card-header>
-    <nb-card-body class="vendor-card__body-sectionSM">
-        <p *ngIf="item.description" class="vendor-info__description darkGrayTextColor">{{ item.description }}</p>
-
-    </nb-card-body>
-    <nb-card-footer *ngIf="item.listings && item.listings.length" class="vendor-card__footerSection">
-        <div class="vendor-card__gallery">
-            <div *ngFor="let listing of item.listings" class="vendor-card__galleryItem">
-                <img class="vendor-card__smallImage" [src]="listing.image" />
-            </div>
-        </div>
-    </nb-card-footer> -->
 </nb-card>

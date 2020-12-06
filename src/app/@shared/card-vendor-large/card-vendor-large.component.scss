@@ -1,12 +1,8 @@
+@import "../../@core/styles/themes.scss";
+
 .vendor-card__wrapper {
     display: flex;
     flex-direction: row;
-    // grid-template-columns: 2fr repeat(2, 1fr);
-    // grid-template-rows: 1fr 1fr;
-    // gap: 0px 0px;
-    // grid-template-areas:
-    //     "vendor-main listing-1 listing-2"
-    //     "vendor-main listing-3 listing-4";
 
     min-height: 500px;
 
@@ -15,69 +11,99 @@
     }
 
     .vendor-card__main {
-        // display: grid;
-        // grid-template-columns: 1fr;
-        // grid-template-rows: 2fr 1fr;
-        // gap: 0px 0px;
-        // grid-template-areas:
-        //     "vendor-header"
-        //     "vendor-information";
-        // grid-area: vendor-main;
+        display: flex;
+        align-items: flex-end;
         flex: 1;
     }
     .vendor-card__secondary {
-        // display: grid;
-        // grid-template-columns: 1fr;
-        // grid-template-rows: 2fr 1fr;
-        // gap: 0px 0px;
-        // grid-template-areas:
-        //     "vendor-header"
-        //     "vendor-information";
-        // grid-area: vendor-main;
-
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         flex: 1;
+        @media only screen and (max-width: 890px) {
+            display: none;
+        }
     }
     .vendor-card__banner {
-        // grid-area: vendor-header;
-        min-height: 300px;
+        height: 100%;
         background-size: cover;
+        display: flex;
+    }
+
+    .vendor-card__rating {
+        margin-top: 4px;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        opacity: 0.8;
+    }
+
+    .vendor-card {
+        width: 100%;
+        backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.8);
+        margin: 40px;
+
+        border: none;
+        overflow: hidden;
+
+        @media only screen and (max-width: 890px) {
+            margin-bottom: 20px;
+            border-bottom-right-radius: var(--card-border-radius);
+            border-bottom-left-radius: var(--card-border-radius);
+            margin: 0;
+        }
+    }
+
+    .vendor-card__footer {
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        @media only screen and (min-width: 890px) {
+            display: none;
+        }
     }
 
     .vendor-card__logo {
         display: flex;
         align-items: center;
-        margin-right: 12px;
-    }
-    .vendor-card__information {
-        grid-area: vendor-information;
+        margin: 12px 22px 12px 12px;
 
-        display: flex;
-        height: 200px;
-        background: white;
-
+        border-radius: var(--card-border-radius);
+        overflow: hidden;
         img {
             height: 100px;
             width: 100px;
         }
     }
-    .vendor-card__details {
-        // padding-left: 12px;
-        border: none;
-        padding: 0;
-        height: 100%;
+
+    .vendor-card__information {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .vendor-card__header {
+        padding: 0px;
+    }
+    .vendor-card__smImage {
+        object-fit: cover;
         width: 100%;
+        height: 300px;
+        @media only screen and (min-width: 890px) {
+            display: none;
+        }
     }
 
     .vendor-card__listing {
         position: relative;
         height: 250px;
-
         width: 50%;
         display: flex;
         justify-content: center;
+
+        @media only screen and (max-width: 530px) {
+        }
 
         img {
             object-fit: cover;
@@ -87,149 +113,32 @@
 
         .listing-details {
             backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.5);
-            border-top-right-radius: 15px;
-            border-top-left-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.6);
+
+            border-radius: var(--card-border-radius);
             padding: 15px;
+            h5 {
+                font-weight: 500;
+            }
         }
     }
     .listing-1 {
-        grid-area: listing-1;
     }
     .listing-2 {
-        grid-area: listing-2;
     }
     .listing-3 {
-        grid-area: listing-3;
     }
     .listing-4 {
-        grid-area: listing-4;
     }
 
     .listing-details {
         position: absolute;
-        bottom: 0;
+        bottom: 15px;
         z-index: 1;
-        padding: 12px;
+
+        &__title {
+            border-bottom: var(--card-divider-width) var(--card-divider-style) var(--card-divider-color);
+            padding-bottom: 6px;
+        }
     }
 }
-
-// .vendor-card {
-//     min-width: 230px;
-//     min-height: 240px;
-//     max-height: 240px;
-//     margin-bottom: 0;
-//     max-width: calc(100vw - 25px);
-
-//     &__header {
-//         display: grid;
-//         grid-template-columns: 5fr 1fr;
-//         padding: 0;
-//         height: 75px;
-//     }
-//     &__headerWrapper {
-//         display: flex;
-//         flex-direction: row;
-//         padding: 12px;
-//     }
-//     &__icon {
-//         margin-left: 5px;
-//     }
-//     &__paymentIcon {
-//         height: 100%;
-//         display: flex;
-//         justify-content: center;
-//         align-items: center;
-//     }
-
-//     &__image {
-//         height: 100%;
-//         width: 100%;
-//         object-fit: contain;
-//         border-radius: var(--card-border-radius);
-//     }
-//     &__imageWrapper {
-//         overflow: hidden;
-//         width: 50px;
-//         height: 50px;
-//         min-width: 50px;
-//         margin-right: 15px;
-//         border-radius: var(--card-border-radius);
-//     }
-//     &__body-sectionSM {
-//         padding: 12px;
-//     }
-
-//     &__descriptionWrapper {
-//         display: flex;
-//         flex-direction: row;
-//         align-items: flex-start;
-//     }
-
-//     &__descriptionIcon {
-//         margin-right: 15px;
-//         -webkit-transform: scaleX(-1);
-//         -moz-transform: scaleX(-1);
-//         -o-transform: scaleX(-1);
-//         transform: scaleX(-1);
-//         margin-top: 0;
-//     }
-
-//     &__footerSection {
-//         padding: 0px;
-//         overflow: hidden;
-//         // grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
-//         height: 75px;
-//     }
-//     &__gallery {
-//         display: grid;
-//         grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
-//         overflow-y: hidden;
-//     }
-//     &__galleryItem {
-//         background-size: cover;
-//         height: 75px;
-//     }
-//     &__vendorOptionsSection {
-//         display: flex;
-//         height: 100%;
-//         align-items: center;
-//         justify-content: flex-end;
-//         padding: 12px;
-//     }
-//     &__smallImage {
-//         height: 100%;
-//         width: 100%;
-//         object-fit: cover;
-//         object-position: center;
-//     }
-
-//     // &:hover {
-//     //     max-height: 360px;
-
-//     //     .vendor-info {
-//     //         &__description {
-//     //             -webkit-line-clamp: unset;
-//     //         }
-//     //     }
-//     // }
-// }
-
-// .vendor-info {
-//     &__title {
-//         overflow: hidden;
-//         text-overflow: ellipsis;
-//         white-space: nowrap;
-//         width: 245px;
-//         max-width: calc(100vw - 200px);
-//     }
-//     &__location {
-//         opacity: 0.8;
-//     }
-//     &__description {
-//         overflow: hidden;
-//         display: -webkit-box;
-//         -webkit-line-clamp: 3;
-//         -webkit-box-orient: vertical;
-//     }
-// }
