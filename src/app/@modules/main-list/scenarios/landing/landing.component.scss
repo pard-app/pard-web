@@ -1,6 +1,12 @@
 .promoted__secondary {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+
+    // display: flex;
+    // width: 100%;
+    // flex-direction: row;
 }
 
 .promoted {

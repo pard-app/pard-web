@@ -1,9 +1,10 @@
 .vendor-card {
-    min-width: 230px;
+    // min-width: 230px;
+    width: 100%;
     min-height: 240px;
     max-height: 240px;
     margin-bottom: 0;
-    max-width: 390px;
+    // max-width: 390px;
     border: none;
 
     &__header {
