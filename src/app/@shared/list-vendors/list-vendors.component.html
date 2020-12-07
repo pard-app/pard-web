@@ -8,7 +8,7 @@
     </div>
 
     <section class="grid-parent">
-        <app-card-vendor class="grid-child" *ngFor="let item of vendorsWithListings" [item]="item"></app-card-vendor>
+        <app-card-vendor *ngFor="let item of vendorsWithListings" [item]="item"></app-card-vendor>
     </section>
 
     <app-loading-box *ngIf="isLoading"></app-loading-box>

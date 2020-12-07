@@ -14,9 +14,7 @@
 .near-me-vendors {
     margin: 30px 0;
 
-    ::ng-deep .vendor-card {
-        max-width: 390px;
-    }
+    width: 100%;
 }
 
 .ask {

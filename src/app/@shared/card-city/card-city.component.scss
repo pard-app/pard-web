@@ -1,13 +1,13 @@
 :host {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
 
     img {
-        min-width: 230px;
         min-height: 240px;
         max-height: 240px;
-        margin-bottom: 0;
-        max-width: 390px;
+        width: 100%;
         object-fit: cover;
         border-radius: 15px;
     }

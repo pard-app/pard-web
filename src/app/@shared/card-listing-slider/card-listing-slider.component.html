@@ -1,10 +1,7 @@
 <swiper [config]="config" *ngIf="listings">
     <div *ngFor="let listing of listings">
+        <div class="listing-background" [style.backgroundImage]="'url(' + listing.image + ')'"></div>
         <div class="listing">
-            <div class="image">
-                <img [src]="listing.image" />
-            </div>
-
             <div class="details">
                 <h2>{{ listing.title }}</h2>
                 <h4>€ {{ listing.price }}</h4>
