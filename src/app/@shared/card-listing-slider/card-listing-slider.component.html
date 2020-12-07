@@ -1,13 +1,12 @@
 <swiper [config]="config" *ngIf="listings">
     <div *ngFor="let listing of listings">
-        <div class="listing-background" [style.backgroundImage]="'url(' + listing.image + ')'"></div>
         <div class="listing">
+            <div class="listing-background" [style.backgroundImage]="'url(' + listing.image + ')'"></div>
             <div class="details">
                 <h2>{{ listing.title }}</h2>
                 <h4>€ {{ listing.price }}</h4>
                 <p>{{ listing.description }}</p>
             </div>
-            <!-- <button nbButton [routerLink]="banner.url">{{ banner.button }}</button> -->
         </div>
     </div>
 </swiper>
