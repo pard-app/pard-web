@@ -4,7 +4,7 @@
 }
 
 .listing-background {
-    min-height: 500px;
+    height: 500px;
     background-position: center center;
     background-size: cover;
     position: absolute;
@@ -21,7 +21,7 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    min-height: 500px;
+    height: 500px;
 
     .details {
         backdrop-filter: blur(10px);
