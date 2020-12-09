@@ -45,13 +45,13 @@ export class SearchLocationComponent implements OnInit, OnDestroy, AfterViewInit
         this.sub.add(
             this.input.valueChanges.subscribe(async (str) => {
                 if (str === undefined || typeof str === "object") return;
-                !str && this.onClear.emit();
+                //!str && this.onClear.emit();
                 const { hits } = await this.algolia.places(str);
                 this._places$.next(mapHitsToLocations(hits));
             })
         );
 
-        this.inputRef && this.inputRef.nativeElement.blur();
+        //this.inputRef && this.inputRef.nativeElement.blur();
     }
 
     public async tryInit() {

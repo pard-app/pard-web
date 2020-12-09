@@ -1,4 +1,4 @@
-<app-search-location #searchLocation (onClear)="onClearCity()" (locationChanged)="currentLocationOnChange($event)"></app-search-location>
+<app-search-location #searchLocation (locationChanged)="currentLocationOnChange($event)"></app-search-location>
 <app-search-smart-items
     [groupedItems$]="groupedItems$"
     [placeholder]="'FILTER_BY_LISTING_OR_VENDOR' | translate"

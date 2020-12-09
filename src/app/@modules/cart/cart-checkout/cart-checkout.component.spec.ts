@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { CartCheckoutComponent } from "./cart-checkout.component";
 import { FormBuilder } from "@angular/forms";
 import { RouterTestingModule } from "@angular/router/testing";

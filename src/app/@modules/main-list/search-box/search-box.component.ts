@@ -40,6 +40,8 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     }
 
     public onClearCity(): void {
+        // tmp fix
+        return;
         // Clear store
         this.router.navigate([ROUTING_CONSTANTS.ROOT], locationQueryParams({ [QUERY_PARAMS.LOCATION]: null }));
         // Clear component

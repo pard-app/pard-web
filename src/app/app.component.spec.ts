@@ -1,4 +1,4 @@
-import { TestBed, async } from "@angular/core/testing";
+import { TestBed, waitForAsync } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { AppComponent } from "./app.component";
 import { TranslateModule } from "@ngx-translate/core";
@@ -7,7 +7,7 @@ import { cookieConfig } from "./app.module";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 
 describe("AppComponent", () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [AppComponent],
             imports: [RouterTestingModule, TranslateModule.forRoot(), NgcCookieConsentModule.forRoot(cookieConfig), BrowserDynamicTestingModule],

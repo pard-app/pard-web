@@ -5,18 +5,16 @@ import { ConfigurationResolver } from "./configuration.resolver";
 
 const routes: Routes = [
     {
-        path: ROUTING_CONSTANTS.VENDOR_PAGE_ROOT,
-
-        //resolve: { configuration: ConfigurationResolver },
-        loadChildren: () => import("@modules/vendor/vendor-routing.module").then((m) => m.VendorRoutingModule),
-    },
-
-    {
         path: ROUTING_CONSTANTS.ROOT,
         resolve: { configuration: ConfigurationResolver },
         loadChildren: () => import("@modules/main-list/main-list-routing.module").then((m) => m.MainListRoutingModule),
     },
+    {
+        path: ROUTING_CONSTANTS.VENDOR_PAGE_ROOT,
 
+        resolve: { configuration: ConfigurationResolver },
+        loadChildren: () => import("@modules/vendor/vendor-routing.module").then((m) => m.VendorRoutingModule),
+    },
     {
         path: ROUTING_CONSTANTS.CART_PAGE_ROOT,
         resolve: { configuration: ConfigurationResolver },
@@ -30,7 +28,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, { relativeLinkResolution: "legacy" })],
     exports: [RouterModule],
 })
 export class AppRoutingModule {}

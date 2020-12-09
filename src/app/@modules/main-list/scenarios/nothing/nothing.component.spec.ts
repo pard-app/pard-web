@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
 import { NothingComponent } from "./nothing.component";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
@@ -9,7 +9,7 @@ describe("NothingComponent", () => {
     let component: NothingComponent;
     let fixture: ComponentFixture<NothingComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [NothingComponent],
             imports: [RouterTestingModule, HttpClientModule, TranslateModule.forRoot()],

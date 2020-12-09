@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
 import { OnlyLocationComponent } from "./only-location.component";
 import { RouterTestingModule } from "@angular/router/testing";
@@ -8,7 +8,7 @@ describe("OnlyLocationComponent", () => {
     let component: OnlyLocationComponent;
     let fixture: ComponentFixture<OnlyLocationComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [OnlyLocationComponent],
             imports: [RouterTestingModule, TranslateModule.forRoot()],

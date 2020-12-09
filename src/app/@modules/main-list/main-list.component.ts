@@ -15,7 +15,7 @@ export class MainListComponent implements OnDestroy {
     }
 
     ngAfterViewChecked() {
-        this.changeDetector.detectChanges();
+        //this.changeDetector.detectChanges();
     }
 
     ngOnDestroy() {}

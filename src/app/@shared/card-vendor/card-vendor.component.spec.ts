@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
 import { CardVendorComponent } from "./card-vendor.component";
 
@@ -28,7 +28,7 @@ describe("CardVendorComponent", () => {
         },
         listings: [],
     };
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [CardVendorComponent],
         }).compileComponents();

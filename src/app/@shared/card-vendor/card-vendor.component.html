@@ -1,9 +1,4 @@
-<nb-card
-    *ngIf="item"
-    class="vendor-card clickable-card"
-    [routerLink]="globalRoutes.VENDOR_PAGE_ROOT + '/' + (item.slug ? item.slug : item.objectID)"
-    queryParamsHandling="preserve"
->
+<nb-card *ngIf="item" class="vendor-card clickable-card" [routerLink]="globalRoutes.VENDOR_PAGE_ROOT + '/' + (item.slug ? item.slug : item.objectID)">
     <nb-card-header class="vendor-card__header">
         <div class="vendor-card__headerWrapper">
             <div *ngIf="item.image" class="vendor-card__imageWrapper"><img class="vendor-card__image" [src]="item.image" [alt]="item.title" /></div>
