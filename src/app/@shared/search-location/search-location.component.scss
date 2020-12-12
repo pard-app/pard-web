@@ -40,4 +40,10 @@
 
 input {
     border: none;
+    &:hover {
+        background-color: nb-theme(background-basic-color-2) !important;
+    }
+    &:active {
+        background-color: nb-theme(background-basic-color-2) !important;
+    }
 }

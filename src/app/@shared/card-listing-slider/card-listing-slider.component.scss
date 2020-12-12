@@ -9,28 +9,89 @@
     background-size: cover;
     position: absolute;
     width: 100%;
-
     height: 100%;
-
-    overflow: hidden;
+    // overflow: hidden;
 }
 
 .listing {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
     justify-content: center;
-    flex-wrap: wrap;
+
     height: 500px;
 
-    .details {
-        backdrop-filter: blur(10px);
-        background-color: rgba(255, 255, 255, 0.6);
+    &__image {
+        max-width: 60%;
+        height: 100%;
+        object-fit: cover;
+        flex: 2;
+        @media only screen and (max-width: 890px) {
+            display: none;
+        }
+    }
 
-        border-radius: var(--card-border-radius);
-        padding: 15px;
+    .details {
+        // background-color: white;
+        // backdrop-filter: blur(10px);
+        background-color: white;
+        height: 100%;
+        // border-radius: var(--card-border-radius);
+        overflow: hidden;
         width: 25%;
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        // padding-right: 30px;
+        flex: 1;
+        @media only screen and (max-width: 890px) {
+            justify-content: flex-end;
+            background-color: transparent;
+        }
+        &__text {
+            padding: 40px;
+            @media only screen and (max-width: 890px) {
+                backdrop-filter: blur(10px);
+                background-color: rgba(255, 255, 255, 0.6);
+                border-radius: var(--card-border-radius) var(--card-border-radius) 0px 0px;
+                width: 60%;
+            }
+        }
+        h1 {
+            font-size: 40px;
+            font-weight: 100;
+            font-family: var(--font-family-primary);
+            // white-space: nowrap;
+            // overflow: hidden;
+            // text-overflow: ellipsis;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            @media only screen and (max-width: 890px) {
+                font-size: 30px;
+            }
+        }
+        h3 {
+            font-weight: bold;
+            font-family: var(--font-family-secondary);
+            margin-bottom: 30px;
+        }
+        p {
+            @media only screen and (max-width: 890px) {
+                display: none;
+            }
+        }
+        &__image {
+            width: 100%;
+            position: absolute;
+            height: 100%;
+            z-index: -99;
+            background-size: cover;
+            @media only screen and (min-width: 890px) {
+                display: none;
+            }
+        }
     }
 }

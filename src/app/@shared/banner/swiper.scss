@@ -142,3 +142,29 @@
         scroll-snap-type: y mandatory;
     }
 }
+
+.swiper-button-next {
+    right: -20px !important;
+    padding: 40px;
+}
+.swiper-button-prev {
+    left: -20px !important;
+    padding: 40px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    // background-color: white;
+    // border-radius: 50%;
+
+    // box-shadow: rgba(143, 155, 179, 0.4) 0px 0px 8px;
+    transform: scale(0.6);
+    &:hover {
+        transform: scale(0.7);
+        transition: 0.2s;
+    }
+}
+
+.swiper-button-disabled {
+    opacity: 0 !important;
+}
