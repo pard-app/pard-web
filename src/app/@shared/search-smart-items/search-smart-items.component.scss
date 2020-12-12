@@ -1,6 +1,7 @@
 @import "~src/app/@core/styles/themes";
 :host {
     display: flex;
+    width: 375px;
     @media (max-width: 1100px) {
         margin-bottom: 10px;
         width: 100%;
@@ -14,8 +15,14 @@
     flex: 1;
 }
 
-.input {
+input {
     border: none;
+    &:hover {
+        background-color: nb-theme(background-basic-color-2) !important;
+    }
+    &:active {
+        background-color: nb-theme(background-basic-color-2) !important;
+    }
 }
 
 @keyframes slideInFromLeft {
@@ -77,3 +84,7 @@
     background: var(--color-info-100);
     font-weight: bold;
 }
+
+// .option-group-wrapper {
+//     display: none !important;
+// }

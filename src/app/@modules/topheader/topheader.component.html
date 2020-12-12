@@ -50,10 +50,15 @@
 
             <ul class="shop__list">
                 <li *ngFor="let item of TOP_HEADER_NAVIGATION_ROUTES" class="sub__item">
-                    <a *ngIf="item.createShop" (click)="handleRedirect(item)" class="sub__buttonShop"> {{ item.title }} </a>
-                    <a *ngIf="!item.createShop" (click)="handleRedirect(item)" class="sub__button"> {{ item.title }} </a>
+                    <button ghost nbButton status="secondary" size="tiny" *ngIf="item.createShop" (click)="handleRedirect(item)" class="sub__buttonShop">
+                        {{ item.title }}
+                    </button>
+                    <button ghost nbButton size="tiny" *ngIf="!item.createShop" (click)="handleRedirect(item)" class="sub__button">
+                        {{ item.title }}
+                    </button>
                     <div class="vertical-seperator">&nbsp;</div>
                 </li>
+
                 <img class="sub__language" [nbContextMenu]="languages" [src]="'assets/images/flags/' + language + '.svg'" nbContextMenuTag="languages-menu" />
             </ul>
 

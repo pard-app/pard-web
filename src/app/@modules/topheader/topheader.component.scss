@@ -9,18 +9,18 @@
     flex-direction: row;
     justify-content: flex-end;
     &__button {
-        font-weight: 100;
+        // font-weight: 100;
         color: black;
-        &:hover {
-            color: nb-theme(color-primary-400);
-        }
+        // &:hover {
+        //     color: nb-theme(color-primary-400);
+        // }
     }
     &__buttonShop {
         font-weight: bold;
         color: nb-theme(color-secondary-900);
-        &:hover {
-            color: nb-theme(color-secondary-800);
-        }
+        // &:hover {
+        //     color: nb-theme(color-secondary-800);
+        // }
     }
     &__list {
         display: flex;
