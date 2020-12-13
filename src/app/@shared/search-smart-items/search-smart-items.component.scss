@@ -49,7 +49,8 @@
 
 .option-item {
     padding: 2px 4px;
-
+    width: 100%;
+    overflow: hidden;
     &__image {
         padding: 3px;
         width: 40px;
@@ -62,12 +63,12 @@
         display: flex;
         align-items: center;
         width: 100%;
+        overflow: hidden;
     }
     &__title {
         font-size: 0.8em;
         margin-right: 10px;
-        flex: 1;
-        width: 70%;
+        width: 80%;
         overflow: hidden;
         text-overflow: ellipsis;
         display: inline-block;
@@ -75,6 +76,8 @@
         font-weight: lighter;
     }
     &__price {
+        width: 20%;
+        text-align: right;
         font-size: 0.8em;
         font-weight: lighter;
     }
