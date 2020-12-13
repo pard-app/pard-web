@@ -52,7 +52,9 @@
     justify-content: space-between;
     align-items: center;
     &__button {
-        width: 60px;
+        width: 50px;
+        display: flex;
+        justify-content: flex-start;
     }
     &__logo {
         width: 60px;
