@@ -21,6 +21,7 @@
         [placeholder]="placeholder"
         [nbAutocomplete]="auto"
         class="input"
+        fieldSize="small"
     />
     <nb-autocomplete #auto (selectedChange)="onPick($event)" class="option-group-wrapper">
         <nb-option-group class="option-group" *ngFor="let group of groupedItems$ | async" [title]="group.name | uppercase | translate">

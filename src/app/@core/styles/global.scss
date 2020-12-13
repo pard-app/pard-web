@@ -172,9 +172,6 @@ nb-dialog-container {
     cursor: pointer;
 }
 
-.input {
-}
-
 .successTextColor {
     color: var(--icon-success-color);
 }
@@ -217,3 +214,22 @@ nb-dialog-container {
 // .eva-shopping-cart-outline {
 //     fill: url(#gradient);
 // }
+
+input::placeholder {
+    opacity: 0.8;
+}
+
+input {
+    margin: 5px 0px;
+    border: none !important;
+    border-radius: 6px !important;
+    &:hover {
+        background-color: nb-theme(background-basic-color-2) !important;
+    }
+    &:active {
+        background-color: nb-theme(background-basic-color-2) !important;
+    }
+    &:focus {
+        background-color: nb-theme(background-basic-color-2) !important;
+    }
+}

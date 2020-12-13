@@ -1,22 +1,21 @@
 @import "~src/app/@core/styles/themes";
 :host {
-    width: 200px;
-    @media (max-width: 1110px) {
+    width: 355px;
+    padding: 0px 10px;
+    @media (max-width: 1100px) {
         width: 100%;
-        margin-bottom: 10px;
+        padding: 0px;
     }
-    @media (min-width: 1110px) {
-        margin-right: 25px;
-    }
-    //flex: 1;
 }
-// .home-icon {
-//     cursor: pointer;
-// }
+
 .item {
     &-wrapper {
         display: flex;
         flex-wrap: wrap;
+        span {
+            font-weight: 100;
+            font-style: 0.9rem;
+        }
     }
     &-val ::ng-deep,
     &-county ::ng-deep,
@@ -35,16 +34,12 @@
     font-size: 0.7em;
 }
 
-.input-box {
-    flex: 1;
-}
-
-input {
-    border: none;
-    &:hover {
-        background-color: nb-theme(background-basic-color-2) !important;
-    }
-    &:active {
-        background-color: nb-theme(background-basic-color-2) !important;
-    }
-}
+// input {
+//     border: none;
+//     &:hover {
+//         background-color: nb-theme(background-basic-color-2) !important;
+//     }
+//     &:active {
+//         background-color: nb-theme(background-basic-color-2) !important;
+//     }
+// }

@@ -87,7 +87,7 @@ export class TopheaderComponent implements OnInit, OnDestroy {
     }
 
     private checkForMobileSize() {
-        const MOBILE_SIZE = 1110;
+        const MOBILE_SIZE = 1100;
         this.isMobileLayout = window.innerWidth <= MOBILE_SIZE;
         window.onresize = () => (this.isMobileLayout = window.innerWidth <= MOBILE_SIZE);
     }
