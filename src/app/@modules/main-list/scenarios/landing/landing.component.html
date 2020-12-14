@@ -1,8 +1,9 @@
 <app-banner></app-banner>
-
+<div class="horizontal-seperator">&nbsp;</div>
 <div class="near-me">
     <app-near-me-items></app-near-me-items>
 </div>
+<div class="horizontal-seperator">&nbsp;</div>
 <div class="promoted" *ngIf="promotedVendors">
     <h3 class="card-title">{{ "RECOMMENDED_VENDORS" | translate }}</h3>
 
@@ -15,12 +16,13 @@
         <app-card-vendor [item]="promotedVendors[3]"></app-card-vendor>
     </div>
 </div>
+<div class="horizontal-seperator">&nbsp;</div>
 <div class="newest-listings">
     <h3 class="card-title">{{ "NEWEST_LISTINGS" | translate }}</h3>
 
     <app-card-listing-slider [listings]="newestListings"></app-card-listing-slider>
 </div>
-
+<div class="horizontal-seperator">&nbsp;</div>
 <div class="cities">
     <h3 class="card-title">{{ "TOP_CITIES" | translate }}</h3>
 

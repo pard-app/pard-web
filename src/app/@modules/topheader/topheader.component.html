@@ -9,6 +9,7 @@
                     </button>
                 </li>
             </div>
+            <span> <div class="vertical-seperator">&nbsp;</div></span>
             <button ghost nbButton style="padding: 10px" nbContextMenuTag="languages-menu" [nbContextMenu]="languages">
                 <img class="sub__language" [src]="'assets/images/flags/' + language + '.svg'" />
             </button>
@@ -26,7 +27,7 @@
                 <use xlink:href="assets/icons/pard-text.svg#Layer_1"></use>
             </svg>
 
-            <!-- <div class="vertical-seperator">&nbsp;</div> -->
+            <div class="vertical-seperator">&nbsp;</div>
         </div>
         <section class="shop__menu">
             <ul class="shop__list">
@@ -49,7 +50,7 @@
                 <div class="shop__searchDesktop">
                     <app-search-box></app-search-box>
                 </div>
-
+                <div class="vertical-seperator">&nbsp;</div>
                 <div class="shop__cart">
                     <button
                         ghost
@@ -82,7 +83,8 @@
             </defs>
             <use xlink:href="assets/icons/pard-text.svg#Layer_1"></use>
         </svg>
-        <ul class="shop__list">
+        <!-- <div class="vertical-seperator">&nbsp;</div> -->
+        <!-- <ul class="shop__list">
             <div *ngFor="let item of TOP_HEADER_NAVIGATION_ROUTES">
                 <li class="sub__item" *ngIf="item.createShop">
                     <button ghost nbButton status="secondary" size="tiny" (click)="handleRedirect(item)" class="sub__buttonShop">
@@ -90,16 +92,18 @@
                     </button>
                 </li>
             </div>
-        </ul>
+        </ul> -->
     </section>
 
     <section class="top-bar-mobile__menu">
         <button ghost nbButton style="padding: 10px" nbContextMenuTag="languages-menu" [nbContextMenu]="languages">
             <img class="sub__language" [src]="'assets/images/flags/' + language + '.svg'" />
         </button>
+        <div class="vertical-seperator">&nbsp;</div>
         <button *ngIf="isMobileLayout" ghost nbButton status="primary" [nbContextMenu]="TOP_HEADER_NAVIGATION_ROUTES" class="top-header__button">
             <nb-icon icon="menu-outline"></nb-icon>
         </button>
+        <div class="vertical-seperator">&nbsp;</div>
         <div class="shop__cart">
             <button
                 ghost
@@ -117,6 +121,7 @@
         </div>
     </section>
     <div class="top-bar-mobile__searchMobile">
+        <div class="horizontal-seperator">&nbsp;</div>
         <app-search-box></app-search-box>
     </div>
 </section>
