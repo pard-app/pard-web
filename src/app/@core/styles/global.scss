@@ -83,18 +83,18 @@ h6 {
 .title {
     font-weight: 400;
     white-space: nowrap;
-    margin: 0 0 var(--margin-standart) 0;
+    margin: calc(var(--margin-standart) * 2) 0 calc(var(--margin-standart) * 2) 0;
     font-family: var(--font-family-primary);
     @media only screen and (max-width: 950px) {
         font-size: 1.5em;
         margin: 15px 0;
     }
     @media only screen and (max-width: 640px) {
-        font-size: 1.2em;
+        font-size: 1.5em;
         margin: 8px 0;
     }
     @media only screen and (max-width: 455px) {
-        font-size: 1em;
+        font-size: 1.2em;
         margin: 8px 0;
     }
 
@@ -119,10 +119,10 @@ h6 {
     transition: all 0.1s cubic-bezier(0.42, 0.95, 0.72, 0.32), max-height 0.2s linear, height 0.2s linear;
     overflow: hidden;
     cursor: pointer;
-    box-shadow: nb-theme(color-basic-transparent-500) 0px 0px 8px;
+    box-shadow: nb-theme(color-basic-transparent-500) 0px 0px 4px;
     &:hover,
     &:focus {
-        box-shadow: nb-theme(color-basic-transparent-500) 0px 0px 20px;
+        box-shadow: nb-theme(color-basic-transparent-500) 0px 0px 10px;
         outline: none;
     }
 }

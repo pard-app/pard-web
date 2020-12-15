@@ -4,7 +4,7 @@
 }
 
 .listing-background {
-    height: 500px;
+    height: 70vh;
     background-position: center center;
     background-size: cover;
     position: absolute;
@@ -19,7 +19,7 @@
     align-items: flex-start;
     justify-content: center;
 
-    height: 500px;
+    height: 70vh;
 
     &__image {
         max-width: 60%;

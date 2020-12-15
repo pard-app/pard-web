@@ -17,7 +17,7 @@
     position: relative;
     overflow: hidden;
     list-style: none;
-    box-shadow: nb-theme(color-basic-transparent-500) 0px 0px 8px;
+    box-shadow: nb-theme(color-basic-transparent-500) 0px 0px 4px;
     border-radius: 15px;
     padding: 0;
     cursor: pointer;
@@ -26,7 +26,7 @@
     z-index: 1;
     &:hover,
     &:focus {
-        box-shadow: nb-theme(color-basic-transparent-500) 0px 0px 30px;
+        box-shadow: nb-theme(color-basic-transparent-500) 0px 0px 10px;
         outline: none;
     }
 }
