@@ -198,10 +198,10 @@ nb-dialog-container {
 
 .vertical-seperator {
     height: 100%;
-    width: 1px;
-    // background-color: red;
-    -webkit-box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.12);
-    box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.12);
+    width: 0.5px;
+    background-color: var(--card-divider-color);
+    // -webkit-box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.12);
+    // box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.12);
     margin: 0 var(--margin-standart);
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -210,16 +210,18 @@ nb-dialog-container {
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+    opacity: 0.6;
     @media only screen and (max-width: 1260px) {
         margin: 0 calc(var(--margin-standart) / 2);
     }
 }
+
 .horizontal-seperator {
-    height: 1px;
+    height: 0.5px;
     width: 100%;
-    // background-color: red;
-    -webkit-box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.12);
-    box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.12);
+    background-color: var(--card-divider-color);
+    // -webkit-box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.12);
+    // box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.12);
     margin: var(--margin-standart) 0px;
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -228,6 +230,7 @@ nb-dialog-container {
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+    opacity: 0.6;
 }
 
 // .eva-shopping-cart-outline {

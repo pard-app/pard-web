@@ -1,6 +1,6 @@
 <!-- Menu -->
 <section class="top-bar" *ngIf="!isMobileLayout">
-    <nav role="sub" class="sub">
+    <!-- <nav role="sub" class="sub">
         <ul class="sub__list">
             <div *ngFor="let item of TOP_HEADER_NAVIGATION_ROUTES">
                 <li class="sub__item" *ngIf="!item.createShop">
@@ -14,7 +14,8 @@
                 <img class="sub__language" [src]="'assets/images/flags/' + language + '.svg'" />
             </button>
         </ul>
-    </nav>
+    </nav> -->
+    <!-- <div class="horizontal-seperator"></div> -->
     <nav role="shop" class="shop">
         <div class="shop__logoContainer">
             <svg (click)="navigateToMainPage()" class="shop__logo gradient-svg" height="50">
@@ -42,10 +43,20 @@
                 -->
                         <!-- <div class="vertical-seperator">&nbsp;</div> -->
                     </li>
+                    <li class="sub__item" *ngIf="!item.createShop">
+                        <button ghost nbButton size="tiny" (click)="handleRedirect(item)" class="sub__button">
+                            {{ item.title }}
+                        </button>
+                    </li>
                 </div>
+                <span> <div class="vertical-seperator">&nbsp;</div></span>
+
                 <!-- <img class="sub__language" [nbContextMenu]="languages" [src]="'assets/images/flags/' + language + '.svg'" nbContextMenuTag="languages-menu" /> -->
             </ul>
-
+            <button ghost nbButton style="padding: 10px" nbContextMenuTag="languages-menu" [nbContextMenu]="languages">
+                <img class="sub__language" [src]="'assets/images/flags/' + language + '.svg'" />
+            </button>
+            <div class="vertical-seperator">&nbsp;</div>
             <section class="shop__cartContainer">
                 <div class="shop__searchDesktop">
                     <app-search-box></app-search-box>

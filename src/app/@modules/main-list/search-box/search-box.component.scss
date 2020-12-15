@@ -1,9 +1,10 @@
 :host {
     display: flex;
     justify-content: flex-end;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 
-    @media (max-width: 1110px) {
+    @media (max-width: 1100px) {
+        flex-wrap: wrap;
         width: 100%;
     }
 }
