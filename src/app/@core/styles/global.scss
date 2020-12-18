@@ -255,3 +255,29 @@ input {
         background-color: nb-theme(background-basic-color-2) !important;
     }
 }
+.largeQ {
+    @media only screen and (max-width: 1000px) {
+        display: none;
+    }
+}
+
+.mediumQ {
+    @media only screen and (max-width: 1000px) {
+        display: none;
+    }
+    @media only screen and (min-width: 1000px) {
+        display: block;
+    }
+    @media only screen and (max-width: 400px) {
+        display: block;
+    }
+    @media only screen and (min-width: 400px) {
+        display: none;
+    }
+}
+
+.smallQ {
+    @media only screen and (min-width: 400px) {
+        display: none;
+    }
+}

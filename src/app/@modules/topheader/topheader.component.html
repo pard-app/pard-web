@@ -49,10 +49,15 @@
                         </button>
                     </li>
                 </div>
-                <span> <div class="vertical-seperator">&nbsp;</div></span>
 
                 <!-- <img class="sub__language" [nbContextMenu]="languages" [src]="'assets/images/flags/' + language + '.svg'" nbContextMenuTag="languages-menu" /> -->
             </ul>
+            <section class="shop__menuOutline">
+                <button ghost nbButton status="primary" [nbContextMenu]="TOP_HEADER_NAVIGATION_ROUTES" class="shop__menuButton">
+                    <nb-icon icon="menu-outline"></nb-icon>
+                </button>
+            </section>
+            <span> <div class="vertical-seperator">&nbsp;</div></span>
             <button ghost nbButton style="padding: 10px" nbContextMenuTag="languages-menu" [nbContextMenu]="languages">
                 <img class="sub__language" [src]="'assets/images/flags/' + language + '.svg'" />
             </button>
@@ -111,7 +116,7 @@
             <img class="sub__language" [src]="'assets/images/flags/' + language + '.svg'" />
         </button>
         <div class="vertical-seperator">&nbsp;</div>
-        <button *ngIf="isMobileLayout" ghost nbButton status="primary" [nbContextMenu]="TOP_HEADER_NAVIGATION_ROUTES" class="top-header__button">
+        <button *ngIf="isMobileLayout" ghost nbButton status="primary" [nbContextMenu]="TOP_HEADER_NAVIGATION_ROUTES" class="shop__menuButton">
             <nb-icon icon="menu-outline"></nb-icon>
         </button>
         <div class="vertical-seperator">&nbsp;</div>

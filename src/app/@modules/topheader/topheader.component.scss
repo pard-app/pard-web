@@ -87,10 +87,20 @@
         align-items: center;
         justify-content: flex-end;
     }
+    &__menuOutline {
+        display: flex;
+        align-items: center;
+        @media only screen and (min-width: 1100px) {
+            display: none;
+        }
+    }
     &__list {
         display: flex;
         flex-direction: row;
         padding: 0;
+        @media only screen and (max-width: 1100px) {
+            display: none;
+        }
     }
     &__buttonCloseToMe {
         color: nb-theme(color-success-500);
