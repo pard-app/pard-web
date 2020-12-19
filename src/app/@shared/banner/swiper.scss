@@ -17,17 +17,20 @@
     position: relative;
     overflow: hidden;
     list-style: none;
-    box-shadow: nb-theme(color-basic-transparent-500) 0px 0px 4px;
     border-radius: 15px;
     padding: 0;
     cursor: pointer;
-    transition: all 0.1s cubic-bezier(0.42, 0.95, 0.72, 0.32), max-height 0.2s linear, height 0.2s linear;
+    box-shadow: nb-theme(color-basic-transparent-200) 0px 0px 10px;
+    transition: all 0.2s cubic-bezier(0.42, 0.95, 0.72, 0.32), max-height 0.2s linear, height 0.2s linear;
     /* Fix of Webkit flickering */
     z-index: 1;
     &:hover,
     &:focus {
-        box-shadow: nb-theme(color-basic-transparent-500) 0px 0px 10px;
+        box-shadow: nb-theme(color-basic-transparent-200) 0px 0px 40px;
         outline: none;
+    }
+    @media only screen and (max-width: 880px) {
+        border-radius: 0 !important;
     }
 }
 .swiper-container-vertical > .swiper-wrapper {

@@ -16,4 +16,9 @@
         font-size: 1.1em;
         margin: 8px 0;
     }
+    &__item {
+        @media only screen and (max-width: 880px) {
+            padding-left: var(--margin-standart);
+        }
+    }
 }

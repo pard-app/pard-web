@@ -53,9 +53,9 @@ h6 {
         border-radius: 0;
     }
 
-    @media only screen and (max-width: 600px) {
-        padding-right: 10px;
-        padding-left: 10px;
+    @media only screen and (max-width: 880px) {
+        padding-right: 0px;
+        padding-left: 0px;
     }
     &__vendor {
         padding: 0;
@@ -89,9 +89,10 @@ h6 {
         font-size: 1.5em;
         margin: 15px 0;
     }
-    @media only screen and (max-width: 640px) {
+    @media only screen and (max-width: 880px) {
         font-size: 1.5em;
         margin: 8px 0;
+        padding-left: var(--margin-standart);
     }
     @media only screen and (max-width: 455px) {
         font-size: 1.2em;
@@ -116,13 +117,17 @@ h6 {
 }
 
 .clickable-card {
-    transition: all 0.1s cubic-bezier(0.42, 0.95, 0.72, 0.32), max-height 0.2s linear, height 0.2s linear;
+    box-shadow: nb-theme(color-basic-transparent-200) 0px 0px 10px;
+    transition: all 0.2s cubic-bezier(0.42, 0.95, 0.72, 0.32), max-height 0.2s linear, height 0.2s linear;
     overflow: hidden;
     cursor: pointer;
-    box-shadow: nb-theme(color-basic-transparent-500) 0px 0px 4px;
+    @media only screen and (max-width: 600px) {
+        border-radius: 0 !important;
+    }
+
     &:hover,
     &:focus {
-        box-shadow: nb-theme(color-basic-transparent-500) 0px 0px 10px;
+        box-shadow: nb-theme(color-basic-transparent-200) 0px 0px 40px;
         outline: none;
     }
 }

@@ -4,26 +4,31 @@
 
 .banner {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+
     flex-wrap: wrap;
     min-height: 70vh;
     text-align: center;
 
+    width: 100%;
+    @media (max-width: 1100px) {
+        align-items: flex-end;
+    }
+    @media (max-width: 880px) {
+        border-radius: 0;
+    }
     h1 {
-        font-size: 3rem;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         font-family: var(--font-family-primary);
     }
 
     h4 {
-        font-size: 1.1rem;
         font-weight: 500;
+        color: black !important;
     }
 
     a {
-        margin-top: 20px;
+        max-width: 200px;
+        margin: 30px 2px 0px 2px;
     }
 }
 
@@ -40,10 +45,22 @@
 }
 
 .foreground {
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     background-color: rgba(0, 0, 0, 0.1);
-    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    /* height: 100%; */
+    padding: 0 60px;
     z-index: 1;
-    padding: 30px 20px;
-    border-radius: 15px;
+    text-align: left;
+    border-radius: 15px 0 0 15px;
+    justify-content: center;
+    @media (max-width: 1100px) {
+        height: 50%;
+        width: 100%;
+        padding: 40px;
+        border-radius: 0;
+    }
 }
