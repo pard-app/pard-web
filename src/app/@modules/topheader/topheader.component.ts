@@ -75,6 +75,8 @@ export class TopheaderComponent implements OnInit, OnDestroy {
             });
 
         this.language = this.translate.currentLang;
+
+        this.setTopMenu();
     }
 
     private setTopMenu() {

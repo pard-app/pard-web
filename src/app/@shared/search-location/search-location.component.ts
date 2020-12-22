@@ -75,7 +75,7 @@ export class SearchLocationComponent implements OnInit, OnDestroy, AfterViewInit
     }
 
     ngAfterViewInit(): void {
-        this.inputRef && this.inputRef.nativeElement.blur();
+        //this.inputRef && this.inputRef.nativeElement.blur();
     }
 
     ngOnDestroy() {
