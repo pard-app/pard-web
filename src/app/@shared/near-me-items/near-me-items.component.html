@@ -1,18 +1,22 @@
 <ng-container *ngIf="askForLocation && !locationDenied">
-    <div class="ask near-me-container">
+    <nb-card class="ask near-me-container">
         <p>{{ "ASK_FOR_LOCATION" | translate }}</p>
-        <button nbButton (click)="getLocation()">{{ "GET_POSITION" | translate }}</button>
-    </div>
+        <button size="small" status="success" class="near-me-container__button" nbButton (click)="getLocation()">
+            <nb-icon icon="pin-outline" size="medium"></nb-icon> {{ "GET_POSITION" | translate }}
+        </button>
+    </nb-card>
 </ng-container>
 
 <ng-container *ngIf="locationDenied">
-    <div class="ask near-me-container">
+    <nb-card class="ask near-me-container-denied">
         <p>{{ "LOCATION_DENIED" | translate }}</p>
-    </div>
+    </nb-card>
 </ng-container>
 
 <ng-container *ngIf="position && topVendorsNearMe$ | async as topVendorsNearMe">
-    <p *ngIf="!topVendorsNearMe.length">😞 {{ "NO_VENDORS_NEAR" | translate }}</p>
+    <nb-card *ngIf="!topVendorsNearMe.length" class="ask near-me-container-nonefound">
+        <p>😞 {{ "NO_VENDORS_NEAR" | translate }}</p>
+    </nb-card>
     <app-list-vendors
         *ngIf="topVendorsNearMe.length"
         [vendorsWithListings$]="topVendorsNearMe$"

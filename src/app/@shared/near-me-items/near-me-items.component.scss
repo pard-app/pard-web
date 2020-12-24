@@ -4,7 +4,43 @@
 }
 
 .near-me-container {
-    // margin: 30px 0;
+    background-color: var(--color-success-300);
+    box-shadow: var(--color-success-300) 0px 0px 4px;
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+    p {
+        font-weight: 100;
+        font-family: var(--font-family-secondary);
+    }
+    &__button {
+        width: 300px;
+        margin-left: 20px;
+    }
+}
+
+.near-me-container-denied {
+    background-color: var(--color-warning-300);
+    box-shadow: var(--color-warning-300) 0px 0px 4px;
+    p {
+        font-weight: 100;
+        text-align: center;
+        font-family: var(--font-family-secondary);
+    }
+}
+
+.near-me-container-nonefound {
+    background-color: var(--color-info-300);
+    box-shadow: var(--color-info-300) 0px 0px 4px;
+    p {
+        font-weight: 100;
+        text-align: center;
+        font-family: var(--font-family-secondary);
+    }
 }
 
 .near-me-alert {
@@ -18,8 +54,11 @@
 }
 
 .ask {
-    text-align: center;
-    button {
-        margin-top: 10px;
+    border: none;
+    margin: 0;
+    padding: 30px;
+    border-radius: 0 var(--card-border-radius) var(--card-border-radius) var(--card-border-radius);
+    @media only screen and (max-width: 880px) {
+        padding: 15px;
     }
 }
